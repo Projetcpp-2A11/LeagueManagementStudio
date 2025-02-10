@@ -1,0 +1,10 @@
+release/custombutton.o
+release/customtextinput.o
+release/employeepage.o
+release/main.o
+release/mainwindow.o
+release/qrc_resources.o
+release/moc_custombutton.o
+release/moc_customtextinput.o
+release/moc_employeepage.o
+release/moc_mainwindow.o

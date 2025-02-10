@@ -1,0 +1,10 @@
+debug/custombutton.o
+debug/customtextinput.o
+debug/employeepage.o
+debug/main.o
+debug/mainwindow.o
+debug/qrc_resources.o
+debug/moc_custombutton.o
+debug/moc_customtextinput.o
+debug/moc_employeepage.o
+debug/moc_mainwindow.o

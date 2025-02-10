@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/textures">
+        <file>textures/button_normal.png</file>
+        <file>textures/button_hover.png</file>
+        <file>textures/button_pressed.png</file>
+        <file>textures/login_background.png</file>
+        <file>textures/app_icon.png</file>
+        <file>textures/employeeIcon.png</file>
+        <file>textures/partnersIcon.png</file>
+        <file>textures/matchsIcon.png</file>
+        <file>textures/stadiumIcon.png</file>
+        <file>textures/playersIcon.png</file>
+        <file>textures/teamsIcon.png</file>
+    </qresource>
+</RCC>
