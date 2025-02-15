@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1057</width>
+    <width>1080</width>
     <height>666</height>
    </rect>
   </property>
@@ -445,198 +445,296 @@ QPushButton:pressed, QPushButton:checked {
       <string notr="true">background-color:#858585;
 </string>
      </property>
-     <widget class="QLineEdit" name="searchEmployeeInput">
+     <widget class="QTabWidget" name="tabWidget">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>110</y>
-        <width>181</width>
-        <height>31</height>
+        <x>-20</x>
+        <y>0</y>
+        <width>871</width>
+        <height>681</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
+        <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:white;
-border:2px solid red;
+       <string notr="true">QTabBar::tab {
+    background: #C51D34;  
+    color: white;
+    border: 2px solid black;
+    padding: 10px;
+	width: 263%
+	
+   
+}
+
+
+QTabBar::tab:selected {
+    background: #2980b9;
+    color: white;
+    font-weight: bold;
+}
+
+QTabBar::tab:hover {
+    background: lightblue;
+    color: black;
+}
+
+</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Employee List</string>
+       </attribute>
+       <widget class="QLineEdit" name="searchEmployeeInput">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>70</y>
+          <width>181</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:white;
+border:2px solid #C51D34;
 border-color: rgb(255, 0, 4);
 color:black;
 </string>
-      </property>
-      <property name="placeholderText">
-       <string>search employee</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="searchButton">
-      <property name="geometry">
-       <rect>
-        <x>268</x>
-        <y>110</y>
-        <width>41</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-background-color:red;
+        </property>
+        <property name="placeholderText">
+         <string>search employee</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="searchButton">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>70</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+background-color:#C51D34;
 
 }
 QPushButton:hover {
     background-color: blue; 
 }</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset theme="QIcon::ThemeIcon::SystemSearch"/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="filterButton">
-      <property name="geometry">
-       <rect>
-        <x>317</x>
-        <y>110</y>
-        <width>41</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-background-color:red;
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::SystemSearch"/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="filterButton">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>70</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+background-color:#C51D34;
 
 }
 QPushButton:hover {
     background-color: blue; 
 }</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="addEmployeeButton">
-      <property name="geometry">
-       <rect>
-        <x>599</x>
-        <y>113</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>18</pointsize>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-background-color:red;
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="exportListButton">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>580</y>
+          <width>221</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+background-color:#C51D34;
 border-radius:10px;
 color:white;
 }
 QPushButton:hover {
     background-color: blue; 
 }</string>
-      </property>
-      <property name="text">
-       <string>Add Employee</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="exportListButton">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>580</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>18</pointsize>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-background-color:red;
-border-radius:10px;
-color:white;
+        </property>
+        <property name="text">
+         <string>Export List</string>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>110</y>
+          <width>701</width>
+          <height>451</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {
+    background-color: #ecf0f1;
+    border: 4px solid #2980b9; 
+    border-radius: 10px;
+    gridline-color: #bdc3c7;
+    font-size: 14px;
 }
-QPushButton:hover {
-    background-color: blue; 
-}</string>
-      </property>
-      <property name="text">
-       <string>Export List</string>
-      </property>
-      <property name="icon">
-       <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="statsButton">
-      <property name="geometry">
-       <rect>
-        <x>600</x>
-        <y>578</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>18</pointsize>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-background-color:red;
-border-radius:10px;
-color:white;
+
+QTableWidget::item {
+    padding: 10px;
+    border-bottom: 1px solid #bdc3c7;
 }
-QPushButton:hover {
-    background-color: blue; 
-}</string>
-      </property>
-      <property name="text">
-       <string>Statistics</string>
-      </property>
-      <property name="icon">
-       <iconset theme="QIcon::ThemeIcon::HelpAbout"/>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="listWidget">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>160</y>
-        <width>681</width>
-        <height>381</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
+
+QTableWidget::item:selected {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+QTableWidget::item:hover {
+    background-color: #f1c40f;
+    color: black;
+}
+
+QHeaderView::section {
+    background-color: #2980b9; /* Blue header */
+    color: white;
+    padding: 5px 5px; /* Increase horizontal padding */
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid #1c5986;
+    min-width: 120px; /* Minimum width for each column */
+}
+
+QTableCornerButton::section {
+    background-color: #2980b9;
+    border: 1px solid #1c5986;
+}
+</string>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Identifiant</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Nom</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Prenom</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Department</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Actions</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QPushButton" name="nextPageTable">
+        <property name="geometry">
+         <rect>
+          <x>740</x>
+          <y>570</y>
+          <width>31</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#C51D34;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::MediaSeekBackward"/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="prevPageTable">
+        <property name="geometry">
+         <rect>
+          <x>780</x>
+          <y>569</y>
+          <width>31</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#C51D34;
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::MediaSeekForward"/>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Add Employe</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Statistics</string>
+       </attribute>
+      </widget>
      </widget>
     </widget>
    </item>

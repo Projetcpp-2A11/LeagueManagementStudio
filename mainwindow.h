@@ -23,6 +23,8 @@ private slots:
 
     void on_forgotPasswordClicked_clicked();
 
+    void on_facialRecogButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

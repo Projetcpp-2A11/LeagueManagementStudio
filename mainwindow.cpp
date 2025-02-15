@@ -2,6 +2,9 @@
 #include "ui_mainwindow.h"
 #include "employeepage.h"
 #include <qtimer.h>
+#include <QProcess>
+#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -48,5 +51,43 @@ void MainWindow::on_forgotPasswordClicked_clicked()
         ui->ErrorZone->setText("");
 
     });
+}
+
+
+void MainWindow::on_facialRecogButton_clicked()
+{
+    QProcess process;
+
+    QString pythonPath = "python";
+    QStringList arguments;
+    arguments << "C:/Users/choua/OneDrive/Bureau/Projet C++/LMS/faceRecogScript.py";
+
+    process.start(pythonPath, arguments);
+
+    process.waitForFinished();
+
+    QString output = process.readAllStandardOutput();
+
+    qDebug() << "Python script output:" << output;
+
+    if (output.contains("True")) {
+        qDebug() << "Face match found!";
+        QMessageBox::information(this, "Face Recognition", "Face match found!");
+        this->setCursor(Qt::WaitCursor);
+        QTimer::singleShot(3000,this,[this]() {
+
+            employeePage *  employe = new employeePage();
+            employe->show();
+            this->hide();
+
+
+        });
+    } else {
+        qDebug() << "No face match found!";
+        QMessageBox::warning(this, "Face Recognition", "No face match found.");
+    }
+
+
+
 }
 

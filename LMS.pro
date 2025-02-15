@@ -1,6 +1,6 @@
 QT       += core gui widgets uitools
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4):
 
 CONFIG += c++17
 
@@ -32,3 +32,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources.qrc
+
+TARGET = LMS
+
+DISTFILES += \
+    faceRecogScript.py

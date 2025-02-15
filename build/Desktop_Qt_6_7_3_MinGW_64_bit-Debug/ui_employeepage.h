@@ -13,10 +13,12 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -39,19 +41,23 @@ public:
     QLabel *stadiumIcon;
     QLabel *partnersIcon;
     QWidget *contentArea;
+    QTabWidget *tabWidget;
+    QWidget *tab;
     QLineEdit *searchEmployeeInput;
     QPushButton *searchButton;
     QPushButton *filterButton;
-    QPushButton *addEmployeeButton;
     QPushButton *exportListButton;
-    QPushButton *statsButton;
-    QListWidget *listWidget;
+    QTableWidget *tableWidget;
+    QPushButton *nextPageTable;
+    QPushButton *prevPageTable;
+    QWidget *tab_2;
+    QWidget *tab_3;
 
     void setupUi(QWidget *employeePage)
     {
         if (employeePage->objectName().isEmpty())
             employeePage->setObjectName("employeePage");
-        employeePage->resize(1057, 666);
+        employeePage->resize(1080, 666);
         horizontalLayout = new QHBoxLayout(employeePage);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName("horizontalLayout");
@@ -242,23 +248,54 @@ public:
         contentArea->setSizePolicy(sizePolicy2);
         contentArea->setStyleSheet(QString::fromUtf8("background-color:#858585;\n"
 ""));
-        searchEmployeeInput = new QLineEdit(contentArea);
-        searchEmployeeInput->setObjectName("searchEmployeeInput");
-        searchEmployeeInput->setGeometry(QRect(80, 110, 181, 31));
+        tabWidget = new QTabWidget(contentArea);
+        tabWidget->setObjectName("tabWidget");
+        tabWidget->setGeometry(QRect(-20, 0, 871, 681));
         QFont font1;
-        font1.setFamilies({QString::fromUtf8("Arial")});
-        searchEmployeeInput->setFont(font1);
+        font1.setBold(true);
+        tabWidget->setFont(font1);
+        tabWidget->setStyleSheet(QString::fromUtf8("QTabBar::tab {\n"
+"    background: #C51D34;  \n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"    padding: 10px;\n"
+"	width: 263%\n"
+"	\n"
+"   \n"
+"}\n"
+"\n"
+"\n"
+"QTabBar::tab:selected {\n"
+"    background: #2980b9;\n"
+"    color: white;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QTabBar::tab:hover {\n"
+"    background: lightblue;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+""));
+        tab = new QWidget();
+        tab->setObjectName("tab");
+        searchEmployeeInput = new QLineEdit(tab);
+        searchEmployeeInput->setObjectName("searchEmployeeInput");
+        searchEmployeeInput->setGeometry(QRect(120, 70, 181, 31));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Arial")});
+        searchEmployeeInput->setFont(font2);
         searchEmployeeInput->setStyleSheet(QString::fromUtf8("background-color:white;\n"
-"border:2px solid red;\n"
+"border:2px solid #C51D34;\n"
 "border-color: rgb(255, 0, 4);\n"
 "color:black;\n"
 ""));
-        searchButton = new QPushButton(contentArea);
+        searchButton = new QPushButton(tab);
         searchButton->setObjectName("searchButton");
-        searchButton->setGeometry(QRect(268, 110, 41, 31));
+        searchButton->setGeometry(QRect(320, 70, 41, 31));
         searchButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         searchButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"background-color:red;\n"
+"background-color:#C51D34;\n"
 "\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -266,12 +303,12 @@ public:
 "}"));
         QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::SystemSearch));
         searchButton->setIcon(icon);
-        filterButton = new QPushButton(contentArea);
+        filterButton = new QPushButton(tab);
         filterButton->setObjectName("filterButton");
-        filterButton->setGeometry(QRect(317, 110, 41, 31));
+        filterButton->setGeometry(QRect(380, 70, 41, 31));
         filterButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         filterButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"background-color:red;\n"
+"background-color:#C51D34;\n"
 "\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -279,28 +316,15 @@ public:
 "}"));
         QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::AddressBookNew));
         filterButton->setIcon(icon1);
-        addEmployeeButton = new QPushButton(contentArea);
-        addEmployeeButton->setObjectName("addEmployeeButton");
-        addEmployeeButton->setGeometry(QRect(599, 113, 161, 31));
-        QFont font2;
-        font2.setPointSize(18);
-        addEmployeeButton->setFont(font2);
-        addEmployeeButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        addEmployeeButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"background-color:red;\n"
-"border-radius:10px;\n"
-"color:white;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: blue; \n"
-"}"));
-        exportListButton = new QPushButton(contentArea);
+        exportListButton = new QPushButton(tab);
         exportListButton->setObjectName("exportListButton");
-        exportListButton->setGeometry(QRect(80, 580, 161, 31));
-        exportListButton->setFont(font2);
+        exportListButton->setGeometry(QRect(120, 580, 221, 31));
+        QFont font3;
+        font3.setPointSize(18);
+        exportListButton->setFont(font3);
         exportListButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         exportListButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"background-color:red;\n"
+"background-color:#C51D34;\n"
 "border-radius:10px;\n"
 "color:white;\n"
 "}\n"
@@ -309,30 +333,89 @@ public:
 "}"));
         QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen));
         exportListButton->setIcon(icon2);
-        statsButton = new QPushButton(contentArea);
-        statsButton->setObjectName("statsButton");
-        statsButton->setGeometry(QRect(600, 578, 161, 31));
-        statsButton->setFont(font2);
-        statsButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        statsButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"background-color:red;\n"
-"border-radius:10px;\n"
-"color:white;\n"
+        tableWidget = new QTableWidget(tab);
+        if (tableWidget->columnCount() < 5)
+            tableWidget->setColumnCount(5);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+        tableWidget->setObjectName("tableWidget");
+        tableWidget->setGeometry(QRect(120, 110, 701, 451));
+        tableWidget->setStyleSheet(QString::fromUtf8("QTableWidget {\n"
+"    background-color: #ecf0f1;\n"
+"    border: 4px solid #2980b9; \n"
+"    border-radius: 10px;\n"
+"    gridline-color: #bdc3c7;\n"
+"    font-size: 14px;\n"
 "}\n"
-"QPushButton:hover {\n"
-"    background-color: blue; \n"
-"}"));
-        QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::HelpAbout));
-        statsButton->setIcon(icon3);
-        listWidget = new QListWidget(contentArea);
-        listWidget->setObjectName("listWidget");
-        listWidget->setGeometry(QRect(80, 160, 681, 381));
-        listWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+"\n"
+"QTableWidget::item {\n"
+"    padding: 10px;\n"
+"    border-bottom: 1px solid #bdc3c7;\n"
+"}\n"
+"\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #3498db;\n"
+"    color: white;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QTableWidget::item:hover {\n"
+"    background-color: #f1c40f;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #2980b9; /* Blue header */\n"
+"    color: white;\n"
+"    padding: 5px 5px; /* Increase horizontal padding */\n"
+"    font-size: 15px;\n"
+"    font-weight: bold;\n"
+"    border: 1px solid #1c5986;\n"
+"    min-width: 120px; /* Minimum width for each column */\n"
+"}\n"
+"\n"
+"QTableCornerButton::section {\n"
+"    background-color: #2980b9;\n"
+"    border: 1px solid #1c5986;\n"
+"}\n"
+""));
+        tableWidget->horizontalHeader()->setStretchLastSection(true);
+        nextPageTable = new QPushButton(tab);
+        nextPageTable->setObjectName("nextPageTable");
+        nextPageTable->setGeometry(QRect(740, 570, 31, 24));
+        nextPageTable->setStyleSheet(QString::fromUtf8("background-color:#C51D34;"));
+        QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::MediaSeekBackward));
+        nextPageTable->setIcon(icon3);
+        prevPageTable = new QPushButton(tab);
+        prevPageTable->setObjectName("prevPageTable");
+        prevPageTable->setGeometry(QRect(780, 569, 31, 24));
+        prevPageTable->setStyleSheet(QString::fromUtf8("background-color:#C51D34;\n"
+""));
+        QIcon icon4(QIcon::fromTheme(QIcon::ThemeIcon::MediaSeekForward));
+        prevPageTable->setIcon(icon4);
+        tabWidget->addTab(tab, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName("tab_2");
+        tabWidget->addTab(tab_2, QString());
+        tab_3 = new QWidget();
+        tab_3->setObjectName("tab_3");
+        tabWidget->addTab(tab_3, QString());
 
         horizontalLayout->addWidget(contentArea);
 
 
         retranslateUi(employeePage);
+
+        tabWidget->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(employeePage);
     } // setupUi
@@ -355,9 +438,22 @@ public:
         searchEmployeeInput->setPlaceholderText(QCoreApplication::translate("employeePage", "search employee", nullptr));
         searchButton->setText(QString());
         filterButton->setText(QString());
-        addEmployeeButton->setText(QCoreApplication::translate("employeePage", "Add Employee", nullptr));
         exportListButton->setText(QCoreApplication::translate("employeePage", "Export List", nullptr));
-        statsButton->setText(QCoreApplication::translate("employeePage", "Statistics", nullptr));
+        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QCoreApplication::translate("employeePage", "Identifiant", nullptr));
+        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QCoreApplication::translate("employeePage", "Nom", nullptr));
+        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QCoreApplication::translate("employeePage", "Prenom", nullptr));
+        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QCoreApplication::translate("employeePage", "Department", nullptr));
+        QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
+        ___qtablewidgetitem4->setText(QCoreApplication::translate("employeePage", "Actions", nullptr));
+        nextPageTable->setText(QString());
+        prevPageTable->setText(QString());
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("employeePage", "Employee List", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("employeePage", "Add Employe", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("employeePage", "Statistics", nullptr));
     } // retranslateUi
 
 };
