@@ -12,11 +12,13 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
@@ -51,7 +53,15 @@ public:
     QPushButton *nextPageTable;
     QPushButton *prevPageTable;
     QWidget *tab_2;
+    QLineEdit *firstName;
+    QLineEdit *lastName;
+    QLineEdit *adress;
+    QLineEdit *numTlf;
+    QComboBox *department;
+    QLineEdit *poste;
+    QPushButton *addEmployeeButton;
     QWidget *tab_3;
+    QSplitter *splitter;
 
     void setupUi(QWidget *employeePage)
     {
@@ -285,10 +295,25 @@ public:
         QFont font2;
         font2.setFamilies({QString::fromUtf8("Arial")});
         searchEmployeeInput->setFont(font2);
-        searchEmployeeInput->setStyleSheet(QString::fromUtf8("background-color:white;\n"
-"border:2px solid #C51D34;\n"
-"border-color: rgb(255, 0, 4);\n"
-"color:black;\n"
+        searchEmployeeInput->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+"    border: 2px solid #C51D34;\n"
+"    border-radius: 8px;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"    border-color: #ff3347;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border-color: #ff0004;\n"
+"    box-shadow: none; /* Qt stylesheets do not support box-shadow */\n"
+"}\n"
 ""));
         searchButton = new QPushButton(tab);
         searchButton->setObjectName("searchButton");
@@ -404,9 +429,196 @@ public:
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName("tab_2");
+        firstName = new QLineEdit(tab_2);
+        firstName->setObjectName("firstName");
+        firstName->setGeometry(QRect(80, 70, 301, 31));
+        firstName->setFont(font2);
+        firstName->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+"    border: 2px solid #C51D34;\n"
+"    border-radius: 8px;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"    border-color: #ff3347;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border-color: #ff0004;\n"
+"    box-shadow: none; /* Qt stylesheets do not support box-shadow */\n"
+"}\n"
+""));
+        lastName = new QLineEdit(tab_2);
+        lastName->setObjectName("lastName");
+        lastName->setGeometry(QRect(80, 210, 301, 31));
+        lastName->setFont(font2);
+        lastName->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+"    border: 2px solid #C51D34;\n"
+"    border-radius: 8px;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"    border-color: #ff3347;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border-color: #ff0004;\n"
+"    box-shadow: none; /* Qt stylesheets do not support box-shadow */\n"
+"}\n"
+""));
+        adress = new QLineEdit(tab_2);
+        adress->setObjectName("adress");
+        adress->setGeometry(QRect(80, 330, 301, 31));
+        adress->setFont(font2);
+        adress->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+"    border: 2px solid #C51D34;\n"
+"    border-radius: 8px;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"    border-color: #ff3347;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border-color: #ff0004;\n"
+"    box-shadow: none; /* Qt stylesheets do not support box-shadow */\n"
+"}\n"
+""));
+        numTlf = new QLineEdit(tab_2);
+        numTlf->setObjectName("numTlf");
+        numTlf->setGeometry(QRect(500, 70, 321, 31));
+        numTlf->setFont(font2);
+        numTlf->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+"    border: 2px solid #C51D34;\n"
+"    border-radius: 8px;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"    border-color: #ff3347;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border-color: #ff0004;\n"
+"    box-shadow: none; /* Qt stylesheets do not support box-shadow */\n"
+"}\n"
+""));
+        department = new QComboBox(tab_2);
+        department->addItem(QString());
+        department->addItem(QString());
+        department->addItem(QString());
+        department->addItem(QString());
+        department->addItem(QString());
+        department->setObjectName("department");
+        department->setGeometry(QRect(490, 330, 321, 31));
+        department->setStyleSheet(QString::fromUtf8("QComboBox {\n"
+"    background-color: white;\n"
+"    border: 2px solid #C51D34;\n"
+"    border-radius: 8px;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"    selection-background-color: #C51D34;\n"
+"}\n"
+"\n"
+"/* Drop-down arrow area */\n"
+"QComboBox::drop-down {\n"
+"    border: none;\n"
+"    width: 30px;\n"
+"    background-color: #C51D34;\n"
+"    border-top-right-radius: 8px;\n"
+"    border-bottom-right-radius: 8px;\n"
+"}\n"
+"\n"
+"/* When the combo box is hovered */\n"
+"QComboBox:hover {\n"
+"    border-color: #ff3347;\n"
+"}\n"
+"\n"
+"/* When the combo box is focused */\n"
+"QComboBox:focus {\n"
+"    border-color: #ff0004;\n"
+"}\n"
+"\n"
+"/* Style for the dropdown list */\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: white;\n"
+"    border: 2px solid #C51D34;\n"
+"    selection-background-color: #ff0004;\n"
+"    selection-color: white;\n"
+"    border-radius: 8px;\n"
+"	color:black;\n"
+"}\n"
+"\n"
+""));
+        poste = new QLineEdit(tab_2);
+        poste->setObjectName("poste");
+        poste->setGeometry(QRect(490, 210, 321, 31));
+        poste->setFont(font2);
+        poste->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+"    border: 2px solid #C51D34;\n"
+"    border-radius: 8px;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"    border-color: #ff3347;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border-color: #ff0004;\n"
+"    box-shadow: none; /* Qt stylesheets do not support box-shadow */\n"
+"}\n"
+""));
+        addEmployeeButton = new QPushButton(tab_2);
+        addEmployeeButton->setObjectName("addEmployeeButton");
+        addEmployeeButton->setGeometry(QRect(330, 480, 221, 31));
+        addEmployeeButton->setFont(font3);
+        addEmployeeButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        addEmployeeButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"background-color:#C51D34;\n"
+"border-radius:10px;\n"
+"color:white;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: blue; \n"
+"}"));
+        QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::ListAdd));
+        addEmployeeButton->setIcon(icon5);
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName("tab_3");
+        splitter = new QSplitter(tab_3);
+        splitter->setObjectName("splitter");
+        splitter->setGeometry(QRect(50, 110, 779, 283));
+        splitter->setOrientation(Qt::Orientation::Horizontal);
         tabWidget->addTab(tab_3, QString());
 
         horizontalLayout->addWidget(contentArea);
@@ -452,6 +664,19 @@ public:
         nextPageTable->setText(QString());
         prevPageTable->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("employeePage", "Employee List", nullptr));
+        firstName->setText(QString());
+        firstName->setPlaceholderText(QCoreApplication::translate("employeePage", "First Name", nullptr));
+        lastName->setPlaceholderText(QCoreApplication::translate("employeePage", "Last Name", nullptr));
+        adress->setPlaceholderText(QCoreApplication::translate("employeePage", "Address", nullptr));
+        numTlf->setPlaceholderText(QCoreApplication::translate("employeePage", "Phone Number", nullptr));
+        department->setItemText(0, QCoreApplication::translate("employeePage", "Select Department", nullptr));
+        department->setItemText(1, QCoreApplication::translate("employeePage", "Human resources", nullptr));
+        department->setItemText(2, QCoreApplication::translate("employeePage", "Federation", nullptr));
+        department->setItemText(3, QCoreApplication::translate("employeePage", "Municipality", nullptr));
+        department->setItemText(4, QString());
+
+        poste->setPlaceholderText(QCoreApplication::translate("employeePage", "Position", nullptr));
+        addEmployeeButton->setText(QCoreApplication::translate("employeePage", "Add Employee", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("employeePage", "Add Employe", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("employeePage", "Statistics", nullptr));
     } // retranslateUi
