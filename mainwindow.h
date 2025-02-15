@@ -25,7 +25,11 @@ private slots:
 
     void on_facialRecogButton_clicked();
 
+    void on_vocalRecogButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QByteArray captureAudio();
+
 };
 #endif // MAINWINDOW_H

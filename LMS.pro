@@ -1,4 +1,4 @@
-QT       += core gui widgets uitools
+QT       += core gui widgets uitools multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4):
 
@@ -37,3 +37,11 @@ TARGET = LMS
 
 DISTFILES += \
     faceRecogScript.py
+
+# Include PortAudio and Pocketsphinx paths (adjust to where you've installed them)
+INCLUDEPATH += "C:/portaudio/include"  # PortAudio include path
+INCLUDEPATH += "C:/pocketsphinx-5.0.4/include"  # Pocketsphinx include path
+LIBS += -lpocketsphinx -lsphinxbase
+
+
+
