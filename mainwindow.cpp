@@ -11,6 +11,7 @@
 #include <QAudioSource>
 #include <pocketsphinx.h>
 #include <QEventLoop>
+#include <QFile>
 #define MODELDIR "C:/pocketsphinx-5.0.4/models"
 
 
@@ -100,96 +101,123 @@ void MainWindow::on_facialRecogButton_clicked()
 
 }
 
+QByteArray MainWindow::readAudioFromFile(const QString &filePath)
+{
+    QFile audioFile(filePath);
+    if (!audioFile.open(QIODevice::ReadOnly)) {
+        QMessageBox::critical(this, "Error", "Failed to open audio file.");
+        return QByteArray();
+    }
+
+    QByteArray audioData = audioFile.readAll();
+    audioFile.close();
+    return audioData;
+}
+
 QByteArray MainWindow::captureAudio()
 {
+    QMessageBox *msgBox = new QMessageBox(this);
+    msgBox->setText("Recording audio...");
+    msgBox->setIcon(QMessageBox::Information);
+    msgBox->setStandardButtons(QMessageBox::NoButton);  // No button to close the box
+    msgBox->show();
+
     QByteArray audioData;
     QBuffer buffer(&audioData);
     buffer.open(QIODevice::WriteOnly);
 
-    // Set up audio format
     QAudioFormat format;
     format.setSampleRate(16000); // 16 kHz
     format.setChannelCount(1);   // Mono
     format.setSampleFormat(QAudioFormat::Int16); // 16-bit PCM
 
-    // Get the default audio input device
     QAudioDevice inputDevice = QMediaDevices::defaultAudioInput();
     if (inputDevice.isNull()) {
         QMessageBox::critical(this, "Error", "No audio input device found.");
         return QByteArray();
     }
 
-    // Check if the format is supported
     if (!inputDevice.isFormatSupported(format)) {
         QMessageBox::critical(this, "Error", "Audio format not supported.");
         return QByteArray();
     }
 
-    // Initialize audio input
     QAudioSource audioInput(inputDevice, format, this);
     audioInput.start(&buffer);
 
-    // Record for 3 seconds (adjust as needed)
     QEventLoop loop;
     QTimer::singleShot(3000, &loop, &QEventLoop::quit); // Record for 3 seconds
     loop.exec();
 
-    // Stop recording
     audioInput.stop();
     buffer.close();
+    msgBox->hide();
 
     return audioData;
 }
 
 void MainWindow::on_vocalRecogButton_clicked()
 {
+   /*
+    * TEST WITH PRERecorded :
+    * QString audioFilePath = "C:/Users/choua/OneDrive/Bureau/Recording.wav";
+
+    QByteArray audioData = readAudioFromFile(audioFilePath);
+    if (audioData.isEmpty()) {
+        QMessageBox::warning(this, "Warning", "No audio data read from file.");
+        return;
+    }*/
+
+
+
     // Capture audio
     QByteArray audioData = captureAudio();
+    qDebug() << "Audio data size:" << audioData.size();
 
     if (audioData.isEmpty()) {
         QMessageBox::warning(this, "Warning", "No audio data captured.");
         return;
     }
 
-    // Initialize PocketSphinx
-    ps_decoder_t *ps = nullptr;
-    cmd_ln_t *config = nullptr;
 
-    config = cmd_ln_init(nullptr, ps_args(), TRUE,
-                         "-hmm", MODELDIR "/en-us/en-us",  // Path to the acoustic model
-                         "-lm", MODELDIR "/en-us/en-us.lm.bin",  // Path to the language model
-                         "-dict", MODELDIR "/en-us/cmudict-en-us.dict",  // Path to the dictionary
-                         nullptr);
+
+    ps_config_t *config = ps_config_init(NULL);
 
     if (config == nullptr) {
         QMessageBox::critical(this, "Error", "Failed to initialize PocketSphinx configuration.");
         return;
     }
 
-    ps = ps_init(config);
+    ps_config_set_str(config, "hmm", "C:/pocketsphinx-5.0.4/model/en-us/en-us");
+    ps_config_set_str(config, "lm", "C:/pocketsphinx-5.0.4/model/en-us/en-us.lm.bin");
+    ps_config_set_str(config, "dict", "C:/pocketsphinx-5.0.4/model/en-us/cmudict-en-us.dict");
+
+    ps_config_set_int(config, "samprate", 16000);
+    ps_config_set_int(config, "maxwpf", 40);
+    ps_config_set_int(config, "logfn", 1);
+
+    ps_decoder_t *ps = ps_init(config);
     if (ps == nullptr) {
         QMessageBox::critical(this, "Error", "Failed to initialize PocketSphinx decoder.");
-        cmd_ln_free_r(config);
+        ps_config_free(config);
         return;
     }
 
-    // Process the audio data
     ps_start_utt(ps);
     ps_process_raw(ps, reinterpret_cast<const int16_t*>(audioData.constData()), audioData.size() / 2, FALSE, FALSE);
     ps_end_utt(ps);
 
-    // Get the recognized text
     const char *hypothesis = ps_get_hyp(ps, nullptr);
     if (hypothesis != nullptr) {
+        qDebug() << "Hypothesis: " << (hypothesis ? QString::fromUtf8(hypothesis) : "No recognition");
+
         QString recognizedText = QString::fromUtf8(hypothesis);
-        ui->password->setText(recognizedText); // Update the lineEdit with the recognized text
+        ui->password->setText(recognizedText);
         qDebug() << "Recognized text:" << recognizedText;
     } else {
         QMessageBox::warning(this, "Warning", "No speech recognized.");
     }
 
-    // Clean up
     ps_free(ps);
-    cmd_ln_free_r(config);
+    ps_config_free(config);
 }
-

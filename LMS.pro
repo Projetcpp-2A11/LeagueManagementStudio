@@ -41,7 +41,7 @@ DISTFILES += \
 # Include PortAudio and Pocketsphinx paths (adjust to where you've installed them)
 INCLUDEPATH += "C:/portaudio/include"  # PortAudio include path
 INCLUDEPATH += "C:/pocketsphinx-5.0.4/include"  # Pocketsphinx include path
-LIBS += -lpocketsphinx -lsphinxbase
+LIBS += -LC:/pocketsphinx-5.0.4/lib -lpocketsphinx
 
 
 
