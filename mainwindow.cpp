@@ -9,7 +9,7 @@
 #include <QMediaDevices>
 #include <QEventLoop>
 #include <QFile>
-#define MODELDIR "C:/pocketsphinx-5.0.4/models"
+#include <QDir>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -67,7 +67,9 @@ void MainWindow::on_facialRecogButton_clicked()
 
     QString pythonPath = "python";
     QStringList arguments;
-    arguments << "C:/Users/choua/OneDrive/Bureau/Projet C++/LMS/faceRecogScript.py";
+    qDebug() << "Current Directory: " << QDir::currentPath();
+
+    arguments << "../../faceRecogScript.py";
 
     process.start(pythonPath, arguments);
 
@@ -94,15 +96,14 @@ void MainWindow::on_facialRecogButton_clicked()
         QMessageBox::warning(this, "Face Recognition", "No face match found.");
     }
 
-
-
 }
+
 void MainWindow::startSpeechRecognition()
 {
     QProcess *process = new QProcess(this);
     process->setProgram("python");
 
-    process->setArguments(QStringList() << "C:/Users/choua/OneDrive/Bureau/Projet C++/LMS/speechRecognition.py");
+    process->setArguments(QStringList() << "../../speechRecognition.py");
 
     // Show "Recording..." message
     QMessageBox *recordingBox = new QMessageBox(this);
@@ -149,3 +150,4 @@ void MainWindow::on_vocalRecogButton_clicked()
         startSpeechRecognition();
     });
 }
+
