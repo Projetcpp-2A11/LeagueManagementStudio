@@ -29,8 +29,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QByteArray captureAudio();
-    QByteArray readAudioFromFile(const QString &filePath);
+    void startSpeechRecognition();
 
 };
 #endif // MAINWINDOW_H

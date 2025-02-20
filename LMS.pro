@@ -36,7 +36,9 @@ RESOURCES += \
 TARGET = LMS
 
 DISTFILES += \
-    faceRecogScript.py
+    faceRecogScript.py \
+    speechRecognition.py
+    testSR.py
 
 # Include PortAudio and Pocketsphinx paths (adjust to where you've installed them)
 INCLUDEPATH += "C:/portaudio/include"  # PortAudio include path

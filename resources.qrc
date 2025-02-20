@@ -11,5 +11,6 @@
         <file>textures/stadiumIcon.png</file>
         <file>textures/playersIcon.png</file>
         <file>textures/teamsIcon.png</file>
+        <file>textures/mic_icon.png</file>
     </qresource>
 </RCC>
