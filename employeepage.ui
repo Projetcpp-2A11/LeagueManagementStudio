@@ -448,8 +448,13 @@ QPushButton:pressed, QPushButton:checked {
      <widget class="QTabWidget" name="tabWidget">
       <property name="geometry">
        <rect>
+<<<<<<< HEAD
         <x>0</x>
         <y>30</y>
+=======
+        <x>-20</x>
+        <y>0</y>
+>>>>>>> af867f8293ef297e5b2abeae557476c8e0ce6498
         <width>871</width>
         <height>681</height>
        </rect>
@@ -485,7 +490,11 @@ QTabBar::tab:hover {
 </string>
       </property>
       <property name="currentIndex">
+<<<<<<< HEAD
        <number>0</number>
+=======
+       <number>1</number>
+>>>>>>> af867f8293ef297e5b2abeae557476c8e0ce6498
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1090,7 +1099,10 @@ QPushButton:hover {
  </widget>
  <resources>
   <include location="resources.qrc"/>
+<<<<<<< HEAD
   <include location="C:/Users/yossra/.designer/backup/resources.qrc"/>
+=======
+>>>>>>> af867f8293ef297e5b2abeae557476c8e0ce6498
  </resources>
  <connections/>
 </ui>

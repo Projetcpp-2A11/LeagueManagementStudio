@@ -1,7 +1,11 @@
 #include "mainwindow.h"
 #include "qbuffer.h"
 #include "ui_mainwindow.h"
+<<<<<<< HEAD
 #include "matchpage.h"
+=======
+#include "employeepage.h"
+>>>>>>> af867f8293ef297e5b2abeae557476c8e0ce6498
 #include <qtimer.h>
 #include <QProcess>
 #include <QMessageBox>
