@@ -1,5 +1,4 @@
 import speech_recognition as sr
-import cv2
 import threading
 
 
@@ -7,20 +6,20 @@ import threading
 def recognize_speech():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
-        #print("Listening...")
 
         recognizer.adjust_for_ambient_noise(source)
-        audio = recognizer.listen(source)
+        audio = recognizer.listen(source,timeout=5,phrase_time_limit=5)
 
-        cv2.destroyAllWindows()  # Close the microphone image
 
         try:
             text = recognizer.recognize_google(audio).strip()
-            print(text)
+            return text.replace(" ","")
+
         except sr.UnknownValueError:
-            print("ERROR: Could not understand audio")
+            return "ERROR: Could not understand audio"
         except sr.RequestError:
-            print("ERROR: Could not request results")
+            return "ERROR: Could not request results"
 
 if __name__ == "__main__":
-    recognize_speech()
+    result= recognize_speech()
+    print(result)
