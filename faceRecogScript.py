@@ -5,7 +5,7 @@ import time
 
 try:
     # Hardcoded image path for testing
-    image_path = "C:/Users/choua/OneDrive/Bureau/opencvContrib/hama.jpg"
+    image_path = "C:/Users/choua/OneDrive/Bureau/opencvContrib/aziz.jpg"
     existing_image = face_recognition.load_image_file(image_path)
     existing_face_encoding = face_recognition.face_encodings(existing_image)
 

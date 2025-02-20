@@ -2402,7 +2402,13 @@ release/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QEventLoop \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QFile \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qfile.h \
-		C:/Qt/6.7.3/mingw_64/include/QtCore/qfiledevice.h
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QDir \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qdir.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtimezone.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\..\mainwindow.cpp
 
 release/qrc_resources.o: release/qrc_resources.cpp 

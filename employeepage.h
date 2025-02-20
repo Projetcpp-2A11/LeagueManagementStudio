@@ -15,6 +15,9 @@ public:
     explicit employeePage(QWidget *parent = nullptr);
     ~employeePage();
 
+private slots:
+
+
 private:
     Ui::employeePage *ui;
 };
