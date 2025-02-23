@@ -12,18 +12,24 @@ SOURCES += \
     custombutton.cpp \
     customtextinput.cpp \
     employeepage.cpp \
+    homepage.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    matchpage.cpp
 
 HEADERS += \
     custombutton.h \
     customtextinput.h \
     employeepage.h \
-    mainwindow.h
+    homepage.h \
+    mainwindow.h \
+    matchpage.h
 
 FORMS += \
     employeepage.ui \
-    mainwindow.ui
+    homepage.ui \
+    mainwindow.ui \
+    matchpage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -40,10 +46,7 @@ DISTFILES += \
     speechRecognition.py
     testSR.py
 
-# Include PortAudio and Pocketsphinx paths (adjust to where you've installed them)
-INCLUDEPATH += "C:/portaudio/include"  # PortAudio include path
-INCLUDEPATH += "C:/pocketsphinx-5.0.4/include"  # Pocketsphinx include path
-LIBS += -LC:/pocketsphinx-5.0.4/lib -lpocketsphinx
+
 
 
 

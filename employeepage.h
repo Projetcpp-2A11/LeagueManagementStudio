@@ -2,6 +2,8 @@
 #define EMPLOYEEPAGE_H
 
 #include <QWidget>
+#include "matchpage.h"
+#include "ui_matchpage.h"
 
 namespace Ui {
 class employeePage;
@@ -16,6 +18,7 @@ public:
     ~employeePage();
 
 private slots:
+
 
 
 private:

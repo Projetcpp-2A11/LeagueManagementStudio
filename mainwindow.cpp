@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "homepage.h"
 #include "qbuffer.h"
 #include "ui_mainwindow.h"
 #include "employeepage.h"
@@ -34,8 +35,8 @@ void MainWindow::on_login_clicked()
         ui->ErrorZone->setStyleSheet("color:white");
         ui->ErrorZone->setText("Login clicked");
 
-        employeePage *  employe = new employeePage();
-        employe->show();
+        homepage *  homePage = new homepage();
+        homePage->show();
         this->hide();
 
 
