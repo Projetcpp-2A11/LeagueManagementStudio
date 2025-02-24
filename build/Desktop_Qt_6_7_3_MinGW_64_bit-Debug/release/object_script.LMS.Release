@@ -1,21 +1,12 @@
 release/custombutton.o
 release/customtextinput.o
-<<<<<<< HEAD
+release/homepage.o
 release/main.o
 release/mainwindow.o
 release/matchpage.o
 release/qrc_resources.o
 release/moc_custombutton.o
 release/moc_customtextinput.o
+release/moc_homepage.o
 release/moc_mainwindow.o
 release/moc_matchpage.o
-=======
-release/employeepage.o
-release/main.o
-release/mainwindow.o
-release/qrc_resources.o
-release/moc_custombutton.o
-release/moc_customtextinput.o
-release/moc_employeepage.o
-release/moc_mainwindow.o
->>>>>>> af867f8293ef297e5b2abeae557476c8e0ce6498

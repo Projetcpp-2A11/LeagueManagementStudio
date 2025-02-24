@@ -45,7 +45,7 @@ public:
     QWidget *contentArea;
     QTabWidget *updatematch;
     QWidget *tab;
-    QLineEdit *searchEmployeeInput;
+    QLineEdit *searchmatchsInput;
     QPushButton *searchButton;
     QPushButton *filterButton;
     QPushButton *exportListButton;
@@ -290,13 +290,13 @@ public:
 ""));
         tab = new QWidget();
         tab->setObjectName("tab");
-        searchEmployeeInput = new QLineEdit(tab);
-        searchEmployeeInput->setObjectName("searchEmployeeInput");
-        searchEmployeeInput->setGeometry(QRect(120, 70, 181, 31));
+        searchmatchsInput = new QLineEdit(tab);
+        searchmatchsInput->setObjectName("searchmatchsInput");
+        searchmatchsInput->setGeometry(QRect(120, 70, 181, 31));
         QFont font2;
         font2.setFamilies({QString::fromUtf8("Arial")});
-        searchEmployeeInput->setFont(font2);
-        searchEmployeeInput->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+        searchmatchsInput->setFont(font2);
+        searchmatchsInput->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
 "    background-color: white;\n"
 "    border: 2px solid #C51D34;\n"
 "    border-radius: 8px;\n"
@@ -614,8 +614,8 @@ public:
 #if QT_CONFIG(tooltip)
         updatematch->setToolTip(QCoreApplication::translate("matchPage", "<html><head/><body><p>updatematch</p><p><br/></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
-        searchEmployeeInput->setText(QCoreApplication::translate("matchPage", "search matchs", nullptr));
-        searchEmployeeInput->setPlaceholderText(QCoreApplication::translate("matchPage", "search employee", nullptr));
+        searchmatchsInput->setText(QString());
+        searchmatchsInput->setPlaceholderText(QCoreApplication::translate("matchPage", "search matchs", nullptr));
         searchButton->setText(QString());
         filterButton->setText(QString());
         exportListButton->setText(QCoreApplication::translate("matchPage", "Export List", nullptr));

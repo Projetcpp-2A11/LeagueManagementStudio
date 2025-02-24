@@ -1,11 +1,8 @@
 #include "mainwindow.h"
+#include "homepage.h"
 #include "qbuffer.h"
 #include "ui_mainwindow.h"
-<<<<<<< HEAD
 #include "matchpage.h"
-=======
-#include "employeepage.h"
->>>>>>> af867f8293ef297e5b2abeae557476c8e0ce6498
 #include <qtimer.h>
 #include <QProcess>
 #include <QMessageBox>
@@ -38,8 +35,8 @@ void MainWindow::on_login_clicked()
         ui->ErrorZone->setStyleSheet("color:white");
         ui->ErrorZone->setText("Login clicked");
 
-        employeePage *  employe = new employeePage();
-        employe->show();
+        homepage *  homePage = new homepage();
+        homePage->show();
         this->hide();
 
 

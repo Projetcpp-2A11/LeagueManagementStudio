@@ -1,10 +1,11 @@
 #include "matchpage.h"
-#include "ui_matchpage.h"
+#include "ui_matchs.h"
+
 #include <QVBoxLayout>
 
 employeePage::employeePage(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::matchPage)
+    , ui(new Ui::MatchPage)
 {
     setWindowTitle("Employee Page");
     ui->setupUi(this);
@@ -15,9 +16,7 @@ employeePage::employeePage(QWidget *parent)
     // Apply a layout to ensure resizing works properly
     QVBoxLayout *layout = new QVBoxLayout(this);
     setLayout(layout);
-    ui->employeeButton->setProperty("selected", true);
 
-    //ui->employeeButton->setStyleSheet("  background-color: blue; border-radius: 15px;  color: white; border: none; padding: 10px 20px;" );
 }
 
 
@@ -27,4 +26,5 @@ employeePage::~employeePage()
 {
     delete ui;
 }
+
 

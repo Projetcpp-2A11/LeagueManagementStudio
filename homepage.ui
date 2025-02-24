@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>homepage</class>
+ <widget class="QWidget" name="homepage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:0, y2:1, 
+                                stop:0 rgba(6, 6, 6, 255), 
+                                stop:0.41 rgba(56, 50, 52, 255), 
+                                stop:1 rgba(34, 33, 33, 255));;
+</string>
+  </property>
+  <widget class="QWidget" name="topBar" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1001</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget#topBar{
+    background: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));
+    border: 2px solid #8B0000;
+    border-radius: 8px;
+    padding: 5px;
+    
+    /* Fake shadow using an outline effect */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+
+}</string>
+   </property>
+   <widget class="QPushButton" name="myAccountButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>71</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background: none;
+    border: none;
+}
+
+QPushButton:hover {
+    icon: url(:/textures/textures/myaccountIconHovered.png)
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/textures/textures/myaccountIcon.png</normaloff>:/textures/textures/myaccountIcon.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>50</width>
+      <height>50</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="usernameLabel">
+    <property name="geometry">
+     <rect>
+      <x>75</x>
+      <y>25</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Azonix</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:none;
+border:none;</string>
+    </property>
+    <property name="text">
+     <string>Username</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="accountSettingsLabel">
+    <property name="geometry">
+     <rect>
+      <x>13</x>
+      <y>64</y>
+      <width>71</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Rounded MT Bold</family>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+background:none;</string>
+    </property>
+    <property name="text">
+     <string>account settings</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="timeLabel">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>0</y>
+      <width>301</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:none;
+border:none;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>-30</y>
+      <width>271</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:none;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resources.qrc">:/textures/textures/app_icon.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="empIoyeeIcon">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>310</y>
+     <width>51</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:none</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/textures/textures/employeeIcon.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="employeeButton">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>300</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */
+    border-radius: 15px;               /* Rounded corners */
+    color: white;                      /* White text */
+    border: none;                      /* No border */
+    padding: 10px 20px;                /* Padding inside the button */
+}
+
+QPushButton:hover {
+    background-color:  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(0, 213, 246, 255), 
+                            stop:0.18 rgba(100, 100, 138, 255), 
+                            stop:1 rgba(0, 212, 255, 255));
+	color:white;
+border:2px solid black;
+}
+
+QPushButton[selected=&quot;true&quot;] {
+    background-color: blue;            /* Blue background when selected */
+}</string>
+   </property>
+   <property name="text">
+    <string>      Employees</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="teamsButton">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>300</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */
+    border-radius: 15px;               /* Rounded corners */
+    color: white;                      /* White text */
+    border: none;                      /* No border */
+    padding: 10px 20px;                /* Padding inside the button */
+}
+
+QPushButton:hover {
+    background-color:  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(0, 213, 246, 255), 
+                            stop:0.18 rgba(100, 100, 138, 255), 
+                            stop:1 rgba(0, 212, 255, 255));
+	color:white;
+border:2px solid black;
+}
+
+QPushButton[selected=&quot;true&quot;] {
+    background-color: blue;            /* Blue background when selected */
+}</string>
+   </property>
+   <property name="text">
+    <string>Teams</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="teamsIcon">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>300</y>
+     <width>51</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:none</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/textures/textures/teamsIcon.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="matchsButton">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>300</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */
+    border-radius: 15px;               /* Rounded corners */
+    color: white;                      /* White text */
+    border: none;                      /* No border */
+    padding: 10px 20px;                /* Padding inside the button */
+}
+
+QPushButton:hover {
+    background-color:  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(0, 213, 246, 255), 
+                            stop:0.18 rgba(100, 100, 138, 255), 
+                            stop:1 rgba(0, 212, 255, 255));
+	color:white;
+border:2px solid black;
+}
+
+QPushButton[selected=&quot;true&quot;] {
+    background-color: blue;            /* Blue background when selected */
+}</string>
+   </property>
+   <property name="text">
+    <string>Matchs</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="matchsIcon">
+   <property name="geometry">
+    <rect>
+     <x>702</x>
+     <y>306</y>
+     <width>51</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:none</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/textures/textures/matchsIcon.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="playersButton">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>490</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */
+    border-radius: 15px;               /* Rounded corners */
+    color: white;                      /* White text */
+    border: none;                      /* No border */
+    padding: 10px 20px;                /* Padding inside the button */
+}
+
+QPushButton:hover {
+    background-color:  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(0, 213, 246, 255), 
+                            stop:0.18 rgba(100, 100, 138, 255), 
+                            stop:1 rgba(0, 212, 255, 255));
+	color:white;
+border:2px solid black;
+}
+
+QPushButton[selected=&quot;true&quot;] {
+    background-color: blue;            /* Blue background when selected */
+}</string>
+   </property>
+   <property name="text">
+    <string>Players</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="playersIcon">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>487</y>
+     <width>91</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:none</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/textures/textures/playersIcon.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="stadiumsButton">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>490</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */
+    border-radius: 15px;               /* Rounded corners */
+    color: white;                      /* White text */
+    border: none;                      /* No border */
+    padding: 10px 20px;                /* Padding inside the button */
+}
+
+QPushButton:hover {
+    background-color:  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(0, 213, 246, 255), 
+                            stop:0.18 rgba(100, 100, 138, 255), 
+                            stop:1 rgba(0, 212, 255, 255));
+	color:white;
+border:2px solid black;
+}
+
+QPushButton[selected=&quot;true&quot;] {
+    background-color: blue;            /* Blue background when selected */
+}</string>
+   </property>
+   <property name="text">
+    <string>Stadiums</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="stadiumIcon">
+   <property name="geometry">
+    <rect>
+     <x>428</x>
+     <y>506</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:none</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/textures/textures/stadiumIcon.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="partnersButton">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>490</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */
+    border-radius: 15px;               /* Rounded corners */
+    color: white;                      /* White text */
+    border: none;                      /* No border */
+    padding: 10px 20px;                /* Padding inside the button */
+}
+
+QPushButton:hover {
+    background-color:  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(0, 213, 246, 255), 
+                            stop:0.18 rgba(100, 100, 138, 255), 
+                            stop:1 rgba(0, 212, 255, 255));
+	color:white;
+border:2px solid black;
+}
+
+QPushButton[selected=&quot;true&quot;] {
+    background-color: blue;            /* Blue background when selected */
+}</string>
+   </property>
+   <property name="text">
+    <string>Partners</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="partnersIcon">
+   <property name="geometry">
+    <rect>
+     <x>707</x>
+     <y>507</y>
+     <width>41</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:none</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/textures/textures/partnersIcon.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>topBar</zorder>
+  <zorder>employeeButton</zorder>
+  <zorder>empIoyeeIcon</zorder>
+  <zorder>teamsButton</zorder>
+  <zorder>teamsIcon</zorder>
+  <zorder>matchsButton</zorder>
+  <zorder>matchsIcon</zorder>
+  <zorder>playersButton</zorder>
+  <zorder>playersIcon</zorder>
+  <zorder>stadiumsButton</zorder>
+  <zorder>stadiumIcon</zorder>
+  <zorder>partnersButton</zorder>
+  <zorder>partnersIcon</zorder>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
