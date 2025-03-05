@@ -18,6 +18,8 @@ public:
 private slots:
     void on_employeeButton_clicked();
 
+    void on_matchsButton_clicked();
+
 private:
     Ui::homepage *ui;
 };

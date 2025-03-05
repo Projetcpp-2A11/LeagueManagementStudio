@@ -1,5 +1,6 @@
 #include "homepage.h"
 #include "employeepage.h"
+#include "matchpage.h"
 #include "qdatetime.h"
 #include "qtimer.h"
 #include "ui_homepage.h"
@@ -35,6 +36,14 @@ void homepage::on_employeeButton_clicked()
 {
     employeePage * employeepage = new employeePage();
     employeepage->show();
-    this->hide();
+    delete this;
+}
+
+
+void homepage::on_matchsButton_clicked()
+{
+    matchPage* matchpage = new matchPage();
+    matchpage->show();
+    delete this;
 }
 

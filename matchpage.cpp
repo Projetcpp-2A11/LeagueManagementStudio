@@ -1,12 +1,12 @@
 #include "matchpage.h"
-#include "ui_matchpage.h"
+
 #include <QVBoxLayout>
 
-matchpage::matchpage(QWidget *parent)
+matchPage::matchPage(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::matchPage)
 {
-    setWindowTitle("match Page");
+    setWindowTitle("Employee Page");
     ui->setupUi(this);
 
     setMinimumSize(1000, 800);
@@ -15,15 +15,21 @@ matchpage::matchpage(QWidget *parent)
     // Apply a layout to ensure resizing works properly
     QVBoxLayout *layout = new QVBoxLayout(this);
     setLayout(layout);
-    ui->employeeButton->setProperty("selected", false);
-    ui->matchsButton->setProperty("selected", true);
+
 }
 
 
 
 
-matchpage::~matchpage()
+matchPage::~matchPage()
 {
     delete ui;
+}
+
+
+
+void matchPage::on_homeButton_clicked()
+{
+
 }
 

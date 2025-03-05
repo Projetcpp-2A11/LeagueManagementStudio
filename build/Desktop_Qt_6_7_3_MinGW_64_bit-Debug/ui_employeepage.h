@@ -35,7 +35,7 @@ public:
     QPushButton *searchButton;
     QPushButton *filterButton;
     QPushButton *exportListButton;
-    QTableWidget *tableWidget;
+    QTableWidget *employeeTableWidget;
     QPushButton *nextPageTable;
     QPushButton *prevPageTable;
     QWidget *tab_2;
@@ -82,7 +82,7 @@ public:
         QFont font;
         font.setBold(true);
         tabWidget->setFont(font);
-        tabWidget->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        tabWidget->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
         tabWidget->setStyleSheet(QString::fromUtf8("QTabBar::tab {\n"
 "    background: qlineargradient(spread:pad, \n"
 "                            x1:0, y1:0, x2:1, y2:1, \n"
@@ -164,7 +164,7 @@ public:
 "                            stop: 1 rgba(0, 238, 255, 255));  ; \n"
 "}"));
         QIcon icon;
-        icon.addFile(QString::fromUtf8("textures/searchIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon.addFile(QString::fromUtf8(":/textures/textures/searchIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         searchButton->setIcon(icon);
         filterButton = new QPushButton(tab);
         filterButton->setObjectName("filterButton");
@@ -186,7 +186,7 @@ public:
 "                            stop: 1 rgba(0, 238, 255, 255));  ; \n"
 "}"));
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8("textures/filterIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon1.addFile(QString::fromUtf8(":/textures/textures/filterIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         filterButton->setIcon(icon1);
         exportListButton = new QPushButton(tab);
         exportListButton->setObjectName("exportListButton");
@@ -212,25 +212,26 @@ public:
 "                            stop: 1 rgba(0, 238, 255, 255));  \n"
 "}"));
         QIcon icon2;
-        icon2.addFile(QString::fromUtf8("textures/exportIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon2.addFile(QString::fromUtf8(":/textures/textures/exportIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         exportListButton->setIcon(icon2);
         exportListButton->setIconSize(QSize(40, 50));
-        tableWidget = new QTableWidget(tab);
-        if (tableWidget->columnCount() < 5)
-            tableWidget->setColumnCount(5);
+        employeeTableWidget = new QTableWidget(tab);
+        if (employeeTableWidget->columnCount() < 5)
+            employeeTableWidget->setColumnCount(5);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        employeeTableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        employeeTableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        employeeTableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        employeeTableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
-        tableWidget->setObjectName("tableWidget");
-        tableWidget->setGeometry(QRect(120, 110, 701, 451));
-        tableWidget->setStyleSheet(QString::fromUtf8("QTableWidget {\n"
+        employeeTableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+        employeeTableWidget->setObjectName("employeeTableWidget");
+        employeeTableWidget->setGeometry(QRect(120, 110, 701, 451));
+        employeeTableWidget->viewport()->setProperty("cursor", QVariant(QCursor(Qt::CursorShape::CrossCursor)));
+        employeeTableWidget->setStyleSheet(QString::fromUtf8("QTableWidget {\n"
 "    background-color: #ecf0f1;\n"
 "    border: 4px solid #2980b9; \n"
 "    border-radius: 10px;\n"
@@ -241,6 +242,7 @@ public:
 "QTableWidget::item {\n"
 "    padding: 10px;\n"
 "    border-bottom: 1px solid #bdc3c7;\n"
+"	color:black;\n"
 "}\n"
 "\n"
 "QTableWidget::item:selected {\n"
@@ -268,8 +270,35 @@ public:
 "    background-color: #2980b9;\n"
 "    border: 1px solid #1c5986;\n"
 "}\n"
+"\n"
+"QTableWidget QWidget {\n"
+"background:transparent;\n"
+""
+                        "\n"
+"	}\n"
+"QTableWidget QPushButton {\n"
+"    background-color: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));  \n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    font-size: 12px;\n"
+"min-width: 100px;  /* Ensure a minimum width */\n"
+"    min-height: 40px;  /* Ensure a minimum height */\n"
+"}\n"
+"\n"
+"QTableWidget QPushButton:hover {\n"
+"    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, \n"
+"                            stop: 0 rgba(0, 255, 254, 255),     \n"
+"                            stop: 0.26 rgba(38, 170, 196, 255), \n"
+"                            stop: 0.67 rgba(89, 85, 131, 255),\n"
+"                            stop: 1 rgba(0, 238, 255, 255));  \n"
+"}\n"
+"\n"
 ""));
-        tableWidget->horizontalHeader()->setStretchLastSection(true);
+        employeeTableWidget->horizontalHeader()->setStretchLastSection(true);
         nextPageTable = new QPushButton(tab);
         nextPageTable->setObjectName("nextPageTable");
         nextPageTable->setGeometry(QRect(740, 570, 31, 24));
@@ -293,7 +322,7 @@ public:
 "\n"
 ""));
         QIcon icon3;
-        icon3.addFile(QString::fromUtf8("textures/prevIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon3.addFile(QString::fromUtf8(":/textures/textures/prevIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         nextPageTable->setIcon(icon3);
         prevPageTable = new QPushButton(tab);
         prevPageTable->setObjectName("prevPageTable");
@@ -318,7 +347,7 @@ public:
 "\n"
 ""));
         QIcon icon4;
-        icon4.addFile(QString::fromUtf8("textures/nextIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon4.addFile(QString::fromUtf8(":/textures/textures/nextIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         prevPageTable->setIcon(icon4);
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
@@ -546,7 +575,7 @@ public:
 "                            stop: 1 rgba(0, 238, 255, 255));  ; \n"
 "}"));
         QIcon icon5;
-        icon5.addFile(QString::fromUtf8("textures/addIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon5.addFile(QString::fromUtf8(":/textures/textures/addIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         addEmployeeButton->setIcon(icon5);
         addEmployeeButton->setIconSize(QSize(50, 50));
         tabWidget->addTab(tab_2, QString());
@@ -574,7 +603,6 @@ public:
 "\n"
 "QPushButton:hover {\n"
 "    background-color: red;\n"
-"    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);\n"
 "	border-radius:15px;\n"
 "}"));
         QIcon icon6;
@@ -594,11 +622,10 @@ public:
 "\n"
 "QPushButton:hover {\n"
 "    background-color: white;\n"
-"    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);\n"
 "	border-radius:15px;\n"
 "}"));
         QIcon icon7;
-        icon7.addFile(QString::fromUtf8("textures/homeIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon7.addFile(QString::fromUtf8(":/textures/textures/homeIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         homeButton->setIcon(icon7);
         homeButton->setIconSize(QSize(50, 50));
         aboutButton = new QPushButton(sidebar);
@@ -614,11 +641,10 @@ public:
 "\n"
 "QPushButton:hover {\n"
 "    background-color: lime;\n"
-"    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);\n"
 "	border-radius:15px;\n"
 "}"));
         QIcon icon8;
-        icon8.addFile(QString::fromUtf8("textures/aboutIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon8.addFile(QString::fromUtf8(":/textures/textures/aboutIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         aboutButton->setIcon(icon8);
         aboutButton->setIconSize(QSize(50, 50));
         notifButton = new QPushButton(sidebar);
@@ -638,9 +664,13 @@ public:
 "	border-radius:15px;\n"
 "}"));
         QIcon icon9;
-        icon9.addFile(QString::fromUtf8("textures/notifsIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon9.addFile(QString::fromUtf8(":/textures/textures/notifsIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         notifButton->setIcon(icon9);
         notifButton->setIconSize(QSize(50, 50));
+        notifButton->raise();
+        homeButton->raise();
+        aboutButton->raise();
+        exitButton->raise();
 
         horizontalLayout->addWidget(contentArea);
 
@@ -660,15 +690,15 @@ public:
         searchButton->setText(QString());
         filterButton->setText(QString());
         exportListButton->setText(QCoreApplication::translate("employeePage", "Export List", nullptr));
-        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QCoreApplication::translate("employeePage", "Identifiant", nullptr));
-        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QCoreApplication::translate("employeePage", "Nom", nullptr));
-        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QCoreApplication::translate("employeePage", "Prenom", nullptr));
-        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
+        QTableWidgetItem *___qtablewidgetitem = employeeTableWidget->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QCoreApplication::translate("employeePage", "USER ID", nullptr));
+        QTableWidgetItem *___qtablewidgetitem1 = employeeTableWidget->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QCoreApplication::translate("employeePage", "F Name", nullptr));
+        QTableWidgetItem *___qtablewidgetitem2 = employeeTableWidget->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QCoreApplication::translate("employeePage", "L Name", nullptr));
+        QTableWidgetItem *___qtablewidgetitem3 = employeeTableWidget->horizontalHeaderItem(3);
         ___qtablewidgetitem3->setText(QCoreApplication::translate("employeePage", "Department", nullptr));
-        QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
+        QTableWidgetItem *___qtablewidgetitem4 = employeeTableWidget->horizontalHeaderItem(4);
         ___qtablewidgetitem4->setText(QCoreApplication::translate("employeePage", "Actions", nullptr));
         nextPageTable->setText(QString());
         prevPageTable->setText(QString());

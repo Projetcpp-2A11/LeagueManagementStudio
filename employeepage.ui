@@ -60,7 +60,7 @@
        </font>
       </property>
       <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
+       <cursorShape>ArrowCursor</cursorShape>
       </property>
       <property name="styleSheet">
        <string notr="true">QTabBar::tab {
@@ -178,8 +178,8 @@ QPushButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>textures/searchIcon.png</normaloff>textures/searchIcon.png</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/searchIcon.png</normaloff>:/textures/textures/searchIcon.png</iconset>
         </property>
        </widget>
        <widget class="QPushButton" name="filterButton">
@@ -215,8 +215,8 @@ QPushButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>textures/filterIcon.png</normaloff>textures/filterIcon.png</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/filterIcon.png</normaloff>:/textures/textures/filterIcon.png</iconset>
         </property>
        </widget>
        <widget class="QPushButton" name="exportListButton">
@@ -258,8 +258,8 @@ QPushButton:hover {
          <string>Export List</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>textures/exportIcon.png</normaloff>textures/exportIcon.png</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/exportIcon.png</normaloff>:/textures/textures/exportIcon.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -268,7 +268,7 @@ QPushButton:hover {
          </size>
         </property>
        </widget>
-       <widget class="QTableWidget" name="tableWidget">
+       <widget class="QTableWidget" name="employeeTableWidget">
         <property name="geometry">
          <rect>
           <x>120</x>
@@ -276,6 +276,9 @@ QPushButton:hover {
           <width>701</width>
           <height>451</height>
          </rect>
+        </property>
+        <property name="cursor" stdset="0">
+         <cursorShape>CrossCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">QTableWidget {
@@ -289,6 +292,7 @@ QPushButton:hover {
 QTableWidget::item {
     padding: 10px;
     border-bottom: 1px solid #bdc3c7;
+	color:black;
 }
 
 QTableWidget::item:selected {
@@ -316,6 +320,32 @@ QTableCornerButton::section {
     background-color: #2980b9;
     border: 1px solid #1c5986;
 }
+
+QTableWidget QWidget {
+background:transparent;
+
+	}
+QTableWidget QPushButton {
+    background-color: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));  
+    border-radius: 10px;
+    color: white;
+    font-size: 12px;
+min-width: 100px;  /* Ensure a minimum width */
+    min-height: 40px;  /* Ensure a minimum height */
+}
+
+QTableWidget QPushButton:hover {
+    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
+                            stop: 0 rgba(0, 255, 254, 255),     
+                            stop: 0.26 rgba(38, 170, 196, 255), 
+                            stop: 0.67 rgba(89, 85, 131, 255),
+                            stop: 1 rgba(0, 238, 255, 255));  
+}
+
 </string>
         </property>
         <attribute name="horizontalHeaderStretchLastSection">
@@ -323,17 +353,17 @@ QTableCornerButton::section {
         </attribute>
         <column>
          <property name="text">
-          <string>Identifiant</string>
+          <string>USER ID</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Nom</string>
+          <string>F Name</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Prenom</string>
+          <string>L Name</string>
          </property>
         </column>
         <column>
@@ -381,8 +411,8 @@ QPushButton:hover{
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>textures/prevIcon.png</normaloff>textures/prevIcon.png</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/prevIcon.png</normaloff>:/textures/textures/prevIcon.png</iconset>
         </property>
        </widget>
        <widget class="QPushButton" name="prevPageTable">
@@ -419,8 +449,8 @@ QPushButton:hover{
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>textures/nextIcon.png</normaloff>textures/nextIcon.png</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/nextIcon.png</normaloff>:/textures/textures/nextIcon.png</iconset>
         </property>
        </widget>
       </widget>
@@ -786,8 +816,8 @@ QPushButton:hover {
          <string>Add Employee</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>textures/addIcon.png</normaloff>textures/addIcon.png</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/addIcon.png</normaloff>:/textures/textures/addIcon.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -850,7 +880,6 @@ QPushButton:hover {
 
 QPushButton:hover {
     background-color: red;
-    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
 	border-radius:15px;
 }</string>
        </property>
@@ -890,7 +919,6 @@ QPushButton:hover {
 
 QPushButton:hover {
     background-color: white;
-    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
 	border-radius:15px;
 }</string>
        </property>
@@ -898,8 +926,8 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>textures/homeIcon.png</normaloff>textures/homeIcon.png</iconset>
+        <iconset resource="resources.qrc">
+         <normaloff>:/textures/textures/homeIcon.png</normaloff>:/textures/textures/homeIcon.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -930,7 +958,6 @@ QPushButton:hover {
 
 QPushButton:hover {
     background-color: lime;
-    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
 	border-radius:15px;
 }</string>
        </property>
@@ -938,8 +965,8 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>textures/aboutIcon.png</normaloff>textures/aboutIcon.png</iconset>
+        <iconset resource="resources.qrc">
+         <normaloff>:/textures/textures/aboutIcon.png</normaloff>:/textures/textures/aboutIcon.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -978,8 +1005,8 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>textures/notifsIcon.png</normaloff>textures/notifsIcon.png</iconset>
+        <iconset resource="resources.qrc">
+         <normaloff>:/textures/textures/notifsIcon.png</normaloff>:/textures/textures/notifsIcon.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -988,6 +1015,10 @@ QPushButton:hover {
         </size>
        </property>
       </widget>
+      <zorder>notifButton</zorder>
+      <zorder>homeButton</zorder>
+      <zorder>aboutButton</zorder>
+      <zorder>exitButton</zorder>
      </widget>
     </widget>
    </item>

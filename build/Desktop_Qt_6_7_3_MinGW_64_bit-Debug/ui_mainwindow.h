@@ -44,7 +44,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1920, 1080);
+        MainWindow->resize(1050, 681);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         login = new CustomButton(centralwidget);
@@ -118,7 +118,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1920, 21));
+        menubar->setGeometry(QRect(0, 0, 1050, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -138,7 +138,7 @@ public:
         loginText->setText(QCoreApplication::translate("MainWindow", "LOGIN", nullptr));
         forgotPasswordClicked->setText(QString());
         ErrorZone->setText(QString());
-        usernameLabel->setText(QCoreApplication::translate("MainWindow", "Username", nullptr));
+        usernameLabel->setText(QCoreApplication::translate("MainWindow", "USER ID", nullptr));
         passwordLabel->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
         facialRecogButton->setText(QString());
         vocalRecogButton->setText(QString());

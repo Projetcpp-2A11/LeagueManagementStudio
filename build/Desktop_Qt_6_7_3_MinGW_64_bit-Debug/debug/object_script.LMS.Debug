@@ -1,10 +1,13 @@
+debug/connection.o
 debug/custombutton.o
 debug/customtextinput.o
+debug/employee.o
 debug/employeepage.o
 debug/homepage.o
 debug/main.o
 debug/mainwindow.o
 debug/matchpage.o
+debug/teamspage.o
 debug/qrc_resources.o
 debug/moc_custombutton.o
 debug/moc_customtextinput.o
@@ -12,3 +15,4 @@ debug/moc_employeepage.o
 debug/moc_homepage.o
 debug/moc_mainwindow.o
 debug/moc_matchpage.o
+debug/moc_teamspage.o

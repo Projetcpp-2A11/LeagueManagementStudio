@@ -7,7 +7,6 @@
 *****************************************************************************/
 
 #include "../../../employeepage.h"
-#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -36,7 +35,13 @@ namespace {
 #ifdef QT_MOC_HAS_STRINGDATA
 struct qt_meta_stringdata_CLASSemployeePageENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSemployeePageENDCLASS = QtMocHelpers::stringData(
-    "employeePage"
+    "employeePage",
+    "on_exitButton_clicked",
+    "",
+    "on_homeButton_clicked",
+    "on_notifButton_clicked",
+    "on_aboutButton_clicked",
+    "on_addEmployeeButton_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -49,12 +54,26 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSemployeePageENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    0,   44,    2, 0x08,    1 /* Private */,
+       3,    0,   45,    2, 0x08,    2 /* Private */,
+       4,    0,   46,    2, 0x08,    3 /* Private */,
+       5,    0,   47,    2, 0x08,    4 /* Private */,
+       6,    0,   48,    2, 0x08,    5 /* Private */,
+
+ // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -67,16 +86,35 @@ Q_CONSTINIT const QMetaObject employeePage::staticMetaObject = { {
     nullptr,
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSemployeePageENDCLASS_t,
         // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<employeePage, std::true_type>
+        QtPrivate::TypeAndForceComplete<employeePage, std::true_type>,
+        // method 'on_exitButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_homeButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_notifButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_aboutButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_addEmployeeButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
 
 void employeePage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    (void)_o;
-    (void)_id;
-    (void)_c;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<employeePage *>(_o);
+        (void)_t;
+        switch (_id) {
+        case 0: _t->on_exitButton_clicked(); break;
+        case 1: _t->on_homeButton_clicked(); break;
+        case 2: _t->on_notifButton_clicked(); break;
+        case 3: _t->on_aboutButton_clicked(); break;
+        case 4: _t->on_addEmployeeButton_clicked(); break;
+        default: ;
+        }
+    }
     (void)_a;
 }
 
@@ -96,6 +134,17 @@ void *employeePage::qt_metacast(const char *_clname)
 int employeePage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 5)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 5;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 5)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 5;
+    }
     return _id;
 }
 QT_WARNING_POP
