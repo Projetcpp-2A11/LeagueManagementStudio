@@ -19,7 +19,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     matchpage.cpp \
-    teamspage.cpp
+    teams.cpp \
 
 HEADERS += \
     connection.h \
@@ -31,7 +31,7 @@ HEADERS += \
     homepage.h \
     mainwindow.h \
     matchpage.h \
-    teamspage.h
+    teams.h \
 
 FORMS += \
     employeepage.ui \
@@ -39,7 +39,7 @@ FORMS += \
     homepage.ui \
     mainwindow.ui \
     matchs.ui \
-    teamspage.ui
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
