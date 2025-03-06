@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../custombutton.h"
+#include "../../../../../yousri/LeagueManagementStudio-main/custombutton.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>

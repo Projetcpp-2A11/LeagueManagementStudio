@@ -56,7 +56,12 @@ public:
     bool updateEmployeeUsingUserId ( int userID);
     bool deleteEmployeeUsingUserID ( int userID);
     QString generatePassword(const QString &firstName, const QString &lastName, const QString &phoneNumber);
-      QString generateUserID(const QString &firstName, const QString &lastName, const QString &depName, const QString &position);
+    QString generateUserID(const QString &firstName, const QString &lastName, const QString &depName, const QString &position);
+    bool updateEmployeeDetails(int userID, const QString &firstName, const QString &lastName,
+                               const QString &department, const QString &position, const QString &address,
+                               const QString &phone);
+
+
 };
 
 

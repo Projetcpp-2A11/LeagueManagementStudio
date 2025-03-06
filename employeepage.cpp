@@ -1,4 +1,5 @@
 #include "employeepage.h"
+#include "employeeupdateform.h"
 #include "ui_employeepage.h"
 #include <QMessageBox>
 #include <QVBoxLayout>
@@ -19,6 +20,7 @@ employeePage::employeePage(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(this);
     setLayout(layout);
 
+
 }
 
 
@@ -36,6 +38,7 @@ void employeePage::setupEmployeeTable() {
 
     employee emp;
     emp.listEmployees(ui->employeeTableWidget);
+    addButtonsToRows(ui->employeeTableWidget);
 }
 
 
@@ -113,8 +116,90 @@ void employeePage::on_addEmployeeButton_clicked()
         ui->numTlf->clear();
         ui->department->setCurrentIndex(0);
         ui->poste->clear();
+        refresh();
     } else {
         QMessageBox::critical(this, "Error", "Error Adding employee");
     }
 }
 
+
+void employeePage::on_refreshButton_clicked()
+{
+    refresh();
+}
+
+void employeePage::on_delete_employee_clicked(int row)
+{
+
+    qDebug() << "delete clicked" << row;
+
+    int userID = ui->employeeTableWidget->item(row, 0)->text().toInt();
+    if (emp.deleteEmployeeUsingUserID(userID)) {
+        qDebug() << "Employee with USERID" << userID << "was deleted.";
+        refresh();
+    } else {
+        qDebug() << "Failed to delete employee with USERID" << userID;
+    }
+}
+
+void employeePage::on_update_employee_clicked(int row)
+{
+    qDebug() << "update clicked" << row;
+    int userID = ui->employeeTableWidget->item(row, 0)->text().toInt();
+    employeeUpdateForm *updatePage = new employeeUpdateForm(nullptr,userID);
+    updatePage->show();
+
+
+
+
+}
+
+
+void employeePage::addButtonsToRows(QTableWidget* table)
+{
+    // Iterate through each row in the table
+    for (int row = 0; row < table->rowCount(); ++row) {
+        // Create delete and update buttons
+        QPushButton* deleteButton = new QPushButton("Delete");
+        QPushButton* updateButton = new QPushButton("Update");
+
+        // Create a widget to hold the buttons
+        QWidget* actionWidget = new QWidget();
+        QHBoxLayout* actionLayout = new QHBoxLayout(actionWidget);
+        actionLayout->setContentsMargins(0, 0, 0, 0);  // Remove margins
+        actionLayout->setSpacing(10);  // Add spacing between the buttons
+
+        // Add buttons to the layout
+        actionLayout->addWidget(deleteButton);
+        actionLayout->addWidget(updateButton);
+
+        // Set the size policy for the action widget to allow expansion
+        actionWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+
+        // Set the action widget as the cell widget in the table
+        table->setCellWidget(row, 4, actionWidget);
+
+        // Connect buttons to their respective slots
+        connect(deleteButton, &QPushButton::clicked, this, [this, row]() {
+            on_delete_employee_clicked(row);  // Pass the row index to the delete method
+        });
+
+        connect(updateButton, &QPushButton::clicked, this, [this, row]() {
+            on_update_employee_clicked(row);  // Pass the row index to the update method
+        });
+
+        // Adjust the column and row size to ensure enough space for the buttons
+        table->setColumnWidth(4, 200);  // Adjust column width for the actions column
+        table->setRowHeight(row, 60);   // Set row height for the actions row
+    }
+}
+
+void employeePage::refresh()
+{
+    ui->employeeTableWidget->clearContents();
+    ui->employeeTableWidget->setRowCount(0);  // Reset row count
+
+    // Repopulate the table with updated employee data
+    emp.listEmployees(ui->employeeTableWidget);
+    addButtonsToRows(ui->employeeTableWidget);
+}

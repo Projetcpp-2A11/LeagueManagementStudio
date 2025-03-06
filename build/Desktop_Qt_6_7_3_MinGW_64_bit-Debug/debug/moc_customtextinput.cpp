@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../customtextinput.h"
+#include "../../../../../yousri/LeagueManagementStudio-main/customtextinput.h"
 #include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 

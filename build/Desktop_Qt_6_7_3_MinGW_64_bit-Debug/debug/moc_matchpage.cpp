@@ -6,8 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../matchpage.h"
-#include <QtGui/qtextcursor.h>
+#include "../../../../../yousri/LeagueManagementStudio-main/matchpage.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -34,24 +33,28 @@ QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
 
 #ifdef QT_MOC_HAS_STRINGDATA
-struct qt_meta_stringdata_CLASSmatchPageENDCLASS_t {};
-constexpr auto qt_meta_stringdata_CLASSmatchPageENDCLASS = QtMocHelpers::stringData(
-    "matchPage",
-    "on_homeButton_clicked",
-    ""
+struct qt_meta_stringdata_CLASSMatchPageENDCLASS_t {};
+constexpr auto qt_meta_stringdata_CLASSMatchPageENDCLASS = QtMocHelpers::stringData(
+    "MatchPage",
+    "on_addMatchButton_clicked",
+    "",
+    "on_delete_match_clicked",
+    "row",
+    "on_update_match_clicked",
+    "on_refresh_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
 #endif // !QT_MOC_HAS_STRINGDATA
 } // unnamed namespace
 
-Q_CONSTINIT static const uint qt_meta_data_CLASSmatchPageENDCLASS[] = {
+Q_CONSTINIT static const uint qt_meta_data_CLASSMatchPageENDCLASS[] = {
 
  // content:
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -59,68 +62,84 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSmatchPageENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   20,    2, 0x08,    1 /* Private */,
+       1,    0,   38,    2, 0x08,    1 /* Private */,
+       3,    1,   39,    2, 0x08,    2 /* Private */,
+       5,    1,   42,    2, 0x08,    4 /* Private */,
+       6,    0,   45,    2, 0x08,    6 /* Private */,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void, QMetaType::Int,    4,
     QMetaType::Void,
 
        0        // eod
 };
 
-Q_CONSTINIT const QMetaObject matchPage::staticMetaObject = { {
+Q_CONSTINIT const QMetaObject MatchPage::staticMetaObject = { {
     QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
-    qt_meta_stringdata_CLASSmatchPageENDCLASS.offsetsAndSizes,
-    qt_meta_data_CLASSmatchPageENDCLASS,
+    qt_meta_stringdata_CLASSMatchPageENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSMatchPageENDCLASS,
     qt_static_metacall,
     nullptr,
-    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSmatchPageENDCLASS_t,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSMatchPageENDCLASS_t,
         // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<matchPage, std::true_type>,
-        // method 'on_homeButton_clicked'
+        QtPrivate::TypeAndForceComplete<MatchPage, std::true_type>,
+        // method 'on_addMatchButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_delete_match_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_update_match_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_refresh_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
 
-void matchPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void MatchPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<matchPage *>(_o);
+        auto *_t = static_cast<MatchPage *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_homeButton_clicked(); break;
+        case 0: _t->on_addMatchButton_clicked(); break;
+        case 1: _t->on_delete_match_clicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 2: _t->on_update_match_clicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 3: _t->on_refresh_clicked(); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
-const QMetaObject *matchPage::metaObject() const
+const QMetaObject *MatchPage::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *matchPage::qt_metacast(const char *_clname)
+void *MatchPage::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_CLASSmatchPageENDCLASS.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSMatchPageENDCLASS.stringdata0))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
-int matchPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int MatchPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 4;
     }
     return _id;
 }

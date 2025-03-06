@@ -44,12 +44,12 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1050, 681);
+        MainWindow->resize(1920, 1080);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         login = new CustomButton(centralwidget);
         login->setObjectName("login");
-        login->setGeometry(QRect(880, 819, 241, 111));
+        login->setGeometry(QRect(180, 310, 241, 111));
         login->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         login->setStyleSheet(QString::fromUtf8(""));
         username = new CustomTextInput(centralwidget);
@@ -118,7 +118,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1050, 21));
+        menubar->setGeometry(QRect(0, 0, 1920, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -138,7 +138,7 @@ public:
         loginText->setText(QCoreApplication::translate("MainWindow", "LOGIN", nullptr));
         forgotPasswordClicked->setText(QString());
         ErrorZone->setText(QString());
-        usernameLabel->setText(QCoreApplication::translate("MainWindow", "USER ID", nullptr));
+        usernameLabel->setText(QCoreApplication::translate("MainWindow", "Username", nullptr));
         passwordLabel->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
         facialRecogButton->setText(QString());
         vocalRecogButton->setText(QString());

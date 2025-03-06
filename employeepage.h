@@ -1,6 +1,7 @@
 #ifndef EMPLOYEEPAGE_H
 #define EMPLOYEEPAGE_H
 
+#include "employee.h"
 #include <QWidget>
 #include <homepage.h>
 
@@ -17,6 +18,8 @@ public:
     ~employeePage();
 
     void setupEmployeeTable();
+    void addButtonsToRows(QTableWidget *table);
+    void refresh();
 private slots:
 
 
@@ -31,8 +34,15 @@ private slots:
 
     void on_addEmployeeButton_clicked();
 
+    void on_refreshButton_clicked();
+
+    void on_delete_employee_clicked(int row);
+    void on_update_employee_clicked(int row);
+
+
 private:
     Ui::employeePage *ui;
+    employee emp;
 };
 
 #endif // EMPLOYEEPAGE_H

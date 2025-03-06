@@ -14,6 +14,7 @@ SOURCES += \
     customtextinput.cpp \
     employee.cpp \
     employeepage.cpp \
+    employeeupdateform.cpp \
     homepage.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -26,6 +27,7 @@ HEADERS += \
     customtextinput.h \
     employee.h \
     employeepage.h \
+    employeeupdateform.h \
     homepage.h \
     mainwindow.h \
     matchpage.h \
@@ -33,6 +35,7 @@ HEADERS += \
 
 FORMS += \
     employeepage.ui \
+    employeeupdateform.ui \
     homepage.ui \
     mainwindow.ui \
     matchs.ui \

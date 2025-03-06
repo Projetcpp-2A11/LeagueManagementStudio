@@ -1,9 +1,9 @@
 #include "employee.h"
-#include "qboxlayout.h"
+#include "connection.h"
 #include "qcontainerfwd.h"
 #include "qheaderview.h"
-#include "qpushbutton.h"
 #include "qsqlerror.h"
+#include <QSignalMapper>
 
 int employee::getUserID() const
 {
@@ -155,8 +155,35 @@ QString employee::generateUserID(const QString &firstName, const QString &lastNa
         .arg(randomFromPhone) // Two random digits from the phone number
         .arg(randomStr);      // Random 2-digit number
 }
+// crud methods implementations
 
- // crud methods implementations
+bool employee::updateEmployeeDetails(int userID, const QString &firstName, const QString &lastName, const QString &department, const QString &position, const QString &address, const QString &phone)
+{
+    QSqlQuery query;
+
+    // Prepare the SQL query to update the employee details
+    query.prepare("UPDATE Employees SET FIRSTNAME = :firstName, LASTNAME = :lastName, "
+                  "DEPNAME = :department, POSITION = :position, ADDRESS = :address, "
+                  "PHONENUM = :phone WHERE USERID = :userID");
+
+    // Bind the values to the placeholders in the query
+    query.bindValue(":firstName", firstName);
+    query.bindValue(":lastName", lastName);
+    query.bindValue(":department", department);
+    query.bindValue(":position", position);
+    query.bindValue(":address", address);
+    query.bindValue(":phone", phone);
+    query.bindValue(":userID", userID);
+
+    if (query.exec()) {
+        qDebug() << "Employee with USERID" << userID << "updated successfully.";
+        return true;
+    } else {
+        qDebug() << "Failed to update employee with USERID" << userID << ":" << query.lastError();
+        return false;
+    }
+}
+
 
 bool employee::addEmployee()
 {
@@ -169,7 +196,7 @@ bool employee::addEmployee()
                   "VALUES (:userid, :mdp, :firstname, :lastname, :address, :phonenum, :depname, :position)");
 
     query.bindValue(":userid", userId);
-    query.bindValue(":mdp", mdp.toInt());
+    query.bindValue(":mdp", mdp);
     query.bindValue(":firstname", this->firstName);
     query.bindValue(":lastname", this->lastName);
     query.bindValue(":address", this->address);
@@ -199,63 +226,30 @@ bool employee::addEmployee()
 
 void employee::listEmployees(QTableWidget* table)
 {
-    // Clear the table before inserting data
     table->clearContents();
     table->setRowCount(0);
-    table->verticalHeader()->setVisible(false);  // Hide the row number column
+    table->verticalHeader()->setVisible(false);
 
-    // Query to fetch employee data from the database
     QString queryStr = "SELECT USERID, FIRSTNAME, LASTNAME, DEPNAME FROM Employees";
     QSqlQuery query;
 
     if (query.exec(queryStr)) {
         int row = 0;
         while (query.next()) {
-            // Add a new row to the table
             table->insertRow(row);
-
-            // Set the data for the columns
             table->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));  // USERID
             table->setItem(row, 1, new QTableWidgetItem(query.value(1).toString()));  // FIRSTNAME
             table->setItem(row, 2, new QTableWidgetItem(query.value(2).toString()));  // LASTNAME
             table->setItem(row, 3, new QTableWidgetItem(query.value(3).toString()));  // DEPNAME
-
-            // Create and add the action buttons (delete, update)
-            QWidget* actionWidget = new QWidget();
-            QHBoxLayout* actionLayout = new QHBoxLayout(actionWidget);
-            actionLayout->setContentsMargins(0, 0, 0, 0); // Remove margins
-            actionLayout->setSpacing(10);  // Add spacing between the buttons
-
-            QPushButton* deleteButton = new QPushButton("Delete");
-            QPushButton* updateButton = new QPushButton("Update");
-
-            // Set the buttons to expand both horizontally and vertically
-            deleteButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred); // Expanding horizontally and preferred vertically
-            updateButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred); // Expanding horizontally and preferred vertically
-
-            // Add buttons to the layout
-            actionLayout->addWidget(deleteButton);
-            actionLayout->addWidget(updateButton);
-
-            // Set the size policy for the action widget to allow expansion
-            actionWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-
-            // Ensure the action widget fills the table cell properly
-            table->setCellWidget(row, 4, actionWidget);
-
-            // Adjust the column and row size to ensure enough space for the buttons
-            table->setColumnWidth(4, 200);  // Adjust column width for the actions column
-            table->setRowHeight(row, 60);   // Set row height for the actions row
-
-            // You can connect the buttons to slots here
-
-
             ++row;
+
         }
     } else {
         qDebug() << "Failed to fetch data: " << query.lastError();
     }
 }
+
+
 
 bool employee::updateEmployeeUsingUserId(int userID)
 {
@@ -264,6 +258,22 @@ bool employee::updateEmployeeUsingUserId(int userID)
 
 bool employee::deleteEmployeeUsingUserID(int userID)
 {
+    QSqlQuery query;
+    query.prepare("DELETE FROM Employees WHERE USERID = :userID");
+    query.bindValue(":userID", userID);
 
+    if (query.exec()) {
+
+            qDebug() << "Employee with USERID" << userID << "deleted successfully.";
+            return true;
+
+            qDebug() << "Failed to commit the transaction.";
+            return false;
+
+    } else {
+        qDebug() << "Failed to delete employee with USERID" << userID << ":" << query.lastError();
+        return false;
+    }
 }
+
 
