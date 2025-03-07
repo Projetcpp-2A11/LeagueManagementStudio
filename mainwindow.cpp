@@ -2,7 +2,7 @@
 #include "homepage.h"
 #include "qbuffer.h"
 #include "ui_mainwindow.h"
-#include "matchpage.h"
+#include "Staduimpage.h"
 #include <qtimer.h>
 #include <QProcess>
 #include <QMessageBox>
@@ -86,8 +86,8 @@ void MainWindow::on_facialRecogButton_clicked()
         this->setCursor(Qt::WaitCursor);
         QTimer::singleShot(3000,this,[this]() {
 
-            employeePage *  employe = new employeePage();
-            employe->show();
+            stadiumPage *  stadium = new stadiumPage();
+            stadium->show();
             this->hide();
 
 

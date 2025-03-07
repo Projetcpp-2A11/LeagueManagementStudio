@@ -1,3 +1,4 @@
+#include "connection.h"
 #include "mainwindow.h"
 
 #include <QApplication>
@@ -18,6 +19,8 @@ int main(int argc, char *argv[])
         "}"
         );
     w.setFixedSize(1920,1080);
+    connection newcnx;
+    newcnx.createconnect();
 
     w.show();
     return a.exec();

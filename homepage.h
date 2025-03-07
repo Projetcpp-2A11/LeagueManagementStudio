@@ -16,7 +16,7 @@ public:
     ~homepage();
 
 private slots:
-    void on_employeeButton_clicked();
+    void on_stadiumsButton_clicked();
 
 private:
     Ui::homepage *ui;

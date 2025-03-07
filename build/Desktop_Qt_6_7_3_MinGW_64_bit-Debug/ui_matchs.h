@@ -449,7 +449,7 @@ public:
         stade->addItem(QString());
         stade->addItem(QString());
         stade->setObjectName("stade");
-        stade->setGeometry(QRect(79, 320, 301, 31));
+        stade->setGeometry(QRect(79, 310, 301, 31));
         stade->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         stade->setStyleSheet(QString::fromUtf8("QComboBox {\n"
 "    background-color: white;\n"
@@ -621,7 +621,7 @@ public:
 
         retranslateUi(MatchPage);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MatchPage);

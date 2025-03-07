@@ -1,12 +1,14 @@
+release/Staduimpage.o
+release/connection.o
 release/custombutton.o
 release/customtextinput.o
 release/homepage.o
 release/main.o
 release/mainwindow.o
-release/matchpage.o
+release/stadium.o
 release/qrc_resources.o
+release/moc_Staduimpage.o
 release/moc_custombutton.o
 release/moc_customtextinput.o
 release/moc_homepage.o
 release/moc_mainwindow.o
-release/moc_matchpage.o

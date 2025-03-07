@@ -36,7 +36,7 @@ namespace {
 struct qt_meta_stringdata_CLASShomepageENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASShomepageENDCLASS = QtMocHelpers::stringData(
     "homepage",
-    "on_employeeButton_clicked",
+    "on_stadiumsButton_clicked",
     ""
 );
 #else  // !QT_MOC_HAS_STRINGDATA
@@ -75,7 +75,7 @@ Q_CONSTINIT const QMetaObject homepage::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASShomepageENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<homepage, std::true_type>,
-        // method 'on_employeeButton_clicked'
+        // method 'on_stadiumsButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -87,7 +87,7 @@ void homepage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         auto *_t = static_cast<homepage *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_employeeButton_clicked(); break;
+        case 0: _t->on_stadiumsButton_clicked(); break;
         default: ;
         }
     }

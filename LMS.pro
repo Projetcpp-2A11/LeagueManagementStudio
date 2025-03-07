@@ -1,4 +1,4 @@
-QT       += core gui widgets uitools multimedia
+QT       += core gui widgets uitools multimedia sql
 
 greaterThan(QT_MAJOR_VERSION, 4):
 
@@ -9,24 +9,28 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Staduimpage.cpp \
+    connection.cpp \
     custombutton.cpp \
     customtextinput.cpp \
     homepage.cpp \
     main.cpp \
     mainwindow.cpp \
-    matchpage.cpp
+    stadium.cpp
 
 HEADERS += \
+    Staduimpage.h \
+    connection.h \
     custombutton.h \
     customtextinput.h \
     homepage.h \
     mainwindow.h \
-    matchpage.h
+    stadium.h
 
 FORMS += \
+    Staduimpage.ui \
     homepage.ui \
-    mainwindow.ui \
-    matchs.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

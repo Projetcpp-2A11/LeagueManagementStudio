@@ -1,5 +1,5 @@
 #include "homepage.h"
-#include "matchpage.h"
+#include "Staduimpage.h"
 #include "qdatetime.h"
 #include "qtimer.h"
 #include "ui_homepage.h"
@@ -31,10 +31,10 @@ homepage::~homepage()
     delete ui;
 }
 
-void homepage::on_employeeButton_clicked()
+void homepage::on_stadiumsButton_clicked()
 {
-    employeePage * employeepage = new employeePage();
-    employeepage->show();
+    stadiumPage * stadiumpage = new stadiumPage();
+    stadiumpage->show();
     this->hide();
 }
 
