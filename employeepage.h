@@ -38,6 +38,8 @@ private slots:
 
     void on_delete_employee_clicked(int row);
     void on_update_employee_clicked(int row);
+    bool empInsertionValidateInputs();
+
 
 
 private:

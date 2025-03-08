@@ -15,6 +15,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSplitter>
@@ -47,6 +48,12 @@ public:
     QComboBox *department;
     QLineEdit *poste;
     QPushButton *addEmployeeButton;
+    QLabel *fNameErrorMSG;
+    QLabel *lNameErrorMSG;
+    QLabel *adressErrorMSG;
+    QLabel *phoneNumErrorMSG;
+    QLabel *positionErrorMSG;
+    QLabel *depErrorMSG;
     QWidget *tab_3;
     QSplitter *splitter;
     QWidget *sidebar;
@@ -599,6 +606,42 @@ public:
         icon6.addFile(QString::fromUtf8(":/textures/textures/addIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         addEmployeeButton->setIcon(icon6);
         addEmployeeButton->setIconSize(QSize(50, 50));
+        fNameErrorMSG = new QLabel(tab_2);
+        fNameErrorMSG->setObjectName("fNameErrorMSG");
+        fNameErrorMSG->setGeometry(QRect(395, 68, 291, 31));
+        fNameErrorMSG->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color:red;\n"
+""));
+        lNameErrorMSG = new QLabel(tab_2);
+        lNameErrorMSG->setObjectName("lNameErrorMSG");
+        lNameErrorMSG->setGeometry(QRect(400, 120, 291, 31));
+        lNameErrorMSG->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color:red;\n"
+""));
+        adressErrorMSG = new QLabel(tab_2);
+        adressErrorMSG->setObjectName("adressErrorMSG");
+        adressErrorMSG->setGeometry(QRect(400, 180, 291, 31));
+        adressErrorMSG->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color:red;\n"
+""));
+        phoneNumErrorMSG = new QLabel(tab_2);
+        phoneNumErrorMSG->setObjectName("phoneNumErrorMSG");
+        phoneNumErrorMSG->setGeometry(QRect(400, 250, 291, 31));
+        phoneNumErrorMSG->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color:red;\n"
+""));
+        positionErrorMSG = new QLabel(tab_2);
+        positionErrorMSG->setObjectName("positionErrorMSG");
+        positionErrorMSG->setGeometry(QRect(400, 310, 291, 31));
+        positionErrorMSG->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color:red;\n"
+""));
+        depErrorMSG = new QLabel(tab_2);
+        depErrorMSG->setObjectName("depErrorMSG");
+        depErrorMSG->setGeometry(QRect(390, 380, 291, 31));
+        depErrorMSG->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color:red;\n"
+""));
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName("tab_3");
@@ -738,6 +781,12 @@ public:
         department->setPlaceholderText(QCoreApplication::translate("employeePage", "Select Department", nullptr));
         poste->setPlaceholderText(QCoreApplication::translate("employeePage", "Position", nullptr));
         addEmployeeButton->setText(QCoreApplication::translate("employeePage", "Add Employee", nullptr));
+        fNameErrorMSG->setText(QString());
+        lNameErrorMSG->setText(QString());
+        adressErrorMSG->setText(QString());
+        phoneNumErrorMSG->setText(QString());
+        positionErrorMSG->setText(QString());
+        depErrorMSG->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("employeePage", "Add Employe", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("employeePage", "Statistics", nullptr));
         exitButton->setText(QString());

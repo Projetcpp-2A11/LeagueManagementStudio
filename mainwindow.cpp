@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "homepage.h"
 #include "qbuffer.h"
+#include "qsqlerror.h"
 #include "ui_mainwindow.h"
 #include "employeepage.h"
 #include <qtimer.h>
@@ -18,6 +19,13 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("League Management Studio");
+    setWindowIcon(QIcon(":/textures/textures/app_icon.png"));
+    setFixedSize(1050,681);
+    ui->passwordLabel->setVisible(false);
+    ui->password->setVisible(false);
+    ui->forgotPasswordClicked->setVisible(false);
+
 }
 
 MainWindow::~MainWindow()
@@ -28,23 +36,28 @@ MainWindow::~MainWindow()
 void MainWindow::on_login_clicked()
 {
     qDebug() << "Login Clicked";
-    if ( ui->username->text().isEmpty() || ui->password->text().isEmpty() ) {
-        ui->ErrorZone->setText("Login failed: Invalid credentials!");
+    int id = ui->username->text().toInt();
+    employee emp = checkIdExistance(id);
+
+    if ( emp.getUserID() ==-1) {
+        ui->ErrorZone->setText("This id doesnt exist");
+        QTimer::singleShot(1500,this,[this]() {
+            ui->ErrorZone->setText("");
+
+        });
+
 
     } else {
-        ui->ErrorZone->setStyleSheet("color:white");
-        ui->ErrorZone->setText("Login clicked");
-
-        homepage *  homePage = new homepage();
-        homePage->show();
-        this->hide();
-
-
+        ui->password->setVisible(true);
+        ui->forgotPasswordClicked->setVisible(true);
+        ui->passwordLabel->setVisible(true);
+        ui->login->setText("Login");
+        if ( authenticateEmployee(emp) ) {
+            homepage *home = new homepage;
+            home->show();
+            this->hide();
+        }
     }
-
-    QTimer::singleShot(3000, this, [this]() {
-        ui->ErrorZone->setText(""); // Clear the text
-    });
 }
 
 
@@ -84,14 +97,14 @@ void MainWindow::on_facialRecogButton_clicked()
         qDebug() << "Face match found!";
         QMessageBox::information(this, "Face Recognition", "Face match found!");
         this->setCursor(Qt::WaitCursor);
-        QTimer::singleShot(3000,this,[this]() {
+
 
             employeePage *  employe = new employeePage();
             employe->show();
             this->hide();
 
 
-        });
+
     } else {
         qDebug() << "No face match found!";
         QMessageBox::warning(this, "Face Recognition", "No face match found.");
@@ -151,4 +164,51 @@ void MainWindow::on_vocalRecogButton_clicked()
         startSpeechRecognition();
     });
 }
+
+employee MainWindow::checkIdExistance(int userID)
+{
+    QSqlQuery query;
+    query.clear();
+    query.prepare("SELECT USERID, FIRSTNAME, LASTNAME, PHONENUM, ADDRESS FROM employees WHERE USERID=:userID");
+    query.bindValue(":userID", userID);
+    employee p;
+
+    if (query.exec() && query.next()) {
+        int id = query.value(0).toInt();
+        QString firstName = query.value(1).toString();
+        QString lastName = query.value(2).toString();
+        QString phone = query.value(3).toString();
+        QString address = query.value(4).toString();
+
+        p.setFirstName(firstName);
+        p.setLastName(lastName);
+        p.setUserID(id);
+        return p;
+    } else {
+        p.setUserID(-1);  // Mark the user as not found
+        qDebug() << query.lastError().text();  // Log the query error
+        return p;  // Return the employee object with -1
+    }
+}
+
+
+bool MainWindow::authenticateEmployee(employee emp)
+{
+    int id = emp.getUserID();
+    QString mdp = ui->password->text();
+    QSqlQuery query;
+    query.clear();
+    query.prepare("SELECT COUNT(*) FROM EMPLOYEES WHERE USERID=:id AND MDP=:mdp");
+    query.bindValue(":id", id);
+    query.bindValue(":mdp", mdp);
+
+    if (query.exec() && query.next()) {
+        int count = query.value(0).toInt();
+        return count > 0;  // If count is greater than 0, the employee exists with the provided password
+    } else {
+        qDebug() << query.lastError().text();  // Log the error in case something goes wrong
+        return false;
+    }
+}
+
 

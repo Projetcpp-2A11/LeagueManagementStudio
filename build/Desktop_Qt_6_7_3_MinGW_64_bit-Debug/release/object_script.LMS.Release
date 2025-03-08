@@ -1,6 +1,4 @@
 release/connection.o
-release/custombutton.o
-release/customtextinput.o
 release/employee.o
 release/employeepage.o
 release/employeeupdateform.o
@@ -10,8 +8,6 @@ release/mainwindow.o
 release/matchpage.o
 release/teams.o
 release/qrc_resources.o
-release/moc_custombutton.o
-release/moc_customtextinput.o
 release/moc_employeepage.o
 release/moc_employeeupdateform.o
 release/moc_homepage.o

@@ -3,7 +3,7 @@
 
 #include "employee.h"
 #include <QWidget>
-
+#include <QMessageBox>
 namespace Ui {
 class employeeUpdateForm;
 }
@@ -22,6 +22,7 @@ private slots:
     void on_save_exit_clicked();
 
     void on_cancel_clicked();
+    bool empUpdateValidateInputs();
 
 private:
     Ui::employeeUpdateForm *ui;

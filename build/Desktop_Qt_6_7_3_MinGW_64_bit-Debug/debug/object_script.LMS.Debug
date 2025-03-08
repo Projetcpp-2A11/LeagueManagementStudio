@@ -1,6 +1,4 @@
 debug/connection.o
-debug/custombutton.o
-debug/customtextinput.o
 debug/employee.o
 debug/employeepage.o
 debug/employeeupdateform.o
@@ -10,8 +8,6 @@ debug/mainwindow.o
 debug/matchpage.o
 debug/teams.o
 debug/qrc_resources.o
-debug/moc_custombutton.o
-debug/moc_customtextinput.o
 debug/moc_employeepage.o
 debug/moc_employeeupdateform.o
 debug/moc_homepage.o

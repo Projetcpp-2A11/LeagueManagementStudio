@@ -45,15 +45,19 @@ employeeUpdateForm::~employeeUpdateForm()
 void employeeUpdateForm::on_save_exit_clicked()
 {
 
-    QString firstName = ui->firstName->text();
-    QString lastName = ui->lastName->text();
-    QString department = ui->department->currentText();
-    QString position = ui->position->text();
-    QString address = ui->address->text();
-    int userId = ui->userIDLabel->text().toInt();
-    QString phone = ui->phoneNum->text();
-    employeeToBeUpdated.updateEmployeeDetails(userId,firstName, lastName, department, position, address, phone);
-    this->close();
+    if (empUpdateValidateInputs()) {
+        QString firstName = ui->firstName->text();
+        QString lastName = ui->lastName->text();
+        QString department = ui->department->currentText();
+        QString position = ui->position->text();
+        QString address = ui->address->text();
+        int userId = ui->userIDLabel->text().toInt();
+        QString phone = ui->phoneNum->text();
+        employeeToBeUpdated.updateEmployeeDetails(userId,firstName, lastName, department, position, address, phone);
+        this->close();
+
+
+    }
 
 }
 
@@ -61,5 +65,55 @@ void employeeUpdateForm::on_save_exit_clicked()
 void employeeUpdateForm::on_cancel_clicked()
 {
     this->close();
+}
+
+bool employeeUpdateForm::empUpdateValidateInputs()
+{
+
+        QString errorMessage;
+
+        // First Name Validation
+        if (ui->firstName->text().isEmpty() || ui->firstName->text().length() < 4 || ui->firstName->text().contains(QRegularExpression("[0-9]"))) {
+            errorMessage += "- First Name: Must be at least 4 characters and contain only letters.\n";
+        }
+
+        // Last Name Validation
+        if (ui->lastName->text().isEmpty() || ui->lastName->text().length() < 4 || ui->lastName->text().contains(QRegularExpression("[0-9]"))) {
+            errorMessage += "- Last Name: Must be at least 4 characters and contain only letters.\n";
+        }
+
+        // Address Validation
+        if (ui->address->text().isEmpty() || ui->address->text().length() < 6) {
+            errorMessage += "- Address: Must be at least 6 characters long.\n";
+        }
+
+        // Phone Number Validation (Only digits, +, - allowed)
+        if (ui->phoneNum->text().isEmpty() || !ui->phoneNum->text().contains(QRegularExpression("^[0-9+\\-]+$"))) {
+            errorMessage += "- Phone Number: Only digits, '+', and '-' are allowed.\n";
+        }
+
+        // Position Validation (At least 4 characters)
+        if (ui->position->text().isEmpty() || ui->position->text().length() < 4) {
+            errorMessage += "- Position: Must be at least 4 characters long.\n";
+        }
+
+        // Department Validation (Must be selected)
+        if (ui->department->currentText() == "Select Department" || ui->department->currentText().isEmpty()) {
+            errorMessage += "- Department: Must be selected.\n";
+        }
+
+        // If there are any errors, show the message box
+        if (!errorMessage.isEmpty()) {
+            QMessageBox::warning(this, "Input Error", errorMessage);
+            return false;
+        }
+
+        return true;
+
+
+
+
+
+
 }
 

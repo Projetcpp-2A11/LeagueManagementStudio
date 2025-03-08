@@ -16,6 +16,7 @@ matchPage::matchPage(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(this);
     setLayout(layout);
 
+
 }
 
 

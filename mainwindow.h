@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "employee.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -26,6 +27,10 @@ private slots:
     void on_facialRecogButton_clicked();
 
     void on_vocalRecogButton_clicked();
+
+    employee checkIdExistance(int userID);
+    bool authenticateEmployee(employee emp);
+
 
 private:
     Ui::MainWindow *ui;

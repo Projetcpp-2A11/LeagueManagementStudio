@@ -86,40 +86,33 @@ void employeePage::on_aboutButton_clicked()
 
 void employeePage::on_addEmployeeButton_clicked()
 {
+    if ( empInsertionValidateInputs()) {
+        QString firstName = ui->firstName->text().trimmed();
+        QString lastName = ui->lastName->text().trimmed();
+        QString address = ui->adress->text();
+        QString phoneNum = ui->numTlf->text();
+        QString depName = ui->department->currentText();
+        QString position = ui->poste->text();
+        employee newEmployee( "", firstName, lastName, address, phoneNum, depName, position, "", "");
+        if (newEmployee.addEmployee()) {
+            QMessageBox::information(this, "Success", "Employee added successfully");
+            // Clear fields after successful insertion
+            ui->firstName->clear();
+            ui->lastName->clear();
+            ui->adress->clear();
+            ui->numTlf->clear();
+            ui->department->setCurrentIndex(0);
+            ui->poste->clear();
+            refresh();
+        } else {
+            QMessageBox::critical(this, "Error", "Error Adding employee");
+        }
 
-
-    // Get input values from UI
-    QString firstName = ui->firstName->text().trimmed();
-    QString lastName = ui->lastName->text().trimmed();
-    QString address = ui->adress->text();
-    QString phoneNum = ui->numTlf->text();
-    QString depName = ui->department->currentText();
-    QString position = ui->poste->text();
-
-    // Validate input fields
-    if (firstName.isEmpty() || lastName.isEmpty() ||
-        address.isEmpty() || phoneNum.isEmpty() || depName.isEmpty() || position.isEmpty()) {
-        QMessageBox::warning(this, "Error", "Please fill all fields");
-        return;
-    }
-
-    // Create Employee object using constructor
-    employee newEmployee( "", firstName, lastName, address, phoneNum, depName, position, "", "");
-
-    // Generate USERID inside addEmployee() since it's dynamic
-    if (newEmployee.addEmployee()) {
-        QMessageBox::information(this, "Success", "Employee added successfully");
-        // Clear fields after successful insertion
-        ui->firstName->clear();
-        ui->lastName->clear();
-        ui->adress->clear();
-        ui->numTlf->clear();
-        ui->department->setCurrentIndex(0);
-        ui->poste->clear();
-        refresh();
     } else {
-        QMessageBox::critical(this, "Error", "Error Adding employee");
+        QMessageBox::warning(this, "Error", "Please correct the invalid inputs");
     }
+
+
 }
 
 
@@ -153,6 +146,69 @@ void employeePage::on_update_employee_clicked(int row)
 
 
 }
+
+bool employeePage::empInsertionValidateInputs()
+{
+    bool allValid = true;
+
+    // Regular expression to allow only letters and spaces
+    QRegularExpression nameRegex("^[A-Za-z ]+$");
+
+    // First Name Validation
+    if (ui->firstName->text().isEmpty() || ui->firstName->text().length() < 3 ||
+        !ui->firstName->text().contains(nameRegex)) {
+        ui->fNameErrorMSG->setText("Invalid: At least 3 letters, no numbers allowed");
+        allValid = false;
+    } else {
+        ui->fNameErrorMSG->clear();
+    }
+
+    // Last Name Validation
+    if (ui->lastName->text().isEmpty() || ui->lastName->text().length() < 4 ||
+        !ui->lastName->text().contains(nameRegex)) {
+        ui->lNameErrorMSG->setText("Invalid: At least 4 letters, no numbers allowed");
+        allValid = false;
+    } else {
+        ui->lNameErrorMSG->clear();
+    }
+
+    // Address Validation
+    if (ui->adress->text().isEmpty() || ui->adress->text().length() < 6) {
+        ui->adressErrorMSG->setText("Invalid: At least 6 characters");
+        allValid = false;
+    } else {
+        ui->adressErrorMSG->clear();
+    }
+
+    // Phone Number Validation (Only digits, +, and - allowed)
+    if (ui->numTlf->text().isEmpty() ||
+        !ui->numTlf->text().contains(QRegularExpression("^[0-9+\\-]+$"))) {
+        ui->phoneNumErrorMSG->setText("Invalid: Only digits, '+', and '-' are allowed");
+        allValid = false;
+    } else {
+        ui->phoneNumErrorMSG->clear();
+    }
+
+    // Position Validation (No numbers allowed)
+    if (ui->poste->text().isEmpty() || ui->poste->text().length() < 4 ||
+        !ui->poste->text().contains(nameRegex)) {
+        ui->positionErrorMSG->setText("Invalid: At least 4 letters, no numbers allowed");
+        allValid = false;
+    } else {
+        ui->positionErrorMSG->clear();
+    }
+
+    // Department Combo Box Validation
+    if (ui->department->currentText() == "Select Department") {
+        ui->depErrorMSG->setText("Invalid Selection");
+        allValid = false;
+    } else {
+        ui->depErrorMSG->clear();
+    }
+
+    return allValid;
+}
+
 
 
 void employeePage::addButtonsToRows(QTableWidget* table)

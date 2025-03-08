@@ -10,8 +10,6 @@ CONFIG += c++17
 
 SOURCES += \
     connection.cpp \
-    custombutton.cpp \
-    customtextinput.cpp \
     employee.cpp \
     employeepage.cpp \
     employeeupdateform.cpp \
@@ -23,8 +21,6 @@ SOURCES += \
 
 HEADERS += \
     connection.h \
-    custombutton.h \
-    customtextinput.h \
     employee.h \
     employeepage.h \
     employeeupdateform.h \
