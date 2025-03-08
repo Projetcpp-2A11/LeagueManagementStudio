@@ -5,12 +5,16 @@
 #include "qtimer.h"
 #include "ui_homepage.h"
 
-homepage::homepage(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::homepage)
+homepage::homepage(QWidget *parent, employee * loggedInEmployee)
+    : QWidget(parent) ,ui(new Ui::homepage)
+    , emp(loggedInEmployee)
 {
     setFixedSize(1000,800);
     QTimer *timer = new QTimer(this);
+    qDebug() << "emp id" << loggedInEmployee->getUserID();
+    qDebug() << "emp name" << loggedInEmployee->getFirstName();
+    QString FullName = loggedInEmployee->getFirstName() + " " + loggedInEmployee->getLastName();
+
 
     connect(timer, &QTimer::timeout, [=]() {
         QDateTime current = QDateTime::currentDateTime();
@@ -19,12 +23,9 @@ homepage::homepage(QWidget *parent)
     });
 
     timer->start(1000);
-
-
-
-
-
     ui->setupUi(this);
+    ui->usernameLabel->setText(FullName);
+
 }
 
 homepage::~homepage()
@@ -34,7 +35,7 @@ homepage::~homepage()
 
 void homepage::on_employeeButton_clicked()
 {
-    employeePage * employeepage = new employeePage();
+    employeePage * employeepage = new employeePage(nullptr,this->emp);
     employeepage->show();
     delete this;
 }

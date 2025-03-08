@@ -6,9 +6,10 @@
 #include <employee.h>
 #include <connection.h>
 
-employeePage::employeePage(QWidget *parent)
+employeePage::employeePage(QWidget *parent , employee * loggedInEmployee)
     : QWidget(parent)
-    , ui(new Ui::employeePage)
+    , ui(new Ui::employeePage),
+    loggedIneEmp(loggedInEmployee)
 {
     setWindowTitle("Employee Page");
     ui->setupUi(this);
@@ -64,7 +65,7 @@ void employeePage::on_homeButton_clicked()
                                   QMessageBox::Yes | QMessageBox::No);
 
     if (reply == QMessageBox::Yes) {
-        homepage *HomePage = new homepage();
+        homepage *HomePage = new homepage(nullptr,loggedIneEmp);
         HomePage->show();
 
         this->close();

@@ -2,7 +2,7 @@
 #define HOMEPAGE_H
 
 #include <QWidget>
-
+#include "employee.h"
 namespace Ui {
 class homepage;
 }
@@ -12,7 +12,7 @@ class homepage : public QWidget
     Q_OBJECT
 
 public:
-    explicit homepage(QWidget *parent = nullptr);
+    explicit homepage(QWidget *parent = nullptr , employee * loggedInEmployee = nullptr);
     ~homepage();
 
 private slots:
@@ -22,6 +22,7 @@ private slots:
 
 private:
     Ui::homepage *ui;
+    employee *emp;
 };
 
 #endif // HOMEPAGE_H

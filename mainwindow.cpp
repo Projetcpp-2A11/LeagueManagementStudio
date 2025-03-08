@@ -37,9 +37,9 @@ void MainWindow::on_login_clicked()
 {
     qDebug() << "Login Clicked";
     int id = ui->username->text().toInt();
-    employee emp = checkIdExistance(id);
-
-    if ( emp.getUserID() ==-1) {
+    employee *emp = new employee();
+    *emp = checkIdExistance(id);
+    if ( emp->getUserID() ==-1) {
         ui->ErrorZone->setText("This id doesnt exist");
         QTimer::singleShot(1500,this,[this]() {
             ui->ErrorZone->setText("");
@@ -48,16 +48,20 @@ void MainWindow::on_login_clicked()
 
 
     } else {
+
         ui->password->setVisible(true);
         ui->forgotPasswordClicked->setVisible(true);
         ui->passwordLabel->setVisible(true);
         ui->login->setText("Login");
-        if ( authenticateEmployee(emp) ) {
-            homepage *home = new homepage;
+        if ( authenticateEmployee(*emp) ) {
+            qDebug() << "Authentication successful!";
+
+            homepage *home = new homepage(nullptr,emp);
             home->show();
             this->hide();
         }
     }
+
 }
 
 

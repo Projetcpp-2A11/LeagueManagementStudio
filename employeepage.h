@@ -14,7 +14,7 @@ class employeePage : public QWidget
     Q_OBJECT
 
 public:
-    explicit employeePage(QWidget *parent = nullptr);
+    explicit employeePage(QWidget *parent = nullptr, employee * loggedInEmployee = nullptr);
     ~employeePage();
 
     void setupEmployeeTable();
@@ -45,6 +45,8 @@ private slots:
 private:
     Ui::employeePage *ui;
     employee emp;
+    employee *loggedIneEmp;
+
 };
 
 #endif // EMPLOYEEPAGE_H
