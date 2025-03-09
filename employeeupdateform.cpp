@@ -73,8 +73,8 @@ bool employeeUpdateForm::empUpdateValidateInputs()
         QString errorMessage;
 
         // First Name Validation
-        if (ui->firstName->text().isEmpty() || ui->firstName->text().length() < 4 || ui->firstName->text().contains(QRegularExpression("[0-9]"))) {
-            errorMessage += "- First Name: Must be at least 4 characters and contain only letters.\n";
+        if (ui->firstName->text().isEmpty() || ui->firstName->text().length() < 3 || ui->firstName->text().contains(QRegularExpression("[0-9]"))) {
+            errorMessage += "- First Name: Must be at least 3 characters and contain only letters.\n";
         }
 
         // Last Name Validation

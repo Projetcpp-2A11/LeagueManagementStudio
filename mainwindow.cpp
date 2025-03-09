@@ -39,6 +39,7 @@ void MainWindow::on_login_clicked()
     int id = ui->username->text().toInt();
     employee *emp = new employee();
     *emp = checkIdExistance(id);
+    qDebug() << emp->getUserID();
     if ( emp->getUserID() ==-1) {
         ui->ErrorZone->setText("This id doesnt exist");
         QTimer::singleShot(1500,this,[this]() {
@@ -59,6 +60,13 @@ void MainWindow::on_login_clicked()
             homepage *home = new homepage(nullptr,emp);
             home->show();
             this->hide();
+        } else {
+            ui->ErrorZone->setText("Invalid Password");
+
+            QTimer::singleShot(1500,this,[this]() {
+                ui->ErrorZone->setText("");
+
+            });
         }
     }
 
