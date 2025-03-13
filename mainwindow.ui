@@ -153,8 +153,8 @@ background:transparent;
    <widget class="QPushButton" name="facialRecogButton">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>30</y>
+      <x>620</x>
+      <y>240</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -163,7 +163,19 @@ background:transparent;
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:red;</string>
+     <string notr="true">QPushButton{
+background-color:red;
+border-radius:20px
+
+}
+
+QPushButton:hover{
+background-color:black;
+
+
+}
+
+</string>
     </property>
     <property name="text">
      <string/>
@@ -175,8 +187,8 @@ background:transparent;
    <widget class="QPushButton" name="vocalRecogButton">
     <property name="geometry">
      <rect>
-      <x>890</x>
-      <y>30</y>
+      <x>620</x>
+      <y>370</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -185,7 +197,19 @@ background:transparent;
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:red;</string>
+     <string notr="true">QPushButton{
+background-color:red;
+border-radius:20px
+
+}
+
+QPushButton:hover{
+background-color:black;
+
+
+}
+
+</string>
     </property>
     <property name="text">
      <string/>
@@ -212,7 +236,15 @@ background:transparent;
     padding: 10px;                       /* Padding inside the input box */
     font-size: 14px;                     /* Font size */
 }
-</string>
+QLineEdit:hover{
+background-color: lightblue; 
+
+}
+
+QLineEdit:focus{
+background-color: #c21d1d; 
+
+}</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="password">
@@ -229,14 +261,22 @@ background:transparent;
     </property>
     <property name="styleSheet">
      <string notr="true">QLineEdit {
-    background-color: green;          /* Background color */
+    background-color: #c21d1d;          /* Background color */
     border-radius: 15px;                 /* Rounded corners */
     border: 2px solid #8B0000;           /* Darker border */
     color: white;                        /* Text color */
     padding: 10px;                       /* Padding inside the input box */
     font-size: 14px;                     /* Font size */
 }
-</string>
+QLineEdit:hover{
+background-color: lightblue; 
+
+}
+
+QLineEdit:focus{
+background-color: #c21d1d; 
+
+}</string>
     </property>
    </widget>
    <widget class="QPushButton" name="login">
@@ -257,13 +297,41 @@ background:transparent;
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 25pt &quot;Azonix&quot;;
+     <string notr="true">QPushButton {
+font: 25pt &quot;Azonix&quot;;
 
 background-color: #b60000;
-border-radius:20px</string>
+border-radius:20px;
+}
+QPushButton:hover{
+background-color:black;
+
+}</string>
     </property>
     <property name="text">
      <string>Authenticate</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="usernameLabel_2">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>10</y>
+      <width>621</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Origin Tech Demo</family>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:black</string>
+    </property>
+    <property name="text">
+     <string>League Management Studio</string>
     </property>
    </widget>
   </widget>

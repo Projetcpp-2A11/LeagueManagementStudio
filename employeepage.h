@@ -17,9 +17,12 @@ public:
     explicit employeePage(QWidget *parent = nullptr, employee * loggedInEmployee = nullptr);
     ~employeePage();
 
-    void setupEmployeeTable();
+    void setupEmployeeTable(QString queryStr);
     void addButtonsToRows(QTableWidget *table);
     void refresh();
+    QString defaultQueryStr="SELECT USERID, FIRSTNAME, LASTNAME, DEPNAME FROM Employees";
+
+    void setupFilterGroupBox();
 private slots:
 
 
@@ -42,10 +45,17 @@ private slots:
 
 
 
+    void on_filterButton_clicked();
+
+    void on_cancelFilter_clicked();
+
+    void on_searchCriteriaBox_currentIndexChanged(int index);
+
 private:
     Ui::employeePage *ui;
     employee emp;
     employee *loggedIneEmp;
+
 
 };
 

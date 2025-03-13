@@ -13,7 +13,8 @@ employeePage::employeePage(QWidget *parent , employee * loggedInEmployee)
 {
     setWindowTitle("Employee Page");
     ui->setupUi(this);
-    setupEmployeeTable();
+    setupEmployeeTable(defaultQueryStr);
+    setupFilterGroupBox();
     setMinimumSize(1000, 800);
     resize(800, 600);
 
@@ -32,13 +33,11 @@ employeePage::~employeePage()
     delete ui;
 }
 
-void employeePage::setupEmployeeTable() {
-    // Assuming you have a QTableWidget named `employeeTableWidget` in your employeepage UI
-    // Populate the table with employee data
-    ui->employeeTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+void employeePage::setupEmployeeTable(QString queryStr) {
 
+    ui->employeeTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     employee emp;
-    emp.listEmployees(ui->employeeTableWidget);
+    emp.listEmployees(ui->employeeTableWidget,queryStr);
     addButtonsToRows(ui->employeeTableWidget);
 }
 
@@ -257,6 +256,37 @@ void employeePage::refresh()
     ui->employeeTableWidget->setRowCount(0);  // Reset row count
 
     // Repopulate the table with updated employee data
-    emp.listEmployees(ui->employeeTableWidget);
+    emp.listEmployees(ui->employeeTableWidget,defaultQueryStr);
     addButtonsToRows(ui->employeeTableWidget);
 }
+void employeePage::setupFilterGroupBox() {
+
+    ui->filterGroupBox->setVisible(false);
+
+
+
+}
+
+void employeePage::on_filterButton_clicked()
+{
+    ui->filterGroupBox->setVisible(true);
+    ui->depFilterBox->setVisible(false);
+}
+
+
+void employeePage::on_cancelFilter_clicked()
+{
+    ui->filterGroupBox->setVisible(false);
+}
+
+
+void employeePage::on_searchCriteriaBox_currentIndexChanged(int index)
+{
+    if ( ui->searchCriteriaBox->currentIndex() == 3  ) {
+        ui->depFilterBox->setVisible(true);
+    } else {
+        ui->depFilterBox->setVisible(false);
+
+    }
+}
+

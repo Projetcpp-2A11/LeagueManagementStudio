@@ -52,7 +52,7 @@ public:
 
     //Crud methods:
     bool addEmployee();
-    void listEmployees(QTableWidget* table);
+    void listEmployees(QTableWidget* table , QString queryStr = "SELECT USERID, FIRSTNAME, LASTNAME, DEPNAME FROM Employees");
     bool updateEmployeeUsingUserId ( int userID);
     bool deleteEmployeeUsingUserID ( int userID);
     QString generatePassword(const QString &firstName, const QString &lastName, const QString &phoneNumber);

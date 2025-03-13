@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     setFixedSize(1050,681);
     ui->passwordLabel->setVisible(false);
     ui->password->setVisible(false);
+    ui->vocalRecogButton->setVisible(false);
     ui->forgotPasswordClicked->setVisible(false);
 
 }
@@ -53,6 +54,7 @@ void MainWindow::on_login_clicked()
         ui->password->setVisible(true);
         ui->forgotPasswordClicked->setVisible(true);
         ui->passwordLabel->setVisible(true);
+        ui->vocalRecogButton->setVisible(true);
         ui->login->setText("Login");
         if ( authenticateEmployee(*emp) ) {
             qDebug() << "Authentication successful!";

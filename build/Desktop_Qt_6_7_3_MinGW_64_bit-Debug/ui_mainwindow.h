@@ -36,6 +36,7 @@ public:
     QLineEdit *username;
     QLineEdit *password;
     QPushButton *login;
+    QLabel *usernameLabel_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -98,16 +99,40 @@ public:
 ""));
         facialRecogButton = new QPushButton(centralwidget);
         facialRecogButton->setObjectName("facialRecogButton");
-        facialRecogButton->setGeometry(QRect(970, 30, 51, 51));
+        facialRecogButton->setGeometry(QRect(620, 240, 51, 51));
         facialRecogButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        facialRecogButton->setStyleSheet(QString::fromUtf8("background-color:red;"));
+        facialRecogButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"background-color:red;\n"
+"border-radius:20px\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"background-color:black;\n"
+"\n"
+"\n"
+"}\n"
+"\n"
+""));
         QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::CameraPhoto));
         facialRecogButton->setIcon(icon);
         vocalRecogButton = new QPushButton(centralwidget);
         vocalRecogButton->setObjectName("vocalRecogButton");
-        vocalRecogButton->setGeometry(QRect(890, 30, 51, 51));
+        vocalRecogButton->setGeometry(QRect(620, 370, 51, 51));
         vocalRecogButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        vocalRecogButton->setStyleSheet(QString::fromUtf8("background-color:red;"));
+        vocalRecogButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"background-color:red;\n"
+"border-radius:20px\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"background-color:black;\n"
+"\n"
+"\n"
+"}\n"
+"\n"
+""));
         QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::AudioInputMicrophone));
         vocalRecogButton->setIcon(icon1);
         username = new QLineEdit(centralwidget);
@@ -121,20 +146,36 @@ public:
 "    padding: 10px;                       /* Padding inside the input box */\n"
 "    font-size: 14px;                     /* Font size */\n"
 "}\n"
-""));
+"QLineEdit:hover{\n"
+"background-color: lightblue; \n"
+"\n"
+"}\n"
+"\n"
+"QLineEdit:focus{\n"
+"background-color: #c21d1d; \n"
+"\n"
+"}"));
         password = new QLineEdit(centralwidget);
         password->setObjectName("password");
         password->setEnabled(true);
         password->setGeometry(QRect(710, 380, 311, 41));
         password->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
-"    background-color: green;          /* Background color */\n"
+"    background-color: #c21d1d;          /* Background color */\n"
 "    border-radius: 15px;                 /* Rounded corners */\n"
 "    border: 2px solid #8B0000;           /* Darker border */\n"
 "    color: white;                        /* Text color */\n"
 "    padding: 10px;                       /* Padding inside the input box */\n"
 "    font-size: 14px;                     /* Font size */\n"
 "}\n"
-""));
+"QLineEdit:hover{\n"
+"background-color: lightblue; \n"
+"\n"
+"}\n"
+"\n"
+"QLineEdit:focus{\n"
+"background-color: #c21d1d; \n"
+"\n"
+"}"));
         login = new QPushButton(centralwidget);
         login->setObjectName("login");
         login->setGeometry(QRect(360, 530, 411, 61));
@@ -144,10 +185,21 @@ public:
         font3.setBold(false);
         font3.setItalic(false);
         login->setFont(font3);
-        login->setStyleSheet(QString::fromUtf8("font: 25pt \"Azonix\";\n"
+        login->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 25pt \"Azonix\";\n"
 "\n"
 "background-color: #b60000;\n"
-"border-radius:20px"));
+"border-radius:20px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:black;\n"
+"\n"
+"}"));
+        usernameLabel_2 = new QLabel(centralwidget);
+        usernameLabel_2->setObjectName("usernameLabel_2");
+        usernameLabel_2->setGeometry(QRect(240, 10, 621, 51));
+        usernameLabel_2->setFont(font2);
+        usernameLabel_2->setStyleSheet(QString::fromUtf8("color:black"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -173,6 +225,7 @@ public:
         facialRecogButton->setText(QString());
         vocalRecogButton->setText(QString());
         login->setText(QCoreApplication::translate("MainWindow", "Authenticate", nullptr));
+        usernameLabel_2->setText(QCoreApplication::translate("MainWindow", "League Management Studio", nullptr));
     } // retranslateUi
 
 };

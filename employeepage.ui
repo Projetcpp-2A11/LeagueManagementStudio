@@ -489,6 +489,376 @@ QPushButton:hover {
          <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
         </property>
        </widget>
+       <widget class="QGroupBox" name="filterGroupBox">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>110</y>
+          <width>701</width>
+          <height>451</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="title">
+         <string>Search and Sort settings</string>
+        </property>
+        <widget class="QPushButton" name="applyFilter">
+         <property name="geometry">
+          <rect>
+           <x>470</x>
+           <y>390</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+background-color:qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  
+border-radius:10px;
+color:white;
+}
+QPushButton:hover {
+    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
+                            stop: 0 rgba(0, 255, 254, 255),     
+                            stop: 0.26 rgba(38, 170, 196, 255), 
+                            stop: 0.67 rgba(89, 85, 131, 255),
+                            stop: 1 rgba(0, 238, 255, 255));  
+}</string>
+         </property>
+         <property name="text">
+          <string>Apply Filter</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="searchCriteriaBox">
+         <property name="geometry">
+          <rect>
+           <x>220</x>
+           <y>70</y>
+           <width>201</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+    background-color: white;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+    border: 2px solid transparent; /* Default border */
+}
+
+/* Drop-down arrow area */
+QComboBox::drop-down {
+    border: none;
+    width: 30px;
+   ; /* Keep background for drop-down */
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    image: url(:/textures/textures/downArrowIcon.png);
+}
+
+/* Hover effect */
+QComboBox:hover {
+    border: 3px dashed qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));
+}
+
+/* Focus effect */
+QComboBox:focus {
+    border: 2px solid qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));
+}
+
+/* Style for the dropdown list */
+QComboBox QAbstractItemView {
+    background-color: white;
+    border: 2px solid #C51D34;
+    selection-background-color: #ff0004;
+    selection-color: white;
+    border-radius: 8px;
+    color: black;
+}
+</string>
+         </property>
+         <property name="placeholderText">
+          <string>Choice</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Firstname</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Lastname</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Position</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Department</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Adress</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Default</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>70</y>
+           <width>231</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Azonix</family>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background:transparent;
+color :     qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  </string>
+         </property>
+         <property name="text">
+          <string>Search By :</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_2">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>200</y>
+           <width>171</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Azonix</family>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background:transparent;
+color :     qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  </string>
+         </property>
+         <property name="text">
+          <string>Sort :</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="sortCriteriaBox_2">
+         <property name="geometry">
+          <rect>
+           <x>220</x>
+           <y>200</y>
+           <width>201</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+    background-color: white;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+    border: 2px solid transparent; /* Default border */
+}
+
+/* Drop-down arrow area */
+QComboBox::drop-down {
+    border: none;
+    width: 30px;
+   ; /* Keep background for drop-down */
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    image: url(:/textures/textures/downArrowIcon.png);
+}
+
+/* Hover effect */
+QComboBox:hover {
+    border: 3px dashed qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));
+}
+
+/* Focus effect */
+QComboBox:focus {
+    border: 2px solid qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));
+}
+
+/* Style for the dropdown list */
+QComboBox QAbstractItemView {
+    background-color: white;
+    border: 2px solid #C51D34;
+    selection-background-color: #ff0004;
+    selection-color: white;
+    border-radius: 8px;
+    color: black;
+}
+</string>
+         </property>
+         <property name="placeholderText">
+          <string>Choice</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Ascending</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Descending</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QPushButton" name="cancelFilter">
+         <property name="geometry">
+          <rect>
+           <x>580</x>
+           <y>390</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+background-color:qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  
+border-radius:10px;
+color:white;
+}
+QPushButton:hover {
+    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
+                            stop: 0 rgba(0, 255, 254, 255),     
+                            stop: 0.26 rgba(38, 170, 196, 255), 
+                            stop: 0.67 rgba(89, 85, 131, 255),
+                            stop: 1 rgba(0, 238, 255, 255));  
+}</string>
+         </property>
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="depFilterBox">
+         <property name="geometry">
+          <rect>
+           <x>480</x>
+           <y>70</y>
+           <width>201</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+    background-color: white;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+    border: 2px solid transparent; /* Default border */
+}
+
+/* Drop-down arrow area */
+QComboBox::drop-down {
+    border: none;
+    width: 30px;
+   ; /* Keep background for drop-down */
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    image: url(:/textures/textures/downArrowIcon.png);
+}
+
+/* Hover effect */
+QComboBox:hover {
+    border: 3px dashed qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));
+}
+
+/* Focus effect */
+QComboBox:focus {
+    border: 2px solid qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));
+}
+
+/* Style for the dropdown list */
+QComboBox QAbstractItemView {
+    background-color: white;
+    border: 2px solid #C51D34;
+    selection-background-color: #ff0004;
+    selection-color: white;
+    border-radius: 8px;
+    color: black;
+}
+</string>
+         </property>
+         <property name="placeholderText">
+          <string>Department</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Human resources</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Municipality</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Federation</string>
+          </property>
+         </item>
+        </widget>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">

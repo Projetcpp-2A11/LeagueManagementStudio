@@ -13,6 +13,7 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -40,6 +41,14 @@ public:
     QPushButton *nextPageTable;
     QPushButton *prevPageTable;
     QPushButton *refreshButton;
+    QGroupBox *filterGroupBox;
+    QPushButton *applyFilter;
+    QComboBox *searchCriteriaBox;
+    QLabel *label;
+    QLabel *label_2;
+    QComboBox *sortCriteriaBox_2;
+    QPushButton *cancelFilter;
+    QComboBox *depFilterBox;
     QWidget *tab_2;
     QLineEdit *firstName;
     QLineEdit *lastName;
@@ -378,6 +387,232 @@ public:
 "}"));
         QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::ViewRefresh));
         refreshButton->setIcon(icon5);
+        filterGroupBox = new QGroupBox(tab);
+        filterGroupBox->setObjectName("filterGroupBox");
+        filterGroupBox->setGeometry(QRect(120, 110, 701, 451));
+        filterGroupBox->setStyleSheet(QString::fromUtf8(""));
+        applyFilter = new QPushButton(filterGroupBox);
+        applyFilter->setObjectName("applyFilter");
+        applyFilter->setGeometry(QRect(470, 390, 101, 41));
+        applyFilter->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"background-color:qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  \n"
+"border-radius:10px;\n"
+"color:white;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, \n"
+"                            stop: 0 rgba(0, 255, 254, 255),     \n"
+"                            stop: 0.26 rgba(38, 170, 196, 255), \n"
+"                            stop: 0.67 rgba(89, 85, 131, 255),\n"
+"                            stop: 1 rgba(0, 238, 255, 255));  \n"
+"}"));
+        searchCriteriaBox = new QComboBox(filterGroupBox);
+        searchCriteriaBox->addItem(QString());
+        searchCriteriaBox->addItem(QString());
+        searchCriteriaBox->addItem(QString());
+        searchCriteriaBox->addItem(QString());
+        searchCriteriaBox->addItem(QString());
+        searchCriteriaBox->addItem(QString());
+        searchCriteriaBox->setObjectName("searchCriteriaBox");
+        searchCriteriaBox->setGeometry(QRect(220, 70, 201, 31));
+        searchCriteriaBox->setStyleSheet(QString::fromUtf8("QComboBox {\n"
+"    background-color: white;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"    border: 2px solid transparent; /* Default border */\n"
+"}\n"
+"\n"
+"/* Drop-down arrow area */\n"
+"QComboBox::drop-down {\n"
+"    border: none;\n"
+"    width: 30px;\n"
+"   ; /* Keep background for drop-down */\n"
+"    border-top-right-radius: 8px;\n"
+"    border-bottom-right-radius: 8px;\n"
+"    image: url(:/textures/textures/downArrowIcon.png);\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QComboBox:hover {\n"
+"    border: 3px dashed qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QComboBox:focus {\n"
+"    border: 2px solid qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                      "
+                        "      stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));\n"
+"}\n"
+"\n"
+"/* Style for the dropdown list */\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: white;\n"
+"    border: 2px solid #C51D34;\n"
+"    selection-background-color: #ff0004;\n"
+"    selection-color: white;\n"
+"    border-radius: 8px;\n"
+"    color: black;\n"
+"}\n"
+""));
+        label = new QLabel(filterGroupBox);
+        label->setObjectName("label");
+        label->setGeometry(QRect(20, 70, 231, 31));
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("Azonix")});
+        font3.setPointSize(16);
+        label->setFont(font3);
+        label->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color :     qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  "));
+        label_2 = new QLabel(filterGroupBox);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(20, 200, 171, 31));
+        label_2->setFont(font3);
+        label_2->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color :     qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  "));
+        sortCriteriaBox_2 = new QComboBox(filterGroupBox);
+        sortCriteriaBox_2->addItem(QString());
+        sortCriteriaBox_2->addItem(QString());
+        sortCriteriaBox_2->setObjectName("sortCriteriaBox_2");
+        sortCriteriaBox_2->setGeometry(QRect(220, 200, 201, 31));
+        sortCriteriaBox_2->setStyleSheet(QString::fromUtf8("QComboBox {\n"
+"    background-color: white;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"    border: 2px solid transparent; /* Default border */\n"
+"}\n"
+"\n"
+"/* Drop-down arrow area */\n"
+"QComboBox::drop-down {\n"
+"    border: none;\n"
+"    width: 30px;\n"
+"   ; /* Keep background for drop-down */\n"
+"    border-top-right-radius: 8px;\n"
+"    border-bottom-right-radius: 8px;\n"
+"    image: url(:/textures/textures/downArrowIcon.png);\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QComboBox:hover {\n"
+"    border: 3px dashed qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QComboBox:focus {\n"
+"    border: 2px solid qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                      "
+                        "      stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));\n"
+"}\n"
+"\n"
+"/* Style for the dropdown list */\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: white;\n"
+"    border: 2px solid #C51D34;\n"
+"    selection-background-color: #ff0004;\n"
+"    selection-color: white;\n"
+"    border-radius: 8px;\n"
+"    color: black;\n"
+"}\n"
+""));
+        cancelFilter = new QPushButton(filterGroupBox);
+        cancelFilter->setObjectName("cancelFilter");
+        cancelFilter->setGeometry(QRect(580, 390, 101, 41));
+        cancelFilter->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"background-color:qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  \n"
+"border-radius:10px;\n"
+"color:white;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, \n"
+"                            stop: 0 rgba(0, 255, 254, 255),     \n"
+"                            stop: 0.26 rgba(38, 170, 196, 255), \n"
+"                            stop: 0.67 rgba(89, 85, 131, 255),\n"
+"                            stop: 1 rgba(0, 238, 255, 255));  \n"
+"}"));
+        depFilterBox = new QComboBox(filterGroupBox);
+        depFilterBox->addItem(QString());
+        depFilterBox->addItem(QString());
+        depFilterBox->addItem(QString());
+        depFilterBox->setObjectName("depFilterBox");
+        depFilterBox->setGeometry(QRect(480, 70, 201, 31));
+        depFilterBox->setStyleSheet(QString::fromUtf8("QComboBox {\n"
+"    background-color: white;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"    border: 2px solid transparent; /* Default border */\n"
+"}\n"
+"\n"
+"/* Drop-down arrow area */\n"
+"QComboBox::drop-down {\n"
+"    border: none;\n"
+"    width: 30px;\n"
+"   ; /* Keep background for drop-down */\n"
+"    border-top-right-radius: 8px;\n"
+"    border-bottom-right-radius: 8px;\n"
+"    image: url(:/textures/textures/downArrowIcon.png);\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QComboBox:hover {\n"
+"    border: 3px dashed qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QComboBox:focus {\n"
+"    border: 2px solid qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                      "
+                        "      stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));\n"
+"}\n"
+"\n"
+"/* Style for the dropdown list */\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: white;\n"
+"    border: 2px solid #C51D34;\n"
+"    selection-background-color: #ff0004;\n"
+"    selection-color: white;\n"
+"    border-radius: 8px;\n"
+"    color: black;\n"
+"}\n"
+""));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName("tab_2");
@@ -767,6 +1002,28 @@ public:
         nextPageTable->setText(QString());
         prevPageTable->setText(QString());
         refreshButton->setText(QString());
+        filterGroupBox->setTitle(QCoreApplication::translate("employeePage", "Search and Sort settings", nullptr));
+        applyFilter->setText(QCoreApplication::translate("employeePage", "Apply Filter", nullptr));
+        searchCriteriaBox->setItemText(0, QCoreApplication::translate("employeePage", "Firstname", nullptr));
+        searchCriteriaBox->setItemText(1, QCoreApplication::translate("employeePage", "Lastname", nullptr));
+        searchCriteriaBox->setItemText(2, QCoreApplication::translate("employeePage", "Position", nullptr));
+        searchCriteriaBox->setItemText(3, QCoreApplication::translate("employeePage", "Department", nullptr));
+        searchCriteriaBox->setItemText(4, QCoreApplication::translate("employeePage", "Adress", nullptr));
+        searchCriteriaBox->setItemText(5, QCoreApplication::translate("employeePage", "Default", nullptr));
+
+        searchCriteriaBox->setPlaceholderText(QCoreApplication::translate("employeePage", "Choice", nullptr));
+        label->setText(QCoreApplication::translate("employeePage", "Search By :", nullptr));
+        label_2->setText(QCoreApplication::translate("employeePage", "Sort :", nullptr));
+        sortCriteriaBox_2->setItemText(0, QCoreApplication::translate("employeePage", "Ascending", nullptr));
+        sortCriteriaBox_2->setItemText(1, QCoreApplication::translate("employeePage", "Descending", nullptr));
+
+        sortCriteriaBox_2->setPlaceholderText(QCoreApplication::translate("employeePage", "Choice", nullptr));
+        cancelFilter->setText(QCoreApplication::translate("employeePage", "Cancel", nullptr));
+        depFilterBox->setItemText(0, QCoreApplication::translate("employeePage", "Human resources", nullptr));
+        depFilterBox->setItemText(1, QCoreApplication::translate("employeePage", "Municipality", nullptr));
+        depFilterBox->setItemText(2, QCoreApplication::translate("employeePage", "Federation", nullptr));
+
+        depFilterBox->setPlaceholderText(QCoreApplication::translate("employeePage", "Department", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("employeePage", "Employee List", nullptr));
         firstName->setText(QString());
         firstName->setPlaceholderText(QCoreApplication::translate("employeePage", "First Name", nullptr));

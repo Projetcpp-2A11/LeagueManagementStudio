@@ -226,13 +226,11 @@ bool employee::addEmployee()
 
 }
 
-void employee::listEmployees(QTableWidget* table)
+void employee::listEmployees(QTableWidget* table, QString queryStr)
 {
     table->clearContents();
     table->setRowCount(0);
     table->verticalHeader()->setVisible(false);
-
-    QString queryStr = "SELECT USERID, FIRSTNAME, LASTNAME, DEPNAME FROM Employees";
     QSqlQuery query;
 
     if (query.exec(queryStr)) {
