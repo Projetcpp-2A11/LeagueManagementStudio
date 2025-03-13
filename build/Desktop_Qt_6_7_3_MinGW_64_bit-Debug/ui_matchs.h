@@ -24,7 +24,11 @@
 
 QT_BEGIN_NAMESPACE
 
+<<<<<<< HEAD
 class Ui_matchPage
+=======
+class Ui_MatchPage
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 {
 public:
     QHBoxLayout *horizontalLayout;
@@ -53,6 +57,7 @@ public:
     QPushButton *aboutButton;
     QPushButton *notifButton;
 
+<<<<<<< HEAD
     void setupUi(QWidget *matchPage)
     {
         if (matchPage->objectName().isEmpty())
@@ -63,6 +68,18 @@ public:
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         contentArea = new QWidget(matchPage);
+=======
+    void setupUi(QWidget *MatchPage)
+    {
+        if (MatchPage->objectName().isEmpty())
+            MatchPage->setObjectName("MatchPage");
+        MatchPage->resize(1050, 681);
+        horizontalLayout = new QHBoxLayout(MatchPage);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName("horizontalLayout");
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        contentArea = new QWidget(MatchPage);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         contentArea->setObjectName("contentArea");
         QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
         sizePolicy.setHorizontalStretch(0);
@@ -449,7 +466,11 @@ public:
         stade->addItem(QString());
         stade->addItem(QString());
         stade->setObjectName("stade");
+<<<<<<< HEAD
         stade->setGeometry(QRect(79, 320, 301, 31));
+=======
+        stade->setGeometry(QRect(79, 310, 301, 31));
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         stade->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         stade->setStyleSheet(QString::fromUtf8("QComboBox {\n"
 "    background-color: white;\n"
@@ -548,6 +569,10 @@ public:
 "\n"
 "QPushButton:hover {\n"
 "    background-color: red;\n"
+<<<<<<< HEAD
+=======
+"    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);\n"
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 "	border-radius:15px;\n"
 "}"));
         QIcon icon6;
@@ -567,10 +592,18 @@ public:
 "\n"
 "QPushButton:hover {\n"
 "    background-color: white;\n"
+<<<<<<< HEAD
 "	border-radius:15px;\n"
 "}"));
         QIcon icon7;
         icon7.addFile(QString::fromUtf8(":/textures/textures/homeIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+=======
+"    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);\n"
+"	border-radius:15px;\n"
+"}"));
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8("textures/homeIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         homeButton->setIcon(icon7);
         homeButton->setIconSize(QSize(50, 50));
         aboutButton = new QPushButton(sidebar);
@@ -586,10 +619,18 @@ public:
 "\n"
 "QPushButton:hover {\n"
 "    background-color: lime;\n"
+<<<<<<< HEAD
 "	border-radius:15px;\n"
 "}"));
         QIcon icon8;
         icon8.addFile(QString::fromUtf8(":/textures/textures/aboutIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+=======
+"    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);\n"
+"	border-radius:15px;\n"
+"}"));
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8("textures/aboutIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         aboutButton->setIcon(icon8);
         aboutButton->setIconSize(QSize(50, 50));
         notifButton = new QPushButton(sidebar);
@@ -605,21 +646,34 @@ public:
 "\n"
 "QPushButton:hover {\n"
 "    background-color: yellow;\n"
+<<<<<<< HEAD
 "	border-radius:15px;\n"
 "}"));
         QIcon icon9;
         icon9.addFile(QString::fromUtf8(":/textures/textures/notifsIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+=======
+"    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);\n"
+"	border-radius:15px;\n"
+"}"));
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8("textures/notifsIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         notifButton->setIcon(icon9);
         notifButton->setIconSize(QSize(50, 50));
 
         horizontalLayout->addWidget(contentArea);
 
 
+<<<<<<< HEAD
         retranslateUi(matchPage);
+=======
+        retranslateUi(MatchPage);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 
         tabWidget->setCurrentIndex(0);
 
 
+<<<<<<< HEAD
         QMetaObject::connectSlotsByName(matchPage);
     } // setupUi
 
@@ -662,6 +716,50 @@ public:
         addMatchsButton->setText(QCoreApplication::translate("matchPage", "Add Matchs", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("matchPage", "Add Matchs", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("matchPage", "Statistics", nullptr));
+=======
+        QMetaObject::connectSlotsByName(MatchPage);
+    } // setupUi
+
+    void retranslateUi(QWidget *MatchPage)
+    {
+        MatchPage->setWindowTitle(QCoreApplication::translate("MatchPage", "Form", nullptr));
+        searchMatchsInput->setPlaceholderText(QCoreApplication::translate("MatchPage", "Search Matchs", nullptr));
+        searchButton->setText(QString());
+        filterButton->setText(QString());
+        exportListButton->setText(QCoreApplication::translate("MatchPage", "Export List", nullptr));
+        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QCoreApplication::translate("MatchPage", "Identifiant", nullptr));
+        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QCoreApplication::translate("MatchPage", "Team 1", nullptr));
+        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QCoreApplication::translate("MatchPage", "Team 2", nullptr));
+        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QCoreApplication::translate("MatchPage", "DateMatch", nullptr));
+        QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
+        ___qtablewidgetitem4->setText(QCoreApplication::translate("MatchPage", "Score", nullptr));
+        QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
+        ___qtablewidgetitem5->setText(QCoreApplication::translate("MatchPage", "Stade", nullptr));
+        QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);
+        ___qtablewidgetitem6->setText(QCoreApplication::translate("MatchPage", "Actions", nullptr));
+        nextPageTable->setText(QString());
+        prevPageTable->setText(QString());
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MatchPage", "Matchs List", nullptr));
+        team1->setText(QString());
+        team1->setPlaceholderText(QCoreApplication::translate("MatchPage", "Team 1", nullptr));
+        team2->setPlaceholderText(QCoreApplication::translate("MatchPage", "Team 2", nullptr));
+        datematch->setPlaceholderText(QCoreApplication::translate("MatchPage", "DateMatch", nullptr));
+        score->setPlaceholderText(QCoreApplication::translate("MatchPage", "score", nullptr));
+        stade->setItemText(0, QCoreApplication::translate("MatchPage", "Select Stade", nullptr));
+        stade->setItemText(1, QCoreApplication::translate("MatchPage", "Bernabeu", nullptr));
+        stade->setItemText(2, QCoreApplication::translate("MatchPage", "Camp  Nou", nullptr));
+        stade->setItemText(3, QCoreApplication::translate("MatchPage", "Etihade", nullptr));
+        stade->setItemText(4, QString());
+
+        stade->setCurrentText(QCoreApplication::translate("MatchPage", "Select Stade", nullptr));
+        addMatchsButton->setText(QCoreApplication::translate("MatchPage", "Add Matchs", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MatchPage", "Add Matchs", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("MatchPage", "Statistics", nullptr));
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         exitButton->setText(QString());
         homeButton->setText(QString());
         aboutButton->setText(QString());
@@ -671,7 +769,11 @@ public:
 };
 
 namespace Ui {
+<<<<<<< HEAD
     class matchPage: public Ui_matchPage {};
+=======
+    class MatchPage: public Ui_MatchPage {};
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 } // namespace Ui
 
 QT_END_NAMESPACE

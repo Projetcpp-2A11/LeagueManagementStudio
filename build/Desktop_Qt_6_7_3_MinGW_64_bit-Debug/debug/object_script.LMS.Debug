@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 debug/connection.o
 debug/employee.o
 debug/employeepage.o
@@ -10,6 +11,20 @@ debug/teams.o
 debug/qrc_resources.o
 debug/moc_employeepage.o
 debug/moc_employeeupdateform.o
+=======
+debug/Staduimpage.o
+debug/connection.o
+debug/custombutton.o
+debug/customtextinput.o
+debug/homepage.o
+debug/main.o
+debug/mainwindow.o
+debug/stadium.o
+debug/qrc_resources.o
+debug/moc_Staduimpage.o
+debug/moc_custombutton.o
+debug/moc_customtextinput.o
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 debug/moc_homepage.o
 debug/moc_mainwindow.o
 debug/moc_matchpage.o

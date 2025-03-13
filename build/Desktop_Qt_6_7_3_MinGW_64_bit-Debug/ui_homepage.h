@@ -87,7 +87,11 @@ public:
         myAccountButton->setIconSize(QSize(50, 50));
         usernameLabel = new QLabel(topBar);
         usernameLabel->setObjectName("usernameLabel");
+<<<<<<< HEAD
         usernameLabel->setGeometry(QRect(75, 25, 321, 31));
+=======
+        usernameLabel->setGeometry(QRect(75, 25, 101, 31));
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         QFont font;
         font.setFamilies({QString::fromUtf8("Azonix")});
         font.setPointSize(12);
@@ -379,7 +383,11 @@ public:
     {
         homepage->setWindowTitle(QCoreApplication::translate("homepage", "Form", nullptr));
         myAccountButton->setText(QString());
+<<<<<<< HEAD
         usernameLabel->setText(QString());
+=======
+        usernameLabel->setText(QCoreApplication::translate("homepage", "Username", nullptr));
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         accountSettingsLabel->setText(QCoreApplication::translate("homepage", "account settings", nullptr));
         timeLabel->setText(QString());
         label->setText(QString());

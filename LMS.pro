@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+<<<<<<< HEAD
     connection.cpp \
     employee.cpp \
     employeepage.cpp \
@@ -36,6 +37,30 @@ FORMS += \
     mainwindow.ui \
     matchs.ui \
 
+=======
+    Staduimpage.cpp \
+    connection.cpp \
+    custombutton.cpp \
+    customtextinput.cpp \
+    homepage.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    stadium.cpp
+
+HEADERS += \
+    Staduimpage.h \
+    connection.h \
+    custombutton.h \
+    customtextinput.h \
+    homepage.h \
+    mainwindow.h \
+    stadium.h
+
+FORMS += \
+    Staduimpage.ui \
+    homepage.ui \
+    mainwindow.ui
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

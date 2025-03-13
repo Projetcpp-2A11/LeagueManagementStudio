@@ -16,7 +16,6 @@
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSplitter>
@@ -99,7 +98,11 @@ public:
         QFont font;
         font.setBold(true);
         tabWidget->setFont(font);
+<<<<<<< HEAD
         tabWidget->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+=======
+        tabWidget->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         tabWidget->setStyleSheet(QString::fromUtf8("QTabBar::tab {\n"
 "    background: qlineargradient(spread:pad, \n"
 "                            x1:0, y1:0, x2:1, y2:1, \n"
@@ -181,7 +184,11 @@ public:
 "                            stop: 1 rgba(0, 238, 255, 255));  ; \n"
 "}"));
         QIcon icon;
+<<<<<<< HEAD
         icon.addFile(QString::fromUtf8(":/textures/textures/searchIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+=======
+        icon.addFile(QString::fromUtf8("textures/searchIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         searchButton->setIcon(icon);
         filterButton = new QPushButton(tab);
         filterButton->setObjectName("filterButton");
@@ -203,7 +210,11 @@ public:
 "                            stop: 1 rgba(0, 238, 255, 255));  ; \n"
 "}"));
         QIcon icon1;
+<<<<<<< HEAD
         icon1.addFile(QString::fromUtf8(":/textures/textures/filterIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+=======
+        icon1.addFile(QString::fromUtf8("textures/filterIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         filterButton->setIcon(icon1);
         exportListButton = new QPushButton(tab);
         exportListButton->setObjectName("exportListButton");
@@ -229,12 +240,21 @@ public:
 "                            stop: 1 rgba(0, 238, 255, 255));  \n"
 "}"));
         QIcon icon2;
+<<<<<<< HEAD
         icon2.addFile(QString::fromUtf8(":/textures/textures/exportIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         exportListButton->setIcon(icon2);
         exportListButton->setIconSize(QSize(40, 50));
         employeeTableWidget = new QTableWidget(tab);
         if (employeeTableWidget->columnCount() < 5)
             employeeTableWidget->setColumnCount(5);
+=======
+        icon2.addFile(QString::fromUtf8("textures/exportIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        exportListButton->setIcon(icon2);
+        exportListButton->setIconSize(QSize(40, 50));
+        tableWidget = new QTableWidget(tab);
+        if (tableWidget->columnCount() < 5)
+            tableWidget->setColumnCount(5);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         employeeTableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
@@ -339,7 +359,11 @@ public:
 "\n"
 ""));
         QIcon icon3;
+<<<<<<< HEAD
         icon3.addFile(QString::fromUtf8(":/textures/textures/prevIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+=======
+        icon3.addFile(QString::fromUtf8("textures/prevIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         nextPageTable->setIcon(icon3);
         prevPageTable = new QPushButton(tab);
         prevPageTable->setObjectName("prevPageTable");
@@ -364,6 +388,7 @@ public:
 "\n"
 ""));
         QIcon icon4;
+<<<<<<< HEAD
         icon4.addFile(QString::fromUtf8(":/textures/textures/nextIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         prevPageTable->setIcon(icon4);
         refreshButton = new QPushButton(tab);
@@ -420,10 +445,146 @@ public:
         searchCriteriaBox->setObjectName("searchCriteriaBox");
         searchCriteriaBox->setGeometry(QRect(220, 70, 201, 31));
         searchCriteriaBox->setStyleSheet(QString::fromUtf8("QComboBox {\n"
+=======
+        icon4.addFile(QString::fromUtf8("textures/nextIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        prevPageTable->setIcon(icon4);
+        tabWidget->addTab(tab, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName("tab_2");
+        firstName = new QLineEdit(tab_2);
+        firstName->setObjectName("firstName");
+        firstName->setGeometry(QRect(80, 70, 301, 31));
+        firstName->setFont(font1);
+        firstName->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 "    background-color: white;\n"
 "    padding: 5px;\n"
 "    color: black;\n"
 "    font-size: 16px;\n"
+<<<<<<< HEAD
+=======
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"	border:3px dashed qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border:2px solid  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+""));
+        lastName = new QLineEdit(tab_2);
+        lastName->setObjectName("lastName");
+        lastName->setGeometry(QRect(80, 122, 301, 31));
+        lastName->setFont(font1);
+        lastName->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"	border:3px dashed qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border:2px solid  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+""));
+        adress = new QLineEdit(tab_2);
+        adress->setObjectName("adress");
+        adress->setGeometry(QRect(80, 183, 301, 31));
+        adress->setFont(font1);
+        adress->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"	border:3px dashed qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border:2px solid  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+""));
+        numTlf = new QLineEdit(tab_2);
+        numTlf->setObjectName("numTlf");
+        numTlf->setGeometry(QRect(80, 248, 301, 31));
+        numTlf->setFont(font1);
+        numTlf->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"	border:3px dashed qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border:2px solid  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+""));
+        department = new QComboBox(tab_2);
+        department->addItem(QString());
+        department->addItem(QString());
+        department->addItem(QString());
+        department->addItem(QString());
+        department->addItem(QString());
+        department->setObjectName("department");
+        department->setGeometry(QRect(79, 376, 301, 31));
+        department->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        department->setStyleSheet(QString::fromUtf8("QComboBox {\n"
+"    background-color: white;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 "    border: 2px solid transparent; /* Default border */\n"
 "}\n"
 "\n"
@@ -464,6 +625,7 @@ public:
 "    selection-color: white;\n"
 "    border-radius: 8px;\n"
 "    color: black;\n"
+<<<<<<< HEAD
 "}\n"
 ""));
         label = new QLabel(filterGroupBox);
@@ -622,6 +784,16 @@ public:
         firstName->setFont(font1);
         firstName->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
 "    background-color: white;\n"
+=======
+"}\n"
+""));
+        poste = new QLineEdit(tab_2);
+        poste->setObjectName("poste");
+        poste->setGeometry(QRect(80, 310, 301, 31));
+        poste->setFont(font1);
+        poste->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 "    padding: 5px;\n"
 "    color: black;\n"
 "    font-size: 16px;\n"
@@ -643,6 +815,7 @@ public:
 "                            stop:0 rgba(255, 0, 0, 255), \n"
 "                            stop:0.41 rgba(195, 22, 58, 255), \n"
 "                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+<<<<<<< HEAD
 "}\n"
 ""));
         lastName = new QLineEdit(tab_2);
@@ -814,6 +987,8 @@ public:
 "                            stop:0 rgba(255, 0, 0, 255), \n"
 "                            stop:0.41 rgba(195, 22, 58, 255), \n"
 "                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+=======
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 "}\n"
 ""));
         addEmployeeButton = new QPushButton(tab_2);
@@ -837,6 +1012,7 @@ public:
 "                            stop: 0.67 rgba(89, 85, 131, 255),\n"
 "                            stop: 1 rgba(0, 238, 255, 255));  ; \n"
 "}"));
+<<<<<<< HEAD
         QIcon icon6;
         icon6.addFile(QString::fromUtf8(":/textures/textures/addIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         addEmployeeButton->setIcon(icon6);
@@ -877,6 +1053,12 @@ public:
         depErrorMSG->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "color:red;\n"
 ""));
+=======
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8("textures/addIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        addEmployeeButton->setIcon(icon5);
+        addEmployeeButton->setIconSize(QSize(50, 50));
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName("tab_3");
@@ -902,11 +1084,20 @@ public:
 "\n"
 "QPushButton:hover {\n"
 "    background-color: red;\n"
+<<<<<<< HEAD
 "	border-radius:15px;\n"
 "}"));
         QIcon icon7;
         icon7.addFile(QString::fromUtf8(":/textures/textures/exitIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         exitButton->setIcon(icon7);
+=======
+"    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);\n"
+"	border-radius:15px;\n"
+"}"));
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/textures/textures/exitIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        exitButton->setIcon(icon6);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         exitButton->setIconSize(QSize(50, 50));
         homeButton = new QPushButton(sidebar);
         homeButton->setObjectName("homeButton");
@@ -921,11 +1112,20 @@ public:
 "\n"
 "QPushButton:hover {\n"
 "    background-color: white;\n"
+<<<<<<< HEAD
 "	border-radius:15px;\n"
 "}"));
         QIcon icon8;
         icon8.addFile(QString::fromUtf8(":/textures/textures/homeIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         homeButton->setIcon(icon8);
+=======
+"    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);\n"
+"	border-radius:15px;\n"
+"}"));
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8("textures/homeIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        homeButton->setIcon(icon7);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         homeButton->setIconSize(QSize(50, 50));
         aboutButton = new QPushButton(sidebar);
         aboutButton->setObjectName("aboutButton");
@@ -940,11 +1140,20 @@ public:
 "\n"
 "QPushButton:hover {\n"
 "    background-color: lime;\n"
+<<<<<<< HEAD
 "	border-radius:15px;\n"
 "}"));
         QIcon icon9;
         icon9.addFile(QString::fromUtf8(":/textures/textures/aboutIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         aboutButton->setIcon(icon9);
+=======
+"    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);\n"
+"	border-radius:15px;\n"
+"}"));
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8("textures/aboutIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        aboutButton->setIcon(icon8);
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
         aboutButton->setIconSize(QSize(50, 50));
         notifButton = new QPushButton(sidebar);
         notifButton->setObjectName("notifButton");
@@ -962,6 +1171,7 @@ public:
 "    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);\n"
 "	border-radius:15px;\n"
 "}"));
+<<<<<<< HEAD
         QIcon icon10;
         icon10.addFile(QString::fromUtf8(":/textures/textures/notifsIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         notifButton->setIcon(icon10);
@@ -970,6 +1180,12 @@ public:
         homeButton->raise();
         aboutButton->raise();
         exitButton->raise();
+=======
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8("textures/notifsIcon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        notifButton->setIcon(icon9);
+        notifButton->setIconSize(QSize(50, 50));
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 
         horizontalLayout->addWidget(contentArea);
 

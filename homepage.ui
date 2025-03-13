@@ -88,7 +88,11 @@ QPushButton:hover {
      <rect>
       <x>75</x>
       <y>25</y>
+<<<<<<< HEAD
       <width>321</width>
+=======
+      <width>101</width>
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
       <height>31</height>
      </rect>
     </property>
@@ -103,7 +107,11 @@ QPushButton:hover {
 border:none;</string>
     </property>
     <property name="text">
+<<<<<<< HEAD
      <string/>
+=======
+     <string>Username</string>
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
     </property>
    </widget>
    <widget class="QLabel" name="accountSettingsLabel">

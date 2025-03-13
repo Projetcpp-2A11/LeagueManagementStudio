@@ -3,7 +3,7 @@
 #include "qbuffer.h"
 #include "qsqlerror.h"
 #include "ui_mainwindow.h"
-#include "employeepage.h"
+#include "Staduimpage.h"
 #include <qtimer.h>
 #include <QProcess>
 #include <QMessageBox>
@@ -51,6 +51,7 @@ void MainWindow::on_login_clicked()
 
     } else {
 
+<<<<<<< HEAD
         ui->password->setVisible(true);
         ui->forgotPasswordClicked->setVisible(true);
         ui->passwordLabel->setVisible(true);
@@ -58,6 +59,11 @@ void MainWindow::on_login_clicked()
         ui->login->setText("Login");
         if ( authenticateEmployee(*emp) ) {
             qDebug() << "Authentication successful!";
+=======
+        homepage *  homePage = new homepage();
+        homePage->show();
+        this->hide();
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 
             homepage *home = new homepage(nullptr,emp);
             home->show();
@@ -113,8 +119,8 @@ void MainWindow::on_facialRecogButton_clicked()
         this->setCursor(Qt::WaitCursor);
 
 
-            employeePage *  employe = new employeePage();
-            employe->show();
+            stadiumPage *  stadium = new stadiumPage();
+            stadium->show();
             this->hide();
 
 

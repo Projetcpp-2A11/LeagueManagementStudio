@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 release/connection.o
 release/employee.o
 release/employeepage.o
@@ -10,6 +11,20 @@ release/teams.o
 release/qrc_resources.o
 release/moc_employeepage.o
 release/moc_employeeupdateform.o
+=======
+release/Staduimpage.o
+release/connection.o
+release/custombutton.o
+release/customtextinput.o
+release/homepage.o
+release/main.o
+release/mainwindow.o
+release/stadium.o
+release/qrc_resources.o
+release/moc_Staduimpage.o
+release/moc_custombutton.o
+release/moc_customtextinput.o
+>>>>>>> d87739afc8594a1567a22d28d94f597f500e3067
 release/moc_homepage.o
 release/moc_mainwindow.o
 release/moc_matchpage.o

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>employeePage</class>
- <widget class="QWidget" name="employeePage">
+ <class>MatchPage</class>
+ <widget class="QWidget" name="MatchPage">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -60,7 +60,7 @@
        </font>
       </property>
       <property name="cursor">
-       <cursorShape>ArrowCursor</cursorShape>
+       <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="styleSheet">
        <string notr="true">QTabBar::tab {
@@ -100,9 +100,9 @@ QTabBar::tab:hover {
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>Employee List</string>
+        <string>Staduims List</string>
        </attribute>
-       <widget class="QLineEdit" name="searchEmployeeInput">
+       <widget class="QLineEdit" name="searchMatchsInput">
         <property name="geometry">
          <rect>
           <x>120</x>
@@ -142,7 +142,7 @@ QLineEdit:focus {
 </string>
         </property>
         <property name="placeholderText">
-         <string>Search Employee</string>
+         <string>Search Stadui</string>
         </property>
        </widget>
        <widget class="QPushButton" name="searchButton">
@@ -178,8 +178,8 @@ QPushButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/textures/textures/searchIcon.png</normaloff>:/textures/textures/searchIcon.png</iconset>
+         <iconset>
+          <normaloff>textures/searchIcon.png</normaloff>textures/searchIcon.png</iconset>
         </property>
        </widget>
        <widget class="QPushButton" name="filterButton">
@@ -215,8 +215,8 @@ QPushButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/textures/textures/filterIcon.png</normaloff>:/textures/textures/filterIcon.png</iconset>
+         <iconset>
+          <normaloff>textures/filterIcon.png</normaloff>textures/filterIcon.png</iconset>
         </property>
        </widget>
        <widget class="QPushButton" name="exportListButton">
@@ -258,8 +258,8 @@ QPushButton:hover {
          <string>Export List</string>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/textures/textures/exportIcon.png</normaloff>:/textures/textures/exportIcon.png</iconset>
+         <iconset>
+          <normaloff>textures/exportIcon.png</normaloff>textures/exportIcon.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -268,17 +268,14 @@ QPushButton:hover {
          </size>
         </property>
        </widget>
-       <widget class="QTableWidget" name="employeeTableWidget">
+       <widget class="QTableWidget" name="tableWidget">
         <property name="geometry">
          <rect>
           <x>120</x>
           <y>110</y>
-          <width>701</width>
+          <width>751</width>
           <height>451</height>
          </rect>
-        </property>
-        <property name="cursor" stdset="0">
-         <cursorShape>CrossCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">QTableWidget {
@@ -292,7 +289,6 @@ QPushButton:hover {
 QTableWidget::item {
     padding: 10px;
     border-bottom: 1px solid #bdc3c7;
-	color:black;
 }
 
 QTableWidget::item:selected {
@@ -320,32 +316,6 @@ QTableCornerButton::section {
     background-color: #2980b9;
     border: 1px solid #1c5986;
 }
-
-QTableWidget QWidget {
-background:transparent;
-
-	}
-QTableWidget QPushButton {
-    background-color: qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));  
-    border-radius: 10px;
-    color: white;
-    font-size: 12px;
-min-width: 100px;  /* Ensure a minimum width */
-    min-height: 40px;  /* Ensure a minimum height */
-}
-
-QTableWidget QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  
-}
-
 </string>
         </property>
         <attribute name="horizontalHeaderStretchLastSection">
@@ -353,22 +323,32 @@ QTableWidget QPushButton:hover {
         </attribute>
         <column>
          <property name="text">
-          <string>USER ID</string>
+          <string>Identifiant</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>F Name</string>
+          <string>Nom</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>L Name</string>
+          <string>Adresse</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Department</string>
+          <string>DateMatch</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Score</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Stade</string>
          </property>
         </column>
         <column>
@@ -411,8 +391,8 @@ QPushButton:hover{
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/textures/textures/prevIcon.png</normaloff>:/textures/textures/prevIcon.png</iconset>
+         <iconset>
+          <normaloff>textures/prevIcon.png</normaloff>textures/prevIcon.png</iconset>
         </property>
        </widget>
        <widget class="QPushButton" name="prevPageTable">
@@ -449,422 +429,16 @@ QPushButton:hover{
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/textures/textures/nextIcon.png</normaloff>:/textures/textures/nextIcon.png</iconset>
+         <iconset>
+          <normaloff>textures/nextIcon.png</normaloff>textures/nextIcon.png</iconset>
         </property>
-       </widget>
-       <widget class="QPushButton" name="refreshButton">
-        <property name="geometry">
-         <rect>
-          <x>770</x>
-          <y>70</y>
-          <width>41</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-
-}
-QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  ; 
-}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
-        </property>
-       </widget>
-       <widget class="QGroupBox" name="filterGroupBox">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>110</y>
-          <width>701</width>
-          <height>451</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="title">
-         <string>Search and Sort settings</string>
-        </property>
-        <widget class="QPushButton" name="applyFilter">
-         <property name="geometry">
-          <rect>
-           <x>470</x>
-           <y>390</y>
-           <width>101</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-border-radius:10px;
-color:white;
-}
-QPushButton:hover {
-    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  
-}</string>
-         </property>
-         <property name="text">
-          <string>Apply Filter</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="searchCriteriaBox">
-         <property name="geometry">
-          <rect>
-           <x>220</x>
-           <y>70</y>
-           <width>201</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QComboBox {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
-    border: 2px solid transparent; /* Default border */
-}
-
-/* Drop-down arrow area */
-QComboBox::drop-down {
-    border: none;
-    width: 30px;
-   ; /* Keep background for drop-down */
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    image: url(:/textures/textures/downArrowIcon.png);
-}
-
-/* Hover effect */
-QComboBox:hover {
-    border: 3px dashed qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
-}
-
-/* Focus effect */
-QComboBox:focus {
-    border: 2px solid qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
-}
-
-/* Style for the dropdown list */
-QComboBox QAbstractItemView {
-    background-color: white;
-    border: 2px solid #C51D34;
-    selection-background-color: #ff0004;
-    selection-color: white;
-    border-radius: 8px;
-    color: black;
-}
-</string>
-         </property>
-         <property name="placeholderText">
-          <string>Choice</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>Firstname</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Lastname</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Position</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Department</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Adress</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Default</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QLabel" name="label">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>70</y>
-           <width>231</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Azonix</family>
-           <pointsize>16</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background:transparent;
-color :     qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  </string>
-         </property>
-         <property name="text">
-          <string>Search By :</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_2">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>200</y>
-           <width>171</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Azonix</family>
-           <pointsize>16</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background:transparent;
-color :     qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  </string>
-         </property>
-         <property name="text">
-          <string>Sort :</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="sortCriteriaBox_2">
-         <property name="geometry">
-          <rect>
-           <x>220</x>
-           <y>200</y>
-           <width>201</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QComboBox {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
-    border: 2px solid transparent; /* Default border */
-}
-
-/* Drop-down arrow area */
-QComboBox::drop-down {
-    border: none;
-    width: 30px;
-   ; /* Keep background for drop-down */
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    image: url(:/textures/textures/downArrowIcon.png);
-}
-
-/* Hover effect */
-QComboBox:hover {
-    border: 3px dashed qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
-}
-
-/* Focus effect */
-QComboBox:focus {
-    border: 2px solid qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
-}
-
-/* Style for the dropdown list */
-QComboBox QAbstractItemView {
-    background-color: white;
-    border: 2px solid #C51D34;
-    selection-background-color: #ff0004;
-    selection-color: white;
-    border-radius: 8px;
-    color: black;
-}
-</string>
-         </property>
-         <property name="placeholderText">
-          <string>Choice</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>Ascending</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Descending</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QPushButton" name="cancelFilter">
-         <property name="geometry">
-          <rect>
-           <x>580</x>
-           <y>390</y>
-           <width>101</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-border-radius:10px;
-color:white;
-}
-QPushButton:hover {
-    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  
-}</string>
-         </property>
-         <property name="text">
-          <string>Cancel</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="depFilterBox">
-         <property name="geometry">
-          <rect>
-           <x>480</x>
-           <y>70</y>
-           <width>201</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QComboBox {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
-    border: 2px solid transparent; /* Default border */
-}
-
-/* Drop-down arrow area */
-QComboBox::drop-down {
-    border: none;
-    width: 30px;
-   ; /* Keep background for drop-down */
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    image: url(:/textures/textures/downArrowIcon.png);
-}
-
-/* Hover effect */
-QComboBox:hover {
-    border: 3px dashed qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
-}
-
-/* Focus effect */
-QComboBox:focus {
-    border: 2px solid qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
-}
-
-/* Style for the dropdown list */
-QComboBox QAbstractItemView {
-    background-color: white;
-    border: 2px solid #C51D34;
-    selection-background-color: #ff0004;
-    selection-color: white;
-    border-radius: 8px;
-    color: black;
-}
-</string>
-         </property>
-         <property name="placeholderText">
-          <string>Department</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>Human resources</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Municipality</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Federation</string>
-          </property>
-         </item>
-        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Add Employe</string>
+        <string>Add staduim </string>
        </attribute>
-       <widget class="QLineEdit" name="firstName">
+       <widget class="QLineEdit" name="team1">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -910,10 +484,10 @@ QLineEdit:focus {
          <string/>
         </property>
         <property name="placeholderText">
-         <string>First Name</string>
+         <string>ID</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lastName">
+       <widget class="QLineEdit" name="team2">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -956,10 +530,10 @@ QLineEdit:focus {
 </string>
         </property>
         <property name="placeholderText">
-         <string>Last Name</string>
+         <string>Name</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="adress">
+       <widget class="QLineEdit" name="datematch">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -1002,10 +576,10 @@ QLineEdit:focus {
 </string>
         </property>
         <property name="placeholderText">
-         <string>Address</string>
+         <string>Adress</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="numTlf">
+       <widget class="QLineEdit" name="score">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -1048,94 +622,59 @@ QLineEdit:focus {
 </string>
         </property>
         <property name="placeholderText">
-         <string>Phone Number</string>
+         <string>score</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="department">
+       <widget class="QPushButton" name="addMatchsButton">
         <property name="geometry">
          <rect>
-          <x>79</x>
-          <y>376</y>
-          <width>301</width>
-          <height>31</height>
+          <x>350</x>
+          <y>490</y>
+          <width>221</width>
+          <height>61</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+         </font>
         </property>
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">QComboBox {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
-    border: 2px solid transparent; /* Default border */
-}
-
-/* Drop-down arrow area */
-QComboBox::drop-down {
-    border: none;
-    width: 30px;
-   ; /* Keep background for drop-down */
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    image: url(:/textures/textures/downArrowIcon.png);
-}
-
-/* Hover effect */
-QComboBox:hover {
-    border: 3px dashed qlineargradient(spread:pad, 
+         <string notr="true">QPushButton {
+background-color:qlineargradient(spread:pad, 
                             x1:0, y1:0, x2:1, y2:1, 
                             stop:0 rgba(255, 0, 0, 255), 
                             stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
+                            stop:1 rgba(255, 117, 0, 255));;  ;  
+border-radius:10px;
+color:white;
 }
-
-/* Focus effect */
-QComboBox:focus {
-    border: 2px solid qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
-}
-
-/* Style for the dropdown list */
-QComboBox QAbstractItemView {
-    background-color: white;
-    border: 2px solid #C51D34;
-    selection-background-color: #ff0004;
-    selection-color: white;
-    border-radius: 8px;
-    color: black;
-}
-</string>
+QPushButton:hover {
+    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
+                            stop: 0 rgba(0, 255, 254, 255),     
+                            stop: 0.26 rgba(38, 170, 196, 255), 
+                            stop: 0.67 rgba(89, 85, 131, 255),
+                            stop: 1 rgba(0, 238, 255, 255));  ; 
+}</string>
         </property>
-        <property name="placeholderText">
-         <string>Select Department</string>
+        <property name="text">
+         <string>Add Staduim</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Human resources</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Federation</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Municipality</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string/>
-         </property>
-        </item>
+        <property name="icon">
+         <iconset>
+          <normaloff>textures/addIcon.png</normaloff>textures/addIcon.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
        </widget>
-       <widget class="QLineEdit" name="poste">
+       <widget class="QLineEdit" name="score_2">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -1178,164 +717,7 @@ QLineEdit:focus {
 </string>
         </property>
         <property name="placeholderText">
-         <string>Position</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="addEmployeeButton">
-        <property name="geometry">
-         <rect>
-          <x>350</x>
-          <y>520</y>
-          <width>221</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-border-radius:10px;
-color:white;
-}
-QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  ; 
-}</string>
-        </property>
-        <property name="text">
-         <string>Add Employee</string>
-        </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/textures/textures/addIcon.png</normaloff>:/textures/textures/addIcon.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>50</width>
-          <height>50</height>
-         </size>
-        </property>
-       </widget>
-       <widget class="QLabel" name="fNameErrorMSG">
-        <property name="geometry">
-         <rect>
-          <x>395</x>
-          <y>68</y>
-          <width>291</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background:transparent;
-color:red;
-</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lNameErrorMSG">
-        <property name="geometry">
-         <rect>
-          <x>400</x>
-          <y>120</y>
-          <width>291</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background:transparent;
-color:red;
-</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="adressErrorMSG">
-        <property name="geometry">
-         <rect>
-          <x>400</x>
-          <y>180</y>
-          <width>291</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background:transparent;
-color:red;
-</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="phoneNumErrorMSG">
-        <property name="geometry">
-         <rect>
-          <x>400</x>
-          <y>250</y>
-          <width>291</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background:transparent;
-color:red;
-</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="positionErrorMSG">
-        <property name="geometry">
-         <rect>
-          <x>400</x>
-          <y>310</y>
-          <width>291</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background:transparent;
-color:red;
-</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="depErrorMSG">
-        <property name="geometry">
-         <rect>
-          <x>390</x>
-          <y>380</y>
-          <width>291</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background:transparent;
-color:red;
-</string>
-        </property>
-        <property name="text">
-         <string/>
+         <string>Capacity</string>
         </property>
        </widget>
       </widget>
@@ -1392,6 +774,7 @@ color:red;
 
 QPushButton:hover {
     background-color: red;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
 	border-radius:15px;
 }</string>
        </property>
@@ -1431,6 +814,7 @@ QPushButton:hover {
 
 QPushButton:hover {
     background-color: white;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
 	border-radius:15px;
 }</string>
        </property>
@@ -1438,8 +822,8 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="resources.qrc">
-         <normaloff>:/textures/textures/homeIcon.png</normaloff>:/textures/textures/homeIcon.png</iconset>
+        <iconset>
+         <normaloff>textures/homeIcon.png</normaloff>textures/homeIcon.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -1470,6 +854,7 @@ QPushButton:hover {
 
 QPushButton:hover {
     background-color: lime;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
 	border-radius:15px;
 }</string>
        </property>
@@ -1477,8 +862,8 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="resources.qrc">
-         <normaloff>:/textures/textures/aboutIcon.png</normaloff>:/textures/textures/aboutIcon.png</iconset>
+        <iconset>
+         <normaloff>textures/aboutIcon.png</normaloff>textures/aboutIcon.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -1517,8 +902,8 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="resources.qrc">
-         <normaloff>:/textures/textures/notifsIcon.png</normaloff>:/textures/textures/notifsIcon.png</iconset>
+        <iconset>
+         <normaloff>textures/notifsIcon.png</normaloff>textures/notifsIcon.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -1527,10 +912,6 @@ QPushButton:hover {
         </size>
        </property>
       </widget>
-      <zorder>notifButton</zorder>
-      <zorder>homeButton</zorder>
-      <zorder>aboutButton</zorder>
-      <zorder>exitButton</zorder>
      </widget>
     </widget>
    </item>
