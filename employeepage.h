@@ -21,6 +21,7 @@ public:
     void addButtonsToRows(QTableWidget *table);
     void refresh();
     QString defaultQueryStr="SELECT USERID, FIRSTNAME, LASTNAME, DEPNAME FROM Employees";
+    QString currentQueryStr;
 
     void setupFilterGroupBox();
 private slots:
@@ -51,10 +52,15 @@ private slots:
 
     void on_searchCriteriaBox_currentIndexChanged(int index);
 
+    QSqlQuery on_applyFilter_clicked();
+
+    void on_searchButton_clicked();
+
 private:
     Ui::employeePage *ui;
     employee emp;
     employee *loggedIneEmp;
+
 
 
 };

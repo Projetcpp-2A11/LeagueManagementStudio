@@ -271,6 +271,8 @@ void employeePage::on_filterButton_clicked()
 {
     ui->filterGroupBox->setVisible(true);
     ui->depFilterBox->setVisible(false);
+
+
 }
 
 
@@ -288,5 +290,112 @@ void employeePage::on_searchCriteriaBox_currentIndexChanged(int index)
         ui->depFilterBox->setVisible(false);
 
     }
+}
+
+
+QSqlQuery employeePage::on_applyFilter_clicked()
+{
+    int searchCriteraIndex = ui->searchCriteriaBox->currentIndex();
+    QString selectedDepartment;
+    QString searchBoxInput  = ui->searchEmployeeInput->text();
+    QSqlQuery query;
+    QString sortType = "ASC";
+
+
+    switch(searchCriteraIndex) {
+    case 0: // search by first name
+        currentQueryStr = "SELECT USERID,FIRSTNAME,LASTNAME,DEPNAME FROM EMPLOYEES WHERE FIRSTNAME=:firstname";
+        query.prepare(currentQueryStr);
+        query.bindValue(":firstname",searchBoxInput);
+        qDebug() << &query;
+
+        break;
+    case 1 : // search by last name
+
+        currentQueryStr = "SELECT USERID,FIRSTNAME,LASTNAME,DEPNAME FROM EMPLOYEES WHERE LASTNAME=:LASTNAME";
+        query.prepare(currentQueryStr);
+
+        query.bindValue(":lastname",searchBoxInput);
+
+
+        break;
+
+    case 2 : // search by position
+        currentQueryStr = "SELECT USERID,FIRSTNAME,LASTNAME,DEPNAME FROM EMPLOYEES WHERE position=:position";
+        query.prepare(currentQueryStr);
+        query.bindValue(":position", searchBoxInput);
+
+
+
+        break;
+
+    case 3 : // search by department
+
+        selectedDepartment= ui->department->currentText();
+        currentQueryStr = "SELECT USERID,FIRSTNAME,LASTNAME,DEPNAME FROM EMPLOYEES WHERE DEPNAME=:selectedDepartment";
+        query.prepare(currentQueryStr);
+
+        query.bindValue(":selectedDepartment",selectedDepartment);
+
+
+
+
+        break;
+
+    case 4 : // adress
+        currentQueryStr = "SELECT USERID,FIRSTNAME,LASTNAME,DEPNAME FROM EMPLOYEES WHERE ADDRESS LIKE :adress";
+        query.prepare(currentQueryStr);
+
+        query.bindValue(":address", "%" + searchBoxInput + "%"); // Correct LIKE syntax
+
+
+
+        break;
+
+    case 5 : //Default
+        currentQueryStr = defaultQueryStr;
+        query.prepare(currentQueryStr);
+
+
+        break;
+
+    }
+
+    switch(ui->sortCriteriaBox_2->currentIndex()) {
+    case 0:
+
+        currentQueryStr +=" ASC";
+        break;
+    case 1 :
+        currentQueryStr +=" DESC";
+        break;
+
+
+
+
+    }
+    qDebug() << currentQueryStr;
+
+    ui->filterGroupBox->setVisible(false);
+
+    return query;
+
+
+}
+
+
+
+
+void employeePage::on_searchButton_clicked()
+{
+
+    QSqlQuery searchQuery = on_applyFilter_clicked();
+    emp.listEmployeesByCriteria(ui->employeeTableWidget, searchQuery);
+    addButtonsToRows(ui->employeeTableWidget);
+
+
+
+
+
 }
 

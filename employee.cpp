@@ -184,6 +184,31 @@ bool employee::updateEmployeeDetails(int userID, const QString &firstName, const
     }
 }
 
+void employee::listEmployeesByCriteria(QTableWidget *table, QSqlQuery &query)
+{
+
+    table->clearContents();
+    table->setRowCount(0);
+    table->verticalHeader()->setVisible(false);
+
+    if (query.exec()) {
+        int row = 0;
+        while (query.next()) {
+            table->insertRow(row);
+            table->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));  // USERID
+            table->setItem(row, 1, new QTableWidgetItem(query.value(1).toString()));  // FIRSTNAME
+            table->setItem(row, 2, new QTableWidgetItem(query.value(2).toString()));  // LASTNAME
+            table->setItem(row, 3, new QTableWidgetItem(query.value(3).toString()));  // DEPNAME
+            ++row;
+
+        }
+    } else {
+        qDebug() << "Failed to fetch data: " << query.lastError();
+    }
+
+
+}
+
 
 
 

@@ -60,7 +60,7 @@ public:
     bool updateEmployeeDetails(int userID, const QString &firstName, const QString &lastName,
                                const QString &department, const QString &position, const QString &address,
                                const QString &phone);
-
+    void listEmployeesByCriteria(QTableWidget* table , QSqlQuery &query);
 
 
 };
