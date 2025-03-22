@@ -165,7 +165,21 @@ public:
 "QPushBu"
                         "tton[selected=\"true\"] {\n"
 "    background-color: blue;            /* Blue background when selected */\n"
-"}"));
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
         teamsButton = new QPushButton(homepage);
         teamsButton->setObjectName("teamsButton");
         teamsButton->setGeometry(QRect(420, 300, 181, 61));
@@ -197,7 +211,21 @@ public:
 "QPushBu"
                         "tton[selected=\"true\"] {\n"
 "    background-color: blue;            /* Blue background when selected */\n"
-"}"));
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
         teamsIcon = new QLabel(homepage);
         teamsIcon->setObjectName("teamsIcon");
         teamsIcon->setGeometry(QRect(430, 300, 51, 61));
@@ -235,7 +263,21 @@ public:
 "QPushBu"
                         "tton[selected=\"true\"] {\n"
 "    background-color: blue;            /* Blue background when selected */\n"
-"}"));
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
         matchsIcon = new QLabel(homepage);
         matchsIcon->setObjectName("matchsIcon");
         matchsIcon->setGeometry(QRect(702, 306, 51, 51));
@@ -273,7 +315,21 @@ public:
 "QPushBu"
                         "tton[selected=\"true\"] {\n"
 "    background-color: blue;            /* Blue background when selected */\n"
-"}"));
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
         playersIcon = new QLabel(homepage);
         playersIcon->setObjectName("playersIcon");
         playersIcon->setGeometry(QRect(100, 487, 91, 71));
@@ -311,7 +367,21 @@ public:
 "QPushBu"
                         "tton[selected=\"true\"] {\n"
 "    background-color: blue;            /* Blue background when selected */\n"
-"}"));
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
         stadiumIcon = new QLabel(homepage);
         stadiumIcon->setObjectName("stadiumIcon");
         stadiumIcon->setGeometry(QRect(428, 506, 31, 31));
@@ -349,7 +419,22 @@ public:
 "QPushBu"
                         "tton[selected=\"true\"] {\n"
 "    background-color: blue;            /* Blue background when selected */\n"
-"}"));
+"}\n"
+"\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
         partnersIcon = new QLabel(homepage);
         partnersIcon->setObjectName("partnersIcon");
         partnersIcon->setGeometry(QRect(707, 507, 41, 31));

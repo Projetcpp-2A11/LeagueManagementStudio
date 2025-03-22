@@ -26,12 +26,67 @@ homepage::homepage(QWidget *parent, employee * loggedInEmployee)
     ui->setupUi(this);
     ui->usernameLabel->setText(FullName);
 
+    qDebug() <<  " dep "  << loggedInEmployee->getDepName();
+    qDebug() <<  " pos "  << loggedInEmployee->getPosition();
+    setupRoleAccess(loggedInEmployee);
+
+
 }
 
 homepage::~homepage()
 {
     delete ui;
 }
+
+void homepage::setupRoleAccess(employee *  emp)
+{
+    QString employeeDepartmentName = emp->getDepName();
+    QString pos = emp->getPosition();
+
+    QList<QPushButton*> allButtons = {
+        ui->employeeButton,
+        ui->stadiumsButton,
+        ui->playersButton,
+        ui->matchsButton,
+        ui->teamsButton,
+        ui->partnersButton
+    };
+
+    for (QPushButton* btn : allButtons) {
+        btn->setEnabled(false);
+    }
+
+    QMap<QString, QList<QPushButton*>> accessMap;
+    accessMap["HR"] = { ui->employeeButton };
+    accessMap["Municipality"] = { ui->stadiumsButton };
+    accessMap["Commerce"] = { ui->partnersButton };
+    accessMap["League"] = { ui->matchsButton };
+    accessMap["Federation"] = { ui->playersButton };
+    accessMap["Federation"] = { ui->teamsButton };
+
+    if (accessMap.contains(employeeDepartmentName)) {
+        for (QPushButton* btn : accessMap[employeeDepartmentName]) {
+            btn->setEnabled(true);
+        }
+    }
+
+    if (pos == "admin") {
+        for (QPushButton* btn : allButtons) {
+            btn->setEnabled(true);
+        }
+    }
+
+
+
+
+
+
+
+
+
+}
+
+
 
 void homepage::on_employeeButton_clicked()
 {

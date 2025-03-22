@@ -14,6 +14,7 @@ class homepage : public QWidget
 public:
     explicit homepage(QWidget *parent = nullptr , employee * loggedInEmployee = nullptr);
     ~homepage();
+    void setupRoleAccess(employee *  emp);
 
 private slots:
     void on_employeeButton_clicked();

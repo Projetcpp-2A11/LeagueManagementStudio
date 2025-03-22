@@ -120,6 +120,8 @@ employee::employee( const QString &mdp, const QString &firstName, const QString 
     faceIdPicUrl(faceIdPicUrl),
     voiceIdUrl(voiceIdUrl)
 {}
+
+
 // password and user id generation
 QString employee::generatePassword(const QString &firstName, const QString &lastName, const QString &phoneNumber) {
     if (lastName.isEmpty() || phoneNumber.length() < 4 || firstName.isEmpty()) {

@@ -53,7 +53,11 @@ constexpr auto qt_meta_stringdata_CLASSemployeePageENDCLASS = QtMocHelpers::stri
     "index",
     "on_applyFilter_clicked",
     "QSqlQuery",
-    "on_searchButton_clicked"
+    "on_searchButton_clicked",
+    "exportTableToCSV",
+    "QTableWidget*",
+    "table",
+    "on_exportListButton_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -66,7 +70,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSemployeePageENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -74,20 +78,22 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSemployeePageENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   98,    2, 0x08,    1 /* Private */,
-       3,    0,   99,    2, 0x08,    2 /* Private */,
-       4,    0,  100,    2, 0x08,    3 /* Private */,
-       5,    0,  101,    2, 0x08,    4 /* Private */,
-       6,    0,  102,    2, 0x08,    5 /* Private */,
-       7,    0,  103,    2, 0x08,    6 /* Private */,
-       8,    1,  104,    2, 0x08,    7 /* Private */,
-      10,    1,  107,    2, 0x08,    9 /* Private */,
-      11,    0,  110,    2, 0x08,   11 /* Private */,
-      12,    0,  111,    2, 0x08,   12 /* Private */,
-      13,    0,  112,    2, 0x08,   13 /* Private */,
-      14,    1,  113,    2, 0x08,   14 /* Private */,
-      16,    0,  116,    2, 0x08,   16 /* Private */,
-      18,    0,  117,    2, 0x08,   17 /* Private */,
+       1,    0,  110,    2, 0x08,    1 /* Private */,
+       3,    0,  111,    2, 0x08,    2 /* Private */,
+       4,    0,  112,    2, 0x08,    3 /* Private */,
+       5,    0,  113,    2, 0x08,    4 /* Private */,
+       6,    0,  114,    2, 0x08,    5 /* Private */,
+       7,    0,  115,    2, 0x08,    6 /* Private */,
+       8,    1,  116,    2, 0x08,    7 /* Private */,
+      10,    1,  119,    2, 0x08,    9 /* Private */,
+      11,    0,  122,    2, 0x08,   11 /* Private */,
+      12,    0,  123,    2, 0x08,   12 /* Private */,
+      13,    0,  124,    2, 0x08,   13 /* Private */,
+      14,    1,  125,    2, 0x08,   14 /* Private */,
+      16,    0,  128,    2, 0x08,   16 /* Private */,
+      18,    0,  129,    2, 0x08,   17 /* Private */,
+      19,    1,  130,    2, 0x08,   18 /* Private */,
+      22,    0,  133,    2, 0x08,   20 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -103,6 +109,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSemployeePageENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   15,
     0x80000000 | 17,
+    QMetaType::Void,
+    QMetaType::Bool, 0x80000000 | 20,   21,
     QMetaType::Void,
 
        0        // eod
@@ -147,6 +155,11 @@ Q_CONSTINIT const QMetaObject employeePage::staticMetaObject = { {
         // method 'on_applyFilter_clicked'
         QtPrivate::TypeAndForceComplete<QSqlQuery, std::false_type>,
         // method 'on_searchButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'exportTableToCSV'
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QTableWidget *, std::false_type>,
+        // method 'on_exportListButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -174,7 +187,21 @@ void employeePage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 12: { QSqlQuery _r = _t->on_applyFilter_clicked();
             if (_a[0]) *reinterpret_cast< QSqlQuery*>(_a[0]) = std::move(_r); }  break;
         case 13: _t->on_searchButton_clicked(); break;
+        case 14: { bool _r = _t->exportTableToCSV((*reinterpret_cast< std::add_pointer_t<QTableWidget*>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 15: _t->on_exportListButton_clicked(); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 14:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QTableWidget* >(); break;
+            }
+            break;
         }
     }
 }
@@ -198,13 +225,13 @@ int employeePage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 14;
+        if (_id < 16)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 16;
     }
     return _id;
 }

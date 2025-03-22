@@ -737,6 +737,8 @@ public:
         department->addItem(QString());
         department->addItem(QString());
         department->addItem(QString());
+        department->addItem(QString());
+        department->addItem(QString());
         department->setObjectName("department");
         department->setGeometry(QRect(79, 376, 301, 31));
         department->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
@@ -976,7 +978,7 @@ public:
 
         retranslateUi(employeePage);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(employeePage);
@@ -1030,10 +1032,12 @@ public:
         lastName->setPlaceholderText(QCoreApplication::translate("employeePage", "Last Name", nullptr));
         adress->setPlaceholderText(QCoreApplication::translate("employeePage", "Address", nullptr));
         numTlf->setPlaceholderText(QCoreApplication::translate("employeePage", "Phone Number", nullptr));
-        department->setItemText(0, QCoreApplication::translate("employeePage", "Human resources", nullptr));
-        department->setItemText(1, QCoreApplication::translate("employeePage", "Federation", nullptr));
-        department->setItemText(2, QCoreApplication::translate("employeePage", "Municipality", nullptr));
-        department->setItemText(3, QString());
+        department->setItemText(0, QCoreApplication::translate("employeePage", "HR", nullptr));
+        department->setItemText(1, QCoreApplication::translate("employeePage", "League", nullptr));
+        department->setItemText(2, QCoreApplication::translate("employeePage", "Commerce", nullptr));
+        department->setItemText(3, QCoreApplication::translate("employeePage", "Federation", nullptr));
+        department->setItemText(4, QCoreApplication::translate("employeePage", "Municipality", nullptr));
+        department->setItemText(5, QString());
 
         department->setPlaceholderText(QCoreApplication::translate("employeePage", "Select Department", nullptr));
         poste->setPlaceholderText(QCoreApplication::translate("employeePage", "Position", nullptr));

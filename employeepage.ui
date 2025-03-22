@@ -96,7 +96,7 @@ QTabBar::tab:hover {
 </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1116,7 +1116,17 @@ QComboBox QAbstractItemView {
         </property>
         <item>
          <property name="text">
-          <string>Human resources</string>
+          <string>HR</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>League</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Commerce</string>
          </property>
         </item>
         <item>

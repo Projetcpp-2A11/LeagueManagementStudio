@@ -1,4 +1,4 @@
-QT       += core gui widgets uitools multimedia sql
+QT       += core gui widgets uitools multimedia sql printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4):
 

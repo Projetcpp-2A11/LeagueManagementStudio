@@ -1,5 +1,6 @@
 #include "employeepage.h"
 #include "employeeupdateform.h"
+#include "qevent.h"
 #include "ui_employeepage.h"
 #include <QMessageBox>
 #include <QVBoxLayout>
@@ -394,8 +395,63 @@ void employeePage::on_searchButton_clicked()
     addButtonsToRows(ui->employeeTableWidget);
 
 
+}
+
+bool employeePage::exportTableToCSV(QTableWidget *table)
+{
+    QString filePath = QFileDialog::getSaveFileName(nullptr, "Save File", "", "CSV Files (*.csv)");
+    if (filePath.isEmpty())
+        return false;
+
+    QFile file(filePath);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qDebug() << "Failed to open file for writing";
+        return false;
+    }
+
+    QTextStream stream(&file);
+
+    for (int col = 0; col < table->columnCount(); ++col) {
+        QTableWidgetItem *headerItem = table->horizontalHeaderItem(col);
+        if (headerItem)
+            stream << headerItem->text();
+        else
+            stream << "Column " << col + 1;
+
+        if (col < table->columnCount() - 1)
+            stream << ",";
+    }
+    stream << "\n";
+
+    for (int row = 0; row < table->rowCount(); ++row) {
+        for (int col = 0; col < table->columnCount(); ++col) {
+            QTableWidgetItem *cellItem = table->item(row, col);
+            if (cellItem)
+                stream << cellItem->text();
+            else
+                stream << "";
+
+            if (col < table->columnCount() - 1)
+                stream << ",";
+        }
+        stream << "\n";
+    }
+
+    file.close();
+    return true;
+    qDebug() << "CSV file saved at" << filePath;
+
+}
 
 
+void employeePage::on_exportListButton_clicked()
+{
+
+    if (exportTableToCSV(ui->employeeTableWidget)) {
+        QMessageBox::information(this, "Success", "Export Successful", QMessageBox::Ok);
+
+
+    }
 
 }
 

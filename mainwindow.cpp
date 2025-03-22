@@ -183,7 +183,7 @@ employee MainWindow::checkIdExistance(int userID)
 {
     QSqlQuery query;
     query.clear();
-    query.prepare("SELECT USERID, FIRSTNAME, LASTNAME, PHONENUM, ADDRESS FROM employees WHERE USERID=:userID");
+    query.prepare("SELECT USERID, FIRSTNAME, LASTNAME, PHONENUM, ADDRESS, DEPNAME, POSITION FROM employees WHERE USERID=:userID");
     query.bindValue(":userID", userID);
     employee p;
 
@@ -193,10 +193,19 @@ employee MainWindow::checkIdExistance(int userID)
         QString lastName = query.value(2).toString();
         QString phone = query.value(3).toString();
         QString address = query.value(4).toString();
+        QString department = query.value(5).toString();
+        QString position = query.value(6).toString();
+
+
 
         p.setFirstName(firstName);
         p.setLastName(lastName);
         p.setUserID(id);
+        p.setDepName(department);
+        p.setPosition(position);
+        p.setAddress(address);
+
+
         return p;
     } else {
         p.setUserID(-1);  // Mark the user as not found

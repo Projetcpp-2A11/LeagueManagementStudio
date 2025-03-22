@@ -4,6 +4,8 @@
 #include "employee.h"
 #include <QWidget>
 #include <homepage.h>
+#include <QFile>
+#include <QFileDialog>
 
 namespace Ui {
 class employeePage;
@@ -55,6 +57,9 @@ private slots:
     QSqlQuery on_applyFilter_clicked();
 
     void on_searchButton_clicked();
+    bool exportTableToCSV(QTableWidget * table);
+
+    void on_exportListButton_clicked();
 
 private:
     Ui::employeePage *ui;
