@@ -40,6 +40,8 @@ private slots:
     void on_update_employee_clicked(int row);
 
 
+    void on_employeeTableWidget_cellActivated(int row, int column);
+
 private:
     Ui::employeePage *ui;
     employee emp;

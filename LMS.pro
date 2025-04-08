@@ -1,4 +1,4 @@
-QT       += core gui widgets uitools multimedia sql
+QT       += core gui widgets uitools multimedia sql charts printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4):
 
@@ -19,6 +19,9 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     matchpage.cpp \
+    player.cpp \
+    playerpage.cpp \
+    playerupdateform.cpp \
     teams.cpp \
 
 HEADERS += \
@@ -31,6 +34,9 @@ HEADERS += \
     homepage.h \
     mainwindow.h \
     matchpage.h \
+    player.h \
+    playerpage.h \
+    playerupdateform.h \
     teams.h \
 
 FORMS += \
@@ -39,6 +45,8 @@ FORMS += \
     homepage.ui \
     mainwindow.ui \
     matchs.ui \
+    playerpage.ui \
+    playerupdateform.ui
 
 
 # Default rules for deployment.

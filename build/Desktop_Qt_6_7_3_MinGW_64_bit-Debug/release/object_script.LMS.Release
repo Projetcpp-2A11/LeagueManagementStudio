@@ -8,6 +8,9 @@ release/homepage.o
 release/main.o
 release/mainwindow.o
 release/matchpage.o
+release/player.o
+release/playerpage.o
+release/playerupdateform.o
 release/teams.o
 release/qrc_resources.o
 release/moc_custombutton.o
@@ -17,3 +20,5 @@ release/moc_employeeupdateform.o
 release/moc_homepage.o
 release/moc_mainwindow.o
 release/moc_matchpage.o
+release/moc_playerpage.o
+release/moc_playerupdateform.o

@@ -77,7 +77,7 @@ public:
 ""));
         tabWidget = new QTabWidget(contentArea);
         tabWidget->setObjectName("tabWidget");
-        tabWidget->setGeometry(QRect(120, 0, 941, 681));
+        tabWidget->setGeometry(QRect(120, 0, 941, 691));
         QFont font;
         font.setBold(true);
         tabWidget->setFont(font);

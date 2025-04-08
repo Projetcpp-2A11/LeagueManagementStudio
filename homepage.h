@@ -19,6 +19,7 @@ private slots:
     void on_employeeButton_clicked();
 
     void on_matchsButton_clicked();
+    void on_playersButton_clicked();
 
 private:
     Ui::homepage *ui;

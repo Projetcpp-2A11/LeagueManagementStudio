@@ -167,7 +167,7 @@ void employeePage::addButtonsToRows(QTableWidget* table)
         QWidget* actionWidget = new QWidget();
         QHBoxLayout* actionLayout = new QHBoxLayout(actionWidget);
         actionLayout->setContentsMargins(0, 0, 0, 0);  // Remove margins
-        actionLayout->setSpacing(10);  // Add spacing between the buttons
+        actionLayout->setSpacing(20);  // Add spacing between the buttons
 
         // Add buttons to the layout
         actionLayout->addWidget(deleteButton);
@@ -203,3 +203,9 @@ void employeePage::refresh()
     emp.listEmployees(ui->employeeTableWidget);
     addButtonsToRows(ui->employeeTableWidget);
 }
+
+void employeePage::on_employeeTableWidget_cellActivated(int row, int column)
+{
+
+}
+
