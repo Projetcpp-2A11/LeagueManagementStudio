@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
@@ -27,6 +28,9 @@ public:
     QLabel *accountSettingsLabel;
     QLabel *timeLabel;
     QLabel *label;
+    QGroupBox *AccountSettingsGrpBox;
+    QPushButton *configureFidButton;
+    QPushButton *closeButton;
     QLabel *empIoyeeIcon;
     QPushButton *employeeButton;
     QPushButton *teamsButton;
@@ -120,6 +124,73 @@ public:
 ""));
         label->setPixmap(QPixmap(QString::fromUtf8(":/textures/textures/app_icon.png")));
         label->setScaledContents(true);
+        AccountSettingsGrpBox = new QGroupBox(topBar);
+        AccountSettingsGrpBox->setObjectName("AccountSettingsGrpBox");
+        AccountSettingsGrpBox->setGeometry(QRect(90, 0, 281, 141));
+        configureFidButton = new QPushButton(AccountSettingsGrpBox);
+        configureFidButton->setObjectName("configureFidButton");
+        configureFidButton->setGeometry(QRect(30, 30, 211, 61));
+        configureFidButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */\n"
+"    border-radius: 15px;               /* Rounded corners */\n"
+"    color: white;                      /* White text */\n"
+"    border: none;                      /* No border */\n"
+"    padding: 10px 20px;                /* Padding inside the button */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color:  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));\n"
+"	color:white;\n"
+"border:2px solid black;\n"
+"}\n"
+"\n"
+"QPushBu"
+                        "tton[selected=\"true\"] {\n"
+"    background-color: blue;            /* Blue background when selected */\n"
+"}\n"
+"\n"
+"\n"
+""));
+        closeButton = new QPushButton(AccountSettingsGrpBox);
+        closeButton->setObjectName("closeButton");
+        closeButton->setGeometry(QRect(191, 104, 81, 31));
+        closeButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */\n"
+"    border-radius: 15px;               /* Rounded corners */\n"
+"    color: white;                      /* White text */\n"
+"    border: none;                      /* No border */\n"
+"    padding: 10px 20px;                /* Padding inside the button */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color:  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));\n"
+"	color:white;\n"
+"border:2px solid black;\n"
+"}\n"
+"\n"
+"QPushBu"
+                        "tton[selected=\"true\"] {\n"
+"    background-color: blue;            /* Blue background when selected */\n"
+"}\n"
+"\n"
+"\n"
+""));
         empIoyeeIcon = new QLabel(homepage);
         empIoyeeIcon->setObjectName("empIoyeeIcon");
         empIoyeeIcon->setGeometry(QRect(130, 310, 51, 41));
@@ -468,6 +539,9 @@ public:
         accountSettingsLabel->setText(QCoreApplication::translate("homepage", "account settings", nullptr));
         timeLabel->setText(QString());
         label->setText(QString());
+        AccountSettingsGrpBox->setTitle(QString());
+        configureFidButton->setText(QCoreApplication::translate("homepage", "Configure Face Recognition", nullptr));
+        closeButton->setText(QCoreApplication::translate("homepage", "Close", nullptr));
         empIoyeeIcon->setText(QString());
         employeeButton->setText(QCoreApplication::translate("homepage", "      Employees", nullptr));
         teamsButton->setText(QCoreApplication::translate("homepage", "Teams", nullptr));

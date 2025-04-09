@@ -174,6 +174,8 @@ public:
         department->addItem(QString());
         department->addItem(QString());
         department->addItem(QString());
+        department->addItem(QString());
+        department->addItem(QString());
         department->setObjectName("department");
         department->setGeometry(QRect(250, 160, 191, 41));
         department->setStyleSheet(QString::fromUtf8("QComboBox {\n"
@@ -369,9 +371,11 @@ public:
         lastName->setPlaceholderText(QCoreApplication::translate("employeeUpdateForm", "Last Name", nullptr));
         address->setPlaceholderText(QCoreApplication::translate("employeeUpdateForm", "address", nullptr));
         phoneNum->setPlaceholderText(QCoreApplication::translate("employeeUpdateForm", "Phone Number", nullptr));
-        department->setItemText(0, QCoreApplication::translate("employeeUpdateForm", "Human Resources", nullptr));
-        department->setItemText(1, QCoreApplication::translate("employeeUpdateForm", "Federation", nullptr));
-        department->setItemText(2, QCoreApplication::translate("employeeUpdateForm", "Municipality", nullptr));
+        department->setItemText(0, QCoreApplication::translate("employeeUpdateForm", "HR", nullptr));
+        department->setItemText(1, QCoreApplication::translate("employeeUpdateForm", "League", nullptr));
+        department->setItemText(2, QCoreApplication::translate("employeeUpdateForm", "Commerce", nullptr));
+        department->setItemText(3, QCoreApplication::translate("employeeUpdateForm", "Federation", nullptr));
+        department->setItemText(4, QCoreApplication::translate("employeeUpdateForm", "Municipality", nullptr));
 
         department->setPlaceholderText(QCoreApplication::translate("employeeUpdateForm", "Update Department", nullptr));
         face->setPlaceholderText(QCoreApplication::translate("employeeUpdateForm", "face id ", nullptr));

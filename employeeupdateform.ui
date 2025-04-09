@@ -274,7 +274,17 @@ QComboBox QAbstractItemView {
     </property>
     <item>
      <property name="text">
-      <string>Human Resources</string>
+      <string>HR</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>League</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Commerce</string>
      </property>
     </item>
     <item>

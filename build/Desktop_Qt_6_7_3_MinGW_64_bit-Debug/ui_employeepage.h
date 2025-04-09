@@ -564,6 +564,8 @@ public:
         depFilterBox->addItem(QString());
         depFilterBox->addItem(QString());
         depFilterBox->addItem(QString());
+        depFilterBox->addItem(QString());
+        depFilterBox->addItem(QString());
         depFilterBox->setObjectName("depFilterBox");
         depFilterBox->setGeometry(QRect(480, 70, 201, 31));
         depFilterBox->setStyleSheet(QString::fromUtf8("QComboBox {\n"
@@ -978,7 +980,7 @@ public:
 
         retranslateUi(employeePage);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(employeePage);
@@ -1021,9 +1023,11 @@ public:
 
         sortCriteriaBox_2->setPlaceholderText(QCoreApplication::translate("employeePage", "Choice", nullptr));
         cancelFilter->setText(QCoreApplication::translate("employeePage", "Cancel", nullptr));
-        depFilterBox->setItemText(0, QCoreApplication::translate("employeePage", "Human resources", nullptr));
-        depFilterBox->setItemText(1, QCoreApplication::translate("employeePage", "Municipality", nullptr));
-        depFilterBox->setItemText(2, QCoreApplication::translate("employeePage", "Federation", nullptr));
+        depFilterBox->setItemText(0, QCoreApplication::translate("employeePage", "HR", nullptr));
+        depFilterBox->setItemText(1, QCoreApplication::translate("employeePage", "League", nullptr));
+        depFilterBox->setItemText(2, QCoreApplication::translate("employeePage", "Commerce", nullptr));
+        depFilterBox->setItemText(3, QCoreApplication::translate("employeePage", "Municipality", nullptr));
+        depFilterBox->setItemText(4, QCoreApplication::translate("employeePage", "Federation", nullptr));
 
         depFilterBox->setPlaceholderText(QCoreApplication::translate("employeePage", "Department", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("employeePage", "Employee List", nullptr));

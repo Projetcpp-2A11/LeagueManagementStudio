@@ -96,7 +96,7 @@ QTabBar::tab:hover {
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -178,7 +178,7 @@ QPushButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
+         <iconset>
           <normaloff>:/textures/textures/searchIcon.png</normaloff>:/textures/textures/searchIcon.png</iconset>
         </property>
        </widget>
@@ -215,7 +215,7 @@ QPushButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
+         <iconset>
           <normaloff>:/textures/textures/filterIcon.png</normaloff>:/textures/textures/filterIcon.png</iconset>
         </property>
        </widget>
@@ -258,7 +258,7 @@ QPushButton:hover {
          <string>Export List</string>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
+         <iconset>
           <normaloff>:/textures/textures/exportIcon.png</normaloff>:/textures/textures/exportIcon.png</iconset>
         </property>
         <property name="iconSize">
@@ -411,7 +411,7 @@ QPushButton:hover{
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
+         <iconset>
           <normaloff>:/textures/textures/prevIcon.png</normaloff>:/textures/textures/prevIcon.png</iconset>
         </property>
        </widget>
@@ -449,7 +449,7 @@ QPushButton:hover{
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
+         <iconset>
           <normaloff>:/textures/textures/nextIcon.png</normaloff>:/textures/textures/nextIcon.png</iconset>
         </property>
        </widget>
@@ -844,7 +844,17 @@ QComboBox QAbstractItemView {
          </property>
          <item>
           <property name="text">
-           <string>Human resources</string>
+           <string>HR</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>League</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Commerce</string>
           </property>
          </item>
          <item>
@@ -1230,7 +1240,7 @@ QPushButton:hover {
          <string>Add Employee</string>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
+         <iconset>
           <normaloff>:/textures/textures/addIcon.png</normaloff>:/textures/textures/addIcon.png</iconset>
         </property>
         <property name="iconSize">
@@ -1409,7 +1419,7 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="resources.qrc">
+        <iconset>
          <normaloff>:/textures/textures/exitIcon.png</normaloff>:/textures/textures/exitIcon.png</iconset>
        </property>
        <property name="iconSize">
@@ -1448,7 +1458,7 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="resources.qrc">
+        <iconset>
          <normaloff>:/textures/textures/homeIcon.png</normaloff>:/textures/textures/homeIcon.png</iconset>
        </property>
        <property name="iconSize">
@@ -1487,7 +1497,7 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="resources.qrc">
+        <iconset>
          <normaloff>:/textures/textures/aboutIcon.png</normaloff>:/textures/textures/aboutIcon.png</iconset>
        </property>
        <property name="iconSize">
@@ -1527,7 +1537,7 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="resources.qrc">
+        <iconset>
          <normaloff>:/textures/textures/notifsIcon.png</normaloff>:/textures/textures/notifsIcon.png</iconset>
        </property>
        <property name="iconSize">
@@ -1546,8 +1556,6 @@ QPushButton:hover {
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

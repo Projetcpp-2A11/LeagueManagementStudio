@@ -21,6 +21,12 @@ private slots:
 
     void on_matchsButton_clicked();
 
+    void on_configureFidButton_clicked();
+
+    void on_closeButton_clicked();
+
+    void on_myAccountButton_clicked();
+
 private:
     Ui::homepage *ui;
     employee *emp;
