@@ -679,7 +679,7 @@ void Player::updatePlayerPerformance(const QString& firstName, const QString& la
     }
 }
 
-void Player::checkSuspensionStatus(const QString& firstName, const QString& lastName)
+/*void Player::checkSuspensionStatus(const QString& firstName, const QString& lastName)
 {
     qDebug() << "Checking suspension status for player " << firstName << lastName;
 
@@ -727,7 +727,7 @@ void Player::checkSuspensionStatus(const QString& firstName, const QString& last
     }
 
     // Check if the player is suspended
-    bool isSuspended = hasRedCard || yellowCards >= 2;
+    bool isSuspended = hasRedCard || yellowCards >= 3;
 
     // Show a message based on whether the player is suspended
     QString message;
@@ -743,4 +743,4 @@ void Player::checkSuspensionStatus(const QString& firstName, const QString& last
 
     // Display the message box with suspension status
     QMessageBox::information(nullptr, "Suspension Status", message);
-}
+}*/
