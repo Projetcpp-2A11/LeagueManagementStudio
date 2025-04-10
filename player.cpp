@@ -45,16 +45,19 @@ bool Player::addPlayer(int selectedTeamId) {
     QSqlQuery query;
     QRegularExpression regex("^[a-zA-Z]+$");
 
+    // First Name validation
     if (!regex.match(firstName.trimmed()).hasMatch() || firstName.trimmed().size() < 2) {
         QMessageBox::warning(nullptr, "Invalid Input", "Le prénom ne doit contenir que des lettres alphabétiques et doit comporter au moins 2 caractères.");
         return false;
     }
 
+    // Last Name validation
     if (lastName.trimmed().isEmpty() || lastName.trimmed().size() < 2) {
         QMessageBox::warning(nullptr, "Invalid Input", "Last Name must contain at least two letters.");
         return false;
     }
 
+    // Phone Number validation
     if (phoneNumber.trimmed().isEmpty()) {
         QMessageBox::warning(nullptr, "Invalid Input", "Phone Number cannot be empty.");
         return false;
@@ -65,6 +68,7 @@ bool Player::addPlayer(int selectedTeamId) {
         return false;
     }
 
+    // Position validation
     QStringList validPositions = {"GK", "CB", "RB", "LB", "CM", "RM", "LM", "RW", "LW", "ST"};
 
     if (!validPositions.contains(position)) {
@@ -72,20 +76,34 @@ bool Player::addPlayer(int selectedTeamId) {
         return false;
     }
 
+    // Status validation
     if (status.trimmed().isEmpty() || (status != "en forme" && status != "blessé")) {
         QMessageBox::warning(nullptr, "Invalid Input", "Status must be either 'en forme' or 'blessé'.");
         return false;
     }
 
+    // Team selection validation
     if (selectedTeamId == 0) {
         QMessageBox::warning(nullptr, "Invalid Input", "Please select a valid team.");
+        return false;
+    }
+
+    // Validate player number (num should be between 1 and 100)
+    if (number < 1 || number > 100) {
+        QMessageBox::warning(nullptr, "Invalid Input", "Player number must be between 1 and 100.");
+        return false;
+    }
+
+    // Validate image (img must not be empty)
+    if (img.trimmed().isEmpty()) {
+        QMessageBox::warning(nullptr, "Invalid Input", "Player image must not be empty.");
         return false;
     }
 
     // Generate player ID dynamically
     playerId = generatePlayerId();
 
-    // 🆕 Prepare the SQL query including IMG and NUM
+    // Prepare the SQL query
     query.prepare("INSERT INTO PLAYERS (PLAYERID, FNAME, LNAME, PHONENUM, POSITION, STATUS, TEAMID, IMG, NUM) "
                   "VALUES (:playerId, :firstName, :lastName, :phoneNumber, :position, :status, :teamId, :img, :num)");
 
@@ -97,10 +115,11 @@ bool Player::addPlayer(int selectedTeamId) {
     query.bindValue(":status", status);
     query.bindValue(":teamId", selectedTeamId);
 
-    // 🆕 You must make sure `img` and `num` are member variables and properly set
+    // Bind image and number to the query
     query.bindValue(":img", img);  // Set this to the file name of the player's image
     query.bindValue(":num", number);  // Set this to the player number (e.g., jersey number)
 
+    // Execute the query
     if (!query.exec()) {
         qDebug() << "Error inserting player: " << query.lastError().text();
         return false;
