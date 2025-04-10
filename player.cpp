@@ -206,14 +206,14 @@ void Player::listPlayers(QTableWidget* table)
 
 
 
-bool Player::updatePlayerDetails(int playerId, const QString &firstName, const QString &lastName, const QString &position, const QString &status, const QString &phoneNum, int teamID)
+bool Player::updatePlayerDetails(int playerId, const QString &firstName, const QString &lastName, const QString &position, const QString &status, const QString &phoneNum, int teamID, int playerNum)
 {
     QSqlQuery query;
 
-    // Prepare the SQL query to update the player details
+    // Prepare the SQL query to update the player details, including the NUM field
     query.prepare("UPDATE PLAYERS SET FNAME = :firstName, LNAME = :lastName, "
-                  "POSITION = :position, STATUS = :status, PHONENUM = :phoneNum, TEAMID = :teamID "
-                  "WHERE TEAMID = :teamID");
+                  "POSITION = :position, STATUS = :status, PHONENUM = :phoneNum, TEAMID = :teamID, NUM = :playerNum "
+                  "WHERE PLAYERID = :playerId");
 
     // Bind the values to the placeholders in the query
     query.bindValue(":firstName", firstName);
@@ -222,32 +222,38 @@ bool Player::updatePlayerDetails(int playerId, const QString &firstName, const Q
     query.bindValue(":status", status);
     query.bindValue(":phoneNum", phoneNum);
     query.bindValue(":teamID", teamID);
-    query.bindValue(":playerID", playerId);
+    query.bindValue(":playerNum", playerNum);  // Bind the player's number (NUM)
+    query.bindValue(":playerId", playerId);    // Bind the playerID to the query
 
     // Execute the query and check if it was successful
     if (query.exec()) {
-        qDebug() << "Player with teamID" << teamID << "updated successfully.";
+        qDebug() << "Player with PLAYERID" << playerId << "updated successfully.";
         return true;
     } else {
-        qDebug() << "Failed to update player with teamID" << teamID << ":" << query.lastError();
+        qDebug() << "Failed to update player with PLAYERID" << playerId << ":" << query.lastError();
         return false;
     }
 }
 
-bool Player::updatePlayerUsingTeamID(int playerID, const QString& firstName, const QString& lastName, const QString& position, const QString& status, const QString& phoneNum, int teamID)
+
+bool Player::updatePlayerUsingTeamID(int playerID, const QString& firstName, const QString& lastName, const QString& position, const QString& status, const QString& phoneNum, int teamID, int playerNum)
 {
     QSqlQuery query;
 
-    // Update query to include all fields, and filter by PLAYERID
-    query.prepare("UPDATE PLAYERS SET FNAME = :firstName, LNAME = :lastName, POSITION = :position, STATUS = :status, PHONENUM = :phoneNum, TEAMID = :teamID WHERE PLAYERID = :playerID");
+    // Update query to include all fields, and filter by PLAYERID (not TEAMID)
+    query.prepare("UPDATE PLAYERS SET FNAME = :firstName, LNAME = :lastName, POSITION = :position, STATUS = :status, PHONENUM = :phoneNum, TEAMID = :teamID, NUM = :playerNum WHERE PLAYERID = :playerID");
+
+    // Bind the values to the query placeholders
     query.bindValue(":firstName", firstName);
     query.bindValue(":lastName", lastName);
     query.bindValue(":position", position);
     query.bindValue(":status", status);
     query.bindValue(":phoneNum", phoneNum);
     query.bindValue(":teamID", teamID);
-    query.bindValue(":playerID", playerID);  // Bind the playerID to the query
+    query.bindValue(":playerNum", playerNum);  // Bind the player's number (NUM)
+    query.bindValue(":playerID", playerID);    // Bind the playerID to the query
 
+    // Execute the query and check if it was successful
     if (query.exec()) {
         qDebug() << "Player with PLAYERID" << playerID << "updated successfully.";
         return true;
@@ -257,15 +263,13 @@ bool Player::updatePlayerUsingTeamID(int playerID, const QString& firstName, con
     }
 }
 
-
 void Player::sortPlayersByName(QTableWidget* table)
 {
-    table->clearContents();  // Clear existing table contents
-    table->setRowCount(0);   // Reset row count
-    table->verticalHeader()->setVisible(false);  // Hide vertical header
+    table->clearContents();
+    table->setRowCount(0);
+    table->verticalHeader()->setVisible(false);
 
-    // Query to retrieve players sorted by first name and last name
-    QString queryStr = "SELECT PLAYERID, FNAME, LNAME, PHONENUM, POSITION, STATUS, TEAMID FROM PLAYERS ORDER BY FNAME ASC";
+    QString queryStr = "SELECT IMG, FNAME, LNAME, POSITION, STATUS, TEAMID, NUM FROM PLAYERS ORDER BY FNAME ASC";
     QSqlQuery query;
 
     if (query.exec(queryStr)) {
@@ -273,54 +277,92 @@ void Player::sortPlayersByName(QTableWidget* table)
         while (query.next()) {
             table->insertRow(row);
 
-            //table->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));  // PLAYERID
-            table->setItem(row, 0, new QTableWidgetItem(query.value(1).toString()));  // FNAME
-            table->setItem(row, 1, new QTableWidgetItem(query.value(2).toString()));  // LNAME
-           // table->setItem(row, 3, new QTableWidgetItem(query.value(3).toString()));  // PHONENUM
-            table->setItem(row, 2, new QTableWidgetItem(query.value(4).toString()));  // POSITION
-            table->setItem(row, 3, new QTableWidgetItem(query.value(5).toString()));  // STATUS
-            table->setItem(row, 4, new QTableWidgetItem(query.value(6).toString()));  // TEAMID
+            // Display image
+            QString imagePath = query.value(0).toString();  // IMG
+            QLabel* imgLabel = new QLabel();
+            QPixmap pix(imagePath);
+            if (!pix.isNull())
+                imgLabel->setPixmap(pix.scaled(50, 50, Qt::KeepAspectRatio));
+            else
+                imgLabel->setText("No Img");
+            table->setCellWidget(row, 5, imgLabel);
 
-            table->setRowHeight(row, 60);  // Ensure row height consistency
+            // Set remaining values
+            table->setItem(row, 0, new QTableWidgetItem(query.value(1).toString())); // FNAME
+            table->setItem(row, 1, new QTableWidgetItem(query.value(2).toString())); // LNAME
+            table->setItem(row, 2, new QTableWidgetItem(query.value(3).toString())); // POSITION
+            table->setItem(row, 3, new QTableWidgetItem(query.value(4).toString())); // STATUS
+            table->setItem(row, 4, new QTableWidgetItem(query.value(5).toString())); // TEAMID
+            table->setItem(row, 6, new QTableWidgetItem(query.value(6).toString())); // NUM
 
-            ++row;
+            table->setRowHeight(row, 60);
+            row++;
         }
 
-        // Ensure column width consistency
-        table->setColumnWidth(6, 250);
+        // Add the "Retour" button in the last row (actions)
+        /*int actionsRow = row;  // This is the last row after all the players are added
+        table->insertRow(actionsRow);  // Insert a row for actions (if not already there)
 
-        // Add buttons to each row after populating the table
-        //addButtonsToRows(table);
+        QPushButton* retourButton = new QPushButton("Retour");
+        table->setCellWidget(actionsRow, 0, retourButton);  // Add button to the first column of the last row
+
+        // Connect the button's clicked signal to a slot that handles the return action
+        connect(retourButton, &QPushButton::clicked, this, &Player::onRetourButtonClicked);
+
+        for (int col = 0; col < 7; col++) {
+            table->setColumnWidth(col, 120);
+        }*/
     } else {
         qDebug() << "Failed to fetch sorted data: " << query.lastError();
     }
 }
 
 
+
+
 void Player::searchPlayers(const QString &searchTerm, QTableWidget *tableWidget)
 {
     QSqlQuery query;
-    query.prepare("SELECT  FNAME, LNAME, POSITION, STATUS, TEAMID FROM Players WHERE FNAME LIKE :searchTerm OR LNAME LIKE :searchTerm");
-    query.bindValue(":searchTerm", "%" + searchTerm + "%");
+    query.prepare("SELECT IMG, FNAME, LNAME, POSITION, STATUS, TEAMID, NUM FROM PLAYERS WHERE FNAME LIKE :term OR LNAME LIKE :term");
+    query.bindValue(":term", "%" + searchTerm + "%");
 
     if (query.exec()) {
-        tableWidget->setRowCount(0); // Clear previous search results
+        tableWidget->setRowCount(0);
 
         while (query.next()) {
             int rowCount = tableWidget->rowCount();
             tableWidget->insertRow(rowCount);
 
-            for (int i = 0; i < 5; i++) {  // Adjust the loop to only loop through 6 columns (excluding PHONENUM)
-                tableWidget->setItem(rowCount, i, new QTableWidgetItem(query.value(i).toString()));
-            }
+            // Display image
+            QString imagePath = query.value(0).toString();
+            QLabel* imgLabel = new QLabel();
+            QPixmap pix(imagePath);
+            if (!pix.isNull())
+                imgLabel->setPixmap(pix.scaled(50, 50, Qt::KeepAspectRatio));
+            else
+                imgLabel->setText("No Img");
+            tableWidget->setCellWidget(rowCount, 5, imgLabel);
 
-            tableWidget->setRowHeight(rowCount, 60);  // Ensure row height consistency
+            // Set remaining values
+            tableWidget->setItem(rowCount, 0, new QTableWidgetItem(query.value(1).toString())); // FNAME
+            tableWidget->setItem(rowCount, 1, new QTableWidgetItem(query.value(2).toString())); // LNAME
+            tableWidget->setItem(rowCount, 2, new QTableWidgetItem(query.value(3).toString())); // POSITION
+            tableWidget->setItem(rowCount, 3, new QTableWidgetItem(query.value(4).toString())); // STATUS
+            tableWidget->setItem(rowCount, 4, new QTableWidgetItem(query.value(5).toString())); // TEAMID
+            tableWidget->setItem(rowCount, 6, new QTableWidgetItem(query.value(6).toString())); // NUM
+
+            tableWidget->setRowHeight(rowCount, 60);
         }
 
-        // Ensure column width consistency
-        tableWidget->setColumnWidth(5, 250); // Adjust based on the last column (TEAMID)
+        for (int col = 0; col < 7; col++) {
+            tableWidget->setColumnWidth(col, 120);
+        }
+    } else {
+        qDebug() << "Search query failed: " << query.lastError();
     }
 }
+
+
 
 
 
@@ -490,7 +532,7 @@ void playerPage::displayPerformanceStats()
 
 
 
-void Player::updatePlayerPerformance(const QString& firstName, const QString& lastName)
+void Player::updatePlayerPerformance(const QString& firstName, const QString& lastName, bool isInterfaceClosed)
 {
     qDebug() << "Updating performance for player with name " << firstName << lastName;
 
@@ -533,9 +575,12 @@ void Player::updatePlayerPerformance(const QString& firstName, const QString& la
     int currentYellowCards = 0;
     int currentRedCards = 0;
     int currentPlayTimeInMinutes = 0;
+    int currentTotalYellowCards = 0;
+    int currentTotalRedCards = 0;
 
     QSqlQuery fetchQuery;
-    fetchQuery.prepare("SELECT NUMGOALS, NUMASSISTS, NUMSAVES, NUMYELLOWCARDS, NUMREDCARDS, PLAYTIMEINMINUTES FROM PLAYERPERFORMANCE WHERE PLAYERID = :playerId");
+    fetchQuery.prepare("SELECT NUMGOALS, NUMASSISTS, NUMSAVES, NUMYELLOWCARDS, NUMREDCARDS, PLAYTIMEINMINUTES, TOTALYELLOWCARDS, TOTALREDCARDS "
+                       "FROM PLAYERPERFORMANCE WHERE PLAYERID = :playerId");
     fetchQuery.bindValue(":playerId", playerId);
 
     if (fetchQuery.exec() && fetchQuery.next()) {
@@ -545,59 +590,77 @@ void Player::updatePlayerPerformance(const QString& firstName, const QString& la
         currentYellowCards = fetchQuery.value("NUMYELLOWCARDS").toInt();
         currentRedCards = fetchQuery.value("NUMREDCARDS").toInt();
         currentPlayTimeInMinutes = fetchQuery.value("PLAYTIMEINMINUTES").toInt();
+        currentTotalYellowCards = fetchQuery.value("TOTALYELLOWCARDS").toInt();
+        currentTotalRedCards = fetchQuery.value("TOTALREDCARDS").toInt();
     }
 
     // New stats based on position
     int numGoals = 0;
     int numAssists = 0;
     int numSaves = 0;
-    int numYellowCards = 0;
-    int numRedCards = 0;
+    int numYellowCards = currentYellowCards;  // Keep track of the existing yellow cards
+    int numRedCards = currentRedCards;  // Keep track of the existing red cards
     int playTimeInMinutes = 0;
+
+    // Reset yellow and red cards for this match
+    numYellowCards = 0;
+    numRedCards = 0;
 
     // Assign new values based on the player's position
     if (position == "ST" || position == "RW" || position == "LW") {
-        numGoals = QRandomGenerator::global()->bounded(1, 15);
+        numGoals = QRandomGenerator::global()->bounded(0, 4);
         numAssists = QRandomGenerator::global()->bounded(0, 5);
-        numYellowCards = QRandomGenerator::global()->bounded(0, 5);
-        numRedCards = QRandomGenerator::global()->bounded(0, 1);
+        numYellowCards = QRandomGenerator::global()->bounded(0, 3);  // Adding yellow cards during match
+        numRedCards = QRandomGenerator::global()->bounded(0, 2);  // Adding red cards during match
         playTimeInMinutes = QRandomGenerator::global()->bounded(540, 990);
     } else if (position == "CM" || position == "LM" || position == "RM") {
         numGoals = QRandomGenerator::global()->bounded(0, 5);
         numAssists = QRandomGenerator::global()->bounded(1, 7);
-        numYellowCards = QRandomGenerator::global()->bounded(0, 4);
-        numRedCards = QRandomGenerator::global()->bounded(0, 1);
+        numYellowCards = QRandomGenerator::global()->bounded(0, 3);  // Adding yellow cards during match
+        numRedCards = QRandomGenerator::global()->bounded(0, 2);  // Adding red cards during match
         playTimeInMinutes = QRandomGenerator::global()->bounded(540, 990);
     } else if (position == "CB" || position == "RB" || position == "LB") {
         numGoals = QRandomGenerator::global()->bounded(0, 3);
         numAssists = QRandomGenerator::global()->bounded(0, 5);
-        numYellowCards = QRandomGenerator::global()->bounded(0, 5);
-        numRedCards = QRandomGenerator::global()->bounded(0, 2);
+        numYellowCards = QRandomGenerator::global()->bounded(0, 3);  // Adding yellow cards during match
+        numRedCards = QRandomGenerator::global()->bounded(0, 2);  // Adding red cards during match
         playTimeInMinutes = QRandomGenerator::global()->bounded(540, 990);
     } else if (position == "GK") {
         numSaves = QRandomGenerator::global()->bounded(20, 36);
-        numYellowCards = QRandomGenerator::global()->bounded(0, 2);
-        numRedCards = QRandomGenerator::global()->bounded(0, 1);
+        numYellowCards = QRandomGenerator::global()->bounded(0, 3);  // Adding yellow cards during match
+        numRedCards = QRandomGenerator::global()->bounded(0, 2);  // Adding red cards during match
         playTimeInMinutes = QRandomGenerator::global()->bounded(540, 990);
     }
+
 
     // Ensure the new stats are greater than the current ones
     numGoals += currentGoals;
     numAssists += currentAssists;
     numSaves += currentSaves;
-    numYellowCards += currentYellowCards;
-    numRedCards += currentRedCards;
     playTimeInMinutes += currentPlayTimeInMinutes;
+
+    // Ensure that yellow and red cards do not exceed the match limits
+    numYellowCards = qMin(numYellowCards, 2);  // Cannot have more than 2 yellow cards per match
+    numRedCards = qMin(numRedCards, 1);  // Cannot have more than 1 red card per match
+
+    // Update the total yellow and red cards by adding the new yellow and red cards to the previous totals
+    int totalYellowCards = currentTotalYellowCards + numYellowCards;
+    int totalRedCards = currentTotalRedCards + numRedCards;
 
     qDebug() << "Stats - Goals:" << numGoals << ", Assists:" << numAssists << ", Saves:" << numSaves
              << ", Yellow Cards:" << numYellowCards << ", Red Cards:" << numRedCards
              << ", Play Time:" << playTimeInMinutes << "minutes";
 
-    // Update PLAYERPERFORMANCE table
+    // Check for suspension due to yellow or red cards
+    if (numYellowCards >= 2 || numRedCards > 0) {
+        qDebug() << "Player is suspended due to yellow/red cards.";
+    }
+
+    // Update PLAYERPERFORMANCE table with the stats and total cards
     QSqlQuery updateQuery;
     updateQuery.prepare("UPDATE PLAYERPERFORMANCE SET NUMGOALS = :numGoals, NUMASSISTS = :numAssists, NUMSAVES = :numSaves, "
-                        "NUMYELLOWCARDS = :numYellowCards, NUMREDCARDS = :numRedCards, PLAYTIMEINMINUTES = :playTimeInMinutes "
-                        "WHERE PLAYERID = :playerId");
+                        "NUMYELLOWCARDS = :numYellowCards, NUMREDCARDS = :numRedCards, PLAYTIMEINMINUTES = :playTimeInMinutes, "
+                        "TOTALYELLOWCARDS = :totalYellowCards, TOTALREDCARDS = :totalRedCards WHERE PLAYERID = :playerId");
 
     updateQuery.bindValue(":numGoals", numGoals);
     updateQuery.bindValue(":numAssists", numAssists);
@@ -605,18 +668,79 @@ void Player::updatePlayerPerformance(const QString& firstName, const QString& la
     updateQuery.bindValue(":numYellowCards", numYellowCards);
     updateQuery.bindValue(":numRedCards", numRedCards);
     updateQuery.bindValue(":playTimeInMinutes", playTimeInMinutes);
+    updateQuery.bindValue(":totalYellowCards", totalYellowCards);
+    updateQuery.bindValue(":totalRedCards", totalRedCards);
     updateQuery.bindValue(":playerId", playerId);
 
-    if (!updateQuery.exec()) {
-        qDebug() << "Error updating performance for player " << playerId << ": " << updateQuery.lastError().text();
+    if (updateQuery.exec()) {
+        qDebug() << "Player performance updated successfully for player" << playerId;
     } else {
-        qDebug() << "Player performance updated successfully for player " << playerId;
+        qDebug() << "Error updating player performance: " << updateQuery.lastError();
     }
 }
 
+void Player::checkSuspensionStatus(const QString& firstName, const QString& lastName)
+{
+    qDebug() << "Checking suspension status for player " << firstName << lastName;
 
+    // Query to get the player ID using the first and last name
+    QSqlQuery query;
+    query.prepare("SELECT PLAYERID FROM PLAYERS WHERE FNAME = :firstName AND LNAME = :lastName");
+    query.bindValue(":firstName", firstName);
+    query.bindValue(":lastName", lastName);
 
+    int playerId = -1;
+    if (query.exec() && query.next()) {
+        playerId = query.value(0).toInt();
+        qDebug() << "Player ID for" << firstName << lastName << "is" << playerId;
+    } else {
+        qDebug() << "Failed to retrieve player ID for" << firstName << lastName << ":" << query.lastError().text();
+        return;
+    }
 
+    // Fetch the number of yellow cards and red card in the most recent match
+    query.prepare("SELECT NUMYELLOWCARDS, NUMREDCARDS FROM PLAYERPERFORMANCE WHERE PLAYERID = :playerId");
+    query.bindValue(":playerId", playerId);
 
+    // Debugging: print the query
+    qDebug() << "Query to fetch yellow and red cards: " << query.executedQuery();  // Print the final query
 
+    int yellowCards = 0;
+    int redCards = 0;
+    if (query.exec() && query.next()) {
+        yellowCards = query.value(0).toInt();
+        redCards = query.value(1).toInt();
+        qDebug() << "Yellow cards for the latest match: " << yellowCards;
+        qDebug() << "Red cards for the latest match: " << redCards;
+    } else {
+        qDebug() << "Failed to retrieve yellow/red card data for player " << playerId << ": " << query.lastError().text();
+        return;
+    }
 
+    // If the player has exactly 2 yellow cards in the same match, they receive a red card
+    bool hasRedCard = redCards > 0;  // Check if the player already has a red card
+    if (yellowCards == 2) {
+        hasRedCard = true;  // Automatically treat 2 yellow cards as a red card
+    } else if (yellowCards > 2) {
+        hasRedCard = true;  // More than 2 yellow cards also result in a red card
+        yellowCards = 2;  // Set yellow cards to 2 since the player is automatically receiving a red card
+    }
+
+    // Check if the player is suspended
+    bool isSuspended = hasRedCard || yellowCards >= 2;
+
+    // Show a message based on whether the player is suspended
+    QString message;
+    if (isSuspended) {
+        if (hasRedCard) {
+            message = "The player received a red card and is suspended for the next match.";
+        } else {
+            message = "The player is suspended for the next match due to yellow cards.";
+        }
+    } else {
+        message = "The player is available for the next match.";
+    }
+
+    // Display the message box with suspension status
+    QMessageBox::information(nullptr, "Suspension Status", message);
+}

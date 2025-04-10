@@ -60,18 +60,19 @@ public:
     void listPlayers(QTableWidget* table);
     static int generatePlayerId();
     bool deletePlayerUsingTeamID(const QString &firstName, const QString &lastName);
-    bool updatePlayerUsingTeamID(int playerID, const QString& firstName, const QString& lastName, const QString& position, const QString& status, const QString& phoneNum, int teamID);
-    bool updatePlayerDetails(int playerId, const QString &firstName, const QString &lastName, const QString &position, const QString &status, const QString &phoneNum, int teamID);
+    bool updatePlayerUsingTeamID(int playerID, const QString& firstName, const QString& lastName, const QString& position, const QString& status, const QString& phoneNum, int teamID,int playerNum);
+    bool updatePlayerDetails(int playerId, const QString &firstName, const QString &lastName, const QString &position, const QString &status, const QString &phoneNum, int teamID,int playerNum);
 
     // Method to get the team ID
     static int getTeamIdByName(const QString& teamName);
 
     void sortPlayersByName(QTableWidget* table);
     void searchPlayers(const QString &searchTerm, QTableWidget *tableWidget);
-    void updatePlayerPerformance(const QString& firstName, const QString& lastName);
+    void updatePlayerPerformance(const QString& firstName, const QString& lastName, bool isInterfaceClosed);
     void displayPerformanceStats();
     void exportPlayerListToPDF(const QString& filePath);
-
+    void displayPlayerPerformance(const QString& firstName, const QString& lastName, QWidget* uiPage);
+    void checkSuspensionStatus(const QString& firstName, const QString& lastName);
 
 private slots:
     void on_delete_player_clicked(int row);  // Declaration of the function

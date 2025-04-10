@@ -25,6 +25,7 @@ public:
       void displayPerformanceStats();
      void exportPlayerListPDF();
 
+
 private slots:
      void on_exitButton_clicked();
 
@@ -49,9 +50,12 @@ private slots:
       void on_exportButton_clicked();
 
 
+
       void browseImage();
 
       void on_BrowseImageButton_clicked();
+       void on_suspension_clicked(int row);
+
 
   private:
     Ui::playerPage *ui;

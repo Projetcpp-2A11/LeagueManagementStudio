@@ -17,10 +17,12 @@ playerupdateform::playerupdateform(QWidget *parent, int playerId)
     // Set the playerID label
     ui->playerIDLabel->setText(QString::number(playerId));
 
+    // Populate the team dropdown
     populateTeamDropdown();
+
     // Fetch player details and populate the form
     QSqlQuery query;
-    query.prepare("SELECT PLAYERID, FNAME, LNAME, PHONENUM, POSITION, STATUS, TEAMID FROM PLAYERS WHERE PLAYERID = :playerID");
+    query.prepare("SELECT PLAYERID, FNAME, LNAME, PHONENUM, POSITION, STATUS, TEAMID, NUM FROM PLAYERS WHERE PLAYERID = :playerID");
     query.bindValue(":playerID", playerId);
 
     if (query.exec() && query.next()) {
@@ -41,11 +43,17 @@ playerupdateform::playerupdateform(QWidget *parent, int playerId)
         } else {
             qDebug() << "TeamID not found in the dropdown list.";
         }
+
+        // Fetch and display the player's number (NUM)
+        int playerNum = query.value("NUM").toInt();
+        ui->playerNumLabel->setText(QString::number(playerNum));  // Set the player's number in the label
+
     } else {
         // Debug: Check query execution error
         qDebug() << "Failed to fetch player data for PLAYERID" << playerId << ":" << query.lastError().text();
     }
 }
+
 
 
 
@@ -91,12 +99,17 @@ void playerupdateform::on_save_exit_clicked()
 
     Player playerToBeUpdated;
 
-    if (playerToBeUpdated.updatePlayerUsingTeamID(playerID, firstName, lastName, position, status, phone, teamID))
-    {
-        qDebug() << "Player with PLAYERID" << playerID << "and TEAMID" << teamID << "updated successfully.";
+    int playerNum = ui->playerNumLabel->text().toInt();  // Get the player's number from the input field
+
+    // Now call the updatePlayerUsingTeamID function with the correct number of arguments
+    if (playerToBeUpdated.updatePlayerUsingTeamID(playerID, firstName, lastName, position, status, phone, teamID, playerNum)) {
+        // Successfully updated the player
+        qDebug() << "Player updated successfully.";
     } else {
+        // Failed to update the player
         qDebug() << "Failed to update player.";
     }
+
 
     this->close();
 }

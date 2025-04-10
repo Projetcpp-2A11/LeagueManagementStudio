@@ -1,6 +1,7 @@
 #include "playerpage.h"
 //#include "playerupdateform.h"
 #include "homepage.h"
+#include "playerperformance.h"
 #include "playerupdateform.h"
 #include "qbarcategoryaxis.h"
 #include "qbarseries.h"
@@ -111,7 +112,7 @@ void playerPage::on_notifButton_clicked()
 }
 
 
-void playerPage::browseImage() {
+/*void playerPage::browseImage() {
     qDebug() << "Browse button clicked";
 
     // Open a file dialog to select the image file
@@ -122,7 +123,7 @@ void playerPage::browseImage() {
         // Set the selected file path to the playerImage QLineEdit field
         ui->playerImage->setText(filePath);
     }
-}
+}*/
 
 
 void playerPage::on_addPlayerButton_clicked() {
@@ -186,10 +187,11 @@ void playerPage::addButtonsToRows(QTableWidget* table)
 {
     // Iterate through each row in the table
     for (int row = 0; row < table->rowCount(); ++row) {
-        // Create delete, update, and performance buttons
+        // Create delete, update, performance, and suspension buttons
         QPushButton* deleteButton = new QPushButton("Delete");
         QPushButton* updateButton = new QPushButton("Update");
-        QPushButton* performanceButton = new QPushButton("Player Performance");  // New performance button
+        QPushButton* performanceButton = new QPushButton("Player Performance");
+        QPushButton* suspensionButton = new QPushButton("Suspension");  // New suspension button
 
         // Create a widget to hold the buttons
         QWidget* actionWidget = new QWidget();
@@ -200,7 +202,8 @@ void playerPage::addButtonsToRows(QTableWidget* table)
         // Add buttons to the layout
         actionLayout->addWidget(deleteButton);
         actionLayout->addWidget(updateButton);
-        actionLayout->addWidget(performanceButton);  // Add the performance button to the layout
+        actionLayout->addWidget(performanceButton);
+        actionLayout->addWidget(suspensionButton);  // Add the suspension button to the layout
 
         // Set the size policy for the action widget to allow expansion
         actionWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -217,12 +220,16 @@ void playerPage::addButtonsToRows(QTableWidget* table)
             on_update_player_clicked(row);  // Pass the row index to the update method
         });
 
-        connect(performanceButton, &QPushButton::clicked, this, [ row, this]() {
+        connect(performanceButton, &QPushButton::clicked, this, [row, this]() {
             on_player_performance_clicked(row);  // Pass the row index to the performance method
         });
 
+        connect(suspensionButton, &QPushButton::clicked, this, [row, this]() {
+            on_suspension_clicked(row);  // Pass the row index to the suspension method
+        });
+
         // Adjust the column and row size to ensure enough space for the buttons
-        table->setColumnWidth(7, 250);  // Adjust column width for the actions column (button column)
+        table->setColumnWidth(7, 600);  // Adjust column width for the actions column (button column)
         table->setRowHeight(row, 60);   // Set row height for the actions row
     }
 }
@@ -325,20 +332,45 @@ void playerPage::on_player_performance_clicked(int row)
 {
     qDebug() << "Player Performance clicked for player at row:" << row;
 
-    // Get the first and last name from the table (assuming they are in the second and third columns)
+    // Check if the row index is valid
+    if (row < 0 || row >= ui->playerTableWidget->rowCount()) {
+        qDebug() << "Invalid row index!";
+        return;
+    }
+
+    // Get the first and last name from the table (assuming they are in the first and second columns)
     QString firstName = ui->playerTableWidget->item(row, 0)->text();
     QString lastName = ui->playerTableWidget->item(row, 1)->text();
 
     // Log the first and last name for debugging
     qDebug() << "First Name:" << firstName << "Last Name:" << lastName;
 
-    // Now pass them to the updatePlayerPerformance function
-    player.updatePlayerPerformance(firstName, lastName);
+    // Check if the names are empty
+    if (firstName.isEmpty() || lastName.isEmpty()) {
+        qDebug() << "First name or last name is empty!";
+        return;
+    }
+
+    // Now, create the PlayerPerformance widget and set the player's data
+    PlayerPerformance *performanceWidget = new PlayerPerformance(this);  // Create the widget
+
+    // Set the player performance data by calling setPlayer
+    performanceWidget->setPlayer(firstName, lastName);
+
+    // Log the player performance data being set
+    qDebug() << "Setting player performance data for:" << firstName << lastName;
+
+    // Call the updatePlayerPerformance function to update the stats in the database
+    Player player;  // Ensure you have access to the Player class or instance
+    player.updatePlayerPerformance(firstName, lastName, true);  // Pass true if the interface is closing
+  // Update performance for the player
+
+    // Show the PlayerPerformance widget
+    performanceWidget->show();
 
     // Log the result (This log will run regardless of success/failure since the function is void)
-    qDebug() << "Player performance update attempted for player: " << firstName << lastName;
+    qDebug() << "Player performance updated for player:" << firstName << lastName;
 }
-
 
 
 
@@ -366,9 +398,51 @@ void playerPage::on_exportButton_clicked()
 
 
 
-void playerPage::on_BrowseImageButton_clicked()
+void playerPage::on_suspension_clicked(int row)
 {
-    browseImage(); // Call the browseImage() method when the button is clicked
+    qDebug() << "Suspension button clicked for row:" << row;
+
+    // Check if the row index is valid
+    if (row < 0 || row >= ui->playerTableWidget->rowCount()) {
+        qDebug() << "Invalid row index!";
+        return;
+    }
+
+    // Get the first and last name from the table (assuming they are in the first and second columns)
+    QString firstName = ui->playerTableWidget->item(row, 0)->text();
+    QString lastName = ui->playerTableWidget->item(row, 1)->text();
+
+    // Log the first and last name for debugging
+    qDebug() << "First Name:" << firstName << "Last Name:" << lastName;
+
+    // Check if the names are empty
+    if (firstName.isEmpty() || lastName.isEmpty()) {
+        qDebug() << "First name or last name is empty!";
+        return;
+    }
+
+    // Now, create the Player object and call the checkSuspensionStatus function
+    Player player;
+    player.checkSuspensionStatus(firstName, lastName);  // Call the function to check suspension status
+
+    // Log the result
+    qDebug() << "Suspension check complete for player:" << firstName << lastName;
 }
 
+
+
+
+void playerPage::on_BrowseImageButton_clicked()
+{
+    qDebug() << "Browse button clicked";
+
+    // Open a file dialog to select the image file
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Select Player Image"), "", tr("Images (*.png *.jpg *.bmp *.jpeg)"));
+
+    if (!filePath.isEmpty()) {
+        qDebug() << "File selected: " << filePath;
+        // Set the selected file path to the playerImage QLineEdit field
+        ui->playerImage->setText(filePath);
+    }
+}
 

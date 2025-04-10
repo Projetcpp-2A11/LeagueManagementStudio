@@ -21,6 +21,7 @@ SOURCES += \
     matchpage.cpp \
     player.cpp \
     playerpage.cpp \
+    playerperformance.cpp \
     playerupdateform.cpp \
     teams.cpp \
 
@@ -36,6 +37,7 @@ HEADERS += \
     matchpage.h \
     player.h \
     playerpage.h \
+    playerperformance.h \
     playerupdateform.h \
     teams.h \
 
@@ -46,6 +48,7 @@ FORMS += \
     mainwindow.ui \
     matchs.ui \
     playerpage.ui \
+    playerperformance.ui \
     playerupdateform.ui
 
 
