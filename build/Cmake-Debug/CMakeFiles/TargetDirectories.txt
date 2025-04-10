@@ -1,0 +1,3 @@
+C:/Users/choua/OneDrive/Bureau/Projet C++/LMS/build/Cmake-Debug/CMakeFiles/LMS.dir
+C:/Users/choua/OneDrive/Bureau/Projet C++/LMS/build/Cmake-Debug/CMakeFiles/edit_cache.dir
+C:/Users/choua/OneDrive/Bureau/Projet C++/LMS/build/Cmake-Debug/CMakeFiles/rebuild_cache.dir

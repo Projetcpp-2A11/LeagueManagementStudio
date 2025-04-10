@@ -1,0 +1,14 @@
+release/connection.o
+release/custombutton.o
+release/customtextinput.o
+release/homepage.o
+release/main.o
+release/mainwindow.o
+release/match.o
+release/matchpage.o
+release/qrc_resources.o
+release/moc_custombutton.o
+release/moc_customtextinput.o
+release/moc_homepage.o
+release/moc_mainwindow.o
+release/moc_matchpage.o
