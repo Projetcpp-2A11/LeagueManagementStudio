@@ -89,42 +89,42 @@ void MainWindow::on_forgotPasswordClicked_clicked()
 }
 
 
-void MainWindow::on_facialRecogButton_clicked()
-{
-    QProcess process;
+    void MainWindow::on_facialRecogButton_clicked()
+    {
+        QProcess process;
 
-    QString pythonPath = "python";
-    QStringList arguments;
-    qDebug() << "Current Directory: " << QDir::currentPath();
+        QString pythonPath = "python";
+        QStringList arguments;
+        qDebug() << "Current Directory: " << QDir::currentPath();
 
-    arguments << "../../faceRecogScript.py";
+        arguments << "../../faceRecogScript.py";
 
-    process.start(pythonPath, arguments);
+        process.start(pythonPath, arguments);
 
-    process.waitForFinished();
+        process.waitForFinished();
 
-    QString output = process.readAllStandardOutput();
+        QString output = process.readAllStandardOutput();
 
-    qDebug() << "Python script output:" << output;
+        qDebug() << "Python script output:" << output;
 
-    if (output.contains("True")) {
-        qDebug() << "Face match found!";
-        QMessageBox::information(this, "Face Recognition", "Face match found!");
-        this->setCursor(Qt::WaitCursor);
-
-
-            employeePage *  employe = new employeePage();
-            employe->show();
-            this->hide();
+        if (output.contains("True")) {
+            qDebug() << "Face match found!";
+            QMessageBox::information(this, "Face Recognition", "Face match found!");
+            this->setCursor(Qt::WaitCursor);
 
 
+                employeePage *  employe = new employeePage();
+                employe->show();
+                this->hide();
 
-    } else {
-        qDebug() << "No face match found!";
-        QMessageBox::warning(this, "Face Recognition", "No face match found.");
+
+
+        } else {
+            qDebug() << "No face match found!";
+            QMessageBox::warning(this, "Face Recognition", "No face match found.");
+        }
+
     }
-
-}
 
 void MainWindow::startSpeechRecognition()
 {

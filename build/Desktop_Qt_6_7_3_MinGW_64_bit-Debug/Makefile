@@ -408,6 +408,7 @@ Makefile: ../../LMS.pro C:/Qt/6.7.3/mingw_64/mkspecs/win32-g++/qmake.conf C:/Qt/
 		C:/Qt/6.7.3/mingw_64/mkspecs/features/lex.prf \
 		../../LMS.pro \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6UiTools.prl \
+		C:/Qt/6.7.3/mingw_64/lib/Qt6Charts.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6OpenGLWidgets.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6PrintSupport.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6MultimediaWidgets.prl \
@@ -760,6 +761,7 @@ C:/Qt/6.7.3/mingw_64/mkspecs/features/yacc.prf:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/lex.prf:
 ../../LMS.pro:
 C:/Qt/6.7.3/mingw_64/lib/Qt6UiTools.prl:
+C:/Qt/6.7.3/mingw_64/lib/Qt6Charts.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6OpenGLWidgets.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6PrintSupport.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6MultimediaWidgets.prl:

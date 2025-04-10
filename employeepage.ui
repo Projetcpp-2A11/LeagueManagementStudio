@@ -96,7 +96,7 @@ QTabBar::tab:hover {
 </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -178,7 +178,7 @@ QPushButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/textures/textures/searchIcon.png</normaloff>:/textures/textures/searchIcon.png</iconset>
         </property>
        </widget>
@@ -215,7 +215,7 @@ QPushButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/textures/textures/filterIcon.png</normaloff>:/textures/textures/filterIcon.png</iconset>
         </property>
        </widget>
@@ -258,7 +258,7 @@ QPushButton:hover {
          <string>Export List</string>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/textures/textures/exportIcon.png</normaloff>:/textures/textures/exportIcon.png</iconset>
         </property>
         <property name="iconSize">
@@ -411,7 +411,7 @@ QPushButton:hover{
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/textures/textures/prevIcon.png</normaloff>:/textures/textures/prevIcon.png</iconset>
         </property>
        </widget>
@@ -449,7 +449,7 @@ QPushButton:hover{
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/textures/textures/nextIcon.png</normaloff>:/textures/textures/nextIcon.png</iconset>
         </property>
        </widget>
@@ -1240,7 +1240,7 @@ QPushButton:hover {
          <string>Add Employee</string>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/textures/textures/addIcon.png</normaloff>:/textures/textures/addIcon.png</iconset>
         </property>
         <property name="iconSize">
@@ -1363,17 +1363,332 @@ color:red;
        <attribute name="title">
         <string>Statistics</string>
        </attribute>
-       <widget class="QSplitter" name="splitter">
+       <widget class="QWidget" name="chartContainer" native="true">
         <property name="geometry">
          <rect>
-          <x>50</x>
-          <y>110</y>
-          <width>779</width>
-          <height>283</height>
+          <x>10</x>
+          <y>0</y>
+          <width>400</width>
+          <height>300</height>
          </rect>
         </property>
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
+       </widget>
+       <widget class="QLabel" name="totalCountLabel">
+        <property name="geometry">
+         <rect>
+          <x>790</x>
+          <y>17</y>
+          <width>31</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: transparent;
+color: qlineargradient(spread: pad, 
+                        x1: 0, y1: 0, x2: 1, y2: 1, 
+                        stop: 0 rgba(0, 255, 0, 255), 
+                        stop: 0.5 rgba(0, 204, 0, 255), 
+                        stop: 1 rgba(0, 128, 0, 255));
+</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="hrCountLabel">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>120</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: transparent;
+color: qlineargradient(spread: pad, 
+                        x1: 0, y1: 0, x2: 1, y2: 1, 
+                        stop: 0 rgba(0, 0, 255, 255), 
+                        stop: 0.5 rgba(0, 128, 255, 255), 
+                        stop: 1 rgba(0, 191, 255, 255));
+</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="leagueCountLabel">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>70</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: transparent;
+color: qlineargradient(spread: pad, 
+                        x1: 0, y1: 0, x2: 1, y2: 1, 
+                        stop: 0 rgba(0, 0, 255, 255), 
+                        stop: 0.5 rgba(0, 128, 255, 255), 
+                        stop: 1 rgba(0, 191, 255, 255));
+</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="commerceCountLabel">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>170</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: transparent;
+color: qlineargradient(spread: pad, 
+                        x1: 0, y1: 0, x2: 1, y2: 1, 
+                        stop: 0 rgba(0, 0, 255, 255), 
+                        stop: 0.5 rgba(0, 128, 255, 255), 
+                        stop: 1 rgba(0, 191, 255, 255));
+</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="municipalityCountLabel">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>220</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: transparent;
+color: qlineargradient(spread: pad, 
+                        x1: 0, y1: 0, x2: 1, y2: 1, 
+                        stop: 0 rgba(0, 0, 255, 255), 
+                        stop: 0.5 rgba(0, 128, 255, 255), 
+                        stop: 1 rgba(0, 191, 255, 255));
+</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="federationCountLabel">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>280</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: transparent;
+color: qlineargradient(spread: pad, 
+                        x1: 0, y1: 0, x2: 1, y2: 1, 
+                        stop: 0 rgba(0, 0, 255, 255), 
+                        stop: 0.5 rgba(0, 128, 255, 255), 
+                        stop: 1 rgba(0, 191, 255, 255));
+</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>10</y>
+          <width>351</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;
+color :     qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  </string>
+        </property>
+        <property name="text">
+         <string>Total Number of Employees :</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>60</y>
+          <width>211</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;
+color :     qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  </string>
+        </property>
+        <property name="text">
+         <string>League Department :</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>110</y>
+          <width>141</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;
+color :     qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  </string>
+        </property>
+        <property name="text">
+         <string>HR Department :</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>170</y>
+          <width>221</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;
+color :     qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  </string>
+        </property>
+        <property name="text">
+         <string>Commerce  Department :</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>217</y>
+          <width>221</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;
+color :     qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  </string>
+        </property>
+        <property name="text">
+         <string>Municipality Department :</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_8">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>277</y>
+          <width>211</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;
+color :     qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  </string>
+        </property>
+        <property name="text">
+         <string>Federation  Department :</string>
         </property>
        </widget>
       </widget>
@@ -1419,7 +1734,7 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="resources.qrc">
          <normaloff>:/textures/textures/exitIcon.png</normaloff>:/textures/textures/exitIcon.png</iconset>
        </property>
        <property name="iconSize">
@@ -1458,7 +1773,7 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="resources.qrc">
          <normaloff>:/textures/textures/homeIcon.png</normaloff>:/textures/textures/homeIcon.png</iconset>
        </property>
        <property name="iconSize">
@@ -1497,7 +1812,7 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="resources.qrc">
          <normaloff>:/textures/textures/aboutIcon.png</normaloff>:/textures/textures/aboutIcon.png</iconset>
        </property>
        <property name="iconSize">
@@ -1537,7 +1852,7 @@ QPushButton:hover {
         <string/>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="resources.qrc">
          <normaloff>:/textures/textures/notifsIcon.png</normaloff>:/textures/textures/notifsIcon.png</iconset>
        </property>
        <property name="iconSize">
@@ -1556,6 +1871,8 @@ QPushButton:hover {
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

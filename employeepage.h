@@ -26,6 +26,11 @@ public:
     QString currentQueryStr;
 
     void setupFilterGroupBox();
+    QMap<QString, int> getDepartmentCounts();
+
+    void showDepartmentStatsChart();
+
+    void setupStatistics();
 private slots:
 
 

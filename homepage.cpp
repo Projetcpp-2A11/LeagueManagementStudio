@@ -1,4 +1,5 @@
 #include "homepage.h"
+#include "QtMultimediaWidgets/qvideowidget.h"
 #include "employeepage.h"
 #include "matchpage.h"
 #include "qdatetime.h"
@@ -7,7 +8,6 @@
 #include <QCamera>
 #include <QImageCapture>
 #include <QMediaCaptureSession>
-#include <QVideoWidget>
 #include <QMediaDevices>
 #include <QMessageBox>
 #include <QDir>

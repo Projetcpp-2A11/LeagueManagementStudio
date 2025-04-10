@@ -6,6 +6,13 @@
 #include <QVBoxLayout>
 #include <employee.h>
 #include <connection.h>
+#include <QtCharts/QChartView>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QChart>
+#include <QtCharts/QLegend>
+#include <QtCharts/QPieSlice>
+
+
 
 employeePage::employeePage(QWidget *parent , employee * loggedInEmployee)
     : QWidget(parent)
@@ -16,6 +23,7 @@ employeePage::employeePage(QWidget *parent , employee * loggedInEmployee)
     ui->setupUi(this);
     setupEmployeeTable(defaultQueryStr);
     setupFilterGroupBox();
+    setupStatistics();
     setMinimumSize(1000, 800);
     resize(800, 600);
 
@@ -259,6 +267,7 @@ void employeePage::refresh()
     // Repopulate the table with updated employee data
     emp.listEmployees(ui->employeeTableWidget,defaultQueryStr);
     addButtonsToRows(ui->employeeTableWidget);
+    setupStatistics();
 }
 void employeePage::setupFilterGroupBox() {
 
@@ -267,6 +276,60 @@ void employeePage::setupFilterGroupBox() {
 
 
 }
+
+QMap<QString, int> employeePage::getDepartmentCounts() {
+    QMap<QString, int> deptCounts;
+    QSqlQuery query;
+
+    QStringList departments = {"HR", "League", "Commerce", "Municipality", "Federation"};
+
+    for (const QString &dept : departments) {
+        query.prepare("SELECT COUNT(*) FROM EMPLOYEES WHERE DEPNAME = :dep");
+        query.bindValue(":dep", dept);
+        if (query.exec() && query.next()) {
+            int count = query.value(0).toInt();
+            deptCounts[dept] = count;
+        } else {
+            qDebug() << "Error fetching count for department" << dept << ":" << query.lastError().text();
+            deptCounts[dept] = 0;
+        }
+    }
+
+    return deptCounts;
+}
+
+
+void employeePage::showDepartmentStatsChart() {
+    QMap<QString, int> deptCounts = getDepartmentCounts();
+
+    QPieSeries *series = new QPieSeries();
+    for (auto it = deptCounts.begin(); it != deptCounts.end(); ++it) {
+        series->append(it.key(), it.value());
+    }
+
+    // Optional: show labels and customize
+    for (auto slice : series->slices()) {
+        slice->setLabelVisible(true);
+    }
+
+    QChart *chart = new QChart();
+    chart->addSeries(series);
+    chart->setTitle("Employees by Department");
+    chart->legend()->setAlignment(Qt::AlignBottom);
+
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    // Add chart to layout
+    QLayout *layout = ui->chartContainer->layout();
+    if (!layout) {
+        layout = new QVBoxLayout(ui->chartContainer);
+        ui->chartContainer->setLayout(layout);
+    }
+
+    layout->addWidget(chartView);
+}
+
 
 void employeePage::on_filterButton_clicked()
 {
@@ -297,7 +360,7 @@ void employeePage::on_searchCriteriaBox_currentIndexChanged(int index)
 QSqlQuery employeePage::on_applyFilter_clicked()
 {
     int searchCriteraIndex = ui->searchCriteriaBox->currentIndex();
-    QString selectedDepartment;
+    QString selectedDepartment = ui->depFilterBox->currentText();
     QString searchBoxInput  = ui->searchEmployeeInput->text();
     QSqlQuery query;
     QString sortType = "ASC";
@@ -332,7 +395,6 @@ QSqlQuery employeePage::on_applyFilter_clicked()
 
     case 3 : // search by department
 
-        selectedDepartment= ui->department->currentText();
         currentQueryStr = "SELECT USERID,FIRSTNAME,LASTNAME,DEPNAME FROM EMPLOYEES WHERE DEPNAME=:selectedDepartment";
         query.prepare(currentQueryStr);
 
@@ -383,6 +445,8 @@ QSqlQuery employeePage::on_applyFilter_clicked()
 
 
 }
+
+
 
 
 
@@ -442,6 +506,87 @@ bool employeePage::exportTableToCSV(QTableWidget *table)
     qDebug() << "CSV file saved at" << filePath;
 
 }
+
+void employeePage::setupStatistics() {
+    // Create a map to store department counts
+    QMap<QString, int> departmentCounts;
+
+    // List of all departments
+    QStringList departments = {"HR", "League", "Commerce", "Municipality", "Federation"};
+
+    QSqlQuery query;
+
+    // Loop over departments and get their employee count
+    for (const QString &dep : departments) {
+        query.prepare("SELECT COUNT(*) FROM employees WHERE DEPNAME = :dep");
+        query.bindValue(":dep", dep);
+        if (query.exec() && query.next()) {
+            departmentCounts[dep] = query.value(0).toInt();
+        }
+    }
+
+    int totalEmployees = 0;
+    for (auto it = departmentCounts.begin(); it != departmentCounts.end(); ++it) {
+        totalEmployees += it.value();
+    }
+
+    // Now create the pie chart
+    QPieSeries *series = new QPieSeries();
+
+    // Define an array of colors for the slices
+    QList<QColor> sliceColors = {
+        QColor(255, 99, 71),  // Tomato (HR)
+        QColor(100, 149, 237), // Cornflower Blue (League)
+        QColor(34, 139, 34),  // Forest Green (Commerce)
+        QColor(255, 165, 0),  // Orange (Municipality)
+        QColor(75, 0, 130)    // Indigo (Federation)
+    };
+
+    int colorIndex = 0;
+
+    // Add data to the series and set custom colors
+    for (auto it = departmentCounts.begin(); it != departmentCounts.end(); ++it) {
+        QPieSlice *slice = series->append(it.key(), it.value());
+
+        // Set the color of each slice
+        slice->setBrush(sliceColors[colorIndex]);
+
+        // Move to the next color in the list
+        colorIndex++;
+    }
+
+    // Create the chart and add the series
+    QChart *chart = new QChart();
+    chart->addSeries(series);
+    chart->setTitle("Employees by Department");
+    chart->legend()->setAlignment(Qt::AlignRight);
+
+    // Create the chart view
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    // Set the parent of chartView to be chartContainer
+    chartView->setParent(ui->chartContainer);  // Assuming chartContainer is a QWidget in your UI
+
+    // Manually set the geometry of the chart view inside the chartContainer
+    chartView->setGeometry(0, 0, 400, 300);  // Position (0, 0) and Size (400x300)
+
+
+
+    ui->totalCountLabel->setText( QString::number(totalEmployees));
+
+    // Set the department counts labels
+    ui->hrCountLabel->setText(QString::number(departmentCounts["HR"]));
+    ui->leagueCountLabel->setText( QString::number(departmentCounts["League"]));
+    ui->commerceCountLabel->setText( QString::number(departmentCounts["Commerce"]));
+    ui->municipalityCountLabel->setText(  QString::number(departmentCounts["Municipality"]));
+    ui->federationCountLabel->setText( QString::number(departmentCounts["Federation"]));
+}
+
+
+
+
+
 
 
 void employeePage::on_exportListButton_clicked()

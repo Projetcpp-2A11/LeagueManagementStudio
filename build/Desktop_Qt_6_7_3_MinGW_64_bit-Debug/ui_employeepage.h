@@ -19,7 +19,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSplitter>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
@@ -64,7 +63,19 @@ public:
     QLabel *positionErrorMSG;
     QLabel *depErrorMSG;
     QWidget *tab_3;
-    QSplitter *splitter;
+    QWidget *chartContainer;
+    QLabel *totalCountLabel;
+    QLabel *hrCountLabel;
+    QLabel *leagueCountLabel;
+    QLabel *commerceCountLabel;
+    QLabel *municipalityCountLabel;
+    QLabel *federationCountLabel;
+    QLabel *label_3;
+    QLabel *label_4;
+    QLabel *label_5;
+    QLabel *label_6;
+    QLabel *label_7;
+    QLabel *label_8;
     QWidget *sidebar;
     QPushButton *exitButton;
     QPushButton *homeButton;
@@ -884,10 +895,141 @@ public:
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName("tab_3");
-        splitter = new QSplitter(tab_3);
-        splitter->setObjectName("splitter");
-        splitter->setGeometry(QRect(50, 110, 779, 283));
-        splitter->setOrientation(Qt::Orientation::Horizontal);
+        chartContainer = new QWidget(tab_3);
+        chartContainer->setObjectName("chartContainer");
+        chartContainer->setGeometry(QRect(10, 0, 400, 300));
+        totalCountLabel = new QLabel(tab_3);
+        totalCountLabel->setObjectName("totalCountLabel");
+        totalCountLabel->setGeometry(QRect(790, 17, 31, 41));
+        QFont font4;
+        font4.setPointSize(20);
+        totalCountLabel->setFont(font4);
+        totalCountLabel->setStyleSheet(QString::fromUtf8("background: transparent;\n"
+"color: qlineargradient(spread: pad, \n"
+"                        x1: 0, y1: 0, x2: 1, y2: 1, \n"
+"                        stop: 0 rgba(0, 255, 0, 255), \n"
+"                        stop: 0.5 rgba(0, 204, 0, 255), \n"
+"                        stop: 1 rgba(0, 128, 0, 255));\n"
+""));
+        hrCountLabel = new QLabel(tab_3);
+        hrCountLabel->setObjectName("hrCountLabel");
+        hrCountLabel->setGeometry(QRect(680, 120, 41, 31));
+        QFont font5;
+        font5.setPointSize(16);
+        hrCountLabel->setFont(font5);
+        hrCountLabel->setStyleSheet(QString::fromUtf8("background: transparent;\n"
+"color: qlineargradient(spread: pad, \n"
+"                        x1: 0, y1: 0, x2: 1, y2: 1, \n"
+"                        stop: 0 rgba(0, 0, 255, 255), \n"
+"                        stop: 0.5 rgba(0, 128, 255, 255), \n"
+"                        stop: 1 rgba(0, 191, 255, 255));\n"
+""));
+        leagueCountLabel = new QLabel(tab_3);
+        leagueCountLabel->setObjectName("leagueCountLabel");
+        leagueCountLabel->setGeometry(QRect(680, 70, 41, 31));
+        leagueCountLabel->setFont(font5);
+        leagueCountLabel->setStyleSheet(QString::fromUtf8("background: transparent;\n"
+"color: qlineargradient(spread: pad, \n"
+"                        x1: 0, y1: 0, x2: 1, y2: 1, \n"
+"                        stop: 0 rgba(0, 0, 255, 255), \n"
+"                        stop: 0.5 rgba(0, 128, 255, 255), \n"
+"                        stop: 1 rgba(0, 191, 255, 255));\n"
+""));
+        commerceCountLabel = new QLabel(tab_3);
+        commerceCountLabel->setObjectName("commerceCountLabel");
+        commerceCountLabel->setGeometry(QRect(680, 170, 41, 31));
+        commerceCountLabel->setFont(font5);
+        commerceCountLabel->setStyleSheet(QString::fromUtf8("background: transparent;\n"
+"color: qlineargradient(spread: pad, \n"
+"                        x1: 0, y1: 0, x2: 1, y2: 1, \n"
+"                        stop: 0 rgba(0, 0, 255, 255), \n"
+"                        stop: 0.5 rgba(0, 128, 255, 255), \n"
+"                        stop: 1 rgba(0, 191, 255, 255));\n"
+""));
+        municipalityCountLabel = new QLabel(tab_3);
+        municipalityCountLabel->setObjectName("municipalityCountLabel");
+        municipalityCountLabel->setGeometry(QRect(680, 220, 41, 31));
+        municipalityCountLabel->setFont(font5);
+        municipalityCountLabel->setStyleSheet(QString::fromUtf8("background: transparent;\n"
+"color: qlineargradient(spread: pad, \n"
+"                        x1: 0, y1: 0, x2: 1, y2: 1, \n"
+"                        stop: 0 rgba(0, 0, 255, 255), \n"
+"                        stop: 0.5 rgba(0, 128, 255, 255), \n"
+"                        stop: 1 rgba(0, 191, 255, 255));\n"
+""));
+        federationCountLabel = new QLabel(tab_3);
+        federationCountLabel->setObjectName("federationCountLabel");
+        federationCountLabel->setGeometry(QRect(680, 280, 41, 31));
+        federationCountLabel->setFont(font5);
+        federationCountLabel->setStyleSheet(QString::fromUtf8("background: transparent;\n"
+"color: qlineargradient(spread: pad, \n"
+"                        x1: 0, y1: 0, x2: 1, y2: 1, \n"
+"                        stop: 0 rgba(0, 0, 255, 255), \n"
+"                        stop: 0.5 rgba(0, 128, 255, 255), \n"
+"                        stop: 1 rgba(0, 191, 255, 255));\n"
+""));
+        label_3 = new QLabel(tab_3);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(420, 10, 351, 51));
+        label_3->setFont(font4);
+        label_3->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color :     qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  "));
+        label_4 = new QLabel(tab_3);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(440, 60, 211, 41));
+        label_4->setFont(font5);
+        label_4->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color :     qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  "));
+        label_5 = new QLabel(tab_3);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(440, 110, 141, 41));
+        QFont font6;
+        font6.setPointSize(14);
+        label_5->setFont(font6);
+        label_5->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color :     qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  "));
+        label_6 = new QLabel(tab_3);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(440, 170, 221, 31));
+        label_6->setFont(font6);
+        label_6->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color :     qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  "));
+        label_7 = new QLabel(tab_3);
+        label_7->setObjectName("label_7");
+        label_7->setGeometry(QRect(440, 217, 221, 41));
+        label_7->setFont(font6);
+        label_7->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color :     qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  "));
+        label_8 = new QLabel(tab_3);
+        label_8->setObjectName("label_8");
+        label_8->setGeometry(QRect(440, 277, 211, 41));
+        label_8->setFont(font6);
+        label_8->setStyleSheet(QString::fromUtf8("background:transparent;\n"
+"color :     qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  "));
         tabWidget->addTab(tab_3, QString());
         sidebar = new QWidget(contentArea);
         sidebar->setObjectName("sidebar");
@@ -980,7 +1122,7 @@ public:
 
         retranslateUi(employeePage);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(employeePage);
@@ -1053,6 +1195,18 @@ public:
         positionErrorMSG->setText(QString());
         depErrorMSG->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("employeePage", "Add Employe", nullptr));
+        totalCountLabel->setText(QCoreApplication::translate("employeePage", "0", nullptr));
+        hrCountLabel->setText(QCoreApplication::translate("employeePage", "0", nullptr));
+        leagueCountLabel->setText(QCoreApplication::translate("employeePage", "0", nullptr));
+        commerceCountLabel->setText(QCoreApplication::translate("employeePage", "0", nullptr));
+        municipalityCountLabel->setText(QCoreApplication::translate("employeePage", "0", nullptr));
+        federationCountLabel->setText(QCoreApplication::translate("employeePage", "0", nullptr));
+        label_3->setText(QCoreApplication::translate("employeePage", "Total Number of Employees :", nullptr));
+        label_4->setText(QCoreApplication::translate("employeePage", "League Department :", nullptr));
+        label_5->setText(QCoreApplication::translate("employeePage", "HR Department :", nullptr));
+        label_6->setText(QCoreApplication::translate("employeePage", "Commerce  Department :", nullptr));
+        label_7->setText(QCoreApplication::translate("employeePage", "Municipality Department :", nullptr));
+        label_8->setText(QCoreApplication::translate("employeePage", "Federation  Department :", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("employeePage", "Statistics", nullptr));
         exitButton->setText(QString());
         homeButton->setText(QString());
