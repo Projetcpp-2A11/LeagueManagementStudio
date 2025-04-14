@@ -278,6 +278,12 @@ background-color: #c21d1d;
 
 }</string>
     </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="login">
     <property name="geometry">
@@ -334,6 +340,26 @@ background-color:black;
      <string>League Management Studio</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="passwordToggleButton">
+    <property name="geometry">
+     <rect>
+      <x>981</x>
+      <y>385</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/textures/textures/visible.png</normaloff>:/textures/textures/visible.png</iconset>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -347,6 +373,8 @@ background-color:black;
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

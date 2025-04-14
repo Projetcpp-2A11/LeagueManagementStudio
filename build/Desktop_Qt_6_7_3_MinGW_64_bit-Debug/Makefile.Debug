@@ -165,6 +165,8 @@ debug/qrc_resources.cpp: ../../resources.qrc \
 		../../textures/app_icon.png \
 		../../textures/myaccountIcon.png \
 		../../textures/button_pressed.png \
+		../../textures/visible.png \
+		../../textures/hidden.png \
 		../../textures/searchIcon.png
 	C:\Qt\6.7.3\mingw_64\bin\rcc.exe -name resources --no-zstd ..\..\resources.qrc -o debug\qrc_resources.cpp
 

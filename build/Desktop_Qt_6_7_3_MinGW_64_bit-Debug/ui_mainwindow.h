@@ -37,6 +37,7 @@ public:
     QLineEdit *password;
     QPushButton *login;
     QLabel *usernameLabel_2;
+    QPushButton *passwordToggleButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -176,6 +177,7 @@ public:
 "background-color: #c21d1d; \n"
 "\n"
 "}"));
+        password->setClearButtonEnabled(false);
         login = new QPushButton(centralwidget);
         login->setObjectName("login");
         login->setGeometry(QRect(360, 530, 411, 61));
@@ -200,6 +202,13 @@ public:
         usernameLabel_2->setGeometry(QRect(240, 10, 621, 51));
         usernameLabel_2->setFont(font2);
         usernameLabel_2->setStyleSheet(QString::fromUtf8("color:black"));
+        passwordToggleButton = new QPushButton(centralwidget);
+        passwordToggleButton->setObjectName("passwordToggleButton");
+        passwordToggleButton->setGeometry(QRect(981, 385, 31, 31));
+        passwordToggleButton->setStyleSheet(QString::fromUtf8(""));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/textures/textures/visible.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        passwordToggleButton->setIcon(icon2);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -224,8 +233,10 @@ public:
         passwordLabel->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
         facialRecogButton->setText(QString());
         vocalRecogButton->setText(QString());
+        password->setText(QString());
         login->setText(QCoreApplication::translate("MainWindow", "Authenticate", nullptr));
         usernameLabel_2->setText(QCoreApplication::translate("MainWindow", "League Management Studio", nullptr));
+        passwordToggleButton->setText(QString());
     } // retranslateUi
 
 };

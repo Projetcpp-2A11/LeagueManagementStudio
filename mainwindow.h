@@ -32,9 +32,13 @@ private slots:
     bool authenticateEmployee(employee emp);
 
 
+
+    void on_passwordToggleButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void startSpeechRecognition();
+    bool isPasswordVisible;
 
 };
 #endif // MAINWINDOW_H

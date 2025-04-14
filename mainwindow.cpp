@@ -24,8 +24,13 @@ MainWindow::MainWindow(QWidget *parent)
     setFixedSize(1050,681);
     ui->passwordLabel->setVisible(false);
     ui->password->setVisible(false);
+    ui->passwordToggleButton->setVisible(false);
     ui->vocalRecogButton->setVisible(false);
     ui->forgotPasswordClicked->setVisible(false);
+    isPasswordVisible=false;
+    ui->password->setEchoMode(QLineEdit::Password);
+    ui->passwordToggleButton->setIcon(QIcon(":/textures/textures/visible.png"));
+
 
 }
 
@@ -54,6 +59,7 @@ void MainWindow::on_login_clicked()
         ui->password->setVisible(true);
         ui->forgotPasswordClicked->setVisible(true);
         ui->passwordLabel->setVisible(true);
+        ui->passwordToggleButton->setVisible(true);
         ui->vocalRecogButton->setVisible(true);
         ui->login->setText("Login");
         if ( authenticateEmployee(*emp) ) {
@@ -234,4 +240,21 @@ bool MainWindow::authenticateEmployee(employee emp)
     }
 }
 
+
+
+
+
+
+
+void MainWindow::on_passwordToggleButton_clicked()
+{
+    if (!isPasswordVisible) {
+        ui->password->setEchoMode(QLineEdit::Password);
+        ui->passwordToggleButton->setIcon(QIcon(":/textures/textures/visible.png"));
+    } else {
+        ui->password->setEchoMode(QLineEdit::Normal);
+        ui->passwordToggleButton->setIcon(QIcon(":/textures/textures/hidden.png"));
+    }
+    isPasswordVisible = !isPasswordVisible;
+}
 
