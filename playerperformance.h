@@ -1,14 +1,16 @@
 #ifndef PLAYERPERFORMANCE_H
 #define PLAYERPERFORMANCE_H
 
+#include "ui_playerperformance.h"
 #include <QWidget>
-#include "ui_playerperformance.h" // This includes the auto-generated UI class
 #include <QDialog>
-namespace Ui {
-class PlayerPerformance;
-}
 
-class PlayerPerformance : public QDialog  // Change QWidget to QDialog
+// Remove the forward declaration of Ui::PlayerPerformance
+// namespace Ui {
+// class PlayerPerformance;
+// }
+
+class PlayerPerformance : public QDialog
 {
     Q_OBJECT
 
@@ -18,12 +20,11 @@ public:
     void setPlayer(const QString &fname, const QString &lname);
 
 private slots:
-    void on_closeButton_clicked();
-
+   // void on_closeButton_clicked();
     void on_exitButton_clicked();
 
 private:
-    Ui::playerperformance *ui;
+    Ui::playerperformance *ui;  // This is the pointer to the generated UI class
 };
 
 #endif // PLAYERPERFORMANCE_H

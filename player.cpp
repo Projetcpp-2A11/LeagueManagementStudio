@@ -570,6 +570,24 @@ void Player::updatePlayerPerformance(const QString& firstName, const QString& la
         return;  // Exit the function if player ID isn't found
     }
 
+    // Insert a new match into MATCHES table
+    QSqlQuery matchInsertQuery;
+    if (!matchInsertQuery.exec("INSERT INTO MATCHES (MATCHDATE) VALUES (SYSDATE)")) {
+        qDebug() << "Failed to insert match:" << matchInsertQuery.lastError();
+        return;
+    }
+
+    // Retrieve the last MATCHID generated in this session
+    QSqlQuery getMatchIdQuery;
+    int matchId = -1;
+    if (getMatchIdQuery.exec("SELECT Match_Seq.CURRVAL FROM DUAL") && getMatchIdQuery.next()) {
+        matchId = getMatchIdQuery.value(0).toInt();
+        qDebug() << "Inserted new match with MATCHID:" << matchId;
+    } else {
+        qDebug() << "Failed to retrieve MATCHID:" << getMatchIdQuery.lastError();
+        return;
+    }
+
     // Fetch the player's position
     query.prepare("SELECT POSITION FROM PLAYERS WHERE PLAYERID = :playerId");
     query.bindValue(":playerId", playerId);
@@ -587,116 +605,175 @@ void Player::updatePlayerPerformance(const QString& firstName, const QString& la
     QString position = query.value("POSITION").toString();
     qDebug() << "Player position: " << position;
 
-    // Fetch current performance stats
-    int currentGoals = 0;
-    int currentAssists = 0;
-    int currentSaves = 0;
-    int currentYellowCards = 0;
-    int currentRedCards = 0;
-    int currentPlayTimeInMinutes = 0;
-    int currentTotalYellowCards = 0;
-    int currentTotalRedCards = 0;
-
-    QSqlQuery fetchQuery;
-    fetchQuery.prepare("SELECT NUMGOALS, NUMASSISTS, NUMSAVES, NUMYELLOWCARDS, NUMREDCARDS, PLAYTIMEINMINUTES, TOTALYELLOWCARDS, TOTALREDCARDS "
-                       "FROM PLAYERPERFORMANCE WHERE PLAYERID = :playerId");
-    fetchQuery.bindValue(":playerId", playerId);
-
-    if (fetchQuery.exec() && fetchQuery.next()) {
-        currentGoals = fetchQuery.value("NUMGOALS").toInt();
-        currentAssists = fetchQuery.value("NUMASSISTS").toInt();
-        currentSaves = fetchQuery.value("NUMSAVES").toInt();
-        currentYellowCards = fetchQuery.value("NUMYELLOWCARDS").toInt();
-        currentRedCards = fetchQuery.value("NUMREDCARDS").toInt();
-        currentPlayTimeInMinutes = fetchQuery.value("PLAYTIMEINMINUTES").toInt();
-        currentTotalYellowCards = fetchQuery.value("TOTALYELLOWCARDS").toInt();
-        currentTotalRedCards = fetchQuery.value("TOTALREDCARDS").toInt();
-    }
-
     // New stats based on position
     int numGoals = 0;
     int numAssists = 0;
     int numSaves = 0;
-    int numYellowCards = currentYellowCards;  // Keep track of the existing yellow cards
-    int numRedCards = currentRedCards;  // Keep track of the existing red cards
+    int numYellowCards = 0;
+    int numRedCards = 0;
     int playTimeInMinutes = 0;
 
-    // Reset yellow and red cards for this match
+    // Reset the values (don't add previous stats)
     numYellowCards = 0;
     numRedCards = 0;
 
-    // Assign new values based on the player's position
     if (position == "ST" || position == "RW" || position == "LW") {
         numGoals = QRandomGenerator::global()->bounded(0, 4);
         numAssists = QRandomGenerator::global()->bounded(0, 5);
-        numYellowCards = QRandomGenerator::global()->bounded(0, 3);  // Adding yellow cards during match
-        numRedCards = QRandomGenerator::global()->bounded(0, 2);  // Adding red cards during match
-        playTimeInMinutes = QRandomGenerator::global()->bounded(540, 990);
+        numYellowCards = QRandomGenerator::global()->bounded(0, 3);
+        numRedCards = QRandomGenerator::global()->bounded(0, 2);
+        // Setting a minimum and maximum for playtime, with min as 60 minutes and max as 90 minutes
+        playTimeInMinutes = QRandomGenerator::global()->bounded(10, 94);
     } else if (position == "CM" || position == "LM" || position == "RM") {
         numGoals = QRandomGenerator::global()->bounded(0, 5);
         numAssists = QRandomGenerator::global()->bounded(1, 7);
-        numYellowCards = QRandomGenerator::global()->bounded(0, 3);  // Adding yellow cards during match
-        numRedCards = QRandomGenerator::global()->bounded(0, 2);  // Adding red cards during match
-        playTimeInMinutes = QRandomGenerator::global()->bounded(540, 990);
+        numYellowCards = QRandomGenerator::global()->bounded(0, 3);
+        numRedCards = QRandomGenerator::global()->bounded(0, 2);
+        // Setting a minimum and maximum for playtime, with min as 60 minutes and max as 90 minutes
+        playTimeInMinutes = QRandomGenerator::global()->bounded(10, 94);
     } else if (position == "CB" || position == "RB" || position == "LB") {
         numGoals = QRandomGenerator::global()->bounded(0, 3);
         numAssists = QRandomGenerator::global()->bounded(0, 5);
-        numYellowCards = QRandomGenerator::global()->bounded(0, 3);  // Adding yellow cards during match
-        numRedCards = QRandomGenerator::global()->bounded(0, 2);  // Adding red cards during match
-        playTimeInMinutes = QRandomGenerator::global()->bounded(540, 990);
+        numYellowCards = QRandomGenerator::global()->bounded(0, 3);
+        numRedCards = QRandomGenerator::global()->bounded(0, 2);
+        // Setting a minimum and maximum for playtime, with min as 90 minutes and max as 120 minutes
+        playTimeInMinutes = QRandomGenerator::global()->bounded(10, 94);
     } else if (position == "GK") {
-        numSaves = QRandomGenerator::global()->bounded(20, 36);
-        numYellowCards = QRandomGenerator::global()->bounded(0, 3);  // Adding yellow cards during match
-        numRedCards = QRandomGenerator::global()->bounded(0, 2);  // Adding red cards during match
-        playTimeInMinutes = QRandomGenerator::global()->bounded(540, 990);
+        numSaves = QRandomGenerator::global()->bounded(4,10);
+        numYellowCards = QRandomGenerator::global()->bounded(0, 3);
+        numRedCards = QRandomGenerator::global()->bounded(0, 2);
+        // Goalkeepers typically play the entire match, setting a minimum of 90 minutes
+        playTimeInMinutes = QRandomGenerator::global()->bounded(10, 94);
     }
 
+    numYellowCards = qMin(numYellowCards, 2);
+    numRedCards = qMin(numRedCards, 1);
 
-    // Ensure the new stats are greater than the current ones
-    numGoals += currentGoals;
-    numAssists += currentAssists;
-    numSaves += currentSaves;
-    playTimeInMinutes += currentPlayTimeInMinutes;
+    if (numYellowCards == 2) {
+        numRedCards = 1; // Two yellow cards automatically result in a red card
+    }
 
-    // Ensure that yellow and red cards do not exceed the match limits
-    numYellowCards = qMin(numYellowCards, 2);  // Cannot have more than 2 yellow cards per match
-    numRedCards = qMin(numRedCards, 1);  // Cannot have more than 1 red card per match
-
-    // Update the total yellow and red cards by adding the new yellow and red cards to the previous totals
-    int totalYellowCards = currentTotalYellowCards + numYellowCards;
-    int totalRedCards = currentTotalRedCards + numRedCards;
+    // Logic to ensure no yellow cards if a red card is already issued
+    if (numRedCards > 0) {
+        numYellowCards = 0; // No yellow cards if red card is issued
+    }
+    // Calculate the total number of yellow and red cards (just based on the current match)
+    int totalYellowCards = numYellowCards;
+    int totalRedCards = numRedCards;
 
     qDebug() << "Stats - Goals:" << numGoals << ", Assists:" << numAssists << ", Saves:" << numSaves
              << ", Yellow Cards:" << numYellowCards << ", Red Cards:" << numRedCards
              << ", Play Time:" << playTimeInMinutes << "minutes";
 
-    // Check for suspension due to yellow or red cards
     if (numYellowCards >= 2 || numRedCards > 0) {
         qDebug() << "Player is suspended due to yellow/red cards.";
     }
 
-    // Update PLAYERPERFORMANCE table with the stats and total cards
-    QSqlQuery updateQuery;
-    updateQuery.prepare("UPDATE PLAYERPERFORMANCE SET NUMGOALS = :numGoals, NUMASSISTS = :numAssists, NUMSAVES = :numSaves, "
-                        "NUMYELLOWCARDS = :numYellowCards, NUMREDCARDS = :numRedCards, PLAYTIMEINMINUTES = :playTimeInMinutes, "
-                        "TOTALYELLOWCARDS = :totalYellowCards, TOTALREDCARDS = :totalRedCards WHERE PLAYERID = :playerId");
+    // === Calculate Rating ===
+    double rating = 6.0;
+    int goalsConceded = QRandomGenerator::global()->bounded(0, 5); // Replace with actual if available
 
-    updateQuery.bindValue(":numGoals", numGoals);
-    updateQuery.bindValue(":numAssists", numAssists);
-    updateQuery.bindValue(":numSaves", numSaves);
-    updateQuery.bindValue(":numYellowCards", numYellowCards);
-    updateQuery.bindValue(":numRedCards", numRedCards);
-    updateQuery.bindValue(":playTimeInMinutes", playTimeInMinutes);
-    updateQuery.bindValue(":totalYellowCards", totalYellowCards);
-    updateQuery.bindValue(":totalRedCards", totalRedCards);
-    updateQuery.bindValue(":playerId", playerId);
+    qDebug() << "Goals conceded:" << goalsConceded;  // Debugging the conceded goals value
 
-    if (updateQuery.exec()) {
-        qDebug() << "Player performance updated successfully for player" << playerId;
+    if (position == "GK") {
+        rating += (static_cast<double>(numSaves) * 0.3)   // Bonus for saves
+                  - (static_cast<double>(goalsConceded) * 1.0) // Penalty for goals conceded
+                  - (static_cast<double>(numYellowCards) * 0.3)  // Penalty for yellow cards
+                  - (static_cast<double>(numRedCards) * 0.6);    // Penalty for red cards
+    } else if ( position == "RB" || position == "LB" || position == "CB") {  // Defenders
+        rating += (static_cast<double>(playTimeInMinutes) / 90.0 * 0.5)
+                  + (static_cast<double>(numAssists) * 0.2)
+                  - (static_cast<double>(numYellowCards) * 0.2)
+                  - (static_cast<double>(numRedCards) * 0.5);
+    } else if ( position == "CM" || position == "LM" || position == "RM") {  // Midfielders
+        rating += (static_cast<double>(playTimeInMinutes) / 90.0 * 0.5)
+                  + (static_cast<double>(numGoals) * 0.3)
+                  + (static_cast<double>(numAssists) * 0.3)
+                  - (static_cast<double>(numYellowCards) * 0.2)
+                  - (static_cast<double>(numRedCards) * 0.5);
+    } else if (position == "ST" || position == "RW" || position == "LW") {  // Attackers
+        rating += (static_cast<double>(playTimeInMinutes) / 90.0 * 0.5)
+                  + (static_cast<double>(numGoals) * 0.5)
+                  + (static_cast<double>(numAssists) * 0.3)
+                  - (static_cast<double>(numYellowCards) * 0.2)
+                  - (static_cast<double>(numRedCards) * 0.5);
     } else {
-        qDebug() << "Error updating player performance: " << updateQuery.lastError();
+        // Default fallback if position is unknown
+        rating += (static_cast<double>(numGoals) * 0.2)
+                  + (static_cast<double>(numAssists) * 0.2);
+    }
+
+    // Ensure rating stays within a valid range (1.0 to 10.0)
+    rating = qBound(1.0, rating, 10.0);
+
+    // Output the calculated rating
+    qDebug() << "Calculated rating:" << rating;
+
+
+    // === Insert a new row for player performance ===
+    QSqlQuery insertQuery;
+    insertQuery.prepare("INSERT INTO PLAYERPERFORMANCE (PLAYERID, MATCHID, NUMGOALS, NUMASSISTS, NUMSAVES, NUMYELLOWCARDS, "
+                        "NUMREDCARDS, PLAYTIMEINMINUTES, TOTALYELLOWCARDS, TOTALREDCARDS, RATE) "
+                        "VALUES (:playerId, :matchId, :numGoals, :numAssists, :numSaves, :numYellowCards, :numRedCards, "
+                        ":playTimeInMinutes, :totalYellowCards, :totalRedCards, :rate)");
+
+    insertQuery.bindValue(":playerId", playerId);
+    insertQuery.bindValue(":matchId", matchId);  // Use the MATCHID we just inserted
+    insertQuery.bindValue(":numGoals", numGoals);
+    insertQuery.bindValue(":numAssists", numAssists);
+    insertQuery.bindValue(":numSaves", numSaves);
+    insertQuery.bindValue(":numYellowCards", numYellowCards);
+    insertQuery.bindValue(":numRedCards", numRedCards);
+    insertQuery.bindValue(":playTimeInMinutes", playTimeInMinutes);
+    insertQuery.bindValue(":totalYellowCards", totalYellowCards);
+    insertQuery.bindValue(":totalRedCards", totalRedCards);
+    insertQuery.bindValue(":rate", rating);
+
+    if (insertQuery.exec()) {
+        qDebug() << "New player performance inserted successfully for player" << playerId;
+
+        // After the insert, fetch the MATCHID you just inserted
+        QSqlQuery getMatchIdQuery;
+        if (getMatchIdQuery.exec("SELECT Match_Seq.CURRVAL FROM DUAL") && getMatchIdQuery.next()) {
+            matchId = getMatchIdQuery.value(0).toInt();  // Store the latest MATCHID
+            qDebug() << "Inserted match with MATCHID:" << matchId;
+        } else {
+            qDebug() << "Failed to retrieve MATCHID after insertion:" << getMatchIdQuery.lastError();
+        }
+
+        // Fetch the latest performance after insertion to verify
+        QSqlQuery fetchPerfQuery;
+        fetchPerfQuery.prepare("SELECT MATCHID, NUMYELLOWCARDS, NUMREDCARDS, NUMGOALS, NUMASSISTS, NUMSAVES, PLAYTIMEINMINUTES, RATE "
+                               "FROM PLAYERPERFORMANCE "
+                               "WHERE PLAYERID = :playerId AND MATCHID = :matchId");
+
+        fetchPerfQuery.bindValue(":playerId", playerId);
+        fetchPerfQuery.bindValue(":matchId", matchId);
+
+        if (fetchPerfQuery.exec()) {
+            if (fetchPerfQuery.next()) {
+                qDebug() << "Fetched Performance for MATCHID:" << fetchPerfQuery.value("MATCHID").toInt()
+                << "Goals:" << fetchPerfQuery.value("NUMGOALS").toInt()
+                << "Assists:" << fetchPerfQuery.value("NUMASSISTS").toInt()
+                << "Saves:" << fetchPerfQuery.value("NUMSAVES").toInt()
+                << "Yellows:" << fetchPerfQuery.value("NUMYELLOWCARDS").toInt()
+                << "Reds:" << fetchPerfQuery.value("NUMREDCARDS").toInt()
+                << "PlayTime:" << fetchPerfQuery.value("PLAYTIMEINMINUTES").toInt()
+                << "Rate:" << fetchPerfQuery.value("RATE").toDouble();
+            }
+        } else {
+            qDebug() << "Failed to fetch player performance:" << fetchPerfQuery.lastError().text();
+        }
+    } else {
+        qDebug() << "Error inserting player performance: " << insertQuery.lastError();
     }
 }
+
+
+
+
+
+
 
 void Player::checkSuspensionStatus(const QString& firstName, const QString& lastName)
 {
@@ -717,49 +794,47 @@ void Player::checkSuspensionStatus(const QString& firstName, const QString& last
         return;
     }
 
-    // Fetch the number of yellow cards and red card in the most recent match
-    query.prepare("SELECT NUMYELLOWCARDS, NUMREDCARDS FROM PLAYERPERFORMANCE WHERE PLAYERID = :playerId");
+    // Query to get the second-to-last match (previous match) based on MATCHID, assuming MATCHID is sequential
+    query.prepare("SELECT NUMYELLOWCARDS, NUMREDCARDS "
+                  "FROM PLAYERPERFORMANCE "
+                  "WHERE PLAYERID = :playerId "
+                  "AND MATCHID = (SELECT MAX(MATCHID) - 1 FROM PLAYERPERFORMANCE WHERE PLAYERID = :playerId)");
     query.bindValue(":playerId", playerId);
-
-    // Debugging: print the query
-    qDebug() << "Query to fetch yellow and red cards: " << query.executedQuery();  // Print the final query
 
     int yellowCards = 0;
     int redCards = 0;
+
     if (query.exec() && query.next()) {
         yellowCards = query.value(0).toInt();
         redCards = query.value(1).toInt();
-        qDebug() << "Yellow cards for the latest match: " << yellowCards;
-        qDebug() << "Red cards for the latest match: " << redCards;
+        qDebug() << "Yellow cards for the previous match: " << yellowCards;
+        qDebug() << "Red cards for the previous match: " << redCards;
     } else {
         qDebug() << "Failed to retrieve yellow/red card data for player " << playerId << ": " << query.lastError().text();
         return;
     }
 
-    // If the player has exactly 2 yellow cards in the same match, they receive a red card
-    bool hasRedCard = redCards > 0;  // Check if the player already has a red card
-    if (yellowCards == 2) {
-        hasRedCard = true;  // Automatically treat 2 yellow cards as a red card
-    } else if (yellowCards > 2) {
-        hasRedCard = true;  // More than 2 yellow cards also result in a red card
-        yellowCards = 2;  // Set yellow cards to 2 since the player is automatically receiving a red card
+    // Check if the player is suspended based on yellow/red cards from the previous match
+    bool isSuspended = false;
+
+    // If the player has a red card or has accumulated 2 yellow cards (which result in a red card)
+    if (redCards > 0 || yellowCards == 2) {
+        isSuspended = true;
     }
 
-    // Check if the player is suspended
-    bool isSuspended = hasRedCard || yellowCards >= 3;
+    // Check if the player has 3 or more yellow cards
+    if (yellowCards >= 3) {
+        isSuspended = true;
+    }
 
-    // Show a message based on whether the player is suspended
-    QString message;
+    // Log suspension status to console
     if (isSuspended) {
-        if (hasRedCard) {
-            message = "The player received a red card and is suspended for the next match.";
-        } else {
-            message = "The player is suspended for the next match due to yellow cards.";
-        }
+        qDebug() << "Player is suspended due to yellow/red card rules.";
+        // Display a message box to notify the user
+        QMessageBox::warning(nullptr, "Suspension Status", "Player is suspended due to yellow/red card rules.");
     } else {
-        message = "The player is available for the next match.";
+        qDebug() << "Player is not suspended.";
+        // Display a message box to notify the user
+        QMessageBox::information(nullptr, "Suspension Status", "Player is not suspended.");
     }
-
-    // Display the message box with suspension status
-    QMessageBox::information(nullptr, "Suspension Status", message);
 }
