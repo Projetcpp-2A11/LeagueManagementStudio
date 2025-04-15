@@ -18,6 +18,10 @@ public:
     explicit PlayerPerformance(QWidget *parent = nullptr);
     ~PlayerPerformance();
     void setPlayer(const QString &fname, const QString &lname);
+    void populateMatchIDs();
+    void onSelectMatchClicked();
+    //void onPlayerSelected;
+    void onPlayerSelected(const QString &fname, const QString &lname);
 
 private slots:
    // void on_closeButton_clicked();
@@ -25,6 +29,9 @@ private slots:
 
 private:
     Ui::playerperformance *ui;  // This is the pointer to the generated UI class
+    QComboBox *matchComboBox;  // Declare the ComboBox for selecting match IDs
+    QPushButton *selectMatchButton;
+    int currentPlayerId = -1;
 };
 
 #endif // PLAYERPERFORMANCE_H
