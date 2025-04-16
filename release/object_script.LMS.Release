@@ -1,0 +1,11 @@
+release/connection.o
+release/custombutton.o
+release/customtextinput.o
+release/main.o
+release/teams.o
+release/teamspage.o
+release/qrc_resources.o
+release/moc_custombutton.o
+release/moc_customtextinput.o
+release/moc_teams.o
+release/moc_teamspage.o

@@ -1,0 +1,11 @@
+debug/connection.o
+debug/custombutton.o
+debug/customtextinput.o
+debug/main.o
+debug/teams.o
+debug/teamspage.o
+debug/qrc_resources.o
+debug/moc_custombutton.o
+debug/moc_customtextinput.o
+debug/moc_teams.o
+debug/moc_teamspage.o
