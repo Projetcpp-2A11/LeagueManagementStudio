@@ -81,6 +81,7 @@ OBJECTS       = debug/connection.o \
 		debug/moc_matchpage.o
 
 DIST          = faceRecogScript.py \
+		saveEncodings.py \
 		speechRecognition.py ..\..\connection.h \
 		..\..\employee.h \
 		..\..\employeepage.h \
@@ -2530,6 +2531,7 @@ debug/homepage.o: ../../homepage.cpp ../../homepage.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qsplitter.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTabWidget \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTableWidget \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qprocess.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qtimer.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qbasictimer.h \
 		ui_homepage.h \
@@ -3014,8 +3016,27 @@ debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmainwindow.h \
 		../../homepage.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qbuffer.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qcamera.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qcameradevice.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qtvideo.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qvideoframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qvideoframeformat.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qmetaobject.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qimagecapture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qmediacapturesession.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qsqlerror.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimediaWidgets/qvideowidget.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimediaWidgets/qtmultimediawidgetsglobal.h \
+		C:/Qt/6.7.3/mingw_64/include/QtMultimediaWidgets/qtmultimediawidgetsexports.h \
 		ui_mainwindow.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/QIcon \
@@ -3058,9 +3079,6 @@ debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/QAudioInput \
 		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qaudioinput.h \
-		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
-		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
-		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
 		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qtaudio.h \
 		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/qaudio.h \
 		C:/Qt/6.7.3/mingw_64/include/QtMultimedia/QMediaDevices \

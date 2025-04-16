@@ -49,6 +49,7 @@ TARGET = LMS
 
 DISTFILES += \
     faceRecogScript.py \
+    saveEncodings.py \
     speechRecognition.py
     testSR.py
 

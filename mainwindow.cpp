@@ -1,7 +1,12 @@
 #include "mainwindow.h"
 #include "homepage.h"
+#include "qboxlayout.h"
 #include "qbuffer.h"
+#include "qcamera.h"
+#include "qimagecapture.h"
+#include "qmediacapturesession.h"
 #include "qsqlerror.h"
+#include "qvideowidget.h"
 #include "ui_mainwindow.h"
 #include "employeepage.h"
 #include <qtimer.h>
@@ -94,34 +99,108 @@ void MainWindow::on_forgotPasswordClicked_clicked()
     });
 }
 
+void MainWindow::captureImageAndSaveToTpmFolder() {
+    QString projectDir = QDir::cleanPath(QCoreApplication::applicationDirPath() + "/../../..");
+    QString saveDir = projectDir + "/tmp/";
 
-    void MainWindow::on_facialRecogButton_clicked()
+    // Rest of your code remains the same...
+    if (!QDir().mkpath(saveDir)) {
+        QMessageBox::warning(this, "Error", "Failed to create save directory!");
+        return;
+    }
+
+    // Check for available cameras
+    auto cameras = QMediaDevices::videoInputs();
+    if (cameras.isEmpty()) {
+        QMessageBox::warning(this, "Error", "No camera found!");
+        return;
+    }
+
+    // Create a dialog for camera preview
+    QDialog *captureDialog = new QDialog(this);
+    captureDialog->setWindowTitle("Configure Face ID");
+    captureDialog->setMinimumSize(800, 600);
+
+    // Set up media capture
+    QMediaCaptureSession *captureSession = new QMediaCaptureSession(captureDialog);
+    QCamera *camera = new QCamera(cameras.first(), captureDialog);
+    QVideoWidget *viewfinder = new QVideoWidget(captureDialog);
+
+    // Configure viewfinder
+    viewfinder->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    viewfinder->setAspectRatioMode(Qt::KeepAspectRatio);
+
+    // Set up image capture
+    QImageCapture *imageCapture = new QImageCapture(captureDialog);
+    imageCapture->setQuality(QImageCapture::HighQuality); // Set high quality
+
+    // Configure the capture session
+    captureSession->setCamera(camera);
+    captureSession->setVideoOutput(viewfinder);
+    captureSession->setImageCapture(imageCapture);
+
+    // Add capture button
+    QPushButton *captureButton = new QPushButton("Verify ", captureDialog);
+    captureButton->setFixedSize(150, 40);
+
+    // Layout setup
+    QVBoxLayout *layout = new QVBoxLayout(captureDialog);
+    layout->addWidget(viewfinder, 1);
+    layout->addWidget(captureButton, 0, Qt::AlignHCenter);
+
+    // Connect capture button
+    connect(captureButton, &QPushButton::clicked, this, [=]() {
+        QString filePath = saveDir + "tmp" + ".jpg";
+
+        if (imageCapture->captureToFile(filePath)) {
+            QMessageBox::information(this, "Success", "Checking for Face existance !");
+            captureDialog->accept();
+        } else {
+            QMessageBox::warning(this, "Error", "Failed to capture image!");
+        }
+    });
+
+    // Handle errors
+    connect(imageCapture, &QImageCapture::errorOccurred, this, [=](int id, QImageCapture::Error error, const QString &errorString) {
+        QMessageBox::warning(this, "Error", "Capture failed: " + errorString);
+        captureDialog->reject();
+    });
+
+    // Start camera and show dialog
+    camera->start();
+    captureDialog->exec();
+
+    // Clean up when dialog closes
+    camera->stop();
+
+}
+
+
+ void MainWindow::on_facialRecogButton_clicked()
     {
-        QProcess process;
 
+        captureImageAndSaveToTpmFolder();
+        QProcess process;
         QString pythonPath = "python";
         QStringList arguments;
-        qDebug() << "Current Directory: " << QDir::currentPath();
-
         arguments << "../../faceRecogScript.py";
 
         process.start(pythonPath, arguments);
-
         process.waitForFinished();
-
-        QString output = process.readAllStandardOutput();
-
+        QString output = process.readAllStandardOutput().trimmed();
+        QString errOutput = process.readAllStandardError();
+        qDebug() << "Python error output:" << errOutput;
         qDebug() << "Python script output:" << output;
+        int userID = output.toInt();
 
-        if (output.contains("True")) {
-            qDebug() << "Face match found!";
-            QMessageBox::information(this, "Face Recognition", "Face match found!");
-            this->setCursor(Qt::WaitCursor);
-
-
-                employeePage *  employe = new employeePage();
-                employe->show();
-                this->hide();
+        if (!output.isEmpty() && !output.contains("No match")) {
+            qDebug() << "Face match found! User ID:" << output;
+            QMessageBox::information(this, "Face Recognition", "Face match found for user: " + output);
+            employee *emp = new employee();
+            *emp = checkIdExistance(userID);
+            homepage *home = new homepage(nullptr,emp);
+            home->show();
+            this->hide();
 
 
 
@@ -129,7 +208,6 @@ void MainWindow::on_forgotPasswordClicked_clicked()
             qDebug() << "No face match found!";
             QMessageBox::warning(this, "Face Recognition", "No face match found.");
         }
-
     }
 
 void MainWindow::startSpeechRecognition()
@@ -239,7 +317,6 @@ bool MainWindow::authenticateEmployee(employee emp)
         return false;
     }
 }
-
 
 
 

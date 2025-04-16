@@ -1,92 +1,82 @@
 import face_recognition
+import json
+import os
 import sys
-import cv2
-import time
 
-try:
-    # Hardcoded image path for testing
-    image_path = "C:/Users/choua/OneDrive/Bureau/opencvContrib/aziz.jpg"
-    existing_image = face_recognition.load_image_file(image_path)
-    existing_face_encoding = face_recognition.face_encodings(existing_image)
+# Define paths (adjust these to your project structure)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+TMP_IMG_PATH = os.path.join(BASE_DIR, "tmp", "tmp.jpg")
+ENCODINGS_FILE = os.path.join(BASE_DIR, "face_encodings.json")
 
-    if len(existing_face_encoding) == 0:
-        print("No face encoding found in the image!")
+def load_stored_encodings():
+    if os.path.exists(ENCODINGS_FILE):
+        try:
+            with open(ENCODINGS_FILE, "r") as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"Error reading JSON: {e}")
+            return []
+    else:
+        print("No encoding JSON file found.")
+        return []
+
+def authenticate_face(tolerance=0.4):
+    # Verify that the temporary image exists
+    if not os.path.exists(TMP_IMG_PATH):
+        print("No match")
         sys.exit(1)
 
-    existing_face_encoding = existing_face_encoding[0]  # Take the first encoding
+    # Load temporary image and compute its encoding
+    unknown_image = face_recognition.load_image_file(TMP_IMG_PATH)
+    unknown_encodings = face_recognition.face_encodings(unknown_image)
+    if not unknown_encodings:
+        print("No match")
+        sys.exit(1)
+    unknown_encoding = unknown_encodings[0]
 
-    # Initialize webcam
-    video_capture = cv2.VideoCapture(0)
-
-    if not video_capture.isOpened():
-        print("Error: Could not access the webcam.")
+    # Load the stored face encodings from JSON
+    stored_data = load_stored_encodings()
+    if not stored_data:
+        print("No match")
         sys.exit(1)
 
-    print("Webcam initialized. Detection will start in 5 seconds. Press 'q' to quit.")
+    best_match_id = None
+    best_distance = float("inf")
 
-    # Delay before starting detection
-    delay_time = 5  # 5 seconds delay
-    start_time = time.time()
+    # Iterate over each stored encoding entry from JSON
+    for entry in stored_data:
+        # Make sure the entry has the required keys
+        if "user_id" not in entry or "encoding" not in entry:
+            continue
 
-    while True:
-        # Capture a frame from the webcam
-        ret, frame = video_capture.read()
+        stored_encoding = entry["encoding"]
+        # Compare using boolean match and check the distance
+        matches = face_recognition.compare_faces([stored_encoding], unknown_encoding, tolerance=tolerance)
+        distance = face_recognition.face_distance([stored_encoding], unknown_encoding)[0]
 
-        if not ret:
-            print("Error: Failed to grab frame.")
-            sys.exit(1)
+        if matches[0] and distance < best_distance:
+            best_distance = distance
+            best_match_id = entry["user_id"]
 
-        # Calculate elapsed time
-        elapsed_time = time.time() - start_time
+    if best_match_id:
+        print(best_match_id)
+        sys.exit(0)
+    else:
+        print("No match")
+        sys.exit(1)
 
-        # Display countdown or message
-        if elapsed_time < delay_time:
-            countdown = int(delay_time - elapsed_time)
-            cv2.putText(frame, f"Starting detection in {countdown}...", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        else:
-            # Start face detection and matching
-            face_locations = face_recognition.face_locations(frame)
-            face_encodings = face_recognition.face_encodings(frame, face_locations)
+if __name__ == "__main__":
+    try:
+        authenticate_face()
+    except Exception as e:
+        # Fallback: Print "No match" in case of any unexpected error
+        print("No match")
+        sys.exit(1)
+    finally:
+                # Clean up: Delete the temporary image if it exists
+                if os.path.exists(TMP_IMG_PATH):
 
-            if len(face_encodings) == 0:
-                cv2.putText(frame, "No faces detected", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-            else:
-                # Draw rectangles around the faces
-                for (top, right, bottom, left) in face_locations:
-                    cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
+                        os.remove(TMP_IMG_PATH)
+                        # Optionally log deletion success:
+                        #print("Temporary image {TMP_IMG_PATH} deleted.")
 
-                # Compare the captured face with the existing photo
-                face_found = False
-                for face_encoding in face_encodings:
-                    matches = face_recognition.compare_faces([existing_face_encoding], face_encoding, tolerance=0.4)  # Strict comparison
-
-                    if matches[0]:
-                        face_found = True
-                        break
-
-                # If a matching face is found, send True and exit
-                if face_found:
-                    print("True")  # Send True if faces match
-                    break
-
-            # Check if 2 seconds have passed since detection started
-            if elapsed_time >= delay_time + 2:  # 2 seconds after detection starts
-                cv2.putText(frame, "No match found", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-                cv2.imshow("Webcam", frame)
-                cv2.waitKey(1000)  # Wait for 1 second to show the message
-                break
-
-        # Show the captured frame
-        cv2.imshow("Webcam", frame)
-
-        # Break the loop if the 'q' key is pressed
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-    # Release the webcam and close the window
-    video_capture.release()
-    cv2.destroyAllWindows()
-
-except Exception as e:
-    print(f"Error: {str(e)}")
-    sys.exit(1)

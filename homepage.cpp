@@ -3,6 +3,7 @@
 #include "employeepage.h"
 #include "matchpage.h"
 #include "qdatetime.h"
+#include "qprocess.h"
 #include "qtimer.h"
 #include "ui_homepage.h"
 #include <QCamera>
@@ -189,6 +190,20 @@ void homepage::on_configureFidButton_clicked()
 
     // Clean up when dialog closes
     camera->stop();
+
+    QProcess process;
+    QString pythonPath = "python";
+    QStringList arguments;
+    arguments << "C:/Users/choua/OneDrive/Bureau/Projet C++/LMS/saveEncodings.py" << userId;
+
+    process.start(pythonPath, arguments);
+
+    process.waitForFinished(5000); // Wait up to 5 seconds
+    QString errorOutput = process.readAllStandardError();
+    if (!errorOutput.isEmpty()) {
+        qDebug() << "Python script error:" << errorOutput;
+    }
+
 }
 
 

@@ -18,6 +18,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void captureImageAndSaveToTpmFolder();
 private slots:
     void on_login_clicked();
 
