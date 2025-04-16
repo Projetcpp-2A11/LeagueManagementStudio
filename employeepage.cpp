@@ -11,6 +11,7 @@
 #include <QtCharts/QChart>
 #include <QtCharts/QLegend>
 #include <QtCharts/QPieSlice>
+#include <QtCharts/QLegendMarker>
 
 
 
@@ -511,7 +512,7 @@ void employeePage::setupStatistics() {
     // Create a map to store department counts
     QMap<QString, int> departmentCounts;
 
-    // List of all departments
+    // List of all departments (this defines the order)
     QStringList departments = {"HR", "League", "Commerce", "Municipality", "Federation"};
 
     QSqlQuery query;
@@ -526,32 +527,38 @@ void employeePage::setupStatistics() {
     }
 
     int totalEmployees = 0;
-    for (auto it = departmentCounts.begin(); it != departmentCounts.end(); ++it) {
-        totalEmployees += it.value();
+    for (int count : departmentCounts.values()) {
+        totalEmployees += count;
     }
 
-    // Now create the pie chart
+    // Create the pie chart series
     QPieSeries *series = new QPieSeries();
 
     // Define an array of colors for the slices
     QList<QColor> sliceColors = {
-        QColor(255, 99, 71),  // Tomato (HR)
-        QColor(100, 149, 237), // Cornflower Blue (League)
-        QColor(34, 139, 34),  // Forest Green (Commerce)
-        QColor(255, 165, 0),  // Orange (Municipality)
-        QColor(75, 0, 130)    // Indigo (Federation)
+        QColor(255, 99, 71),    // Tomato (HR)
+        QColor(100, 149, 237),  // Cornflower Blue (League)
+        QColor(34, 139, 34),    // Forest Green (Commerce)
+        QColor(255, 165, 0),    // Orange (Municipality)
+        QColor(75, 0, 130)      // Indigo (Federation)
     };
 
     int colorIndex = 0;
-
-    // Add data to the series and set custom colors
-    for (auto it = departmentCounts.begin(); it != departmentCounts.end(); ++it) {
-        QPieSlice *slice = series->append(it.key(), it.value());
-
-        // Set the color of each slice
+    // Append slices in the order defined by 'departments'
+    for (const QString &dep : departments) {
+        int count = departmentCounts.value(dep, 0);
+        // Append the slice with department name (for legend markers)
+        QPieSlice *slice = series->append(dep, count);
         slice->setBrush(sliceColors[colorIndex]);
-
-        // Move to the next color in the list
+        slice->setLabelVisible(true);
+        // Calculate percentage for the current slice
+        double percentage = totalEmployees > 0 ? (static_cast<double>(count) / totalEmployees) * 100.0 : 0.0;
+        QString percentageText = QString::number(percentage, 'f', 1) + "%";
+        // Set the label to display only the percentage inside the slice
+        slice->setLabel(percentageText);
+        slice->setLabelColor(QColorConstants::White);
+        // Position the label inside the slice
+        slice->setLabelPosition(QPieSlice::LabelInsideHorizontal);
         colorIndex++;
     }
 
@@ -561,27 +568,28 @@ void employeePage::setupStatistics() {
     chart->setTitle("Employees by Department");
     chart->legend()->setAlignment(Qt::AlignRight);
 
+    const auto markers = chart->legend()->markers(series);
+    for (int i = 0; i < markers.size() && i < departments.size(); ++i) {
+        markers.at(i)->setLabel(departments.at(i));
+    }
+
     // Create the chart view
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    // Set the parent of chartView to be chartContainer
-    chartView->setParent(ui->chartContainer);  // Assuming chartContainer is a QWidget in your UI
+    // Set the parent of chartView to be chartContainer (adjust as needed)
+    chartView->setParent(ui->chartContainer);
+    chartView->setGeometry(0, 0, 400, 300); // Adjust size and position as desired
 
-    // Manually set the geometry of the chart view inside the chartContainer
-    chartView->setGeometry(0, 0, 400, 300);  // Position (0, 0) and Size (400x300)
-
-
-
-    ui->totalCountLabel->setText( QString::number(totalEmployees));
-
-    // Set the department counts labels
-    ui->hrCountLabel->setText(QString::number(departmentCounts["HR"]));
-    ui->leagueCountLabel->setText( QString::number(departmentCounts["League"]));
-    ui->commerceCountLabel->setText( QString::number(departmentCounts["Commerce"]));
-    ui->municipalityCountLabel->setText(  QString::number(departmentCounts["Municipality"]));
-    ui->federationCountLabel->setText( QString::number(departmentCounts["Federation"]));
+    // Update UI labels for total employee count and per-department counts
+    ui->totalCountLabel->setText(QString::number(totalEmployees));
+    ui->hrCountLabel->setText(QString::number(departmentCounts.value("HR", 0)));
+    ui->leagueCountLabel->setText(QString::number(departmentCounts.value("League", 0)));
+    ui->commerceCountLabel->setText(QString::number(departmentCounts.value("Commerce", 0)));
+    ui->municipalityCountLabel->setText(QString::number(departmentCounts.value("Municipality", 0)));
+    ui->federationCountLabel->setText(QString::number(departmentCounts.value("Federation", 0)));
 }
+
 
 
 
