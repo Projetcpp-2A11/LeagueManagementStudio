@@ -9,13 +9,26 @@
 #include "qcontainerfwd.h"
 #include "qheaderview.h"
 #include "qlabel.h"
+#include "qpushbutton.h"
 #include "qsplitter.h"
 #include "qsqlerror.h"
 #include "qvalueaxis.h"
 #include <QSignalMapper>
 #include <QFileInfo>
 #include <QFileDialog>
+#include <QDialog>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QGridLayout>
+#include <QScrollArea>
+#include <QLabel>
+#include <QPushButton>
+#include <QFrame>
+#include <QFont>
+#include <QPixmap>
+#include <QDateTime>
 #include <QMessageBox>
+#include <QDebug>
 
 // Getters and Setters
 int teams::getTeamID() const
@@ -223,19 +236,35 @@ bool teams::deleteTeamsUsingTeamID(int teamID)
     }
 }
 
+
+
+
+
+
+
+
+
+
+// depararteur de travvvvvvv
+
+
 void teams::displayTeamStats(QWidget *statsWidget) {
     qDebug() << "displayTeamStats called for widget:" << statsWidget->objectName();
 
+    // Find or create a container widget for the charts
     QWidget* chartContainer = statsWidget->findChild<QWidget*>("chartContainer");
 
     if (!chartContainer) {
         qDebug() << "Creating new chartContainer";
+        // Create a new container for charts if it doesn't exist
         chartContainer = new QWidget(statsWidget);
         chartContainer->setObjectName("chartContainer");
 
+        // Make sure the container is visible and has a reasonable size
         chartContainer->setMinimumSize(400, 400);
-        chartContainer->setStyleSheet("background-color: white;");
+        chartContainer->setStyleSheet("background-color: white;"); // Add background for visibility debugging
 
+        // Add the container to the stats widget layout
         if (!statsWidget->layout()) {
             qDebug() << "Creating new layout for statsWidget";
             QVBoxLayout* statsLayout = new QVBoxLayout(statsWidget);
@@ -248,6 +277,7 @@ void teams::displayTeamStats(QWidget *statsWidget) {
         qDebug() << "Found existing chartContainer";
     }
 
+    // Clear any existing content in the chart container
     if (chartContainer->layout()) {
         qDebug() << "Clearing existing layout in chartContainer";
         QLayout* oldLayout = chartContainer->layout();
@@ -261,9 +291,11 @@ void teams::displayTeamStats(QWidget *statsWidget) {
         delete oldLayout;
     }
 
+    // Create a new layout for the chart container
     QVBoxLayout *chartLayout = new QVBoxLayout(chartContainer);
     chartContainer->setLayout(chartLayout);
 
+    // Query to get top 3 teams by matches played
     QSqlQuery queryMatches;
     queryMatches.prepare(R"(
         SELECT NAME, MATCHESPLAYED, NBSUBSCRIBERS
@@ -291,8 +323,10 @@ void teams::displayTeamStats(QWidget *statsWidget) {
         return;
     }
 
+    // Reset the query position
     queryMatches.previous();
 
+    // Prepare data containers for matches played
     QStringList teamNamesMatches;
     QVector<int> matchesData;
     QVector<int> subscribersDataMatches;
@@ -309,6 +343,7 @@ void teams::displayTeamStats(QWidget *statsWidget) {
         subscribersDataMatches << subs;
     }
 
+    // Query to get top 3 teams by number of subscribers
     QSqlQuery querySubscribers;
     querySubscribers.prepare(R"(
         SELECT NAME, MATCHESPLAYED, NBSUBSCRIBERS
@@ -325,6 +360,7 @@ void teams::displayTeamStats(QWidget *statsWidget) {
         return;
     }
 
+    // Prepare data containers for subscribers
     QStringList teamNamesSubs;
     QVector<int> subscribersData;
 
@@ -333,6 +369,9 @@ void teams::displayTeamStats(QWidget *statsWidget) {
         subscribersData << querySubscribers.value("NBSUBSCRIBERS").toInt();
     }
 
+    // ---------------------------
+    // 1. Matches Played Chart (Top 3)
+    // ---------------------------
     QBarSet *matchesSet = new QBarSet("Matches Played");
     for (int value : matchesData) {
         *matchesSet << value;
@@ -340,7 +379,7 @@ void teams::displayTeamStats(QWidget *statsWidget) {
 
     QBarSeries *matchesSeries = new QBarSeries();
     matchesSeries->append(matchesSet);
-    matchesSet->setColor(QColor(70, 130, 180));
+    matchesSet->setColor(QColor(70, 130, 180));  // Steel blue
 
     QChart *matchesChart = new QChart();
     matchesChart->addSeries(matchesSeries);
@@ -356,14 +395,17 @@ void teams::displayTeamStats(QWidget *statsWidget) {
 
     QValueAxis *matchesAxisY = new QValueAxis();
     matchesAxisY->setTitleText("Number of Matches");
-    matchesAxisY->setMin(0);
+    matchesAxisY->setMin(0);  // Start from 0 for better visualization
     matchesChart->addAxis(matchesAxisY, Qt::AlignLeft);
     matchesSeries->attachAxis(matchesAxisY);
 
     QChartView *matchesChartView = new QChartView(matchesChart);
     matchesChartView->setRenderHint(QPainter::Antialiasing);
-    matchesChartView->setMinimumHeight(200);
+    matchesChartView->setMinimumHeight(200);  // Set minimum height
 
+    // ---------------------------
+    // 2. Subscribers Chart (Top 3)
+    // ---------------------------
     QBarSet *subsSet = new QBarSet("Subscribers");
     for (int value : subscribersData) {
         *subsSet << value;
@@ -371,7 +413,7 @@ void teams::displayTeamStats(QWidget *statsWidget) {
 
     QBarSeries *subsSeries = new QBarSeries();
     subsSeries->append(subsSet);
-    subsSet->setColor(QColor(220, 20, 60));
+    subsSet->setColor(QColor(220, 20, 60));  // Crimson red
 
     QChart *subsChart = new QChart();
     subsChart->addSeries(subsSeries);
@@ -387,20 +429,310 @@ void teams::displayTeamStats(QWidget *statsWidget) {
 
     QValueAxis *subsAxisY = new QValueAxis();
     subsAxisY->setTitleText("Number of Subscribers");
-    subsAxisY->setMin(0);
+    subsAxisY->setMin(0);  // Start from 0 for better visualization
     subsChart->addAxis(subsAxisY, Qt::AlignLeft);
     subsSeries->attachAxis(subsAxisY);
 
     QChartView *subsChartView = new QChartView(subsChart);
     subsChartView->setRenderHint(QPainter::Antialiasing);
-    subsChartView->setMinimumHeight(200);
+    subsChartView->setMinimumHeight(200);  // Set minimum height
 
+    // ---------------------------
+    // Layout both charts vertically
+    // ---------------------------
     QSplitter *splitter = new QSplitter(Qt::Vertical);
     splitter->addWidget(matchesChartView);
     splitter->addWidget(subsChartView);
     chartLayout->addWidget(splitter);
 
+    // Make sure the container is visible
     chartContainer->show();
 
     qDebug() << "Charts added to container";
+}
+
+
+
+
+//equioe form
+
+void teams::displayMatchesWithScores() {
+    // Créer une nouvelle fenêtre
+    QDialog *matchWindow = new QDialog();
+    matchWindow->setWindowTitle("Détails des Matchs");
+    matchWindow->setMinimumSize(1000, 700);
+
+    // Créer un layout principal pour la fenêtre
+    QVBoxLayout *mainLayout = new QVBoxLayout(matchWindow);
+
+    // Créer un titre
+    QLabel *titleLabel = new QLabel("Tous les Matchs Joués", matchWindow);
+    QFont titleFont = titleLabel->font();
+    titleFont.setPointSize(16);
+    titleFont.setBold(true);
+    titleLabel->setFont(titleFont);
+    titleLabel->setAlignment(Qt::AlignCenter);
+    mainLayout->addWidget(titleLabel);
+
+    // Créer un widget de défilement pour contenir tous les matchs
+    QScrollArea *scrollArea = new QScrollArea(matchWindow);
+    scrollArea->setWidgetResizable(true);
+    QWidget *scrollContent = new QWidget();
+    QVBoxLayout *scrollLayout = new QVBoxLayout(scrollContent);
+
+    // Requête SQL pour récupérer les données des matchs
+    QSqlQuery matchQuery;
+    matchQuery.prepare(R"(
+        SELECT m.MATCHID, m.SCORE, m.MATCHDATE,
+               t1.TEAMID as TEAM1ID, t1.NAME as TEAM1_NAME, t1.LOGO as TEAM1_LOGO,
+               t2.TEAMID as TEAM2ID, t2.NAME as TEAM2_NAME, t2.LOGO as TEAM2_LOGO
+        FROM MATCHES m
+        JOIN TEAMS t1 ON m.TEAM1ID = t1.TEAMID
+        JOIN TEAMS t2 ON m.TEAM2ID = t2.TEAMID
+        ORDER BY m.MATCHDATE DESC
+    )");
+
+    if (!matchQuery.exec()) {
+        qDebug() << "Erreur lors de la récupération des matchs: " << matchQuery.lastError().text();
+        QMessageBox::critical(matchWindow, "Erreur", "Impossible de récupérer les données des matchs: " + matchQuery.lastError().text());
+        return;
+    }
+
+    // Initialiser un compteur pour les matchs
+    int currentMatch = 0;
+
+    // Parcourir les matchs
+    while (matchQuery.next()) {
+        // Ajouter un séparateur avant chaque match sauf le premier
+        if (currentMatch > 0) {
+            QFrame *line = new QFrame();
+            line->setFrameShape(QFrame::HLine);
+            line->setFrameShadow(QFrame::Sunken);
+            scrollLayout->addWidget(line);
+        }
+
+        currentMatch++;
+
+        int matchId = matchQuery.value("MATCHID").toInt();
+        QString score = matchQuery.value("SCORE").toString();
+        QDateTime matchDate = matchQuery.value("MATCHDATE").toDateTime();
+
+        int team1Id = matchQuery.value("TEAM1ID").toInt();
+        QString team1Name = matchQuery.value("TEAM1_NAME").toString();
+        QString team1Logo = matchQuery.value("TEAM1_LOGO").toString();
+
+        int team2Id = matchQuery.value("TEAM2ID").toInt();
+        QString team2Name = matchQuery.value("TEAM2_NAME").toString();
+        QString team2Logo = matchQuery.value("TEAM2_LOGO").toString();
+
+        // Créer un widget pour ce match
+        QWidget *matchWidget = new QWidget();
+        QVBoxLayout *matchLayout = new QVBoxLayout(matchWidget);
+
+        // Créer un cadre pour le match
+        QFrame *matchFrame = new QFrame();
+        matchFrame->setFrameShape(QFrame::StyledPanel);
+        matchFrame->setFrameShadow(QFrame::Raised);
+        matchFrame->setStyleSheet("QFrame { background-color: #f5f5f5; border-radius: 8px; padding: 10px; }");
+
+        QVBoxLayout *frameLayout = new QVBoxLayout(matchFrame);
+
+        // En-tête du match (date et ID)
+        QLabel *matchHeader = new QLabel(QString("Match #%1 - %2")
+                                             .arg(matchId)
+                                             .arg(matchDate.toString("dd/MM/yyyy")));
+        matchHeader->setAlignment(Qt::AlignCenter);
+        QFont headerFont = matchHeader->font();
+        headerFont.setBold(true);
+        headerFont.setPointSize(12);
+        matchHeader->setFont(headerFont);
+        frameLayout->addWidget(matchHeader);
+
+        // Widget pour les équipes et le score
+        QWidget *teamsWidget = new QWidget();
+        QHBoxLayout *teamsLayout = new QHBoxLayout(teamsWidget);
+
+        // Équipe 1
+        QWidget *team1Widget = new QWidget();
+        QVBoxLayout *team1Layout = new QVBoxLayout(team1Widget);
+
+        // Logo de l'équipe 1
+        QLabel *team1LogoLabel = new QLabel();
+        if (!team1Logo.isEmpty()) {
+            QPixmap pixmap(team1Logo);
+            if (!pixmap.isNull()) {
+                team1LogoLabel->setPixmap(pixmap.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            } else {
+                team1LogoLabel->setText("Logo non disponible");
+            }
+        } else {
+            team1LogoLabel->setText("Logo non disponible");
+        }
+        team1LogoLabel->setAlignment(Qt::AlignCenter);
+        team1Layout->addWidget(team1LogoLabel);
+
+        // Nom de l'équipe 1
+        QLabel *team1NameLabel = new QLabel(team1Name);
+        team1NameLabel->setAlignment(Qt::AlignCenter);
+        QFont teamFont = team1NameLabel->font();
+        teamFont.setBold(true);
+        teamFont.setPointSize(11);
+        team1NameLabel->setFont(teamFont);
+        team1Layout->addWidget(team1NameLabel);
+
+        teamsLayout->addWidget(team1Widget);
+
+        // Score
+        QLabel *scoreLabel = new QLabel(score);
+        scoreLabel->setAlignment(Qt::AlignCenter);
+        QFont scoreFont = scoreLabel->font();
+        scoreFont.setBold(true);
+        scoreFont.setPointSize(16);
+        scoreLabel->setFont(scoreFont);
+        scoreLabel->setStyleSheet("color: #d32f2f;");
+        teamsLayout->addWidget(scoreLabel);
+
+        // Équipe 2
+        QWidget *team2Widget = new QWidget();
+        QVBoxLayout *team2Layout = new QVBoxLayout(team2Widget);
+
+        // Logo de l'équipe 2
+        QLabel *team2LogoLabel = new QLabel();
+        if (!team2Logo.isEmpty()) {
+            QPixmap pixmap(team2Logo);
+            if (!pixmap.isNull()) {
+                team2LogoLabel->setPixmap(pixmap.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            } else {
+                team2LogoLabel->setText("Logo non disponible");
+            }
+        } else {
+            team2LogoLabel->setText("Logo non disponible");
+        }
+        team2LogoLabel->setAlignment(Qt::AlignCenter);
+        team2Layout->addWidget(team2LogoLabel);
+
+        // Nom de l'équipe 2
+        QLabel *team2NameLabel = new QLabel(team2Name);
+        team2NameLabel->setAlignment(Qt::AlignCenter);
+        team2NameLabel->setFont(teamFont);
+        team2Layout->addWidget(team2NameLabel);
+
+        teamsLayout->addWidget(team2Widget);
+
+        frameLayout->addWidget(teamsWidget);
+
+        // Récupérer les performances des équipes pour ce match
+        QSqlQuery perfQuery;
+        perfQuery.prepare(R"(
+            SELECT tp.TEAMID, t.NAME, tp.POSSESSION, tp.RESULT, tp.NUMSHOT,
+                   tp.CORNERS, tp.TEAMYELLOWCARDS, tp.TEAMREDCARDS
+            FROM TEAMPERFORMANCE tp
+            JOIN TEAMS t ON tp.TEAMID = t.TEAMID
+            WHERE tp.MATCHID = :matchId
+        )");
+        perfQuery.bindValue(":matchId", matchId);
+
+        if (!perfQuery.exec()) {
+            qDebug() << "Erreur lors de la récupération des performances: " << perfQuery.lastError().text();
+            continue;
+        }
+
+        // Tableau des statistiques
+        QWidget *statsWidget = new QWidget();
+        QGridLayout *statsLayout = new QGridLayout(statsWidget);
+
+        // En-têtes du tableau
+        QStringList headers = {"Équipe", "Possession", "Résultat", "Tirs", "Corners", "Cartons Jaunes", "Cartons Rouges"};
+        for (int i = 0; i < headers.size(); ++i) {
+            QLabel *headerLabel = new QLabel(headers[i]);
+            headerLabel->setAlignment(Qt::AlignCenter);
+            QFont font = headerLabel->font();
+            font.setBold(true);
+            headerLabel->setFont(font);
+            statsLayout->addWidget(headerLabel, 0, i);
+        }
+
+        int row = 1;
+        while (perfQuery.next()) {
+            int teamId = perfQuery.value("TEAMID").toInt();
+            QString teamName = perfQuery.value("NAME").toString();
+            double possession = perfQuery.value("POSSESSION").toDouble();
+            QString result = perfQuery.value("RESULT").toString();
+            int numShot = perfQuery.value("NUMSHOT").toInt();
+            int corners = perfQuery.value("CORNERS").toInt();
+            int yellowCards = perfQuery.value("TEAMYELLOWCARDS").toInt();
+            int redCards = perfQuery.value("TEAMREDCARDS").toInt();
+
+            // Ajouter les données à la ligne
+            QLabel *teamLabel = new QLabel(teamName);
+            teamLabel->setAlignment(Qt::AlignCenter);
+            statsLayout->addWidget(teamLabel, row, 0);
+
+            QLabel *possessionLabel = new QLabel(QString::number(possession, 'f', 1) + "%");
+            possessionLabel->setAlignment(Qt::AlignCenter);
+            statsLayout->addWidget(possessionLabel, row, 1);
+
+            QLabel *resultLabel = new QLabel(result);
+            resultLabel->setAlignment(Qt::AlignCenter);
+            if (result == "WIN") {
+                resultLabel->setStyleSheet("color: green; font-weight: bold;");
+            } else if (result == "LOSE") {
+                resultLabel->setStyleSheet("color: red;");
+            } else {
+                resultLabel->setStyleSheet("color: orange;");
+            }
+            statsLayout->addWidget(resultLabel, row, 2);
+
+            QLabel *numShotLabel = new QLabel(QString::number(numShot));
+            numShotLabel->setAlignment(Qt::AlignCenter);
+            statsLayout->addWidget(numShotLabel, row, 3);
+
+            QLabel *cornersLabel = new QLabel(QString::number(corners));
+            cornersLabel->setAlignment(Qt::AlignCenter);
+            statsLayout->addWidget(cornersLabel, row, 4);
+
+            QLabel *yellowCardsLabel = new QLabel(QString::number(yellowCards));
+            yellowCardsLabel->setAlignment(Qt::AlignCenter);
+            statsLayout->addWidget(yellowCardsLabel, row, 5);
+
+            QLabel *redCardsLabel = new QLabel(QString::number(redCards));
+            redCardsLabel->setAlignment(Qt::AlignCenter);
+            statsLayout->addWidget(redCardsLabel, row, 6);
+
+            row++;
+        }
+
+        frameLayout->addWidget(statsWidget);
+
+        // Ajouter le cadre au layout du match
+        matchLayout->addWidget(matchFrame);
+
+        // Ajouter le widget du match au layout de défilement
+        scrollLayout->addWidget(matchWidget);
+    }
+
+    // Ajouter un widget vide extensible à la fin pour pousser tout vers le haut
+    scrollLayout->addStretch();
+
+    // Configurer la zone de défilement
+    scrollArea->setWidget(scrollContent);
+    mainLayout->addWidget(scrollArea);
+
+    // Ajouter un bouton pour fermer la fenêtre
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+    QPushButton *closeButton = new QPushButton("Fermer", matchWindow);
+    closeButton->setMinimumWidth(120);
+    buttonLayout->addStretch();
+    buttonLayout->addWidget(closeButton);
+    buttonLayout->addStretch();
+    mainLayout->addLayout(buttonLayout);
+
+    // Connecter le bouton à la fermeture de la fenêtre
+    connect(closeButton, &QPushButton::clicked, matchWindow, &QDialog::accept);
+
+    // Afficher la fenêtre
+    matchWindow->exec();
+
+    // Nettoyer la mémoire après la fermeture
+    delete matchWindow;
 }

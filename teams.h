@@ -50,6 +50,8 @@ public:
     QString generateTeamsID(const QString &name, const QString &contry, const QString &logo, const int &nbsubscribers, const QString &kit, const int matchesplayed);
     //void displayTeamStats();
     void displayTeamStats(QWidget *statsWidget);
+    //dispal equie form
+    void displayMatchesWithScores();
 
 private slots:
     //    void onCellClicked(int row, int column);
