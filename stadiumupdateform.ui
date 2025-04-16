@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>stadiumupdateform</class>
+ <widget class="QWidget" name="stadiumupdateform">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>935</width>
+    <height>495</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))</string>
+  </property>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>-60</x>
+     <y>-20</y>
+     <width>1011</width>
+     <height>511</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget_background_color:rgb(0, 0, 0);</string>
+   </property>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>30</y>
+      <width>461</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLineEdit" name="stadiumid">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+    background-color: white;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+	border:3px dashed qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border:2px solid  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}</string>
+       </property>
+       <property name="text">
+        <string>ID</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="name">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+    background-color: white;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+	border:3px dashed qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border:2px solid  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}</string>
+       </property>
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="nameER">
+       <property name="styleSheet">
+        <string notr="true">color:rgb(0, 0, 0);</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="adress">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+    background-color: white;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+	border:3px dashed qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border:2px solid  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}</string>
+       </property>
+       <property name="text">
+        <string>Adress</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="adressER">
+       <property name="styleSheet">
+        <string notr="true">color:rgb(170, 0, 0);</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="capacity">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+    background-color: white;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+	border:3px dashed qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border:2px solid  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}</string>
+       </property>
+       <property name="text">
+        <string>Capacity</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="capacityER">
+       <property name="styleSheet">
+        <string notr="true">color:rgb(170, 0, 0);</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="status">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+    background-color: white;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+	border:3px dashed qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border:2px solid  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}</string>
+       </property>
+       <property name="text">
+        <string>Status</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="statusER">
+       <property name="styleSheet">
+        <string notr="true">color:rgb(170, 0, 0);</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>90</y>
+      <width>113</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name :</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>170</y>
+      <width>113</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Adress :</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>260</y>
+      <width>113</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Capacity :</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_4">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>350</y>
+      <width>113</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background_color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Status : </string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="save">
+    <property name="geometry">
+     <rect>
+      <x>771</x>
+      <y>408</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color:qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  
+border-radius:10px;
+color:white;
+}
+QPushButton:hover {
+    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
+                            stop: 0 rgba(0, 255, 254, 255),     
+                            stop: 0.26 rgba(38, 170, 196, 255), 
+                            stop: 0.67 rgba(89, 85, 131, 255),
+                            stop: 1 rgba(0, 238, 255, 255));  
+}</string>
+    </property>
+    <property name="text">
+     <string>Update</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cancel">
+    <property name="geometry">
+     <rect>
+      <x>771</x>
+      <y>452</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color:qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  
+border-radius:10px;
+color:white;
+}
+QPushButton:hover {
+    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
+                            stop: 0 rgba(0, 255, 254, 255),     
+                            stop: 0.26 rgba(38, 170, 196, 255), 
+                            stop: 0.67 rgba(89, 85, 131, 255),
+                            stop: 1 rgba(0, 238, 255, 255));  
+}</string>
+    </property>
+    <property name="text">
+     <string>Cancel</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

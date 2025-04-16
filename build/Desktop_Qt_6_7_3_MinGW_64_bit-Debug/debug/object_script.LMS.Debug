@@ -1,0 +1,14 @@
+debug/Staduimpage.o
+debug/connection.o
+debug/custombutton.o
+debug/customtextinput.o
+debug/homepage.o
+debug/main.o
+debug/mainwindow.o
+debug/stadium.o
+debug/qrc_resources.o
+debug/moc_Staduimpage.o
+debug/moc_custombutton.o
+debug/moc_customtextinput.o
+debug/moc_homepage.o
+debug/moc_mainwindow.o
