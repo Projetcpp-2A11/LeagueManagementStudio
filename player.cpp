@@ -219,7 +219,6 @@ void Player::listPlayers(QTableWidget* table)
 
 
 
-// player.cpp
 
 
 
@@ -259,7 +258,7 @@ bool Player::updatePlayerUsingTeamID(int playerID, const QString& firstName, con
 {
     QSqlQuery query;
 
-    // Update query to include all fields, and filter by PLAYERID (not TEAMID)
+
     query.prepare("UPDATE PLAYERS SET FNAME = :firstName, LNAME = :lastName, POSITION = :position, STATUS = :status, PHONENUM = :phoneNum, TEAMID = :teamID, NUM = :playerNum WHERE PLAYERID = :playerID");
 
     // Bind the values to the query placeholders
@@ -296,7 +295,7 @@ void Player::sortPlayersByName(QTableWidget* table)
         while (query.next()) {
             table->insertRow(row);
 
-            // Display image
+
             QString imagePath = query.value(0).toString();  // IMG
             QLabel* imgLabel = new QLabel();
             QPixmap pix(imagePath);
@@ -318,19 +317,7 @@ void Player::sortPlayersByName(QTableWidget* table)
             row++;
         }
 
-        // Add the "Retour" button in the last row (actions)
-        /*int actionsRow = row;  // This is the last row after all the players are added
-        table->insertRow(actionsRow);  // Insert a row for actions (if not already there)
 
-        QPushButton* retourButton = new QPushButton("Retour");
-        table->setCellWidget(actionsRow, 0, retourButton);  // Add button to the first column of the last row
-
-        // Connect the button's clicked signal to a slot that handles the return action
-        connect(retourButton, &QPushButton::clicked, this, &Player::onRetourButtonClicked);
-
-        for (int col = 0; col < 7; col++) {
-            table->setColumnWidth(col, 120);
-        }*/
     } else {
         qDebug() << "Failed to fetch sorted data: " << query.lastError();
     }

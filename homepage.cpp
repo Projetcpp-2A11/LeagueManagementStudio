@@ -33,12 +33,7 @@ homepage::~homepage()
     delete ui;
 }
 
-void homepage::on_employeeButton_clicked()
-{
-    employeePage * employeepage = new employeePage();
-    employeepage->show();
-    delete this;
-}
+
 void homepage::on_playersButton_clicked()
 {
     playerPage * playerepage = new playerPage();
@@ -46,10 +41,4 @@ void homepage::on_playersButton_clicked()
     delete this;
 }
 
-void homepage::on_matchsButton_clicked()
-{
-    matchPage* matchpage = new matchPage();
-    matchpage->show();
-    delete this;
-}
 
