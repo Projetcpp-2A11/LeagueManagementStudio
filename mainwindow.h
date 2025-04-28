@@ -36,6 +36,8 @@ private slots:
 
     void on_passwordToggleButton_clicked();
 
+    void on_login_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     void startSpeechRecognition();

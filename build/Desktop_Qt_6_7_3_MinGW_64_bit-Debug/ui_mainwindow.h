@@ -38,6 +38,7 @@ public:
     QPushButton *login;
     QLabel *usernameLabel_2;
     QPushButton *passwordToggleButton;
+    QPushButton *login_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -209,6 +210,20 @@ public:
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/textures/textures/visible.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         passwordToggleButton->setIcon(icon2);
+        login_2 = new QPushButton(centralwidget);
+        login_2->setObjectName("login_2");
+        login_2->setGeometry(QRect(950, 520, 111, 61));
+        login_2->setFont(font3);
+        login_2->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 25pt \"Azonix\";\n"
+"\n"
+"background-color: #b60000;\n"
+"border-radius:20px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:black;\n"
+"\n"
+"}"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -237,6 +252,7 @@ public:
         login->setText(QCoreApplication::translate("MainWindow", "Authenticate", nullptr));
         usernameLabel_2->setText(QCoreApplication::translate("MainWindow", "League Management Studio", nullptr));
         passwordToggleButton->setText(QString());
+        login_2->setText(QCoreApplication::translate("MainWindow", "IOT", nullptr));
     } // retranslateUi
 
 };

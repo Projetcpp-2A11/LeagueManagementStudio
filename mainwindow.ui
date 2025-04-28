@@ -360,6 +360,39 @@ background-color:black;
       <normaloff>:/textures/textures/visible.png</normaloff>:/textures/textures/visible.png</iconset>
     </property>
    </widget>
+   <widget class="QPushButton" name="login_2">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>520</y>
+      <width>111</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Azonix</family>
+      <pointsize>25</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+font: 25pt &quot;Azonix&quot;;
+
+background-color: #b60000;
+border-radius:20px;
+}
+QPushButton:hover{
+background-color:black;
+
+}</string>
+    </property>
+    <property name="text">
+     <string>IOT</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -9,6 +9,7 @@
 #include "qvideowidget.h"
 #include "ui_mainwindow.h"
 #include "employeepage.h"
+#include "arduinocontroller.h"
 #include <qtimer.h>
 #include <QProcess>
 #include <QMessageBox>
@@ -217,7 +218,6 @@ void MainWindow::startSpeechRecognition()
 
     process->setArguments(QStringList() << "../../speechRecognition.py");
 
-    // Show "Recording..." message
     QMessageBox *recordingBox = new QMessageBox(this);
     recordingBox->setText("🎤 Recording...");
     recordingBox->setIcon(QMessageBox::Information);
@@ -240,6 +240,9 @@ void MainWindow::startSpeechRecognition()
 
     process->start();
 }
+
+
+
 
 
 void MainWindow::on_vocalRecogButton_clicked()
@@ -292,9 +295,9 @@ employee MainWindow::checkIdExistance(int userID)
 
         return p;
     } else {
-        p.setUserID(-1);  // Mark the user as not found
-        qDebug() << query.lastError().text();  // Log the query error
-        return p;  // Return the employee object with -1
+        p.setUserID(-1);
+        qDebug() << query.lastError().text();
+        return p;
     }
 }
 
@@ -333,5 +336,13 @@ void MainWindow::on_passwordToggleButton_clicked()
         ui->passwordToggleButton->setIcon(QIcon(":/textures/textures/hidden.png"));
     }
     isPasswordVisible = !isPasswordVisible;
+}
+
+
+void MainWindow::on_login_2_clicked()
+{
+    arduinocontroller * ctrl = new arduinocontroller;
+    ctrl->show();
+    this->hide();
 }
 

@@ -1,0 +1,244 @@
+/********************************************************************************
+** Form generated from reading UI file 'arduinocontroller.ui'
+**
+** Created by: Qt User Interface Compiler version 6.7.3
+**
+** WARNING! All changes made in this file will be lost when recompiling UI file!
+********************************************************************************/
+
+#ifndef UI_ARDUINOCONTROLLER_H
+#define UI_ARDUINOCONTROLLER_H
+
+#include <QtCore/QVariant>
+#include <QtGui/QIcon>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableWidget>
+#include <QtWidgets/QWidget>
+
+QT_BEGIN_NAMESPACE
+
+class Ui_arduinocontroller
+{
+public:
+    QLabel *label;
+    QLineEdit *matchIdInput;
+    QPushButton *pushButton;
+    QLabel *label_2;
+    QLabel *label_3;
+    QTabWidget *tabWidget;
+    QWidget *LMSVAR;
+    QPushButton *connectVAR;
+    QWidget *LMSTIMER;
+    QPushButton *connectTimer;
+    QWidget *LMSPENALTY;
+    QTableWidget *tableWidget;
+    QPushButton *connectPenalty;
+
+    void setupUi(QWidget *arduinocontroller)
+    {
+        if (arduinocontroller->objectName().isEmpty())
+            arduinocontroller->setObjectName("arduinocontroller");
+        arduinocontroller->resize(940, 706);
+        arduinocontroller->setStyleSheet(QString::fromUtf8("\n"
+"    background: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  \n"
+"    \n"
+""));
+        label = new QLabel(arduinocontroller);
+        label->setObjectName("label");
+        label->setGeometry(QRect(230, 400, 141, 51));
+        QFont font;
+        font.setFamilies({QString::fromUtf8("Azonix")});
+        font.setPointSize(16);
+        label->setFont(font);
+        label->setStyleSheet(QString::fromUtf8("background:none;\n"
+"color:black;"));
+        matchIdInput = new QLineEdit(arduinocontroller);
+        matchIdInput->setObjectName("matchIdInput");
+        matchIdInput->setGeometry(QRect(350, 410, 151, 31));
+        matchIdInput->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"	border:3px dashed qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border:2px solid  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+""));
+        pushButton = new QPushButton(arduinocontroller);
+        pushButton->setObjectName("pushButton");
+        pushButton->setGeometry(QRect(510, 410, 51, 31));
+        QFont font1;
+        font1.setPointSize(12);
+        pushButton->setFont(font1);
+        pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));;\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"    padding: 10px;\n"
+"	width: 263%\n"
+"	\n"
+"   \n"
+"}\n"
+"\n"
+"QPushButton:selected {\n"
+"    background:qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  \n"
+"\n"
+"    font-weight: bold;\n"
+"	color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background: lightblue;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+""));
+        QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::HelpFaq));
+        pushButton->setIcon(icon);
+        label_2 = new QLabel(arduinocontroller);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(50, 200, 851, 61));
+        label_2->setFont(font);
+        label_2->setStyleSheet(QString::fromUtf8("background:none;\n"
+"color:black;"));
+        label_3 = new QLabel(arduinocontroller);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(260, 260, 411, 61));
+        label_3->setFont(font);
+        label_3->setStyleSheet(QString::fromUtf8("background:none;\n"
+"color:black;"));
+        tabWidget = new QTabWidget(arduinocontroller);
+        tabWidget->setObjectName("tabWidget");
+        tabWidget->setGeometry(QRect(0, 0, 941, 711));
+        tabWidget->setStyleSheet(QString::fromUtf8("QTabBar::tab {\n"
+"    background: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  \n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"    padding: 10px;\n"
+"	width: 263%\n"
+"	\n"
+"   \n"
+"}\n"
+"\n"
+"\n"
+"QTabBar::tab:selected {\n"
+"    background:qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));;\n"
+"    color: white;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QTabBar::tab:hover {\n"
+"    background: lightblue;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+""));
+        LMSVAR = new QWidget();
+        LMSVAR->setObjectName("LMSVAR");
+        connectVAR = new QPushButton(LMSVAR);
+        connectVAR->setObjectName("connectVAR");
+        connectVAR->setGeometry(QRect(30, 20, 151, 51));
+        tabWidget->addTab(LMSVAR, QString());
+        LMSTIMER = new QWidget();
+        LMSTIMER->setObjectName("LMSTIMER");
+        connectTimer = new QPushButton(LMSTIMER);
+        connectTimer->setObjectName("connectTimer");
+        connectTimer->setGeometry(QRect(20, 20, 151, 51));
+        tabWidget->addTab(LMSTIMER, QString());
+        LMSPENALTY = new QWidget();
+        LMSPENALTY->setObjectName("LMSPENALTY");
+        tableWidget = new QTableWidget(LMSPENALTY);
+        if (tableWidget->columnCount() < 3)
+            tableWidget->setColumnCount(3);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        tableWidget->setObjectName("tableWidget");
+        tableWidget->setGeometry(QRect(110, 60, 741, 521));
+        connectPenalty = new QPushButton(LMSPENALTY);
+        connectPenalty->setObjectName("connectPenalty");
+        connectPenalty->setGeometry(QRect(20, 10, 101, 41));
+        tabWidget->addTab(LMSPENALTY, QString());
+
+        retranslateUi(arduinocontroller);
+
+        tabWidget->setCurrentIndex(2);
+
+
+        QMetaObject::connectSlotsByName(arduinocontroller);
+    } // setupUi
+
+    void retranslateUi(QWidget *arduinocontroller)
+    {
+        arduinocontroller->setWindowTitle(QCoreApplication::translate("arduinocontroller", "Form", nullptr));
+        label->setText(QCoreApplication::translate("arduinocontroller", "Match Id", nullptr));
+        pushButton->setText(QString());
+        label_2->setText(QCoreApplication::translate("arduinocontroller", "Please Provide the current match ID to start Monitoring", nullptr));
+        label_3->setText(QCoreApplication::translate("arduinocontroller", "This is a very important step ", nullptr));
+        connectVAR->setText(QCoreApplication::translate("arduinocontroller", "Connect", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(LMSVAR), QCoreApplication::translate("arduinocontroller", "Goal Detection Technology", nullptr));
+        connectTimer->setText(QCoreApplication::translate("arduinocontroller", "Connect", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(LMSTIMER), QCoreApplication::translate("arduinocontroller", "Additional Time Controller", nullptr));
+        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QCoreApplication::translate("arduinocontroller", "Penalty", nullptr));
+        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QCoreApplication::translate("arduinocontroller", "Player ", nullptr));
+        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QCoreApplication::translate("arduinocontroller", "Time", nullptr));
+        connectPenalty->setText(QCoreApplication::translate("arduinocontroller", "Connect", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(LMSPENALTY), QCoreApplication::translate("arduinocontroller", "Player Penalisation System", nullptr));
+    } // retranslateUi
+
+};
+
+namespace Ui {
+    class arduinocontroller: public Ui_arduinocontroller {};
+} // namespace Ui
+
+QT_END_NAMESPACE
+
+#endif // UI_ARDUINOCONTROLLER_H
