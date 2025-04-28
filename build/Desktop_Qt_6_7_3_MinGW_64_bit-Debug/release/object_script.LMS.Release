@@ -12,6 +12,8 @@ release/main.o
 release/mainwindow.o
 release/matchpage.o
 release/teams.o
+release/match.o
+release/uianimationhelper.o
 release/qrc_resources.o
 release/moc_arduino.o
 release/moc_arduinocontroller.o

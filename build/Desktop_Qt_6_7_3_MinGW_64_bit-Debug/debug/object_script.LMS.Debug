@@ -12,6 +12,8 @@ debug/main.o
 debug/mainwindow.o
 debug/matchpage.o
 debug/teams.o
+debug/match.o
+debug/uianimationhelper.o
 debug/qrc_resources.o
 debug/moc_arduino.o
 debug/moc_arduinocontroller.o

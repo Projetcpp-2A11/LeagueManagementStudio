@@ -23,6 +23,8 @@ SOURCES += \
     mainwindow.cpp \
     matchpage.cpp \
     teams.cpp \
+    match.cpp \
+    uianimationhelper.cpp
 
 HEADERS += \
     arduino.h \
@@ -38,6 +40,8 @@ HEADERS += \
     mainwindow.h \
     matchpage.h \
     teams.h \
+    match.h \
+    uianimationhelper.h
 
 FORMS += \
     arduinocontroller.ui \

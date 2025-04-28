@@ -4,6 +4,8 @@
 #include "lmstimer.h"
 #include "lmsvar.h"
 #include <arduino.h>
+#include "match.h"
+#include "uianimationhelper.h"
 
 #include <QWidget>
 
@@ -22,8 +24,9 @@ public:
     void handleVar(QString info);
     void handleTimer(int time);
     void handlePenalty(QString info);
-    int matchID;
+    void intializeUI();
 
+    void updateCountdown();
 private slots:
     void on_pushButton_clicked();
 
@@ -38,12 +41,22 @@ private slots:
 
     void on_connectPenalty_clicked();
 
+    void on_cancelChangesButton_clicked();
+
 protected:
     Ui::arduinocontroller *ui;
     arduino *ard = new arduino();
     LMSVAR * varArd;
     LMSTIMER * timerArd;
     LMSPENALTY * penaltyArd;
+    Match * currentMatch;
+    int matchID;
+private:
+    QTimer* countdownTimer;
+    int secondsLeft;
+    bool isCancelled;
+
+
 
 };
 
