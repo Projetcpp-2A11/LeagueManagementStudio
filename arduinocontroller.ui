@@ -335,9 +335,9 @@ QPushButton:disabled {
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>100</y>
-       <width>351</width>
-       <height>201</height>
+       <y>470</y>
+       <width>381</width>
+       <height>191</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -398,7 +398,7 @@ QPushButton:disabled {
      <widget class="QLabel" name="addTimeNumbers">
       <property name="geometry">
        <rect>
-        <x>151</x>
+        <x>152</x>
         <y>85</y>
         <width>31</width>
         <height>21</height>
@@ -501,6 +501,115 @@ QPushButton:disabled {
         <y>166</y>
         <width>221</width>
         <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>941</width>
+       <height>341</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="team2LogoLabel">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>50</y>
+        <width>111</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="team1LogoLabel">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>50</y>
+        <width>111</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="TeamAName">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>170</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="TeamBName">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>170</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="StadiumName">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>5</y>
+        <width>121</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">

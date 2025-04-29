@@ -14,6 +14,7 @@ debug/matchpage.o
 debug/teams.o
 debug/match.o
 debug/uianimationhelper.o
+debug/stadium.o
 debug/qrc_resources.o
 debug/moc_arduino.o
 debug/moc_arduinocontroller.o
@@ -25,3 +26,4 @@ debug/moc_lmstimer.o
 debug/moc_lmsvar.o
 debug/moc_mainwindow.o
 debug/moc_matchpage.o
+debug/moc_teams.o

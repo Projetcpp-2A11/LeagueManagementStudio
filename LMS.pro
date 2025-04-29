@@ -24,7 +24,8 @@ SOURCES += \
     matchpage.cpp \
     teams.cpp \
     match.cpp \
-    uianimationhelper.cpp
+    uianimationhelper.cpp \
+    stadium.cpp
 
 HEADERS += \
     arduino.h \
@@ -41,7 +42,8 @@ HEADERS += \
     matchpage.h \
     teams.h \
     match.h \
-    uianimationhelper.h
+    uianimationhelper.h \
+    stadium.h
 
 FORMS += \
     arduinocontroller.ui \

@@ -44,6 +44,12 @@ public:
     QLabel *label_7;
     QPushButton *cancelChangesButton;
     QLabel *savingChangedLabel;
+    QGroupBox *groupBox;
+    QLabel *team2LogoLabel;
+    QLabel *team1LogoLabel;
+    QLabel *TeamAName;
+    QLabel *TeamBName;
+    QLabel *StadiumName;
     QWidget *LMSPENALTY;
     QTableWidget *tableWidget;
     QPushButton *connectPenalty;
@@ -248,7 +254,7 @@ public:
         connectionSucessGreenMark->setScaledContents(true);
         notificationGroupBox = new QGroupBox(LMSTIMER);
         notificationGroupBox->setObjectName("notificationGroupBox");
-        notificationGroupBox->setGeometry(QRect(0, 100, 351, 201));
+        notificationGroupBox->setGeometry(QRect(0, 470, 381, 191));
         notificationGroupBox->setStyleSheet(QString::fromUtf8(" background:qlineargradient(spread:pad, \n"
 "                            x1:0, y1:0, x2:1, y2:1, \n"
 "                            stop:0 rgba(0, 213, 246, 255), \n"
@@ -273,7 +279,7 @@ public:
 ""));
         addTimeNumbers = new QLabel(notificationGroupBox);
         addTimeNumbers->setObjectName("addTimeNumbers");
-        addTimeNumbers->setGeometry(QRect(151, 85, 31, 21));
+        addTimeNumbers->setGeometry(QRect(152, 85, 31, 21));
         QFont font4;
         font4.setPointSize(15);
         font4.setBold(true);
@@ -333,6 +339,35 @@ public:
         savingChangedLabel->setObjectName("savingChangedLabel");
         savingChangedLabel->setGeometry(QRect(110, 166, 221, 21));
         savingChangedLabel->setStyleSheet(QString::fromUtf8("background:none"));
+        groupBox = new QGroupBox(LMSTIMER);
+        groupBox->setObjectName("groupBox");
+        groupBox->setGeometry(QRect(0, 90, 941, 341));
+        team2LogoLabel = new QLabel(groupBox);
+        team2LogoLabel->setObjectName("team2LogoLabel");
+        team2LogoLabel->setGeometry(QRect(170, 50, 111, 101));
+        team2LogoLabel->setStyleSheet(QString::fromUtf8("background:none"));
+        team2LogoLabel->setScaledContents(true);
+        team1LogoLabel = new QLabel(groupBox);
+        team1LogoLabel->setObjectName("team1LogoLabel");
+        team1LogoLabel->setGeometry(QRect(630, 50, 111, 101));
+        team1LogoLabel->setStyleSheet(QString::fromUtf8("background:none"));
+        team1LogoLabel->setScaledContents(true);
+        TeamAName = new QLabel(groupBox);
+        TeamAName->setObjectName("TeamAName");
+        TeamAName->setGeometry(QRect(170, 170, 121, 31));
+        QFont font5;
+        font5.setPointSize(14);
+        TeamAName->setFont(font5);
+        TeamAName->setStyleSheet(QString::fromUtf8("background:none"));
+        TeamBName = new QLabel(groupBox);
+        TeamBName->setObjectName("TeamBName");
+        TeamBName->setGeometry(QRect(650, 170, 121, 31));
+        TeamBName->setFont(font5);
+        TeamBName->setStyleSheet(QString::fromUtf8("background:none"));
+        StadiumName = new QLabel(groupBox);
+        StadiumName->setObjectName("StadiumName");
+        StadiumName->setGeometry(QRect(390, 5, 121, 31));
+        StadiumName->setStyleSheet(QString::fromUtf8("background:none"));
         tabWidget->addTab(LMSTIMER, QString());
         LMSPENALTY = new QWidget();
         LMSPENALTY->setObjectName("LMSPENALTY");
@@ -378,6 +413,12 @@ public:
         label_7->setText(QCoreApplication::translate("arduinocontroller", "minutes of additional time", nullptr));
         cancelChangesButton->setText(QCoreApplication::translate("arduinocontroller", "Cancel", nullptr));
         savingChangedLabel->setText(QString());
+        groupBox->setTitle(QString());
+        team2LogoLabel->setText(QString());
+        team1LogoLabel->setText(QString());
+        TeamAName->setText(QString());
+        TeamBName->setText(QString());
+        StadiumName->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(LMSTIMER), QCoreApplication::translate("arduinocontroller", "Additional Time Controller", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QCoreApplication::translate("arduinocontroller", "Penalty", nullptr));

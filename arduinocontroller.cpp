@@ -1,7 +1,10 @@
 #include "arduinocontroller.h"
 #include "match.h"
+#include "qdir.h"
 #include "qmessagebox.h"
 #include "qtimer.h"
+#include "stadium.h"
+#include "teams.h"
 #include "ui_arduinocontroller.h"
 
 arduinocontroller::arduinocontroller(QWidget *parent)
@@ -39,8 +42,9 @@ void arduinocontroller::on_pushButton_clicked() // check id existance
     Match  * match = Match::findMatchById(matchID);
     if ( match!=nullptr) {
         currentMatch = match;
-        delete match;
         ui->tabWidget->setVisible(true);
+        displayMatchInfo();
+
 
 
     } else {
@@ -49,6 +53,7 @@ void arduinocontroller::on_pushButton_clicked() // check id existance
         QMessageBox::critical(this, "Error", "Match not found");
 
     }
+
 
 
 }
@@ -153,6 +158,7 @@ void arduinocontroller::on_connectTimer_clicked()
 
 
 
+
 }
 }
 
@@ -178,6 +184,45 @@ void arduinocontroller::updateCountdown()
         UiAnimationHelper::fadeOutWidget(ui->notificationGroupBox, 1000);
 
     }
+}
+
+void arduinocontroller::displayMatchInfo()
+{
+    teams tms;
+    Stadium stdm;
+    QString stadiumName;
+
+
+
+    int Team1ID = currentMatch->getTeam1ID();
+    int Team2ID = currentMatch->getTeam2ID();
+    teams teamA = tms.getTeamById(Team1ID);
+    teams teamB = tms.getTeamById(Team2ID);
+    stadiumName = stdm.getStadiumNameById(currentMatch->getStadiumID());
+
+    //
+
+    QString basePath = QDir::currentPath() + "/../../logos/";
+    QPixmap team1Logo(basePath + teamA.getLogo());
+    QPixmap team2Logo(basePath + teamB.getLogo());
+
+    if (!team1Logo.isNull()) {
+        ui->team1LogoLabel->setPixmap(team1Logo.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    } else {
+        qDebug() << "Failed to load logo for Team 1";
+    }
+
+    if (!team2Logo.isNull()) {
+        ui->team2LogoLabel->setPixmap(team2Logo.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    } else {
+        qDebug() << "Failed to load logo for Team 2";
+    }
+
+    ui->TeamAName->setText(teamA.getName());
+    ui->TeamBName->setText(teamB.getName());
+    ui->StadiumName->setText(stadiumName);
+
+
 }
 
 

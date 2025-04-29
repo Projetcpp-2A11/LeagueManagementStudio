@@ -14,6 +14,7 @@ release/matchpage.o
 release/teams.o
 release/match.o
 release/uianimationhelper.o
+release/stadium.o
 release/qrc_resources.o
 release/moc_arduino.o
 release/moc_arduinocontroller.o
@@ -25,3 +26,4 @@ release/moc_lmstimer.o
 release/moc_lmsvar.o
 release/moc_mainwindow.o
 release/moc_matchpage.o
+release/moc_teams.o

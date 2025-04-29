@@ -27,6 +27,7 @@ public:
     void intializeUI();
 
     void updateCountdown();
+    void displayMatchInfo();
 private slots:
     void on_pushButton_clicked();
 
