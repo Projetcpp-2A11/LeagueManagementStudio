@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "arduinocontroller.h"
 #include "homepage.h"
 #include "qbuffer.h"
 #include "ui_mainwindow.h"
@@ -150,5 +151,13 @@ void MainWindow::on_vocalRecogButton_clicked()
         msgBox->hide();
         startSpeechRecognition();
     });
+}
+
+
+void MainWindow::on_login_2_clicked()
+{
+    arduinocontroller * ctrl = new arduinocontroller;
+    ctrl->show();
+    this->hide();
 }
 

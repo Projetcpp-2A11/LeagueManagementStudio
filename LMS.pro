@@ -1,4 +1,4 @@
-QT       += core gui widgets uitools multimedia sql charts printsupport
+QT       += core gui widgets uitools multimedia sql charts printsupport  serialport
 
 greaterThan(QT_MAJOR_VERSION, 4):
 
@@ -9,6 +9,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    arduino.cpp \
+    arduinocontroller.cpp \
     connection.cpp \
     custombutton.cpp \
     customtextinput.cpp \
@@ -16,8 +18,10 @@ SOURCES += \
     employeepage.cpp \
     employeeupdateform.cpp \
     homepage.cpp \
+    lmstimer.cpp \
     main.cpp \
     mainwindow.cpp \
+    match.cpp \
     matchpage.cpp \
     player.cpp \
     playerpage.cpp \
@@ -26,6 +30,8 @@ SOURCES += \
     teams.cpp \
 
 HEADERS += \
+    arduino.h \
+    arduinocontroller.h \
     connection.h \
     custombutton.h \
     customtextinput.h \
@@ -33,7 +39,9 @@ HEADERS += \
     employeepage.h \
     employeeupdateform.h \
     homepage.h \
+    lmstimer.h \
     mainwindow.h \
+    match.h \
     matchpage.h \
     player.h \
     playerpage.h \
@@ -43,6 +51,7 @@ HEADERS += \
 
 
 FORMS += \
+    arduinocontroller.ui \
     employeepage.ui \
     employeeupdateform.ui \
     homepage.ui \

@@ -27,6 +27,8 @@ private slots:
 
     void on_vocalRecogButton_clicked();
 
+    void on_login_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     void startSpeechRecognition();

@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>arduinocontroller</class>
+ <widget class="QWidget" name="arduinocontroller">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>940</width>
+    <height>706</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+background-color: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:0, y2:1, 
+                                stop:0 rgba(6, 6, 6, 255), 
+                                stop:0.41 rgba(56, 50, 52, 255), 
+                                stop:1 rgba(34, 33, 33, 255));;
+
+</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>400</y>
+     <width>141</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Azonix</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:none;
+color:black;</string>
+   </property>
+   <property name="text">
+    <string>Match Id</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="matchIdInput">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>410</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    background-color: white;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+	border:3px dashed qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border:2px solid  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>410</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(0, 213, 246, 255), 
+                            stop:0.18 rgba(100, 100, 138, 255), 
+                            stop:1 rgba(0, 212, 255, 255));;
+    color: white;
+    border: 2px solid black;
+    padding: 10px;
+	width: 263%
+	
+   
+}
+
+QPushButton:selected {
+    background:qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  
+
+    font-weight: bold;
+	color:white;
+}
+
+QPushButton:hover {
+    background: lightblue;
+    color: black;
+}
+
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::HelpFaq"/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>200</y>
+     <width>851</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Azonix</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:none;
+color:black;</string>
+   </property>
+   <property name="text">
+    <string>Please Provide the current match ID to start Monitoring</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>260</y>
+     <width>411</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Azonix</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:none;
+color:black;</string>
+   </property>
+   <property name="text">
+    <string>This is a very important step </string>
+   </property>
+  </widget>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>941</width>
+     <height>711</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTabBar::tab {
+    background: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;  ;  
+    color: white;
+    border: 2px solid black;
+    padding: 10px;
+	width: 263%
+	
+   
+}
+
+
+QTabBar::tab:selected {
+    background:qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(0, 213, 246, 255), 
+                            stop:0.18 rgba(100, 100, 138, 255), 
+                            stop:1 rgba(0, 212, 255, 255));;
+    color: white;
+    font-weight: bold;
+}
+
+QTabBar::tab:hover {
+    background: lightblue;
+    color: black;
+}
+
+background-color: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:0, y2:1, 
+                                stop:0 rgba(6, 6, 6, 255), 
+                                stop:0.41 rgba(56, 50, 52, 255), 
+                                stop:1 rgba(34, 33, 33, 255));;
+</string>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <widget class="QWidget" name="LMSVAR">
+    <attribute name="title">
+     <string>Goal Detection Technology</string>
+    </attribute>
+    <widget class="QPushButton" name="connectVAR">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Connect</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="LMSTIMER">
+    <attribute name="title">
+     <string>Additional Time Controller</string>
+    </attribute>
+    <widget class="QPushButton" name="connectTimer">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */
+    border-radius: 15px;               /* Rounded corners */
+    color: white;                      /* White text */
+    border: none;                      /* No border */
+    padding: 10px 20px;                /* Padding inside the button */
+}
+
+QPushButton:hover {
+    background-color:  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(0, 213, 246, 255), 
+                            stop:0.18 rgba(100, 100, 138, 255), 
+                            stop:1 rgba(0, 212, 255, 255));
+	color:white;
+border:2px solid black;
+}
+
+QPushButton[selected=&quot;true&quot;] {
+    background-color: blue;            /* Blue background when selected */
+}
+
+QPushButton:disabled {
+    background-color: qlineargradient(
+    x1:1, y1:0, x2:0, y2:1,
+    stop:0 rgba(38, 39, 39, 255),
+    stop:0.26 rgba(8, 4, 4, 255),
+    stop:0.67 rgba(108, 105, 139, 255),
+    stop:1 rgba(106, 109, 110, 255)
+);;
+
+    color: white;
+    border: 2px solid black;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Connect</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="connectionSucessGreenMark">
+     <property name="geometry">
+      <rect>
+       <x>187</x>
+       <y>28</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:none;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="resources.qrc">:/textures/textures/greenCheckIcon.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="notificationGroupBox">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>470</y>
+       <width>381</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> background:qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(0, 213, 246, 255), 
+                            stop:0.18 rgba(100, 100, 138, 255), 
+                            stop:1 rgba(0, 212, 255, 255));;</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>73</x>
+        <y>0</y>
+        <width>201</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Impact</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none
+</string>
+      </property>
+      <property name="text">
+       <string>New Arduino Notification</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>75</y>
+        <width>141</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none
+</string>
+      </property>
+      <property name="text">
+       <string>The Referee Has added</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="addTimeNumbers">
+      <property name="geometry">
+       <rect>
+        <x>152</x>
+        <y>85</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none;
+color:red</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>85</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none
+</string>
+      </property>
+      <property name="text">
+       <string>minutes of additional time</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cancelChangesButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(255, 0, 0, 255), 
+                            stop:0.41 rgba(195, 22, 58, 255), 
+                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */
+    border-radius: 15px;               /* Rounded corners */
+    color: white;                      /* White text */
+    border: none;                      /* No border */
+    padding: 10px 20px;                /* Padding inside the button */
+}
+
+QPushButton:hover {
+    background-color:  qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 rgba(0, 213, 246, 255), 
+                            stop:0.18 rgba(100, 100, 138, 255), 
+                            stop:1 rgba(0, 212, 255, 255));
+	color:white;
+border:2px solid black;
+}
+
+QPushButton[selected=&quot;true&quot;] {
+    background-color: blue;            /* Blue background when selected */
+}
+
+QPushButton:disabled {
+    background-color: qlineargradient(
+    x1:1, y1:0, x2:0, y2:1,
+    stop:0 rgba(38, 39, 39, 255),
+    stop:0.26 rgba(8, 4, 4, 255),
+    stop:0.67 rgba(108, 105, 139, 255),
+    stop:1 rgba(106, 109, 110, 255)
+);;
+
+    color: white;
+    border: 2px solid black;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="savingChangedLabel">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>166</y>
+        <width>221</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>941</width>
+       <height>341</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="team2LogoLabel">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>50</y>
+        <width>111</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="team1LogoLabel">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>50</y>
+        <width>111</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="TeamAName">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>170</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="TeamBName">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>170</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="StadiumName">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>5</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:none</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="LMSPENALTY">
+    <attribute name="title">
+     <string>Player Penalisation System</string>
+    </attribute>
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>60</y>
+       <width>741</width>
+       <height>521</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>Penalty</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Player </string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Time</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QPushButton" name="connectPenalty">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Connect</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
