@@ -325,7 +325,7 @@ QPushButton:disabled {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="resources.qrc">:/textures/textures/greenCheckIcon.png</pixmap>
+      <pixmap>:/textures/textures/greenCheckIcon.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -666,8 +666,6 @@ QPushButton:disabled {
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

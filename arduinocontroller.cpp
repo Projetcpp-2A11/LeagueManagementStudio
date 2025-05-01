@@ -108,9 +108,7 @@ void arduinocontroller::intializeUI()
 
 void arduinocontroller::on_resetTimerBtn_clicked()
 {
-    arduinocontroller * ctrl = new arduinocontroller;
-    ctrl->show();
-    this->hide();
+
 }
 
 

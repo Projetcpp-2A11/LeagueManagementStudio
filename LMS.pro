@@ -28,6 +28,7 @@ SOURCES += \
     playerperformance.cpp \
     playerupdateform.cpp \
     teams.cpp \
+    uianimationhelper.cpp
 
 HEADERS += \
     arduino.h \
@@ -48,6 +49,7 @@ HEADERS += \
     playerperformance.h \
     playerupdateform.h \
     teams.h \
+    uianimationhelper.h
 
 
 FORMS += \
