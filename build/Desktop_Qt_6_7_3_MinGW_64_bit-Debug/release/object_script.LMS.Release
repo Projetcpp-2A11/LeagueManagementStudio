@@ -15,6 +15,10 @@ release/teams.o
 release/match.o
 release/uianimationhelper.o
 release/stadium.o
+release/player.o
+release/playerpage.o
+release/playerperformance.o
+release/playerupdateform.o
 release/qrc_resources.o
 release/moc_arduino.o
 release/moc_arduinocontroller.o
@@ -27,3 +31,6 @@ release/moc_lmsvar.o
 release/moc_mainwindow.o
 release/moc_matchpage.o
 release/moc_teams.o
+release/moc_playerpage.o
+release/moc_playerperformance.o
+release/moc_playerupdateform.o

@@ -13,12 +13,10 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGroupBox>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -34,6 +32,17 @@ public:
     QTabWidget *tabWidget;
     QWidget *LMSVAR;
     QPushButton *connectVAR;
+    QGroupBox *groupBox;
+    QLabel *team2LogoLabel;
+    QLabel *team1LogoLabel;
+    QLabel *TeamAName;
+    QLabel *TeamBName;
+    QLabel *StadiumName;
+    QLabel *TeamBScoreLabel;
+    QLabel *TeamAScoreLabel;
+    QPushButton *ConfigureMatchBtn;
+    QPushButton *GoLiveBtn;
+    QPushButton *EndMatchBtn;
     QWidget *LMSTIMER;
     QPushButton *connectTimer;
     QLabel *connectionSucessGreenMark;
@@ -44,15 +53,20 @@ public:
     QLabel *label_7;
     QPushButton *cancelChangesButton;
     QLabel *savingChangedLabel;
-    QGroupBox *groupBox;
-    QLabel *team2LogoLabel;
-    QLabel *team1LogoLabel;
-    QLabel *TeamAName;
-    QLabel *TeamBName;
-    QLabel *StadiumName;
     QWidget *LMSPENALTY;
-    QTableWidget *tableWidget;
     QPushButton *connectPenalty;
+    QLabel *PenaltyConnctSuccessGreenMark;
+    QGroupBox *PenaltynotificationGroupBox;
+    QLabel *label_6;
+    QLabel *addTimeNumbers_2;
+    QPushButton *cancelChangesButton_2;
+    QLabel *errorLabel;
+    QLineEdit *playerNumInput;
+    QLabel *cardTypeLabel;
+    QLabel *cardColorLabel;
+    QLabel *label_8;
+    QPushButton *validatePlayerNum;
+    QLabel *sucessMessage;
 
     void setupUi(QWidget *arduinocontroller)
     {
@@ -200,6 +214,50 @@ public:
         connectVAR = new QPushButton(LMSVAR);
         connectVAR->setObjectName("connectVAR");
         connectVAR->setGeometry(QRect(30, 20, 151, 51));
+        groupBox = new QGroupBox(LMSVAR);
+        groupBox->setObjectName("groupBox");
+        groupBox->setGeometry(QRect(0, 110, 941, 341));
+        team2LogoLabel = new QLabel(groupBox);
+        team2LogoLabel->setObjectName("team2LogoLabel");
+        team2LogoLabel->setGeometry(QRect(170, 50, 111, 101));
+        team2LogoLabel->setStyleSheet(QString::fromUtf8("background:none"));
+        team2LogoLabel->setScaledContents(true);
+        team1LogoLabel = new QLabel(groupBox);
+        team1LogoLabel->setObjectName("team1LogoLabel");
+        team1LogoLabel->setGeometry(QRect(630, 50, 111, 101));
+        team1LogoLabel->setStyleSheet(QString::fromUtf8("background:none"));
+        team1LogoLabel->setScaledContents(true);
+        TeamAName = new QLabel(groupBox);
+        TeamAName->setObjectName("TeamAName");
+        TeamAName->setGeometry(QRect(170, 170, 121, 31));
+        QFont font2;
+        font2.setPointSize(14);
+        TeamAName->setFont(font2);
+        TeamAName->setStyleSheet(QString::fromUtf8("background:none"));
+        TeamBName = new QLabel(groupBox);
+        TeamBName->setObjectName("TeamBName");
+        TeamBName->setGeometry(QRect(650, 170, 121, 31));
+        TeamBName->setFont(font2);
+        TeamBName->setStyleSheet(QString::fromUtf8("background:none"));
+        StadiumName = new QLabel(groupBox);
+        StadiumName->setObjectName("StadiumName");
+        StadiumName->setGeometry(QRect(390, 5, 121, 31));
+        StadiumName->setStyleSheet(QString::fromUtf8("background:none"));
+        TeamBScoreLabel = new QLabel(groupBox);
+        TeamBScoreLabel->setObjectName("TeamBScoreLabel");
+        TeamBScoreLabel->setGeometry(QRect(530, 90, 49, 16));
+        TeamAScoreLabel = new QLabel(groupBox);
+        TeamAScoreLabel->setObjectName("TeamAScoreLabel");
+        TeamAScoreLabel->setGeometry(QRect(310, 90, 49, 16));
+        ConfigureMatchBtn = new QPushButton(LMSVAR);
+        ConfigureMatchBtn->setObjectName("ConfigureMatchBtn");
+        ConfigureMatchBtn->setGeometry(QRect(210, 20, 151, 51));
+        GoLiveBtn = new QPushButton(LMSVAR);
+        GoLiveBtn->setObjectName("GoLiveBtn");
+        GoLiveBtn->setGeometry(QRect(380, 20, 151, 51));
+        EndMatchBtn = new QPushButton(LMSVAR);
+        EndMatchBtn->setObjectName("EndMatchBtn");
+        EndMatchBtn->setGeometry(QRect(770, 470, 151, 51));
         tabWidget->addTab(LMSVAR, QString());
         LMSTIMER = new QWidget();
         LMSTIMER->setObjectName("LMSTIMER");
@@ -263,33 +321,33 @@ public:
         label_4 = new QLabel(notificationGroupBox);
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(73, 0, 201, 71));
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("Impact")});
-        font2.setPointSize(14);
-        label_4->setFont(font2);
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("Impact")});
+        font3.setPointSize(14);
+        label_4->setFont(font3);
         label_4->setStyleSheet(QString::fromUtf8("background:none\n"
 ""));
         label_5 = new QLabel(notificationGroupBox);
         label_5->setObjectName("label_5");
         label_5->setGeometry(QRect(10, 75, 141, 41));
-        QFont font3;
-        font3.setPointSize(10);
-        label_5->setFont(font3);
+        QFont font4;
+        font4.setPointSize(10);
+        label_5->setFont(font4);
         label_5->setStyleSheet(QString::fromUtf8("background:none\n"
 ""));
         addTimeNumbers = new QLabel(notificationGroupBox);
         addTimeNumbers->setObjectName("addTimeNumbers");
         addTimeNumbers->setGeometry(QRect(152, 85, 31, 21));
-        QFont font4;
-        font4.setPointSize(15);
-        font4.setBold(true);
-        addTimeNumbers->setFont(font4);
+        QFont font5;
+        font5.setPointSize(15);
+        font5.setBold(true);
+        addTimeNumbers->setFont(font5);
         addTimeNumbers->setStyleSheet(QString::fromUtf8("background:none;\n"
 "color:red"));
         label_7 = new QLabel(notificationGroupBox);
         label_7->setObjectName("label_7");
         label_7->setGeometry(QRect(190, 85, 161, 21));
-        label_7->setFont(font3);
+        label_7->setFont(font4);
         label_7->setStyleSheet(QString::fromUtf8("background:none\n"
 ""));
         cancelChangesButton = new QPushButton(notificationGroupBox);
@@ -339,57 +397,226 @@ public:
         savingChangedLabel->setObjectName("savingChangedLabel");
         savingChangedLabel->setGeometry(QRect(110, 166, 221, 21));
         savingChangedLabel->setStyleSheet(QString::fromUtf8("background:none"));
-        groupBox = new QGroupBox(LMSTIMER);
-        groupBox->setObjectName("groupBox");
-        groupBox->setGeometry(QRect(0, 90, 941, 341));
-        team2LogoLabel = new QLabel(groupBox);
-        team2LogoLabel->setObjectName("team2LogoLabel");
-        team2LogoLabel->setGeometry(QRect(170, 50, 111, 101));
-        team2LogoLabel->setStyleSheet(QString::fromUtf8("background:none"));
-        team2LogoLabel->setScaledContents(true);
-        team1LogoLabel = new QLabel(groupBox);
-        team1LogoLabel->setObjectName("team1LogoLabel");
-        team1LogoLabel->setGeometry(QRect(630, 50, 111, 101));
-        team1LogoLabel->setStyleSheet(QString::fromUtf8("background:none"));
-        team1LogoLabel->setScaledContents(true);
-        TeamAName = new QLabel(groupBox);
-        TeamAName->setObjectName("TeamAName");
-        TeamAName->setGeometry(QRect(170, 170, 121, 31));
-        QFont font5;
-        font5.setPointSize(14);
-        TeamAName->setFont(font5);
-        TeamAName->setStyleSheet(QString::fromUtf8("background:none"));
-        TeamBName = new QLabel(groupBox);
-        TeamBName->setObjectName("TeamBName");
-        TeamBName->setGeometry(QRect(650, 170, 121, 31));
-        TeamBName->setFont(font5);
-        TeamBName->setStyleSheet(QString::fromUtf8("background:none"));
-        StadiumName = new QLabel(groupBox);
-        StadiumName->setObjectName("StadiumName");
-        StadiumName->setGeometry(QRect(390, 5, 121, 31));
-        StadiumName->setStyleSheet(QString::fromUtf8("background:none"));
         tabWidget->addTab(LMSTIMER, QString());
         LMSPENALTY = new QWidget();
         LMSPENALTY->setObjectName("LMSPENALTY");
-        tableWidget = new QTableWidget(LMSPENALTY);
-        if (tableWidget->columnCount() < 3)
-            tableWidget->setColumnCount(3);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
-        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
-        tableWidget->setObjectName("tableWidget");
-        tableWidget->setGeometry(QRect(110, 60, 741, 521));
         connectPenalty = new QPushButton(LMSPENALTY);
         connectPenalty->setObjectName("connectPenalty");
-        connectPenalty->setGeometry(QRect(20, 10, 101, 41));
+        connectPenalty->setGeometry(QRect(20, 10, 121, 51));
+        connectPenalty->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */\n"
+"    border-radius: 15px;               /* Rounded corners */\n"
+"    color: white;                      /* White text */\n"
+"    border: none;                      /* No border */\n"
+"    padding: 10px 20px;                /* Padding inside the button */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color:  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));\n"
+"	color:white;\n"
+"border:2px solid black;\n"
+"}\n"
+"\n"
+"QPushBu"
+                        "tton[selected=\"true\"] {\n"
+"    background-color: blue;            /* Blue background when selected */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
+        PenaltyConnctSuccessGreenMark = new QLabel(LMSPENALTY);
+        PenaltyConnctSuccessGreenMark->setObjectName("PenaltyConnctSuccessGreenMark");
+        PenaltyConnctSuccessGreenMark->setGeometry(QRect(160, 20, 41, 41));
+        PenaltyConnctSuccessGreenMark->setStyleSheet(QString::fromUtf8("background:none;"));
+        PenaltyConnctSuccessGreenMark->setPixmap(QPixmap(QString::fromUtf8(":/textures/textures/greenCheckIcon.png")));
+        PenaltyConnctSuccessGreenMark->setScaledContents(true);
+        PenaltynotificationGroupBox = new QGroupBox(LMSPENALTY);
+        PenaltynotificationGroupBox->setObjectName("PenaltynotificationGroupBox");
+        PenaltynotificationGroupBox->setGeometry(QRect(0, 200, 551, 271));
+        PenaltynotificationGroupBox->setStyleSheet(QString::fromUtf8(" background:qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));;"));
+        label_6 = new QLabel(PenaltynotificationGroupBox);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(180, 0, 201, 71));
+        label_6->setFont(font3);
+        label_6->setStyleSheet(QString::fromUtf8("background:none\n"
+""));
+        addTimeNumbers_2 = new QLabel(PenaltynotificationGroupBox);
+        addTimeNumbers_2->setObjectName("addTimeNumbers_2");
+        addTimeNumbers_2->setGeometry(QRect(152, 85, 31, 21));
+        addTimeNumbers_2->setFont(font5);
+        addTimeNumbers_2->setStyleSheet(QString::fromUtf8("background:none;\n"
+"color:red"));
+        cancelChangesButton_2 = new QPushButton(PenaltynotificationGroupBox);
+        cancelChangesButton_2->setObjectName("cancelChangesButton_2");
+        cancelChangesButton_2->setGeometry(QRect(10, 230, 81, 31));
+        cancelChangesButton_2->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */\n"
+"    border-radius: 15px;               /* Rounded corners */\n"
+"    color: white;                      /* White text */\n"
+"    border: none;                      /* No border */\n"
+"    padding: 10px 20px;                /* Padding inside the button */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color:  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));\n"
+"	color:white;\n"
+"border:2px solid black;\n"
+"}\n"
+"\n"
+"QPushBu"
+                        "tton[selected=\"true\"] {\n"
+"    background-color: blue;            /* Blue background when selected */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
+        errorLabel = new QLabel(PenaltynotificationGroupBox);
+        errorLabel->setObjectName("errorLabel");
+        errorLabel->setGeometry(QRect(70, 190, 421, 21));
+        errorLabel->setFont(font2);
+        errorLabel->setStyleSheet(QString::fromUtf8("color:red;\n"
+"background:none"));
+        playerNumInput = new QLineEdit(PenaltynotificationGroupBox);
+        playerNumInput->setObjectName("playerNumInput");
+        playerNumInput->setGeometry(QRect(250, 120, 51, 41));
+        playerNumInput->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: white;\n"
+"    padding: 5px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"}\n"
+"\n"
+"/* Hover effect */\n"
+"QLineEdit:hover {\n"
+"	border:3px dashed qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+"\n"
+"/* Focus effect */\n"
+"QLineEdit:focus {\n"
+"    border:2px solid  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;  ;  ;\n"
+"}\n"
+""));
+        cardTypeLabel = new QLabel(PenaltynotificationGroupBox);
+        cardTypeLabel->setObjectName("cardTypeLabel");
+        cardTypeLabel->setGeometry(QRect(110, 80, 281, 21));
+        cardTypeLabel->setFont(font1);
+        cardTypeLabel->setStyleSheet(QString::fromUtf8("background:none;"));
+        cardColorLabel = new QLabel(PenaltynotificationGroupBox);
+        cardColorLabel->setObjectName("cardColorLabel");
+        cardColorLabel->setGeometry(QRect(400, 70, 21, 41));
+        cardColorLabel->setStyleSheet(QString::fromUtf8("background:yellow;"));
+        label_8 = new QLabel(PenaltynotificationGroupBox);
+        label_8->setObjectName("label_8");
+        label_8->setGeometry(QRect(20, 130, 221, 21));
+        label_8->setFont(font1);
+        label_8->setStyleSheet(QString::fromUtf8("background:none;"));
+        validatePlayerNum = new QPushButton(PenaltynotificationGroupBox);
+        validatePlayerNum->setObjectName("validatePlayerNum");
+        validatePlayerNum->setGeometry(QRect(310, 120, 41, 41));
+        validatePlayerNum->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */\n"
+"    border-radius: 15px;               /* Rounded corners */\n"
+"    color: white;                      /* White text */\n"
+"    border: none;                      /* No border */\n"
+"    padding: 10px 20px;                /* Padding inside the button */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color:  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));\n"
+"	color:white;\n"
+"border:2px solid black;\n"
+"}\n"
+"\n"
+"QPushBu"
+                        "tton[selected=\"true\"] {\n"
+"    background-color: blue;            /* Blue background when selected */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
+        QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::InsertLink));
+        validatePlayerNum->setIcon(icon1);
+        sucessMessage = new QLabel(PenaltynotificationGroupBox);
+        sucessMessage->setObjectName("sucessMessage");
+        sucessMessage->setGeometry(QRect(110, 230, 411, 21));
+        sucessMessage->setFont(font2);
+        sucessMessage->setStyleSheet(QString::fromUtf8("background:none;\n"
+"color:green;\n"
+""));
         tabWidget->addTab(LMSPENALTY, QString());
 
         retranslateUi(arduinocontroller);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(arduinocontroller);
@@ -403,6 +630,17 @@ public:
         label_2->setText(QCoreApplication::translate("arduinocontroller", "Please Provide the current match ID to start Monitoring", nullptr));
         label_3->setText(QCoreApplication::translate("arduinocontroller", "This is a very important step ", nullptr));
         connectVAR->setText(QCoreApplication::translate("arduinocontroller", "Connect", nullptr));
+        groupBox->setTitle(QString());
+        team2LogoLabel->setText(QString());
+        team1LogoLabel->setText(QString());
+        TeamAName->setText(QString());
+        TeamBName->setText(QString());
+        StadiumName->setText(QString());
+        TeamBScoreLabel->setText(QString());
+        TeamAScoreLabel->setText(QString());
+        ConfigureMatchBtn->setText(QCoreApplication::translate("arduinocontroller", "Configure Match", nullptr));
+        GoLiveBtn->setText(QCoreApplication::translate("arduinocontroller", "GO LIVE", nullptr));
+        EndMatchBtn->setText(QCoreApplication::translate("arduinocontroller", "End Match", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(LMSVAR), QCoreApplication::translate("arduinocontroller", "Goal Detection Technology", nullptr));
         connectTimer->setText(QCoreApplication::translate("arduinocontroller", "Connect", nullptr));
         connectionSucessGreenMark->setText(QString());
@@ -413,20 +651,21 @@ public:
         label_7->setText(QCoreApplication::translate("arduinocontroller", "minutes of additional time", nullptr));
         cancelChangesButton->setText(QCoreApplication::translate("arduinocontroller", "Cancel", nullptr));
         savingChangedLabel->setText(QString());
-        groupBox->setTitle(QString());
-        team2LogoLabel->setText(QString());
-        team1LogoLabel->setText(QString());
-        TeamAName->setText(QString());
-        TeamBName->setText(QString());
-        StadiumName->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(LMSTIMER), QCoreApplication::translate("arduinocontroller", "Additional Time Controller", nullptr));
-        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QCoreApplication::translate("arduinocontroller", "Penalty", nullptr));
-        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QCoreApplication::translate("arduinocontroller", "Player ", nullptr));
-        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QCoreApplication::translate("arduinocontroller", "Time", nullptr));
         connectPenalty->setText(QCoreApplication::translate("arduinocontroller", "Connect", nullptr));
+        PenaltyConnctSuccessGreenMark->setText(QString());
+        PenaltynotificationGroupBox->setTitle(QString());
+        label_6->setText(QCoreApplication::translate("arduinocontroller", "New Arduino Notification", nullptr));
+        addTimeNumbers_2->setText(QString());
+        cancelChangesButton_2->setText(QCoreApplication::translate("arduinocontroller", "Cancel", nullptr));
+        errorLabel->setText(QString());
+        playerNumInput->setText(QString());
+        playerNumInput->setPlaceholderText(QCoreApplication::translate("arduinocontroller", "num", nullptr));
+        cardTypeLabel->setText(QCoreApplication::translate("arduinocontroller", "The Referee has signaled a Yellow Card", nullptr));
+        cardColorLabel->setText(QString());
+        label_8->setText(QCoreApplication::translate("arduinocontroller", "Please Enter  the player number", nullptr));
+        validatePlayerNum->setText(QString());
+        sucessMessage->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(LMSPENALTY), QCoreApplication::translate("arduinocontroller", "Player Penalisation System", nullptr));
     } // retranslateUi
 

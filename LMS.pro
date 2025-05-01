@@ -25,7 +25,11 @@ SOURCES += \
     teams.cpp \
     match.cpp \
     uianimationhelper.cpp \
-    stadium.cpp
+    stadium.cpp \
+    player.cpp \
+    playerpage.cpp \
+    playerperformance.cpp \
+    playerupdateform.cpp
 
 HEADERS += \
     arduino.h \
@@ -43,7 +47,11 @@ HEADERS += \
     teams.h \
     match.h \
     uianimationhelper.h \
-    stadium.h
+    stadium.h \
+    player.h \
+    playerpage.h \
+    playerperformance.h \
+    playerupdateform.h
 
 FORMS += \
     arduinocontroller.ui \
@@ -52,6 +60,9 @@ FORMS += \
     homepage.ui \
     mainwindow.ui \
     matchs.ui \
+    playerpage.ui \
+    playerperformance.ui \
+    playerupdateform.ui
 
 
 # Default rules for deployment.

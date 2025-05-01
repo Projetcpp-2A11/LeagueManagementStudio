@@ -1,5 +1,4 @@
 #include "lmspenalty.h"
-#include "ui_arduinocontroller.h"
 
 
 

@@ -106,8 +106,7 @@ void LMSTIMER::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         (void)_t;
         switch (_id) {
         case 0: _t->timerSignal((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        //case 1: _t->extracted(); break;
-        case 2: _t->onRaw((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
+        case 1: _t->onRaw((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

@@ -19,17 +19,11 @@ public:
 
 signals:
     void varSignal(QString payload);
+    void scoresReceived(int teamAScore, int teamBScore);
+
 
 private slots:
-    void onRaw(QByteArray raw) {
-        QString s = QString::fromUtf8(raw).trimmed();
-        if (s == "A")
-            emit varSignal("A");
-
-        if (s=="B")
-            emit varSignal("B");
-
-    }
+    void onRaw(QByteArray raw);
 
 public :
     int begin() {
