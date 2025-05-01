@@ -185,6 +185,27 @@ void Match::updateAdditonalTime(int matchId, int additionalTime)
     }
 }
 
+bool Match::updateMatchScore(int matchID, QString newScore)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE MATCHES SET SCORE = :newScore WHERE MATCHID = :matchID");
+    query.bindValue(":newScore",newScore);
+    query.bindValue(":matchID",matchID);
+
+    if(!query.exec()) {
+        qDebug() << "Failed to update match Score";
+        return false;
+    } else {
+
+        qDebug() << "Successfully updated match score for match" << matchID;
+        return true;
+    }
+
+
+
+
+}
+
 
 void Match::displayTeamGoalStats()
 {

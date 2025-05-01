@@ -53,6 +53,9 @@ private slots:
 
     void on_EndMatchBtn_clicked();
 
+
+    void on_SaveMatchBtn_clicked();
+
 protected:
     Ui::arduinocontroller *ui;
     arduino *ard = new arduino();

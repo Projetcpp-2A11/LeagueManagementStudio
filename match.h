@@ -52,6 +52,8 @@ public:
     static Match * findMatchById(int id);
       void updateAdditonalTime(int matchId , int additionalTime);
 
+    bool updateMatchScore(int matchID, QString newScore);
+
 };
 
 #endif // MATCH_H

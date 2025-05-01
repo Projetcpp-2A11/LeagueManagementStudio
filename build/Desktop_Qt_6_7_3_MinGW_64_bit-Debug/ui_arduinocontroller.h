@@ -35,14 +35,16 @@ public:
     QGroupBox *groupBox;
     QLabel *team2LogoLabel;
     QLabel *team1LogoLabel;
-    QLabel *TeamAName;
     QLabel *TeamBName;
+    QLabel *TeamAName;
     QLabel *StadiumName;
+    QLabel *TeamAScore;
     QLabel *TeamBScoreLabel;
-    QLabel *TeamAScoreLabel;
+    QLabel *label_9;
     QPushButton *ConfigureMatchBtn;
     QPushButton *GoLiveBtn;
     QPushButton *EndMatchBtn;
+    QPushButton *SaveMatchBtn;
     QWidget *LMSTIMER;
     QPushButton *connectTimer;
     QLabel *connectionSucessGreenMark;
@@ -214,6 +216,46 @@ public:
         connectVAR = new QPushButton(LMSVAR);
         connectVAR->setObjectName("connectVAR");
         connectVAR->setGeometry(QRect(30, 20, 151, 51));
+        connectVAR->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */\n"
+"    border-radius: 15px;               /* Rounded corners */\n"
+"    color: white;                      /* White text */\n"
+"    border: none;                      /* No border */\n"
+"    padding: 10px 20px;                /* Padding inside the button */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color:  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));\n"
+"	color:white;\n"
+"border:2px solid black;\n"
+"}\n"
+"\n"
+"QPushBu"
+                        "tton[selected=\"true\"] {\n"
+"    background-color: blue;            /* Blue background when selected */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
         groupBox = new QGroupBox(LMSVAR);
         groupBox->setObjectName("groupBox");
         groupBox->setGeometry(QRect(0, 110, 941, 341));
@@ -227,37 +269,217 @@ public:
         team1LogoLabel->setGeometry(QRect(630, 50, 111, 101));
         team1LogoLabel->setStyleSheet(QString::fromUtf8("background:none"));
         team1LogoLabel->setScaledContents(true);
+        TeamBName = new QLabel(groupBox);
+        TeamBName->setObjectName("TeamBName");
+        TeamBName->setGeometry(QRect(630, 170, 121, 31));
+        QFont font2;
+        font2.setPointSize(14);
+        TeamBName->setFont(font2);
+        TeamBName->setStyleSheet(QString::fromUtf8("background:none"));
         TeamAName = new QLabel(groupBox);
         TeamAName->setObjectName("TeamAName");
         TeamAName->setGeometry(QRect(170, 170, 121, 31));
-        QFont font2;
-        font2.setPointSize(14);
         TeamAName->setFont(font2);
         TeamAName->setStyleSheet(QString::fromUtf8("background:none"));
-        TeamBName = new QLabel(groupBox);
-        TeamBName->setObjectName("TeamBName");
-        TeamBName->setGeometry(QRect(650, 170, 121, 31));
-        TeamBName->setFont(font2);
-        TeamBName->setStyleSheet(QString::fromUtf8("background:none"));
         StadiumName = new QLabel(groupBox);
         StadiumName->setObjectName("StadiumName");
-        StadiumName->setGeometry(QRect(390, 5, 121, 31));
+        StadiumName->setGeometry(QRect(360, 5, 241, 31));
+        QFont font3;
+        font3.setPointSize(20);
+        StadiumName->setFont(font3);
         StadiumName->setStyleSheet(QString::fromUtf8("background:none"));
+        TeamAScore = new QLabel(groupBox);
+        TeamAScore->setObjectName("TeamAScore");
+        TeamAScore->setGeometry(QRect(530, 90, 41, 31));
+        QFont font4;
+        font4.setPointSize(24);
+        TeamAScore->setFont(font4);
+        TeamAScore->setStyleSheet(QString::fromUtf8("background:none"));
         TeamBScoreLabel = new QLabel(groupBox);
         TeamBScoreLabel->setObjectName("TeamBScoreLabel");
-        TeamBScoreLabel->setGeometry(QRect(530, 90, 49, 16));
-        TeamAScoreLabel = new QLabel(groupBox);
-        TeamAScoreLabel->setObjectName("TeamAScoreLabel");
-        TeamAScoreLabel->setGeometry(QRect(310, 90, 49, 16));
+        TeamBScoreLabel->setGeometry(QRect(310, 90, 51, 31));
+        TeamBScoreLabel->setFont(font4);
+        TeamBScoreLabel->setStyleSheet(QString::fromUtf8("background:none"));
+        label_9 = new QLabel(groupBox);
+        label_9->setObjectName("label_9");
+        label_9->setGeometry(QRect(400, 80, 111, 31));
+        QFont font5;
+        font5.setPointSize(72);
+        label_9->setFont(font5);
+        label_9->setStyleSheet(QString::fromUtf8("background:none\n"
+""));
         ConfigureMatchBtn = new QPushButton(LMSVAR);
         ConfigureMatchBtn->setObjectName("ConfigureMatchBtn");
         ConfigureMatchBtn->setGeometry(QRect(210, 20, 151, 51));
+        ConfigureMatchBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */\n"
+"    border-radius: 15px;               /* Rounded corners */\n"
+"    color: white;                      /* White text */\n"
+"    border: none;                      /* No border */\n"
+"    padding: 10px 20px;                /* Padding inside the button */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color:  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));\n"
+"	color:white;\n"
+"border:2px solid black;\n"
+"}\n"
+"\n"
+"QPushBu"
+                        "tton[selected=\"true\"] {\n"
+"    background-color: blue;            /* Blue background when selected */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
         GoLiveBtn = new QPushButton(LMSVAR);
         GoLiveBtn->setObjectName("GoLiveBtn");
         GoLiveBtn->setGeometry(QRect(380, 20, 151, 51));
+        GoLiveBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */\n"
+"    border-radius: 15px;               /* Rounded corners */\n"
+"    color: white;                      /* White text */\n"
+"    border: none;                      /* No border */\n"
+"    padding: 10px 20px;                /* Padding inside the button */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color:  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));\n"
+"	color:white;\n"
+"border:2px solid black;\n"
+"}\n"
+"\n"
+"QPushBu"
+                        "tton[selected=\"true\"] {\n"
+"    background-color: blue;            /* Blue background when selected */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
         EndMatchBtn = new QPushButton(LMSVAR);
         EndMatchBtn->setObjectName("EndMatchBtn");
         EndMatchBtn->setGeometry(QRect(770, 470, 151, 51));
+        EndMatchBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */\n"
+"    border-radius: 15px;               /* Rounded corners */\n"
+"    color: white;                      /* White text */\n"
+"    border: none;                      /* No border */\n"
+"    padding: 10px 20px;                /* Padding inside the button */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color:  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));\n"
+"	color:white;\n"
+"border:2px solid black;\n"
+"}\n"
+"\n"
+"QPushBu"
+                        "tton[selected=\"true\"] {\n"
+"    background-color: blue;            /* Blue background when selected */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
+        SaveMatchBtn = new QPushButton(LMSVAR);
+        SaveMatchBtn->setObjectName("SaveMatchBtn");
+        SaveMatchBtn->setGeometry(QRect(770, 530, 151, 51));
+        SaveMatchBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(255, 0, 0, 255), \n"
+"                            stop:0.41 rgba(195, 22, 58, 255), \n"
+"                            stop:1 rgba(255, 117, 0, 255));;             /* Red background */\n"
+"    border-radius: 15px;               /* Rounded corners */\n"
+"    color: white;                      /* White text */\n"
+"    border: none;                      /* No border */\n"
+"    padding: 10px 20px;                /* Padding inside the button */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color:  qlineargradient(spread:pad, \n"
+"                            x1:0, y1:0, x2:1, y2:1, \n"
+"                            stop:0 rgba(0, 213, 246, 255), \n"
+"                            stop:0.18 rgba(100, 100, 138, 255), \n"
+"                            stop:1 rgba(0, 212, 255, 255));\n"
+"	color:white;\n"
+"border:2px solid black;\n"
+"}\n"
+"\n"
+"QPushBu"
+                        "tton[selected=\"true\"] {\n"
+"    background-color: blue;            /* Blue background when selected */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: qlineargradient(\n"
+"    x1:1, y1:0, x2:0, y2:1,\n"
+"    stop:0 rgba(38, 39, 39, 255),\n"
+"    stop:0.26 rgba(8, 4, 4, 255),\n"
+"    stop:0.67 rgba(108, 105, 139, 255),\n"
+"    stop:1 rgba(106, 109, 110, 255)\n"
+");;\n"
+"\n"
+"    color: white;\n"
+"    border: 2px solid black;\n"
+"}\n"
+""));
         tabWidget->addTab(LMSVAR, QString());
         LMSTIMER = new QWidget();
         LMSTIMER->setObjectName("LMSTIMER");
@@ -321,33 +543,33 @@ public:
         label_4 = new QLabel(notificationGroupBox);
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(73, 0, 201, 71));
-        QFont font3;
-        font3.setFamilies({QString::fromUtf8("Impact")});
-        font3.setPointSize(14);
-        label_4->setFont(font3);
+        QFont font6;
+        font6.setFamilies({QString::fromUtf8("Impact")});
+        font6.setPointSize(14);
+        label_4->setFont(font6);
         label_4->setStyleSheet(QString::fromUtf8("background:none\n"
 ""));
         label_5 = new QLabel(notificationGroupBox);
         label_5->setObjectName("label_5");
         label_5->setGeometry(QRect(10, 75, 141, 41));
-        QFont font4;
-        font4.setPointSize(10);
-        label_5->setFont(font4);
+        QFont font7;
+        font7.setPointSize(10);
+        label_5->setFont(font7);
         label_5->setStyleSheet(QString::fromUtf8("background:none\n"
 ""));
         addTimeNumbers = new QLabel(notificationGroupBox);
         addTimeNumbers->setObjectName("addTimeNumbers");
         addTimeNumbers->setGeometry(QRect(152, 85, 31, 21));
-        QFont font5;
-        font5.setPointSize(15);
-        font5.setBold(true);
-        addTimeNumbers->setFont(font5);
+        QFont font8;
+        font8.setPointSize(15);
+        font8.setBold(true);
+        addTimeNumbers->setFont(font8);
         addTimeNumbers->setStyleSheet(QString::fromUtf8("background:none;\n"
 "color:red"));
         label_7 = new QLabel(notificationGroupBox);
         label_7->setObjectName("label_7");
         label_7->setGeometry(QRect(190, 85, 161, 21));
-        label_7->setFont(font4);
+        label_7->setFont(font7);
         label_7->setStyleSheet(QString::fromUtf8("background:none\n"
 ""));
         cancelChangesButton = new QPushButton(notificationGroupBox);
@@ -460,13 +682,13 @@ public:
         label_6 = new QLabel(PenaltynotificationGroupBox);
         label_6->setObjectName("label_6");
         label_6->setGeometry(QRect(180, 0, 201, 71));
-        label_6->setFont(font3);
+        label_6->setFont(font6);
         label_6->setStyleSheet(QString::fromUtf8("background:none\n"
 ""));
         addTimeNumbers_2 = new QLabel(PenaltynotificationGroupBox);
         addTimeNumbers_2->setObjectName("addTimeNumbers_2");
         addTimeNumbers_2->setGeometry(QRect(152, 85, 31, 21));
-        addTimeNumbers_2->setFont(font5);
+        addTimeNumbers_2->setFont(font8);
         addTimeNumbers_2->setStyleSheet(QString::fromUtf8("background:none;\n"
 "color:red"));
         cancelChangesButton_2 = new QPushButton(PenaltynotificationGroupBox);
@@ -633,14 +855,16 @@ public:
         groupBox->setTitle(QString());
         team2LogoLabel->setText(QString());
         team1LogoLabel->setText(QString());
-        TeamAName->setText(QString());
         TeamBName->setText(QString());
+        TeamAName->setText(QString());
         StadiumName->setText(QString());
-        TeamBScoreLabel->setText(QString());
-        TeamAScoreLabel->setText(QString());
+        TeamAScore->setText(QCoreApplication::translate("arduinocontroller", "0", nullptr));
+        TeamBScoreLabel->setText(QCoreApplication::translate("arduinocontroller", "0", nullptr));
+        label_9->setText(QCoreApplication::translate("arduinocontroller", "-", nullptr));
         ConfigureMatchBtn->setText(QCoreApplication::translate("arduinocontroller", "Configure Match", nullptr));
         GoLiveBtn->setText(QCoreApplication::translate("arduinocontroller", "GO LIVE", nullptr));
         EndMatchBtn->setText(QCoreApplication::translate("arduinocontroller", "End Match", nullptr));
+        SaveMatchBtn->setText(QCoreApplication::translate("arduinocontroller", "Save Match", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(LMSVAR), QCoreApplication::translate("arduinocontroller", "Goal Detection Technology", nullptr));
         connectTimer->setText(QCoreApplication::translate("arduinocontroller", "Connect", nullptr));
         connectionSucessGreenMark->setText(QString());

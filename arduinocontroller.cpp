@@ -114,6 +114,13 @@ void arduinocontroller::intializeUI()
     isCancelled = false;
     ui->savingChangedLabel->setText("");
 
+    ui->ConfigureMatchBtn->setDisabled(true);
+    ui->GoLiveBtn->setDisabled(true);
+    ui->EndMatchBtn->setDisabled(true);
+    ui->SaveMatchBtn->setDisabled(true);
+
+
+
 }
 
 
@@ -145,10 +152,16 @@ void arduinocontroller::on_connectVAR_clicked()
 {
     int rc = varArd->begin();
     if (rc != 0 ) {
-            //error
+        qDebug() << "Var not connected";
     } else {
-        qDebug() << "Var connected";
+        QTimer::singleShot(500, this, [this]() {
+            ui->connectVAR->setDisabled(true);
+            ui->ConfigureMatchBtn->setDisabled(false);
+            ui->GoLiveBtn->setDisabled(false);
+            ui->EndMatchBtn->setDisabled(false);
+            ui->SaveMatchBtn->setDisabled(false);
 
+        });
 
 
     }
@@ -234,8 +247,8 @@ void arduinocontroller::displayMatchInfo()
         qDebug() << "Failed to load logo for Team 2";
     }
 
-    ui->TeamAName->setText(teamA.getName());
-    ui->TeamBName->setText(teamB.getName());
+    ui->TeamBName->setText(teamA.getName());
+    ui->TeamAName->setText(teamB.getName());
     ui->StadiumName->setText(stadiumName);
 
 
@@ -243,8 +256,10 @@ void arduinocontroller::displayMatchInfo()
 
 void arduinocontroller::updateScoreUI(int teamAScore, int teamBScore)
 {
-    ui->TeamBScoreLabel->setText(QString::number(teamAScore));
-    ui->TeamAScoreLabel->setText(QString::number(teamBScore));
+    qDebug() << "[updateScoreUI] Received scores: " << teamAScore << teamBScore;
+
+    ui->TeamAScore->setText(QString::number(teamAScore));
+    ui->TeamBScoreLabel->setText(QString::number(teamBScore));
 }
 
 
@@ -316,8 +331,8 @@ void arduinocontroller::on_validatePlayerNum_clicked()
 
 void arduinocontroller::on_ConfigureMatchBtn_clicked()
 {
-    QString teamA = ui->TeamAName->text().trimmed();
-    QString teamB = ui->TeamBName->text().trimmed();
+    QString teamA = ui->TeamBName->text().trimmed();
+    QString teamB = ui->TeamAName->text().trimmed();
 
     if (teamA.isEmpty() || teamB.isEmpty()) {
         ui->errorLabel->setText("Both team names are required!");
@@ -344,8 +359,27 @@ void arduinocontroller::on_GoLiveBtn_clicked()
 
 void arduinocontroller::on_EndMatchBtn_clicked()
 {
-    varArd->connect();
+    varArd->begin();
     varArd->write_to_arduino("GETSCORES\n");
+
+
+
+}
+
+
+
+
+void arduinocontroller::on_SaveMatchBtn_clicked()
+{
+    QString TeamAScore = ui->TeamAScore->text();
+    QString TeamBScore = ui->TeamBScoreLabel->text();
+
+    QString newScore = TeamAScore+"-"+TeamBScore;
+    if( currentMatch->updateMatchScore(currentMatch->getMatchID(),newScore)) {
+
+        varArd->write_to_arduino("ENDMATCH\n");
+    }
+
 
 }
 
