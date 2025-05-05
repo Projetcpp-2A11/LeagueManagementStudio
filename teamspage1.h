@@ -67,14 +67,13 @@ private:
     void on_cellClicked(int row, int column);
     QMap<QString, QLabel*> playerFaceLabels;
 
-    // Helper methods for statistics
+
     double calculateAverage(const QVector<double>& data);
     double calculateStandardDeviation(const QVector<double>& data);
     QVector<double> extractTeamData(int column); // Extract data from table column
 
     QPushButton* m_showMatchesButton = nullptr;
 
-    // Surcharge de la méthode resizeEvent
     void resizeEvent(QResizeEvent* event) override;
     void displayTeamFormMatches(int teamId);
 };

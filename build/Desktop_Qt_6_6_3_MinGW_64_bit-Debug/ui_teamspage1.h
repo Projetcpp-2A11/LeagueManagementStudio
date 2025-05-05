@@ -40,7 +40,6 @@ public:
     QTableWidget *listTeams;
     QPushButton *refreshButton;
     QComboBox *filtreTeams;
-    QPushButton *TeamType;
     QWidget *tab_2;
     QPushButton *addTeamsButton;
     QLineEdit *teamsName;
@@ -374,31 +373,6 @@ public:
         filtreTeams->addItem(QString());
         filtreTeams->setObjectName("filtreTeams");
         filtreTeams->setGeometry(QRect(470, 67, 201, 31));
-        TeamType = new QPushButton(tab);
-        TeamType->setObjectName("TeamType");
-        TeamType->setGeometry(QRect(410, 560, 221, 61));
-        TeamType->setFont(font2);
-        TeamType->setCursor(QCursor(Qt::PointingHandCursor));
-        TeamType->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"background-color:qlineargradient(spread:pad, \n"
-"                            x1:0, y1:0, x2:1, y2:1, \n"
-"                            stop:0 rgba(255, 0, 0, 255), \n"
-"                            stop:0.41 rgba(195, 22, 58, 255), \n"
-"                            stop:1 rgba(255, 117, 0, 255));;  ;  \n"
-"border-radius:10px;\n"
-"color:white;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, \n"
-"                            stop: 0 rgba(0, 255, 254, 255),     \n"
-"                            stop: 0.26 rgba(38, 170, 196, 255), \n"
-"                            stop: 0.67 rgba(89, 85, 131, 255),\n"
-"                            stop: 1 rgba(0, 238, 255, 255));  ; \n"
-"}"));
-        QIcon icon5;
-        icon5.addFile(QString::fromUtf8("textures/addIcon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        TeamType->setIcon(icon5);
-        TeamType->setIconSize(QSize(50, 50));
         tabWidgetTeams->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName("tab_2");
@@ -423,6 +397,8 @@ public:
 "                            stop: 0.67 rgba(89, 85, 131, 255),\n"
 "                            stop: 1 rgba(0, 238, 255, 255));  ; \n"
 "}"));
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8("textures/addIcon.png"), QSize(), QIcon::Normal, QIcon::Off);
         addTeamsButton->setIcon(icon5);
         addTeamsButton->setIconSize(QSize(50, 50));
         teamsName = new QLineEdit(tab_2);
@@ -771,7 +747,6 @@ public:
         filtreTeams->setItemText(6, QCoreApplication::translate("teamsPage", "Trie par Num Fans decroissente", nullptr));
         filtreTeams->setItemText(7, QCoreApplication::translate("teamsPage", "Trie par id croissate", nullptr));
 
-        TeamType->setText(QCoreApplication::translate("teamsPage", "Team Type", nullptr));
         tabWidgetTeams->setTabText(tabWidgetTeams->indexOf(tab), QCoreApplication::translate("teamsPage", "Teams List", nullptr));
         addTeamsButton->setText(QCoreApplication::translate("teamsPage", "Add Team", nullptr));
         teamsName->setText(QString());

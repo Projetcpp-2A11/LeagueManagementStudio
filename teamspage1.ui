@@ -513,55 +513,6 @@ QPushButton:hover {
          </property>
         </item>
        </widget>
-       <widget class="QPushButton" name="TeamType">
-        <property name="geometry">
-         <rect>
-          <x>410</x>
-          <y>560</y>
-          <width>221</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-border-radius:10px;
-color:white;
-}
-QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  ; 
-}</string>
-        </property>
-        <property name="text">
-         <string>Team Type</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>textures/addIcon.png</normaloff>textures/addIcon.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>50</width>
-          <height>50</height>
-         </size>
-        </property>
-       </widget>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
