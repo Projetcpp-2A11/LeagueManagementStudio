@@ -36,7 +36,6 @@ public:
 
     QPair<int, int> getTeamWinStats(int teamId);
     QString recommendBestTeam(const QList<int> &teamIds);
-    void recommendAndDisplayBestTeam();
 
 
 private slots:
@@ -67,11 +66,10 @@ private slots:
 
 
 
+    void on_recommend_2_clicked();  // déjà présent
+    void recommendAndDisplayBestTeam();  // déjà présent
+    void showRecommendationDialog(const QList<QMap<QString, QVariant>> &statsList, const QString &bestTeamName);
 
-    void on_recommend_clicked();
-          // Supposée pour obtenir tous les ID d'équipes
-
-    void on_recommend_2_clicked();
 
 
 

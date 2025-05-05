@@ -615,7 +615,7 @@ void PartnerPage::on_deletepartner_clicked()
     if (partner.deleteSponsorship(partnerId, teamId)) {
         QMessageBox::information(this, "Succès", "Sponsorship supprimé.");
         on_refrechebutton_clicked();
-         // Mettre à jour l'affichage des sponsors si nécessaire
+            // Mettre à jour l'affichage des sponsors si nécessaire
     } else {
         QMessageBox::critical(this, "Erreur", "Échec de la suppression.");
     }
@@ -707,144 +707,8 @@ Partner PartnerPage::getPartnerById(int partnerId)
 
     return Partner();  // Retourner un objet Partner vide si l'ID n'a pas été trouvé
 }
-/*
-QVector<bool> PartnerPage::getTeamMatchResults(int teamId)
-{
-    QVector<bool> results;
-    QSqlQuery query;
-    query.prepare("SELECT TEAMID, TEAM2ID, SCORE FROM MATCHES WHERE TEAMID = :id OR TEAM2ID = :id ORDER BY MATCHDATE DESC");
-    query.bindValue(":id", teamId);
-
-    if (query.exec()) {
-        while (query.next()) {
-            int team1 = query.value(0).toInt();
-            int team2 = query.value(1).toInt();
-            QString score = query.value(2).toString();
-
-            int score1 = score.split("-").value(0).toInt();
-            int score2 = score.split("-").value(1).toInt();
-
-            if ((team1 == teamId && score1 > score2) || (team2 == teamId && score2 > score1)) {
-                results.append(true);  // Win
-            } else {
-                results.append(false); // Loss or draw
-            }
-        }
-    }
-
-    return results;
-}*/
-
-/*
-int PartnerPage::calculateRecommendationScore(const QVector<bool>& results)
-{
-    int totalWins = 0;
-    int streakWins = 0;
-
-    for (bool result : results) {
-        if (result)
-            totalWins++;
-    }
-
-    // Calcul des victoires consécutives récentes (au début de la liste)
-    for (bool result : results) {
-        if (result)
-            streakWins++;
-        else
-            break;
-    }
-
-    // Ponderation : 70% sur les victoires récentes, 30% sur le total
-    return (0.7 * streakWins) + (0.3 * totalWins);
-}
-/*
-void PartnerPage::showTeamRatings()
-{
-    QVector<int> allTeamIds = getAllTeamIds();  // Assure-toi que cette fonction est bien définie
-    QVector<QPair<QString, int>> teamScores;    // Pour stocker nom et score
-
-    for (int teamId : allTeamIds) {
-        QVector<bool> results = getMatchResultsForTeam(teamId);  // Doit retourner une liste de bool (victoires)
-        int score = calculateRecommendationScore(results);       // Calcule score personnalisé
-        QString teamName = getTeamNameById(teamId);              // Nom de l'équipe
-
-        teamScores.append(qMakePair(teamName, score));
-    }
-
-    // Trier les équipes par score décroissant
-    std::sort(teamScores.begin(), teamScores.end(), [](const QPair<QString, int> &a, const QPair<QString, int> &b) {
-        return a.second > b.second;
-    });
-
-    // Construire le message à afficher
-    QString ratingInfo = "Classement des équipes (basé sur performance récente) :\n\n";
-    for (const auto& pair : teamScores) {
-        ratingInfo += QString("• %1 : %2\n").arg(pair.first).arg(pair.second);
-    }
-
-    // Afficher dans une boîte d'information
-    QMessageBox::information(this, "Score de recommandation des équipes", ratingInfo);
-}*/
-/*
-void PartnerPage::showTeamRatings()
-{
-    QVector<int> allTeamIds = getAllTeamIds();  // Assure-toi que cette fonction est bien définie
-    QVector<QPair<QString, int>> teamScores;    // Pour stocker nom et score
-
-    for (int teamId : allTeamIds) {
-        QVector<bool> results = getMatchResultsForTeam(teamId);  // Doit retourner une liste de bool (victoires)
-        int score = calculateRecommendationScore(results);       // Calcule score personnalisé
-        QString teamName = getTeamNameById(teamId);              // Nom de l'équipe
-
-        teamScores.append(qMakePair(teamName, score));
-    }
-
-    // Trier les équipes par score décroissant
-    std::sort(teamScores.begin(), teamScores.end(), [](const QPair<QString, int> &a, const QPair<QString, int> &b) {
-        return a.second > b.second;
-    });
-
-    // Construire le message à afficher
-    QString ratingInfo = "Classement des équipes (basé sur performance récente) :\n\n";
-    for (const auto& pair : teamScores) {
-        ratingInfo += QString("• %1 : %2\n").arg(pair.first).arg(pair.second);
-    }
-
-    // Afficher dans une boîte d'information
-    QMessageBox::information(this, "Score de recommandation des équipes", ratingInfo);
-}
-*/
-/*
-QString PartnerPage::recommendBestTeam(const QList<int>& teamIds)
-{
-    QString bestTeam;
-    int bestScore = -1;
-
-    for (int id : teamIds) {
-        QVector<bool> results = getTeamMatchResults(id);
-        int score = calculateRecommendationScore(results);
-
-        if (score > bestScore) {
-            bestScore = score;
-            bestTeam = getTeamNameById(id); // supposez que cette fonction existe
-        }
-    }
-
-    return bestTeam;
-}
-
-*/
 
 
-
-void PartnerPage::on_recommend_clicked()
-{/*
-    QList<int> teamIds = getAllTeamIds(); // supposez que cette fonction existe
-    QString recommendedTeam = recommendBestTeam(teamIds);
-
-    QMessageBox::information(this, "Recommandation", "L'équipe recommandée est : " + recommendedTeam);
-***********************************/
-}
 
 QString PartnerPage::getTeamNameById(int teamId)
 {
@@ -1057,4 +921,3 @@ QPair<int, int> PartnerPage::getTeamWinStats(int teamId)
 
     return qMakePair(totalWins, consecutiveWins);
 }
-

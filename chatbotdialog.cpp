@@ -19,7 +19,7 @@
 ChatbotDialog::ChatbotDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle("ChatGPT Assistant");
+    setWindowTitle("FlamBot");
     setStyleSheet("background-color: #FFFFFF;");
 
     Connection* connection = new Connection();

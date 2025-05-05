@@ -915,43 +915,7 @@ QPushButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset theme="QIcon::ThemeIcon::DocumentNew"/>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btnAfficherScores">
-        <property name="geometry">
-         <rect>
-          <x>380</x>
-          <y>380</y>
-          <width>41</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-
-}
-QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  ; 
-}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset theme="QIcon::ThemeIcon::InsertImage"/>
+         <iconset theme="QIcon::ThemeIcon::DialogError"/>
         </property>
        </widget>
       </widget>

@@ -50,8 +50,9 @@ QString Chatbot::getAnswer(const QString &question) {
     if (question.contains("match", Qt::CaseInsensitive)) {
         QString queryStr = "SELECT T1.NAME AS TEAM1_NAME, T2.NAME AS TEAM2_NAME, M.MATCHDATE "
                            "FROM MATCHES M "
-                           "JOIN TEAMS T1 ON M.TEAM1ID = T1.TEAMID "
+                           "JOIN TEAMS T1 ON M.TEAMID = T1.TEAMID "
                            "JOIN TEAMS T2 ON M.TEAM2ID = T2.TEAMID";
+
 
         bool hasCondition = false;
 
@@ -92,11 +93,14 @@ QString Chatbot::getAnswer(const QString &question) {
     else if (question.contains("score", Qt::CaseInsensitive)) {
         QString queryStr = "SELECT T1.NAME AS TEAM1_NAME, T2.NAME AS TEAM2_NAME, M.SCORE "
                            "FROM MATCHES M "
-                           "JOIN TEAMS T1 ON M.TEAM1ID = T1.TEAMID "
+                           "JOIN TEAMS T1 ON M.TEAMID = T1.TEAMID "
                            "JOIN TEAMS T2 ON M.TEAM2ID = T2.TEAMID";
+
+
         if (!teamFilter.isEmpty()) {
             queryStr += " WHERE T1.NAME = :team OR T2.NAME = :team";
         }
+
 
         query.prepare(queryStr);
         if (!teamFilter.isEmpty())
@@ -191,7 +195,36 @@ QString Chatbot::getAnswer(const QString &question) {
         }
     }
 
-    // ------------------ STADES -----------------
+    // ------------------ STADES ------------------
+    else if (question.contains("stade", Qt::CaseInsensitive)) {
+        QString queryStr = "SELECT NAME FROM STADIUM";
+
+        if (!stadiumFilter.isEmpty()) {
+            queryStr += " WHERE UPPER(NAME) LIKE UPPER(:stadium)";
+        }
+
+        query.prepare(queryStr);
+
+        if (!stadiumFilter.isEmpty()) {
+            query.bindValue(":stadium", "%" + stadiumFilter + "%");
+        }
+
+        if (query.exec()) {
+            answer = "Liste des stades :\n";
+            bool found = false;
+            while (query.next()) {
+                found = true;
+                answer += "- " + query.value("NAME").toString() + "\n";
+            }
+
+            if (!found) {
+                answer = "Aucun stade trouvé correspondant à ce nom.";
+            }
+        } else {
+            answer = "Erreur DB (stades) : " + query.lastError().text();
+        }
+    }
+
     // ------------------ AUTRES QUESTIONS ------------------
     else {
         answer = handleGenericQuestions(question);
