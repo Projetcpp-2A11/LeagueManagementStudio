@@ -274,7 +274,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         listTeams->setHorizontalHeaderItem(7, __qtablewidgetitem7);
         listTeams->setObjectName("listTeams");
-        listTeams->setGeometry(QRect(20, 140, 881, 401));
+        listTeams->setGeometry(QRect(10, 140, 911, 401));
         listTeams->setStyleSheet(QString::fromUtf8("QTableWidget {\n"
 "    background-color: #ecf0f1;\n"
 "    border: 4px solid #2980b9; \n"

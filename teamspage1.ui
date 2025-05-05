@@ -310,9 +310,9 @@ QPushButton:hover{
        <widget class="QTableWidget" name="listTeams">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>140</y>
-          <width>881</width>
+          <width>911</width>
           <height>401</height>
          </rect>
         </property>

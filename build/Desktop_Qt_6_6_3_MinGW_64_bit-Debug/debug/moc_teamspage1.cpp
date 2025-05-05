@@ -8,6 +8,30 @@
 
 #include "../../../teamspage1.h"
 #include <QtGui/qtextcursor.h>
+#include <QtGui/qscreen.h>
+#include <QtCharts/qlineseries.h>
+#include <QtCharts/qabstractbarseries.h>
+#include <QtCharts/qvbarmodelmapper.h>
+#include <QtCharts/qboxplotseries.h>
+#include <QtCharts/qcandlestickseries.h>
+#include <QtCore/qabstractitemmodel.h>
+#include <QtCharts/qpieseries.h>
+#include <QtCore/qabstractitemmodel.h>
+#include <QtCharts/qboxplotseries.h>
+#include <QtCore/qabstractitemmodel.h>
+#include <QtCharts/qpieseries.h>
+#include <QtCharts/qpieseries.h>
+#include <QtCore/qabstractitemmodel.h>
+#include <QtCharts/qxyseries.h>
+#include <QtCharts/qxyseries.h>
+#include <QtCore/qabstractitemmodel.h>
+#include <QtCore/qabstractitemmodel.h>
+#include <QtCharts/qboxplotseries.h>
+#include <QtCore/qabstractitemmodel.h>
+#include <QtCharts/qpieseries.h>
+#include <QtCore/qabstractitemmodel.h>
+#include <QtCharts/qxyseries.h>
+#include <QtCore/qabstractitemmodel.h>
 #include <QtCore/qmetatype.h>
 
 #if __has_include(<QtCore/qtmochelpers.h>)
@@ -56,8 +80,8 @@ constexpr auto qt_meta_stringdata_CLASSteamsPageENDCLASS = QtMocHelpers::stringD
     "on_filtreTeams_currentIndexChanged",
     "index",
     "on_exportListButton_clicked",
-    "on_prevPageTable_clicked",
-    "on_TeamType_clicked"
+    "on_TeamType_clicked",
+    "on_prevPageTable_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSteamsPageENDCLASS_t {
@@ -79,8 +103,8 @@ struct qt_meta_stringdata_CLASSteamsPageENDCLASS_t {
     char stringdata14[35];
     char stringdata15[6];
     char stringdata16[28];
-    char stringdata17[25];
-    char stringdata18[20];
+    char stringdata17[20];
+    char stringdata18[25];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSteamsPageENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -103,8 +127,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSteamsPageENDCLASS_t qt_meta_str
         QT_MOC_LITERAL(275, 34),  // "on_filtreTeams_currentIndexCh..."
         QT_MOC_LITERAL(310, 5),  // "index"
         QT_MOC_LITERAL(316, 27),  // "on_exportListButton_clicked"
-        QT_MOC_LITERAL(344, 24),  // "on_prevPageTable_clicked"
-        QT_MOC_LITERAL(369, 19)   // "on_TeamType_clicked"
+        QT_MOC_LITERAL(344, 19),  // "on_TeamType_clicked"
+        QT_MOC_LITERAL(364, 24)   // "on_prevPageTable_clicked"
     },
     "teamsPage",
     "on_exitButton_clicked",
@@ -123,8 +147,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSteamsPageENDCLASS_t qt_meta_str
     "on_filtreTeams_currentIndexChanged",
     "index",
     "on_exportListButton_clicked",
-    "on_prevPageTable_clicked",
-    "on_TeamType_clicked"
+    "on_TeamType_clicked",
+    "on_prevPageTable_clicked"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -218,9 +242,9 @@ Q_CONSTINIT const QMetaObject teamsPage::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_exportListButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_prevPageTable_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_TeamType_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_prevPageTable_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -245,8 +269,8 @@ void teamsPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 10: _t->on_searchButton_clicked(); break;
         case 11: _t->on_filtreTeams_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 12: _t->on_exportListButton_clicked(); break;
-        case 13: _t->on_prevPageTable_clicked(); break;
-        case 14: _t->on_TeamType_clicked(); break;
+        case 13: _t->on_TeamType_clicked(); break;
+        case 14: _t->on_prevPageTable_clicked(); break;
         default: ;
         }
     }

@@ -316,20 +316,6 @@ void teamsPage::addButtonsToRows(QTableWidget* table)
         QPushButton* updateButton = new QPushButton("Update");
         QPushButton* teamFormButton = new QPushButton("Team Form"); // Nouveau bouton
 
-        // Styliser le bouton Team Form
-        teamFormButton->setStyleSheet(
-            "QPushButton {"
-            "   background-color: #3498db;"  // Bleu
-            "   color: white;"
-            "   font-weight: bold;"
-            "   border-radius: 3px;"
-            "   padding: 4px;"
-            "}"
-            "QPushButton:hover {"
-            "   background-color: #2980b9;"  // Bleu plus foncé au survol
-            "}"
-            );
-
         QWidget* actionWidget = new QWidget();
         QHBoxLayout* actionLayout = new QHBoxLayout(actionWidget);
         actionLayout->setContentsMargins(0, 0, 0, 0);
@@ -1271,8 +1257,6 @@ void teamsPage::on_TeamType_clicked()
     QLabel* STnameLabel = formWidget->findChild<QLabel*>("STname");
     QLabel* RWnameLabel = formWidget->findChild<QLabel*>("RWname");
 
-
-
     // Find all the player rating labels in the loaded UI
     QLabel* GKrateLabel = formWidget->findChild<QLabel*>("GKrate");
     QLabel* LBrateLabel = formWidget->findChild<QLabel*>("LBrate");
@@ -1285,8 +1269,6 @@ void teamsPage::on_TeamType_clicked()
     QLabel* LWrateLabel = formWidget->findChild<QLabel*>("LWrate");
     QLabel* STrateLabel = formWidget->findChild<QLabel*>("STrate");
     QLabel* RWrateLabel = formWidget->findChild<QLabel*>("RWrate");
-
-
 
     // Find all the player face labels in the loaded UI
     QLabel* GKfaceLabel = formWidget->findChild<QLabel*>("GKface");
@@ -1301,7 +1283,8 @@ void teamsPage::on_TeamType_clicked()
     QLabel* STfaceLabel = formWidget->findChild<QLabel*>("STface");
     QLabel* RWfaceLabel = formWidget->findChild<QLabel*>("RWface");
 
-
+    // Create a map to store player face labels
+    QMap<QString, QLabel*> playerFaceLabels;
 
     const QVector<QPair<QString, QString>> positionLabels = {
         {"GK", "GKface"},
@@ -1452,180 +1435,26 @@ void teamsPage::on_TeamType_clicked()
     // Set style for all rating labels (bigger text size + white color)
     QString ratingStyle = "color: white; font-size: 16px; font-weight: bold;";  // Increased from default size
 
-
-    // Query for goalkeepers (GK) - Most saves with comprehensive stats
-    QSqlQuery gkQuery;
-    gkQuery.prepare("SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
-                    "p.PLAYERID, "
-                    "p.FACEIMG, "  // Added face image path
-                    "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
-                    "COALESCE(SUM(pp.NUMGOALS), 0) as GOALS_CONCEDED, "
-                    "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
-                    "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
-                    "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
-                    "FROM PLAYERS p "
-                    "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
-                    "WHERE p.POSITION = 'GK' "
-                    "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "  // Added FACEIMG to GROUP BY
-                    "ORDER BY TOTAL_SAVES DESC, p.PLAYERID");
-
-    QList<QString> goalkeepers;
-    QList<double> goalkeeperRatings;
-    QList<QString> goalkeeperFaceImages;  // Store face image paths
-
-    // Execute the query
-    if (gkQuery.exec()) {
-        while (gkQuery.next()) {
-            QString playerName = gkQuery.value("FULLNAME").toString();
-            goalkeepers.append(playerName);
-
-            // Store face image path
-            goalkeeperFaceImages.append(gkQuery.value("FACEIMG").toString());
-
-            // Calculate goalkeeper rating
-            int saves = gkQuery.value("TOTAL_SAVES").toInt();
-            int goalsConceded = gkQuery.value("GOALS_CONCEDED").toInt();
-            int yellowCards = gkQuery.value("YELLOW_CARDS").toInt();
-            int redCards = gkQuery.value("RED_CARDS").toInt();
-            int minutesPlayed = qMax(1, gkQuery.value("MINUTES_PLAYED").toInt());
-
-            double matchesWorth = static_cast<double>(minutesPlayed) / 90.0;
-            double rating = 6.0 +
-                            (saves/matchesWorth*0.5) -
-                            (goalsConceded/matchesWorth*0.8) -
-                            (yellowCards/matchesWorth*0.2) -
-                            (redCards/matchesWorth*0.5);
-            rating = qBound(1.0, rating, 10.0);
-
-            goalkeeperRatings.append(rating);
-        }
-    } else {
-        qDebug() << "Ya bhim query ghalta (gk):" << gkQuery.lastError().text();
-    }
-
-    // Assign goalkeeper with styled rating and face image
-    if (goalkeepers.size() >= 1 && playerNameLabels.contains("GK")) {
-        playerNameLabels["GK"]->setText(goalkeepers[0]);
-
-        if (playerRateLabels.contains("GK")) {
-            playerRateLabels["GK"]->setText(QString::number(goalkeeperRatings[0], 'f', 1));
-            playerRateLabels["GK"]->setStyleSheet(ratingStyle);
-        }
-
-        if (playerFaceLabels.contains("GK") && !goalkeeperFaceImages.isEmpty()) {
-            QString imagePath = goalkeeperFaceImages[0];
-            QPixmap pixmap(imagePath);
-
-            if (!pixmap.isNull()) {
-                playerFaceLabels["GK"]->setPixmap(pixmap.scaled(
-                    playerFaceLabels["GK"]->size(),
-                    Qt::KeepAspectRatio,
-                    Qt::SmoothTransformation
-                    ));
-            } else {
-                // Load default image if specified path is invalid
-                pixmap.load(":/img/default_player.png");
-                if (!pixmap.isNull()) {
-                    playerFaceLabels["GK"]->setPixmap(pixmap.scaled(
-                        playerFaceLabels["GK"]->size(),
-                        Qt::KeepAspectRatio,
-                        Qt::SmoothTransformation
-                        ));
-                }
-            }
-        }
-    } else if (playerNameLabels.contains("GK")) {
-        playerNameLabels["GK"]->setText("No player found");
-
-        if (playerRateLabels.contains("GK")) {
-            playerRateLabels["GK"]->setText("--");
-            playerRateLabels["GK"]->setStyleSheet(ratingStyle);
-        }
-
-        if (playerFaceLabels.contains("GK")) {
-            playerFaceLabels["GK"]->clear();
-        }
-    }
-    // Query for defenders (DF) - Fewest cards with comprehensive stats
-    QSqlQuery dfQuery;
-    dfQuery.prepare("SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
-                    "p.PLAYERID, "
-                    "p.FACEIMG, "  // Added face image path
-                    "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
-                    "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
-                    "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
-                    "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
-                    "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
-                    "FROM PLAYERS p "
-                    "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
-                    "WHERE p.POSITION = 'DF' "
-                    "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "  // Added FACEIMG to GROUP BY
-                    "ORDER BY (SUM(pp.NUMYELLOWCARDS) + SUM(pp.NUMREDCARDS) * 2) ASC, p.PLAYERID");
-
-    QList<QString> defenders;
-    QList<double> defenderRatings;
-    QList<QString> defenderFaceImages;  // Added to store face image paths
-
-    // Execute the query
-    if (dfQuery.exec()) {
-        while (dfQuery.next()) {
-            QString playerName = dfQuery.value("FULLNAME").toString();
-            defenders.append(playerName);
-
-            // Store face image path
-            defenderFaceImages.append(dfQuery.value("FACEIMG").toString());
-
-            // Calculate defender rating (unchanged)
-            int goals = dfQuery.value("TOTAL_GOALS").toInt();
-            int assists = dfQuery.value("TOTAL_ASSISTS").toInt();
-            int yellowCards = dfQuery.value("YELLOW_CARDS").toInt();
-            int redCards = dfQuery.value("RED_CARDS").toInt();
-            int minutesPlayed = qMax(1, dfQuery.value("MINUTES_PLAYED").toInt());
-
-            double matchesWorth = static_cast<double>(minutesPlayed) / 90.0;
-            double rating = 6.0 + (goals/matchesWorth*0.3) + (assists/matchesWorth*0.2)
-                            - (yellowCards/matchesWorth*0.4) - (redCards/matchesWorth*1.0);
-            rating = qBound(1.0, rating, 10.0);
-
-            defenderRatings.append(rating);
-        }
-    } else {
-        qDebug() << "Ya bhim query ghalta (df):" << dfQuery.lastError().text();
-    }
-
     // Helper function to display player info
-    auto displayPlayer = [&](const QString& position, int index) {
-        if (index >= defenders.size()) {
-            if (playerNameLabels.contains(position)) {
-                playerNameLabels[position]->setText("No player found");
-            }
-            if (playerRateLabels.contains(position)) {
-                playerRateLabels[position]->setText("--");
-                playerRateLabels[position]->setStyleSheet(ratingStyle);
-            }
-            if (playerFaceLabels.contains(position)) {
-                playerFaceLabels[position]->clear();
-            }
-            return;
+    auto displayPlayer = [&](const QString& position, const QString& playerName, double rating, const QString& faceImagePath) {
+        if (playerNameLabels.contains(position)) {
+            playerNameLabels[position]->setText(playerName.isEmpty() ? "No player found" : playerName);
         }
 
-        if (playerNameLabels.contains(position)) {
-            playerNameLabels[position]->setText(defenders[index]);
-        }
         if (playerRateLabels.contains(position)) {
-            playerRateLabels[position]->setText(QString::number(defenderRatings[index], 'f', 1));
+            playerRateLabels[position]->setText(playerName.isEmpty() ? "--" : QString::number(rating, 'f', 1));
             playerRateLabels[position]->setStyleSheet(ratingStyle);
         }
-        if (playerFaceLabels.contains(position) && index < defenderFaceImages.size()) {
-            QString imagePath = defenderFaceImages[index];
-            QPixmap pixmap(imagePath);
+
+        if (playerFaceLabels.contains(position) && !playerName.isEmpty()) {
+            QPixmap pixmap(faceImagePath);
 
             if (!pixmap.isNull()) {
                 playerFaceLabels[position]->setPixmap(pixmap.scaled(
                     playerFaceLabels[position]->size(),
                     Qt::KeepAspectRatio,
                     Qt::SmoothTransformation
-                    ));
+                ));
             } else {
                 // Load default image if specified path is invalid
                 pixmap.load(":/img/default_player.png");
@@ -1634,23 +1463,344 @@ void teamsPage::on_TeamType_clicked()
                         playerFaceLabels[position]->size(),
                         Qt::KeepAspectRatio,
                         Qt::SmoothTransformation
-                        ));
+                    ));
                 }
             }
+        } else if (playerFaceLabels.contains(position)) {
+            playerFaceLabels[position]->clear();
         }
     };
 
-    // Assign defenders to positions
-    displayPlayer("CB1", 0);
-    displayPlayer("CB2", 1);
-    displayPlayer("LB", 2);
-    displayPlayer("RB", 3);
+    // Function to calculate player rating based on position and stats
+    auto calculateRating = [](const QString& position, int goals, int assists, int saves, int yellowCards, int redCards, int minutesPlayed) -> double {
+        double matchesWorth = static_cast<double>(minutesPlayed) / 90.0;
+        if (matchesWorth < 0.1) matchesWorth = 0.1; // Avoid division by zero or very small numbers
 
-    // Query for midfielders (MF) - Most assists with additional stats for rating calculation
-    QSqlQuery mfQuery;
-    mfQuery.prepare("SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
+        double rating = 6.0; // Base rating
+
+        if (position == "GK") {
+            rating += (saves/matchesWorth*0.5) - (goals/matchesWorth*0.8) - (yellowCards/matchesWorth*0.2) - (redCards/matchesWorth*0.5);
+        } else if (position == "CB1" || position == "CB2") {
+            rating += (goals/matchesWorth*0.2) + (assists/matchesWorth*0.1) - (yellowCards/matchesWorth*0.4) - (redCards/matchesWorth*1.0);
+        } else if (position == "LB" || position == "RB") {
+            rating += (goals/matchesWorth*0.3) + (assists/matchesWorth*0.3) - (yellowCards/matchesWorth*0.4) - (redCards/matchesWorth*1.0);
+        } else if (position == "CM1" || position == "CM2") {
+            rating += (goals/matchesWorth*0.4) + (assists/matchesWorth*0.5) - (yellowCards/matchesWorth*0.2) - (redCards/matchesWorth*0.5);
+        } else if (position == "CAM") {
+            rating += (goals/matchesWorth*0.5) + (assists/matchesWorth*0.6) - (yellowCards/matchesWorth*0.2) - (redCards/matchesWorth*0.5);
+        } else if (position == "LW" || position == "RW") {
+            rating += (goals/matchesWorth*0.7) + (assists/matchesWorth*0.4) - (yellowCards/matchesWorth*0.2) - (redCards/matchesWorth*0.5);
+        } else if (position == "ST") {
+            rating += (goals/matchesWorth*1.0) + (assists/matchesWorth*0.2) - (yellowCards/matchesWorth*0.2) - (redCards/matchesWorth*0.5);
+        }
+
+        return qBound(1.0, rating, 10.0); // Ensure rating is between 1 and 10
+    };
+
+    // Query for GK position
+    {
+        QSqlQuery gkQuery;
+        gkQuery.prepare(
+            "SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
+            "p.PLAYERID, "
+            "p.FACEIMG, "
+            "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
+            "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
+            "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
+            "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
+            "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
+            "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
+            "FROM PLAYERS p "
+            "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
+            "WHERE p.POSITION = 'GK' "
+            "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "
+            "ORDER BY TOTAL_SAVES DESC, MINUTES_PLAYED DESC"
+        );
+
+        if (gkQuery.exec()) {
+            if (gkQuery.next()) {
+                QString playerName = gkQuery.value("FULLNAME").toString();
+                QString faceImg = gkQuery.value("FACEIMG").toString();
+                int goals = gkQuery.value("TOTAL_GOALS").toInt();
+                int assists = gkQuery.value("TOTAL_ASSISTS").toInt();
+                int saves = gkQuery.value("TOTAL_SAVES").toInt();
+                int yellowCards = gkQuery.value("YELLOW_CARDS").toInt();
+                int redCards = gkQuery.value("RED_CARDS").toInt();
+                int minutesPlayed = gkQuery.value("MINUTES_PLAYED").toInt();
+
+                double rating = calculateRating("GK", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+
+                displayPlayer("GK", playerName, rating, faceImg);
+            } else {
+                displayPlayer("GK", "", 0.0, "");
+            }
+        } else {
+            qDebug() << "Query error for GK:" << gkQuery.lastError().text();
+            displayPlayer("GK", "", 0.0, "");
+        }
+    }
+
+    // Query for LB position
+    {
+        QSqlQuery lbQuery;
+        lbQuery.prepare(
+            "SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
+            "p.PLAYERID, "
+            "p.FACEIMG, "
+            "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
+            "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
+            "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
+            "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
+            "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
+            "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
+            "FROM PLAYERS p "
+            "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
+            "WHERE p.POSITION = 'LB' "
+            "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "
+            "ORDER BY (YELLOW_CARDS + RED_CARDS * 2) ASC, MINUTES_PLAYED DESC"
+        );
+
+        if (lbQuery.exec()) {
+            if (lbQuery.next()) {
+                QString playerName = lbQuery.value("FULLNAME").toString();
+                QString faceImg = lbQuery.value("FACEIMG").toString();
+                int goals = lbQuery.value("TOTAL_GOALS").toInt();
+                int assists = lbQuery.value("TOTAL_ASSISTS").toInt();
+                int saves = lbQuery.value("TOTAL_SAVES").toInt();
+                int yellowCards = lbQuery.value("YELLOW_CARDS").toInt();
+                int redCards = lbQuery.value("RED_CARDS").toInt();
+                int minutesPlayed = lbQuery.value("MINUTES_PLAYED").toInt();
+
+                double rating = calculateRating("LB", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+
+                displayPlayer("LB", playerName, rating, faceImg);
+            } else {
+                displayPlayer("LB", "", 0.0, "");
+            }
+        } else {
+            qDebug() << "Query error for LB:" << lbQuery.lastError().text();
+            displayPlayer("LB", "", 0.0, "");
+        }
+    }
+
+    // Query for CB positions
+    {
+        QSqlQuery cbQuery;
+        cbQuery.prepare(
+            "SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
+            "p.PLAYERID, "
+            "p.FACEIMG, "
+            "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
+            "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
+            "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
+            "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
+            "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
+            "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
+            "FROM PLAYERS p "
+            "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
+            "WHERE p.POSITION = 'CB' "
+            "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "
+            "ORDER BY (YELLOW_CARDS + RED_CARDS * 2) ASC, MINUTES_PLAYED DESC"
+        );
+
+        if (cbQuery.exec()) {
+            // First CB
+            if (cbQuery.next()) {
+                QString playerName = cbQuery.value("FULLNAME").toString();
+                QString faceImg = cbQuery.value("FACEIMG").toString();
+                int goals = cbQuery.value("TOTAL_GOALS").toInt();
+                int assists = cbQuery.value("TOTAL_ASSISTS").toInt();
+                int saves = cbQuery.value("TOTAL_SAVES").toInt();
+                int yellowCards = cbQuery.value("YELLOW_CARDS").toInt();
+                int redCards = cbQuery.value("RED_CARDS").toInt();
+                int minutesPlayed = cbQuery.value("MINUTES_PLAYED").toInt();
+
+                double rating = calculateRating("CB1", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+
+                displayPlayer("CB1", playerName, rating, faceImg);
+            } else {
+                displayPlayer("CB1", "", 0.0, "");
+            }
+
+            // Second CB
+            if (cbQuery.next()) {
+                QString playerName = cbQuery.value("FULLNAME").toString();
+                QString faceImg = cbQuery.value("FACEIMG").toString();
+                int goals = cbQuery.value("TOTAL_GOALS").toInt();
+                int assists = cbQuery.value("TOTAL_ASSISTS").toInt();
+                int saves = cbQuery.value("TOTAL_SAVES").toInt();
+                int yellowCards = cbQuery.value("YELLOW_CARDS").toInt();
+                int redCards = cbQuery.value("RED_CARDS").toInt();
+                int minutesPlayed = cbQuery.value("MINUTES_PLAYED").toInt();
+
+                double rating = calculateRating("CB2", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+
+                displayPlayer("CB2", playerName, rating, faceImg);
+            } else {
+                displayPlayer("CB2", "", 0.0, "");
+            }
+        } else {
+            qDebug() << "Query error for CB:" << cbQuery.lastError().text();
+            displayPlayer("CB1", "", 0.0, "");
+            displayPlayer("CB2", "", 0.0, "");
+        }
+    }
+
+    // Query for RB position
+    {
+        QSqlQuery rbQuery;
+        rbQuery.prepare(
+            "SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
+            "p.PLAYERID, "
+            "p.FACEIMG, "
+            "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
+            "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
+            "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
+            "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
+            "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
+            "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
+            "FROM PLAYERS p "
+            "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
+            "WHERE p.POSITION = 'RB' "
+            "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "
+            "ORDER BY (YELLOW_CARDS + RED_CARDS * 2) ASC, MINUTES_PLAYED DESC"
+        );
+
+        if (rbQuery.exec()) {
+            if (rbQuery.next()) {
+                QString playerName = rbQuery.value("FULLNAME").toString();
+                QString faceImg = rbQuery.value("FACEIMG").toString();
+                int goals = rbQuery.value("TOTAL_GOALS").toInt();
+                int assists = rbQuery.value("TOTAL_ASSISTS").toInt();
+                int saves = rbQuery.value("TOTAL_SAVES").toInt();
+                int yellowCards = rbQuery.value("YELLOW_CARDS").toInt();
+                int redCards = rbQuery.value("RED_CARDS").toInt();
+                int minutesPlayed = rbQuery.value("MINUTES_PLAYED").toInt();
+
+                double rating = calculateRating("RB", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+
+                displayPlayer("RB", playerName, rating, faceImg);
+            } else {
+                displayPlayer("RB", "", 0.0, "");
+            }
+        } else {
+            qDebug() << "Query error for RB:" << rbQuery.lastError().text();
+            displayPlayer("RB", "", 0.0, "");
+        }
+    }
+
+    // Query for CM positions
+    {
+        QSqlQuery cmQuery;
+        cmQuery.prepare(
+            "SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
+            "p.PLAYERID, "
+            "p.FACEIMG, "
+            "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
+            "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
+            "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
+            "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
+            "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
+            "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
+            "FROM PLAYERS p "
+            "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
+            "WHERE p.POSITION = 'CM' "
+            "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "
+            "ORDER BY TOTAL_ASSISTS DESC, TOTAL_GOALS DESC, MINUTES_PLAYED DESC"
+        );
+
+        if (cmQuery.exec()) {
+            // First CM
+            if (cmQuery.next()) {
+                QString playerName = cmQuery.value("FULLNAME").toString();
+                QString faceImg = cmQuery.value("FACEIMG").toString();
+                int goals = cmQuery.value("TOTAL_GOALS").toInt();
+                int assists = cmQuery.value("TOTAL_ASSISTS").toInt();
+                int saves = cmQuery.value("TOTAL_SAVES").toInt();
+                int yellowCards = cmQuery.value("YELLOW_CARDS").toInt();
+                int redCards = cmQuery.value("RED_CARDS").toInt();
+                int minutesPlayed = cmQuery.value("MINUTES_PLAYED").toInt();
+
+                double rating = calculateRating("CM1", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+
+                displayPlayer("CM1", playerName, rating, faceImg);
+            } else {
+                displayPlayer("CM1", "", 0.0, "");
+            }
+
+            // Second CM
+            if (cmQuery.next()) {
+                QString playerName = cmQuery.value("FULLNAME").toString();
+                QString faceImg = cmQuery.value("FACEIMG").toString();
+                int goals = cmQuery.value("TOTAL_GOALS").toInt();
+                int assists = cmQuery.value("TOTAL_ASSISTS").toInt();
+                int saves = cmQuery.value("TOTAL_SAVES").toInt();
+                int yellowCards = cmQuery.value("YELLOW_CARDS").toInt();
+                int redCards = cmQuery.value("RED_CARDS").toInt();
+                int minutesPlayed = cmQuery.value("MINUTES_PLAYED").toInt();
+
+                double rating = calculateRating("CM2", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+
+                displayPlayer("CM2", playerName, rating, faceImg);
+            } else {
+                displayPlayer("CM2", "", 0.0, "");
+            }
+        } else {
+            qDebug() << "Query error for CM:" << cmQuery.lastError().text();
+            displayPlayer("CM1", "", 0.0, "");
+            displayPlayer("CM2", "", 0.0, "");
+        }
+    }
+
+    // Query for CAM position
+    {
+        // Now we know the position is stored as "MF" in the database
+        QSqlQuery camQuery;
+        camQuery.prepare(
+            "SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
+            "p.PLAYERID, "
+            "p.POSITION, "
+            "p.FACEIMG, "
+            "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
+            "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
+            "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
+            "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
+            "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
+            "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
+            "FROM PLAYERS p "
+            "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
+            "WHERE UPPER(TRIM(p.POSITION)) = 'MF' "
+            "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.POSITION, p.FACEIMG "
+            "ORDER BY TOTAL_ASSISTS DESC, TOTAL_GOALS DESC, MINUTES_PLAYED DESC"
+            );
+
+        if (camQuery.exec()) {
+
+            // Find the best attacking midfielder
+            if (camQuery.next()) {
+                QString playerName = camQuery.value("FULLNAME").toString();
+                QString position = camQuery.value("POSITION").toString();
+                QString faceImg = camQuery.value("FACEIMG").toString();
+                int goals = camQuery.value("TOTAL_GOALS").toInt();
+                int assists = camQuery.value("TOTAL_ASSISTS").toInt();
+                int saves = camQuery.value("TOTAL_SAVES").toInt();
+                int yellowCards = camQuery.value("YELLOW_CARDS").toInt();
+                int redCards = camQuery.value("RED_CARDS").toInt();
+                int minutesPlayed = camQuery.value("MINUTES_PLAYED").toInt();
+
+                double rating = calculateRating("CAM", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+
+                // Display as CAM even though stored as MF
+                displayPlayer("CAM", playerName, rating, faceImg);
+            } else {
+                qDebug() << "No MF players found in database";
+
+                // Fallback to direct query for player ID 5 since we know he exists
+                QSqlQuery directQuery;
+                directQuery.prepare(
+                    "SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
                     "p.PLAYERID, "
-                    "p.FACEIMG, "  // Added face image path
+                    "p.FACEIMG, "
                     "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
                     "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
                     "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
@@ -1659,198 +1809,162 @@ void teamsPage::on_TeamType_clicked()
                     "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
                     "FROM PLAYERS p "
                     "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
-                    "WHERE p.POSITION = 'MF' "
-                    "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "  // Added FACEIMG to GROUP BY
-                    "ORDER BY TOTAL_ASSISTS DESC, p.PLAYERID");
+                    "WHERE p.PLAYERID = 5 "  // Directly query player ID 5
+                    "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG"
+                    );
 
-    QList<QString> midfielders;
-    QList<double> midfielderRatings;
-    QList<QString> midfielderFaceImages;  // Store face image paths
+                if (directQuery.exec() && directQuery.next()) {
+                    QString playerName = directQuery.value("FULLNAME").toString();
+                    QString faceImg = directQuery.value("FACEIMG").toString();
+                    int goals = directQuery.value("TOTAL_GOALS").toInt();
+                    int assists = directQuery.value("TOTAL_ASSISTS").toInt();
+                    int saves = directQuery.value("TOTAL_SAVES").toInt();
+                    int yellowCards = directQuery.value("YELLOW_CARDS").toInt();
+                    int redCards = directQuery.value("RED_CARDS").toInt();
+                    int minutesPlayed = directQuery.value("MINUTES_PLAYED").toInt();
 
-    // Execute the query
-    if (mfQuery.exec()) {
-        while (mfQuery.next()) {
-            QString playerName = mfQuery.value("FULLNAME").toString();
-            midfielders.append(playerName);
+                    qDebug() << "Using direct player ID 5 as CAM:" << playerName;
 
-            // Store face image path
-            midfielderFaceImages.append(mfQuery.value("FACEIMG").toString());
-
-            // Calculate midfielder rating
-            int goals = mfQuery.value("TOTAL_GOALS").toInt();
-            int assists = mfQuery.value("TOTAL_ASSISTS").toInt();
-            int yellowCards = mfQuery.value("YELLOW_CARDS").toInt();
-            int redCards = mfQuery.value("RED_CARDS").toInt();
-            int minutesPlayed = qMax(1, mfQuery.value("MINUTES_PLAYED").toInt());
-
-            double matchesWorth = static_cast<double>(minutesPlayed) / 90.0;
-            double rating = 6.0 +
-                            (goals/matchesWorth*0.5) +
-                            (assists/matchesWorth*0.5) -
-                            (yellowCards/matchesWorth*0.2) -
-                            (redCards/matchesWorth*0.5);
-            rating = qBound(1.0, rating, 10.0);
-
-            midfielderRatings.append(rating);
-        }
-    } else {
-        qDebug() << "Ya bhim query ghalta (mf):" << mfQuery.lastError().text();
-    }
-
-    // Helper function to display player info
-    auto displayMidfielder = [&](const QString& position, int index) {
-        if (index >= midfielders.size()) {
-            if (playerNameLabels.contains(position)) {
-                playerNameLabels[position]->setText("No player found");
-            }
-            if (playerRateLabels.contains(position)) {
-                playerRateLabels[position]->setText("--");
-                playerRateLabels[position]->setStyleSheet(ratingStyle);
-            }
-            if (playerFaceLabels.contains(position)) {
-                playerFaceLabels[position]->clear();
-            }
-            return;
-        }
-
-        if (playerNameLabels.contains(position)) {
-            playerNameLabels[position]->setText(midfielders[index]);
-        }
-        if (playerRateLabels.contains(position)) {
-            playerRateLabels[position]->setText(QString::number(midfielderRatings[index], 'f', 1));
-            playerRateLabels[position]->setStyleSheet(ratingStyle);
-        }
-        if (playerFaceLabels.contains(position) && index < midfielderFaceImages.size()) {
-            QString imagePath = midfielderFaceImages[index];
-            QPixmap pixmap(imagePath);
-
-            if (!pixmap.isNull()) {
-                playerFaceLabels[position]->setPixmap(pixmap.scaled(
-                    playerFaceLabels[position]->size(),
-                    Qt::KeepAspectRatio,
-                    Qt::SmoothTransformation
-                    ));
-            } else {
-                // Load default image if specified path is invalid
-                pixmap.load(":/img/default_player.png");
-                if (!pixmap.isNull()) {
-                    playerFaceLabels[position]->setPixmap(pixmap.scaled(
-                        playerFaceLabels[position]->size(),
-                        Qt::KeepAspectRatio,
-                        Qt::SmoothTransformation
-                        ));
+                    double rating = calculateRating("CAM", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+                    displayPlayer("CAM", playerName, rating, faceImg);
+                } else {
+                    displayPlayer("CAM", "No CAM found", 0.0, "");
                 }
             }
+        } else {
+            qDebug() << "Query error for CAM:" << camQuery.lastError().text();
+            displayPlayer("CAM", "Query Error", 0.0, "");
         }
-    };
-
-    // Assign midfielders to positions
-    displayMidfielder("CM1", 0);
-    displayMidfielder("CM2", 1);
-    displayMidfielder("CAM", 2);
-
-    // Query for forwards (FW) - Most goals with additional stats for rating calculation
-    QSqlQuery fwQuery;
-    fwQuery.prepare("SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
-                    "p.PLAYERID, "
-                    "p.FACEIMG, "  // Added face image path
-                    "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
-                    "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
-                    "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
-                    "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
-                    "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
-                    "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
-                    "FROM PLAYERS p "
-                    "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
-                    "WHERE p.POSITION = 'FW' "
-                    "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "  // Added FACEIMG to GROUP BY
-                    "ORDER BY TOTAL_GOALS DESC, p.PLAYERID");
-
-    QList<QString> forwards;
-    QList<double> forwardRatings;
-    QList<QString> forwardFaceImages;  // Store face image paths
-
-    // Execute the query
-    if (fwQuery.exec()) {
-        while (fwQuery.next()) {
-            QString playerName = fwQuery.value("FULLNAME").toString();
-            forwards.append(playerName);
-
-            // Store face image path
-            forwardFaceImages.append(fwQuery.value("FACEIMG").toString());
-
-            // Calculate forward rating
-            int goals = fwQuery.value("TOTAL_GOALS").toInt();
-            int assists = fwQuery.value("TOTAL_ASSISTS").toInt();
-            int yellowCards = fwQuery.value("YELLOW_CARDS").toInt();
-            int redCards = fwQuery.value("RED_CARDS").toInt();
-            int minutesPlayed = qMax(1, fwQuery.value("MINUTES_PLAYED").toInt());
-
-            double matchesWorth = static_cast<double>(minutesPlayed) / 90.0;
-            double rating = 6.0 +
-                            (goals/matchesWorth*0.8) +
-                            (assists/matchesWorth*0.3) -
-                            (yellowCards/matchesWorth*0.2) -
-                            (redCards/matchesWorth*0.5);
-            rating = qBound(1.0, rating, 10.0);
-
-            forwardRatings.append(rating);
-        }
-    } else {
-        qDebug() << "Ya bhim query ghalta (fw):" << fwQuery.lastError().text();
     }
 
-    // Helper function to display player info
-    auto displayForward = [&](const QString& position, int index) {
-        if (index >= forwards.size()) {
-            if (playerNameLabels.contains(position)) {
-                playerNameLabels[position]->setText("No player found");
-            }
-            if (playerRateLabels.contains(position)) {
-                playerRateLabels[position]->setText("--");
-                playerRateLabels[position]->setStyleSheet(ratingStyle);
-            }
-            if (playerFaceLabels.contains(position)) {
-                playerFaceLabels[position]->clear();
-            }
-            return;
-        }
+    // Query for LW position
+    {
+        QSqlQuery lwQuery;
+        lwQuery.prepare(
+            "SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
+            "p.PLAYERID, "
+            "p.FACEIMG, "
+            "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
+            "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
+            "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
+            "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
+            "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
+            "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
+            "FROM PLAYERS p "
+            "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
+            "WHERE p.POSITION = 'LW' "
+            "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "
+            "ORDER BY TOTAL_GOALS DESC, TOTAL_ASSISTS DESC, MINUTES_PLAYED DESC"
+        );
 
-        if (playerNameLabels.contains(position)) {
-            playerNameLabels[position]->setText(forwards[index]);
-        }
-        if (playerRateLabels.contains(position)) {
-            playerRateLabels[position]->setText(QString::number(forwardRatings[index], 'f', 1));
-            playerRateLabels[position]->setStyleSheet(ratingStyle);
-        }
-        if (playerFaceLabels.contains(position) && index < forwardFaceImages.size()) {
-            QString imagePath = forwardFaceImages[index];
-            QPixmap pixmap(imagePath);
+        if (lwQuery.exec()) {
+            if (lwQuery.next()) {
+                QString playerName = lwQuery.value("FULLNAME").toString();
+                QString faceImg = lwQuery.value("FACEIMG").toString();
+                int goals = lwQuery.value("TOTAL_GOALS").toInt();
+                int assists = lwQuery.value("TOTAL_ASSISTS").toInt();
+                int saves = lwQuery.value("TOTAL_SAVES").toInt();
+                int yellowCards = lwQuery.value("YELLOW_CARDS").toInt();
+                int redCards = lwQuery.value("RED_CARDS").toInt();
+                int minutesPlayed = lwQuery.value("MINUTES_PLAYED").toInt();
 
-            if (!pixmap.isNull()) {
-                playerFaceLabels[position]->setPixmap(pixmap.scaled(
-                    playerFaceLabels[position]->size(),
-                    Qt::KeepAspectRatio,
-                    Qt::SmoothTransformation
-                    ));
+                double rating = calculateRating("LW", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+
+                displayPlayer("LW", playerName, rating, faceImg);
             } else {
-                // Load default image if specified path is invalid
-                pixmap.load(":/img/default_player.png");
-                if (!pixmap.isNull()) {
-                    playerFaceLabels[position]->setPixmap(pixmap.scaled(
-                        playerFaceLabels[position]->size(),
-                        Qt::KeepAspectRatio,
-                        Qt::SmoothTransformation
-                        ));
-                }
+                displayPlayer("LW", "", 0.0, "");
             }
+        } else {
+            qDebug() << "Query error for LW:" << lwQuery.lastError().text();
+            displayPlayer("LW", "", 0.0, "");
         }
-    };
+    }
 
-    // Assign forwards to positions
-    displayForward("ST", 0);
-    displayForward("LW", 1);
-    displayForward("RW", 2);
+    // Query for ST position
+    {
+        QSqlQuery stQuery;
+        stQuery.prepare(
+            "SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
+            "p.PLAYERID, "
+            "p.FACEIMG, "
+            "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
+            "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
+            "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
+            "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
+            "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
+            "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
+            "FROM PLAYERS p "
+            "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
+            "WHERE p.POSITION = 'ST' "
+            "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "
+            "ORDER BY TOTAL_GOALS DESC, TOTAL_ASSISTS DESC, MINUTES_PLAYED DESC"
+        );
+
+        if (stQuery.exec()) {
+            if (stQuery.next()) {
+                QString playerName = stQuery.value("FULLNAME").toString();
+                QString faceImg = stQuery.value("FACEIMG").toString();
+                int goals = stQuery.value("TOTAL_GOALS").toInt();
+                int assists = stQuery.value("TOTAL_ASSISTS").toInt();
+                int saves = stQuery.value("TOTAL_SAVES").toInt();
+                int yellowCards = stQuery.value("YELLOW_CARDS").toInt();
+                int redCards = stQuery.value("RED_CARDS").toInt();
+                int minutesPlayed = stQuery.value("MINUTES_PLAYED").toInt();
+
+                double rating = calculateRating("ST", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+
+                displayPlayer("ST", playerName, rating, faceImg);
+            } else {
+                displayPlayer("ST", "", 0.0, "");
+            }
+        } else {
+            qDebug() << "Query error for ST:" << stQuery.lastError().text();
+            displayPlayer("ST", "", 0.0, "");
+        }
+    }
+
+    // Query for RW position
+    {
+        QSqlQuery rwQuery;
+        rwQuery.prepare(
+            "SELECT p.FNAME || ' ' || p.LNAME as FULLNAME, "
+            "p.PLAYERID, "
+            "p.FACEIMG, "
+            "COALESCE(SUM(pp.NUMGOALS), 0) as TOTAL_GOALS, "
+            "COALESCE(SUM(pp.NUMASSISTS), 0) as TOTAL_ASSISTS, "
+            "COALESCE(SUM(pp.NUMSAVES), 0) as TOTAL_SAVES, "
+            "COALESCE(SUM(pp.NUMYELLOWCARDS), 0) as YELLOW_CARDS, "
+            "COALESCE(SUM(pp.NUMREDCARDS), 0) as RED_CARDS, "
+            "COALESCE(SUM(pp.PLAYTIMEINMINUTES), 0) as MINUTES_PLAYED "
+            "FROM PLAYERS p "
+            "LEFT JOIN PLAYERPERFORMANCE pp ON p.PLAYERID = pp.PLAYERID "
+            "WHERE p.POSITION = 'RW' "
+            "GROUP BY p.FNAME, p.LNAME, p.PLAYERID, p.FACEIMG "
+            "ORDER BY TOTAL_GOALS DESC, TOTAL_ASSISTS DESC, MINUTES_PLAYED DESC"
+        );
+
+        if (rwQuery.exec()) {
+            if (rwQuery.next()) {
+                QString playerName = rwQuery.value("FULLNAME").toString();
+                QString faceImg = rwQuery.value("FACEIMG").toString();
+                int goals = rwQuery.value("TOTAL_GOALS").toInt();
+                int assists = rwQuery.value("TOTAL_ASSISTS").toInt();
+                int saves = rwQuery.value("TOTAL_SAVES").toInt();
+                int yellowCards = rwQuery.value("YELLOW_CARDS").toInt();
+                int redCards = rwQuery.value("RED_CARDS").toInt();
+                int minutesPlayed = rwQuery.value("MINUTES_PLAYED").toInt();
+
+                double rating = calculateRating("RW", goals, assists, saves, yellowCards, redCards, minutesPlayed);
+
+                displayPlayer("RW", playerName, rating, faceImg);
+            } else {
+                displayPlayer("RW", "", 0.0, "");
+            }
+        } else {
+            qDebug() << "Query error for RW:" << rwQuery.lastError().text();
+            displayPlayer("RW", "", 0.0, "");
+        }
+    }
 
     // Add a close button
     QPushButton* closeButton = new QPushButton("Close", teamTypeDialog);
@@ -1863,7 +1977,6 @@ void teamsPage::on_TeamType_clicked()
 
     // Clean up
     delete teamTypeDialog;
-
 }
 
 
