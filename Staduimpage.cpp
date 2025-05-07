@@ -61,7 +61,6 @@ stadiumPage::~stadiumPage()
 
 
 
-
 void stadiumPage::refreshStadiumList() {
     stadium.listStadiums(ui->tableWidget);
     addButtonsToRows(ui->tableWidget);
@@ -280,7 +279,7 @@ void stadiumPage::on_searchButton_clicked()
 {
     QString searchText = ui->searchStaduimInput->text().trimmed();
 
-    // 📌 Call the search function from Stadium class
+    //  Call the search function from Stadium class
     Stadium stadium;
     if (stadium.searchStadiums(searchText, ui->tableWidget)) {
         addButtonsToRows(ui->tableWidget); // Pass stadium ID

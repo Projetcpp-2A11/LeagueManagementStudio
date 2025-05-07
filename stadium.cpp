@@ -870,10 +870,22 @@ void Stadium::generateSeatGrid(int rows, int cols, int peoplePerSquare, int tota
 
         gridLayout->addWidget(seat, i / cols, i % cols);
     }
-    // Debug output after placement
-    qDebug() << "Actually placed" << greenSquaresPlaced << "green squares";
-    qDebug() << "Grid breakdown:";
-    qDebug() << "- Full squares:" << fullSquares << "(@" << peoplePerSquare << "people each)";
-    qDebug() << "- Partial square:" << (remainingPeople > 0 ? 1 : 0) << "(@" << remainingPeople << "people)";
-    qDebug() << "- Empty squares:" << (totalSquares - greenSquaresPlaced);
+
+}
+QString Stadium::getStadiumNameById(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT NAME FROM STADIUM WHERE STADIUMID= :id");
+    query.bindValue(":id", id);
+    if (!query.exec()) {
+        qDebug("No stadium Found");
+        return "";
+    } else if ( query.next() ){
+        return query.value(0).toString();
+
+    }
+
+
+
+
 }

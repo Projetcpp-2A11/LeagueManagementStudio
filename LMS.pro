@@ -1,4 +1,4 @@
-QT       += core gui widgets uitools multimedia sql
+QT       += core gui widgets uitools multimedia sql serialport
 CONFIG += console
 TARGET = my_project
 QT += printsupport
@@ -17,29 +17,58 @@ CONFIG += c++17
 
 SOURCES += \
     Staduimpage.cpp \
+    arduino.cpp \
+    arduinocontroller.cpp \
     connection.cpp \
     custombutton.cpp \
     customtextinput.cpp \
     homepage.cpp \
+    lmspenalty.cpp \
+    lmstimer.cpp \
+    lmsvar.cpp \
     main.cpp \
     mainwindow.cpp \
+    match.cpp \
+    player.cpp \
+    playerpage.cpp \
+    playerperformance.cpp \
+    playerupdateform.cpp \
     stadium.cpp \
-    stadiumupdateform.cpp
+    stadiumupdateform.cpp \
+    teams.cpp \
+    uianimationhelper.cpp
 
 HEADERS += \
     Staduimpage.h \
+    arduino.h \
+    arduinocontroller.h \
     connection.h \
     custombutton.h \
     customtextinput.h \
     homepage.h \
+    lmspenalty.h \
+    lmstimer.h \
+    lmsvar.h \
     mainwindow.h \
+    match.h \
+    player.h \
+    playerpage.h \
+    playerperformance.h \
+    playerupdateform.h \
+    playerupdateform.h \
     stadium.h \
-    stadiumupdateform.h
+    stadiumupdateform.h \
+    teams.h \
+    uianimationhelper.h
 
 FORMS += \
     Staduimpage.ui \
+    arduinocontroller.ui \
     homepage.ui \
     mainwindow.ui \
+    playerpage.ui \
+    playerperformance.ui \
+    playerupdateform.ui \
     stadiumupdateform.ui
 
 # Default rules for deployment.

@@ -152,3 +152,15 @@ void MainWindow::on_vocalRecogButton_clicked()
     });
 }
 
+
+void MainWindow::on_pushButton_clicked() // iot btn
+{
+
+    arduinocontroller * ctrl = new arduinocontroller();
+    ctrl->show();
+    this->hide();
+
+
+
+}
+

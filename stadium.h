@@ -63,6 +63,7 @@ public:
     void checkMatchAndShowSeats(const QString &matchIDRaw, QWidget *topWidget, QWidget *bottomWidget,
                                QWidget *leftWidget, QWidget *rightWidget, QLineEdit *attendanceLabel, QLineEdit *matchider);
     int calculatePeoplePerSquare(int capacity);
+    QString getStadiumNameById(int id);
 
 
 private slots:
