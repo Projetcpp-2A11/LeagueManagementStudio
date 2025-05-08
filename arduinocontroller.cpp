@@ -342,11 +342,9 @@ void arduinocontroller::on_ConfigureMatchBtn_clicked()
     QString msgA = "TEAMA " + teamA + "\n";
     QString msgB = "TEAMB " + teamB + "\n";
 
-    // Assuming you're using varArd to send to Arduino
     varArd->write_to_arduino(msgA.toUtf8());
     varArd->write_to_arduino(msgB.toUtf8());
 
-    //ui->errorLabel->setText("Match configuration sent.");
 }
 
 
