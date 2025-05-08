@@ -60,7 +60,7 @@ public:
         labelFirstName->setStyleSheet(QString::fromUtf8("background:transparent;"));
         lineEditGoals = new QLineEdit(area_2);
         lineEditGoals->setObjectName("lineEditGoals");
-        lineEditGoals->setGeometry(QRect(270, 110, 151, 41));
+        lineEditGoals->setGeometry(QRect(240, 110, 151, 41));
         lineEditGoals->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
 "    background-color: white;\n"
 "    padding: 5px;\n"
@@ -88,7 +88,7 @@ public:
 ""));
         lineEditAssists = new QLineEdit(area_2);
         lineEditAssists->setObjectName("lineEditAssists");
-        lineEditAssists->setGeometry(QRect(270, 160, 151, 41));
+        lineEditAssists->setGeometry(QRect(240, 160, 151, 41));
         lineEditAssists->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
 "    background-color: white;\n"
 "    padding: 5px;\n"
@@ -116,7 +116,7 @@ public:
 ""));
         lineEditSaves = new QLineEdit(area_2);
         lineEditSaves->setObjectName("lineEditSaves");
-        lineEditSaves->setGeometry(QRect(270, 210, 151, 41));
+        lineEditSaves->setGeometry(QRect(240, 210, 151, 41));
         lineEditSaves->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
 "    background-color: white;\n"
 "    padding: 5px;\n"
@@ -144,23 +144,47 @@ public:
 ""));
         exitButton = new QPushButton(area_2);
         exitButton->setObjectName("exitButton");
-        exitButton->setGeometry(QRect(60, 410, 111, 41));
+        exitButton->setGeometry(QRect(30, 400, 192, 51));
         exitButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"background-color:qlineargradient(spread:pad, \n"
-"                            x1:0, y1:0, x2:1, y2:1, \n"
-"                            stop:0 rgba(255, 0, 0, 255), \n"
-"                            stop:0.41 rgba(195, 22, 58, 255), \n"
-"                            stop:1 rgba(255, 117, 0, 255));;  ;  \n"
-"border-radius:10px;\n"
-"color:white;\n"
+"    background: qlineargradient(spread:pad, \n"
+"                                x1:0, y1:0, x2:1, y2:1, \n"
+"                                stop:0 rgba(255, 0, 0, 255), \n"
+"                                stop:0.41 rgba(195, 22, 58, 255), \n"
+"                                stop:1 rgba(255, 117, 0, 255));\n"
+"    color: white;\n"
+"    border: 2px solid #990000;\n"
+"    border-radius: 10px;\n"
+"    padding: 12px 24px;\n"
+"    font: bold 14pt \"Segoe UI\";\n"
+"    min-width: 140px;\n"
+"    cursor: pointer;\n"
+"    transition: all 0.3s ease; /* Transition fluide */\n"
 "}\n"
+"\n"
+"/* Hover effect */\n"
 "QPushButton:hover {\n"
-"    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, \n"
-"                            stop: 0 rgba(0, 255, 254, 255),     \n"
-"                            stop: 0.26 rgba(38, 170, 196, 255), \n"
-"                            stop: 0.67 rgba(89, 85, 131, 255),\n"
-"                            stop: 1 rgba(0, 238, 255, 255));  \n"
-"}"));
+"    background: qlineargradient(spread:pad, \n"
+"                                x1:0.25, y1:0, x2:0.75, y2:1, \n"
+"                                stop:0 rgba(0, 255, 254, 255),     \n"
+"                                stop:0.26 rgba(38, 170, 196, 255), \n"
+"                                stop:0.67 rgba(89, 85, 131, 255),\n"
+"                                stop:1 rgb"
+                        "a(0, 238, 255, 255));\n"
+"    border: 2px solid #ff0004; /* Border change on hover */\n"
+"    color: #ffffff;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"/* Pressed effect */\n"
+"QPushButton:pressed {\n"
+"    background-color: #cc0000;\n"
+"    border: 2px solid #990000;\n"
+"    color: white;\n"
+"    padding-left: 14px;\n"
+"    padding-top: 14px;\n"
+"    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */\n"
+"}\n"
+""));
         labelImage = new QLabel(area_2);
         labelImage->setObjectName("labelImage");
         labelImage->setGeometry(QRect(385, 12, 321, 61));
@@ -173,7 +197,7 @@ public:
 ""));
         lineEditYellows = new QLineEdit(area_2);
         lineEditYellows->setObjectName("lineEditYellows");
-        lineEditYellows->setGeometry(QRect(270, 260, 151, 41));
+        lineEditYellows->setGeometry(QRect(240, 260, 151, 41));
         lineEditYellows->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
 "    background-color: white;\n"
 "    padding: 5px;\n"
@@ -201,7 +225,7 @@ public:
 ""));
         lineEditReds = new QLineEdit(area_2);
         lineEditReds->setObjectName("lineEditReds");
-        lineEditReds->setGeometry(QRect(270, 310, 151, 41));
+        lineEditReds->setGeometry(QRect(240, 310, 151, 41));
         lineEditReds->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
 "    background-color: white;\n"
 "    padding: 5px;\n"
@@ -229,7 +253,7 @@ public:
 ""));
         labelPlayTimeValue = new QLineEdit(area_2);
         labelPlayTimeValue->setObjectName("labelPlayTimeValue");
-        labelPlayTimeValue->setGeometry(QRect(270, 360, 151, 41));
+        labelPlayTimeValue->setGeometry(QRect(240, 360, 151, 41));
         labelPlayTimeValue->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
 "    background-color: white;\n"
 "    padding: 5px;\n"
@@ -264,7 +288,7 @@ public:
 ""));
         matchComboBox = new QComboBox(area_2);
         matchComboBox->setObjectName("matchComboBox");
-        matchComboBox->setGeometry(QRect(270, 410, 151, 41));
+        matchComboBox->setGeometry(QRect(240, 410, 151, 41));
         matchComboBox->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         matchComboBox->setStyleSheet(QString::fromUtf8("QComboBox {\n"
 "    background-color: white;\n"
@@ -315,23 +339,47 @@ public:
 ""));
         selectMatchButton = new QPushButton(area_2);
         selectMatchButton->setObjectName("selectMatchButton");
-        selectMatchButton->setGeometry(QRect(440, 410, 111, 41));
+        selectMatchButton->setGeometry(QRect(400, 400, 161, 51));
         selectMatchButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"background-color:qlineargradient(spread:pad, \n"
-"                            x1:0, y1:0, x2:1, y2:1, \n"
-"                            stop:0 rgba(255, 0, 0, 255), \n"
-"                            stop:0.41 rgba(195, 22, 58, 255), \n"
-"                            stop:1 rgba(255, 117, 0, 255));;  ;  \n"
-"border-radius:10px;\n"
-"color:white;\n"
+"    background: qlineargradient(spread:pad, \n"
+"                                x1:0, y1:0, x2:1, y2:1, \n"
+"                                stop:0 rgba(255, 0, 0, 255), \n"
+"                                stop:0.41 rgba(195, 22, 58, 255), \n"
+"                                stop:1 rgba(255, 117, 0, 255));\n"
+"    color: white;\n"
+"    border: 2px solid #990000;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px 20px;\n"
+"    font: bold 14pt \"Segoe UI\";\n"
+"    min-width: 100px;\n"
+"    cursor: pointer;\n"
+"    transition: all 0.3s ease; /* Transition fluide */\n"
 "}\n"
+"\n"
+"/* Hover effect */\n"
 "QPushButton:hover {\n"
-"    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, \n"
-"                            stop: 0 rgba(0, 255, 254, 255),     \n"
-"                            stop: 0.26 rgba(38, 170, 196, 255), \n"
-"                            stop: 0.67 rgba(89, 85, 131, 255),\n"
-"                            stop: 1 rgba(0, 238, 255, 255));  \n"
-"}"));
+"    background: qlineargradient(spread:pad, \n"
+"                                x1:0.25, y1:0, x2:0.75, y2:1, \n"
+"                                stop:0 rgba(0, 255, 254, 255),     \n"
+"                                stop:0.26 rgba(38, 170, 196, 255), \n"
+"                                stop:0.67 rgba(89, 85, 131, 255),\n"
+"                                stop:1 rgb"
+                        "a(0, 238, 255, 255));\n"
+"    border: 2px solid #ff0004; /* Border change on hover */\n"
+"    color: #ffffff;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"/* Pressed effect */\n"
+"QPushButton:pressed {\n"
+"    background-color: #cc0000;\n"
+"    border: 2px solid #990000;\n"
+"    color: white;\n"
+"    padding-left: 10px;\n"
+"    padding-top: 10px;\n"
+"    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */\n"
+"}\n"
+""));
 
         retranslateUi(playerperformance);
 
@@ -352,7 +400,7 @@ public:
         labelPlayTimeValue->setPlaceholderText(QString());
         labelRateValue->setText(QCoreApplication::translate("playerperformance", "label", nullptr));
         matchComboBox->setPlaceholderText(QCoreApplication::translate("playerperformance", "Select ID", nullptr));
-        selectMatchButton->setText(QCoreApplication::translate("playerperformance", "select match id", nullptr));
+        selectMatchButton->setText(QCoreApplication::translate("playerperformance", "match id", nullptr));
     } // retranslateUi
 
 };

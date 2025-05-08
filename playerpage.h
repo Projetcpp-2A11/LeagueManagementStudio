@@ -1,6 +1,7 @@
 #ifndef PLAYERPAGE_H
 #define PLAYERPAGE_H
 
+#include "employee.h"
 #include "player.h"
 #include "qchartview.h"
 #include <QWidget>
@@ -14,7 +15,7 @@ class playerPage : public QWidget
     Q_OBJECT
 
 public:
-    explicit playerPage(QWidget *parent = nullptr);
+    explicit playerPage(QWidget *parent = nullptr,employee * loggedInEmployee = nullptr);
     ~playerPage();
 
     //void populateTeamDropdown();  // Declaration of the dropdown population function
@@ -51,7 +52,7 @@ private slots:
 
 
 
-      void browseImage();
+     // void browseImage();
 
       void on_BrowseImageButton_clicked();
        void on_suspension_clicked(int row);
@@ -61,6 +62,7 @@ private slots:
     Ui::playerPage *ui;
     Player player;
     QChartView *chartView;
+    employee *loggedIneEmp;
 
 
 };

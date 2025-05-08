@@ -20,7 +20,7 @@ signals:
     void timerSignal(int value);
 
 private slots:
-    void extracted();
+   // void extracted();
     void onRaw(const QByteArray raw);
 
 public :

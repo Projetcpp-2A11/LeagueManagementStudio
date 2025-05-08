@@ -1,10 +1,23 @@
 #include "mainwindow.h"
 #include <connection.h>
 #include <QApplication>
+#include <simulationrun.h>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    if (argc > 2 && QString(argv[1]) == "--simulate") {
+        bool ok;
+        int matchID = QString(argv[2]).toInt(&ok);
+        if (ok) {
+            return SimulationRun::run(matchID);
+        } else {
+            qDebug() << "Invalid matchID for simulation";
+            return 1;
+        }
+    }
+
+
     MainWindow w;
 
     connection newConnection;

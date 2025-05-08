@@ -8,6 +8,15 @@ CONFIG += c++17
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+# INCLUDES pour les headers SDL
+INCLUDEPATH += "C:/Users/choua/OneDrive/Bureau/Projet C++/LMS/include" \
+               "C:/Users/choua/OneDrive/Bureau/Projet C++/LMS/include/SDL2"
+
+LIBS += -L"C:/Users/choua/OneDrive/Bureau/Projet C++/LMS/lib" \
+        -lSDL2 \
+        -lSDL2_ttf \
+        -lSDL2_mixer
+
 SOURCES += \
     arduino.cpp \
     arduinocontroller.cpp \
@@ -22,6 +31,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     matchpage.cpp \
+    staduimpage.cpp \
     teams.cpp \
     match.cpp \
     uianimationhelper.cpp \
@@ -29,7 +39,20 @@ SOURCES += \
     player.cpp \
     playerpage.cpp \
     playerperformance.cpp \
-    playerupdateform.cpp
+    playerupdateform.cpp \
+    pronosticdialog.cpp \
+    simulation.cpp \
+    simulationrun.cpp \
+    stadiumupdateform.cpp \
+    teamspage1.cpp \
+    teamtypeform.cpp \
+    partner.cpp \
+    partnerpage.cpp \
+    chatbot.cpp \
+    chatbotdialog.cpp \
+    matchesupdateform.cpp \
+    dialog.cpp \
+    dialogpronostic.cpp \
 
 HEADERS += \
     arduino.h \
@@ -44,6 +67,7 @@ HEADERS += \
     lmsvar.h \
     mainwindow.h \
     matchpage.h \
+    staduimpage.h \
     teams.h \
     match.h \
     uianimationhelper.h \
@@ -51,7 +75,20 @@ HEADERS += \
     player.h \
     playerpage.h \
     playerperformance.h \
-    playerupdateform.h
+    playerupdateform.h \
+    pronosticdialog.h \
+    simulationrun.h \
+    stadiumupdateform.h \
+    teamspage1.h \
+    teamtypeform.h \
+    partner.h \
+    partnerpage.h \
+    chatbot.h \
+    chatbotdialog.h \
+    matchesupdateform.h \
+    dialog.h \
+    dialogpronostic.h \
+    simulation.h \
 
 FORMS += \
     arduinocontroller.ui \
@@ -62,7 +99,15 @@ FORMS += \
     matchs.ui \
     playerpage.ui \
     playerperformance.ui \
-    playerupdateform.ui
+    playerupdateform.ui \
+    stadiumupdateform.ui \
+    staduimpage.ui \
+    teamspage1.ui \
+    teamstype.ui  \
+    partnerpage.ui \
+    matchesupdateform.ui \
+    matchpage.ui \
+    dialog.ui
 
 
 # Default rules for deployment.

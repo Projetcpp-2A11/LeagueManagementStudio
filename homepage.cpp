@@ -2,9 +2,13 @@
 #include "QtMultimediaWidgets/qvideowidget.h"
 #include "employeepage.h"
 #include "matchpage.h"
+#include "partnerpage.h"
+#include "playerpage.h"
 #include "qdatetime.h"
 #include "qprocess.h"
 #include "qtimer.h"
+#include "teamspage1.h"
+#include "staduimpage.h"
 #include "ui_homepage.h"
 #include <QCamera>
 #include <QImageCapture>
@@ -238,7 +242,7 @@ void homepage::on_employeeButton_clicked()
 
 void homepage::on_matchsButton_clicked()
 {
-    matchPage* matchpage = new matchPage();
+    MatchPage* matchpage = new MatchPage(nullptr , this->emp);
     matchpage->show();
     delete this;
 }
@@ -251,4 +255,39 @@ void homepage::on_matchsButton_clicked()
 
 
 
+
+
+void homepage::on_teamsButton_clicked()
+{
+    teamsPage * tmsPage = new teamsPage(nullptr,this->emp);
+    tmsPage->show();
+    delete this;
+
+}
+
+
+void homepage::on_playersButton_clicked()
+{
+    playerPage *plyrPage = new playerPage(nullptr,this->emp);
+    plyrPage->show();
+    delete this;
+}
+
+
+void homepage::on_stadiumsButton_clicked()
+{
+
+    stadiumPage * stdmPage = new stadiumPage(nullptr,this->emp);
+    stdmPage->show();
+    delete this;
+
+}
+
+
+void homepage::on_partnersButton_clicked()
+{
+    PartnerPage* prtnPage = new PartnerPage(nullptr,this->emp);
+    prtnPage->show();
+    delete this;
+}
 

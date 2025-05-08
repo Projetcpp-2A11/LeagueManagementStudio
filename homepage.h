@@ -27,6 +27,14 @@ private slots:
 
     void on_myAccountButton_clicked();
 
+    void on_teamsButton_clicked();
+
+    void on_playersButton_clicked();
+
+   void  on_stadiumsButton_clicked();
+
+    void on_partnersButton_clicked();
+
 private:
     Ui::homepage *ui;
     employee *emp;

@@ -23,9 +23,10 @@
 
 //QChart QtCharts;
 
-playerPage::playerPage(QWidget *parent) :
+playerPage::playerPage(QWidget *parent, employee *loggedInEmployee) :
     QWidget(parent),
-    ui(new Ui::playerPage)
+    ui(new Ui::playerPage),
+    loggedIneEmp(loggedInEmployee)
 {
     ui->setupUi(this);
 
@@ -98,7 +99,7 @@ void playerPage::on_homeButton_clicked()
                                   QMessageBox::Yes | QMessageBox::No);
 
     if (reply == QMessageBox::Yes) {
-        homepage *HomePage = new homepage();
+        homepage *HomePage = new homepage(nullptr,loggedIneEmp);
         HomePage->show();
 
         this->close();

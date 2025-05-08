@@ -1,0 +1,1713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>partnerpage</class>
+ <widget class="QWidget" name="partnerpage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1050</width>
+    <height>681</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="contentArea" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:0, y2:1, 
+                                stop:0 rgba(6, 6, 6, 255), 
+                                stop:0.41 rgba(56, 50, 52, 255), 
+                                stop:1 rgba(34, 33, 33, 255));;
+</string>
+     </property>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>0</y>
+        <width>941</width>
+        <height>681</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabBar::tab {
+    background: qlineargradient(spread:pad,
+                                x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #b30000,
+                                stop:0.5 #d40000,
+                                stop:1 #ff4d4d);
+    color: white;
+    border: 1px solid #990000;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 2px;
+    font: bold 12pt &quot;Segoe UI&quot;;
+    min-width: 150px;
+    transition: all 0.3s ease;
+}
+
+QTabBar::tab:selected {
+    background: qlineargradient(spread:pad,
+                                x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #ffffff,
+                                stop:1 #ffcccc);
+    color: #990000;
+    font: bold 13pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+}
+
+QTabBar::tab:hover {
+    background: qlineargradient(spread:pad,
+                                x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #ff6666,
+                                stop:1 #ff9999);
+    color: #000000;
+    font: bold 12pt &quot;Segoe UI&quot;;
+}
+
+QTabWidget::pane {
+    border: 2px solid #990000;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    background-color: #fefefe;
+}
+</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>partner List</string>
+       </attribute>
+       <widget class="QLineEdit" name="searchpartner">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>181</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+    border: 2px solid #ff3333;
+    background-color: #fff0f0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border: 2px solid #ff0004;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+}
+</string>
+        </property>
+        <property name="placeholderText">
+         <string>Search partner</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="searchButton">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>50</y>
+          <width>66</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/searchIcon.png</normaloff>:/textures/textures/searchIcon.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="filterButton">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>50</y>
+          <width>66</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/filterIcon.png</normaloff>:/textures/textures/filterIcon.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="exportListButton">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>570</y>
+          <width>192</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Export List</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>textures/exportIcon.png</normaloff>textures/exportIcon.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>50</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="partnersTable">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>110</y>
+          <width>901</width>
+          <height>451</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {
+    background-color: #f9f9f9;
+    border: 3px solid #b30000;
+    border-radius: 10px;
+    gridline-color: #dcdcdc;
+    font-size: 14px;
+    color: #000;
+}
+
+QTableWidget::item {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #000000;
+}
+
+QTableWidget::item:selected {
+    background-color: #b30000;  /* Red selection */
+    color: white;
+    font-weight: bold;
+}
+
+QTableWidget::item:hover {
+    background-color: #ffe6e6;  /* Light red hover */
+    color: #000;
+}
+
+QHeaderView::section {
+    background-color: #b30000;
+    color: white;
+    padding: 6px 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid #990000;
+    min-width: 120px;
+    border-radius: 5px;
+}
+
+QTableCornerButton::section {
+    background-color: #b30000;
+    border: 1px solid #990000;
+}
+
+QTableWidget QWidget {
+    background: transparent;
+}
+
+QTableWidget QPushButton {
+    background-color: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 #b30000, 
+                            stop:0.5 #e60000, 
+                            stop:1 #ff4d4d);
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    min-width: 90px;
+    min-height: 35px;
+    border: none;
+}
+
+QTableWidget QPushButton:hover {
+    background-color: qlineargradient(spread:pad,
+                            x1:0, y1:0, x2:1, y2:1,
+                            stop:0 #ffffff,
+                            stop:1 #ffcccc);
+    color: #b30000;
+    font-weight: bold;
+}
+</string>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Partner</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Team</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Stadium</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Start date</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>End date</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QPushButton" name="nextPageTable">
+        <property name="geometry">
+         <rect>
+          <x>790</x>
+          <y>570</y>
+          <width>66</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/prevIcon.png</normaloff>:/textures/textures/prevIcon.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="prevPageTable">
+        <property name="geometry">
+         <rect>
+          <x>860</x>
+          <y>570</y>
+          <width>66</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/nextIcon.png</normaloff>:/textures/textures/nextIcon.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="refrechebutton">
+        <property name="geometry">
+         <rect>
+          <x>840</x>
+          <y>50</y>
+          <width>66</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="deletepartner">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>50</y>
+          <width>192</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string> delete</string>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::EditDelete"/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="updatepartner">
+        <property name="geometry">
+         <rect>
+          <x>600</x>
+          <y>50</y>
+          <width>192</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>update</string>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::DocumentProperties"/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Add partner</string>
+       </attribute>
+       <widget class="QLineEdit" name="name">
+        <property name="geometry">
+         <rect>
+          <x>260</x>
+          <y>70</y>
+          <width>301</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+    border: 2px solid #ff3333;
+    background-color: #fff0f0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border: 2px solid #ff0004;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string> Name</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="addPartnerButton">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>520</y>
+          <width>231</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Add Partner</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>textures/addIcon.png</normaloff>textures/addIcon.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="stadiumList">
+        <property name="geometry">
+         <rect>
+          <x>480</x>
+          <y>380</y>
+          <width>201</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
+}
+
+/* Drop-down arrow button */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 2px solid #990000;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                 stop:0 #b30000,
+                                 stop:1 #ff4d4d);
+    image: url(:/textures/textures/downArrowIcon.png);
+}
+
+/* When hovered */
+QComboBox:hover {
+    border: 2px solid #ff1a1a;
+    background-color: #fff0f0;
+}
+
+/* When focused */
+QComboBox:focus {
+    border: 2px solid #ff0000;
+}
+
+/* Drop-down popup style */
+QComboBox QAbstractItemView {
+    background-color: #ffffff;
+    border: 2px solid #b30000;
+    selection-background-color: #d40000;
+    selection-color: white;
+    border-radius: 8px;
+    padding: 5px;
+    font: 13pt &quot;Segoe UI&quot;;
+    color: #000000;
+}
+</string>
+        </property>
+        <property name="placeholderText">
+         <string>Stadium List</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>10</y>
+          <width>191</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>28</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Partner</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>120</y>
+          <width>421</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>28</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Sponsorship Details</string>
+        </property>
+       </widget>
+       <widget class="QDateEdit" name="startDate">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>270</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
+}
+
+/* Drop-down arrow button */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 2px solid #990000;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                 stop:0 #b30000,
+                                 stop:1 #ff4d4d);
+    image: url(:/textures/textures/downArrowIcon.png);
+}
+
+/* When hovered */
+QComboBox:hover {
+    border: 2px solid #ff1a1a;
+    background-color: #fff0f0;
+}
+
+/* When focused */
+QComboBox:focus {
+    border: 2px solid #ff0000;
+}
+
+/* Drop-down popup style */
+QComboBox QAbstractItemView {
+    background-color: #ffffff;
+    border: 2px solid #b30000;
+    selection-background-color: #d40000;
+    selection-color: white;
+    border-radius: 8px;
+    padding: 5px;
+    font: 13pt &quot;Segoe UI&quot;;
+    color: #000000;
+}
+</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>230</y>
+          <width>131</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Start Date</string>
+        </property>
+       </widget>
+       <widget class="QDateEdit" name="endDate">
+        <property name="geometry">
+         <rect>
+          <x>480</x>
+          <y>270</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>480</x>
+          <y>230</y>
+          <width>131</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;</string>
+        </property>
+        <property name="text">
+         <string>End Date</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="teamList">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>380</y>
+          <width>201</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
+}
+
+/* Drop-down arrow button */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 2px solid #990000;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                 stop:0 #b30000,
+                                 stop:1 #ff4d4d);
+    image: url(:/textures/textures/downArrowIcon.png);
+}
+
+/* When hovered */
+QComboBox:hover {
+    border: 2px solid #ff1a1a;
+    background-color: #fff0f0;
+}
+
+/* When focused */
+QComboBox:focus {
+    border: 2px solid #ff0000;
+}
+
+/* Drop-down popup style */
+QComboBox QAbstractItemView {
+    background-color: #ffffff;
+    border: 2px solid #b30000;
+    selection-background-color: #d40000;
+    selection-color: white;
+    border-radius: 8px;
+    padding: 5px;
+    font: 13pt &quot;Segoe UI&quot;;
+    color: #000000;
+}
+</string>
+        </property>
+        <property name="placeholderText">
+         <string>Team List</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="addPartnerandSponsor">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>520</y>
+          <width>391</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Add Partner and Sponsor</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>textures/addIcon.png</normaloff>textures/addIcon.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="partnerList">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>180</y>
+          <width>201</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
+}
+
+/* Drop-down arrow button */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 2px solid #990000;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                 stop:0 #b30000,
+                                 stop:1 #ff4d4d);
+    image: url(:/textures/textures/downArrowIcon.png);
+}
+
+/* When hovered */
+QComboBox:hover {
+    border: 2px solid #ff1a1a;
+    background-color: #fff0f0;
+}
+
+/* When focused */
+QComboBox:focus {
+    border: 2px solid #ff0000;
+}
+
+/* Drop-down popup style */
+QComboBox QAbstractItemView {
+    background-color: #ffffff;
+    border: 2px solid #b30000;
+    selection-background-color: #d40000;
+    selection-color: white;
+    border-radius: 8px;
+    padding: 5px;
+    font: 13pt &quot;Segoe UI&quot;;
+    color: #000000;
+}
+</string>
+        </property>
+        <property name="placeholderText">
+         <string>Partner List</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="recommend_2">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>380</y>
+          <width>66</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::DialogError"/>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Statistics</string>
+       </attribute>
+       <widget class="QSplitter" name="splitter">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>110</y>
+          <width>779</width>
+          <height>283</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="start">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>530</y>
+          <width>192</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>stats</string>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>50</height>
+         </size>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="sidebar" native="true">
+      <property name="geometry">
+       <rect>
+        <x>-30</x>
+        <y>0</y>
+        <width>151</width>
+        <height>681</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+      </property>
+      <widget class="QPushButton" name="exitButton">
+       <property name="geometry">
+        <rect>
+         <x>53</x>
+         <y>240</y>
+         <width>71</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	border:none;
+
+
+
+}
+
+QPushButton:hover {
+    background-color: red;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+	border-radius:15px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/textures/textures/exitIcon.png</normaloff>:/textures/textures/exitIcon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="aboutButton">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>170</y>
+         <width>71</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	border:none;
+
+
+
+}
+
+QPushButton:hover {
+    background-color: lime;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+	border-radius:15px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/textures/textures/aboutIcon.png</normaloff>:/textures/textures/aboutIcon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="notifButton">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>90</y>
+         <width>75</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	border:none;
+
+
+
+}
+
+QPushButton:hover {
+    background-color: yellow;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+	border-radius:15px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/textures/textures/notifsIcon.png</normaloff>:/textures/textures/notifsIcon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="homeButton">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>20</y>
+         <width>75</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	border:none;
+
+
+
+}
+
+QPushButton:hover {
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+	border-radius:15px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/textures/textures/homeIcon.png</normaloff>:/textures/textures/homeIcon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

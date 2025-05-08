@@ -46,11 +46,12 @@ public:
     bool supprimer(int);
     void listMatchesInTable(QTableWidget *table);
     void displayTeamGoalStats();
-  void searchMatches(const QString &searchText, const QList<QString> &filters, QTableWidget *matchsTable);
+    void searchMatches(const QString &searchText, const QList<QString> &filters, QTableWidget *matchsTable);
+    bool fetchMatchData(int matchId, QString& team1, QString& team2, QString& score);
 
-  // method to fetch by ID needed by arduino
+
     static Match * findMatchById(int id);
-      void updateAdditonalTime(int matchId , int additionalTime);
+    void updateAdditonalTime(int matchId , int additionalTime);
 
     bool updateMatchScore(int matchID, QString newScore);
 

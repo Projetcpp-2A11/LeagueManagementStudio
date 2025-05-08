@@ -33,15 +33,20 @@ public:
     QLineEdit *score;
     QComboBox *stadium;
     QDateEdit *dateEdit;
+    QLabel *mesupteam;
+    QLabel *mesupteam2;
+    QLabel *mesupscore;
+    QLabel *mesupstaduim;
+    QLabel *mesupdate;
 
     void setupUi(QWidget *matchesUpdateForm)
     {
         if (matchesUpdateForm->objectName().isEmpty())
             matchesUpdateForm->setObjectName("matchesUpdateForm");
-        matchesUpdateForm->resize(614, 471);
+        matchesUpdateForm->resize(739, 510);
         area = new QWidget(matchesUpdateForm);
         area->setObjectName("area");
-        area->setGeometry(QRect(-10, -10, 621, 481));
+        area->setGeometry(QRect(0, 0, 751, 511));
         area->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, \n"
 "                                x1:0, y1:0, x2:0, y2:1, \n"
 "                                stop:0 rgba(6, 6, 6, 255), \n"
@@ -58,42 +63,90 @@ public:
         label->setStyleSheet(QString::fromUtf8("background:transparent;"));
         save_exit = new QPushButton(area);
         save_exit->setObjectName("save_exit");
-        save_exit->setGeometry(QRect(150, 400, 111, 41));
+        save_exit->setGeometry(QRect(150, 400, 192, 51));
         save_exit->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"background-color:qlineargradient(spread:pad, \n"
-"                            x1:0, y1:0, x2:1, y2:1, \n"
-"                            stop:0 rgba(255, 0, 0, 255), \n"
-"                            stop:0.41 rgba(195, 22, 58, 255), \n"
-"                            stop:1 rgba(255, 117, 0, 255));;  ;  \n"
-"border-radius:10px;\n"
-"color:white;\n"
+"    background: qlineargradient(spread:pad, \n"
+"                                x1:0, y1:0, x2:1, y2:1, \n"
+"                                stop:0 rgba(255, 0, 0, 255), \n"
+"                                stop:0.41 rgba(195, 22, 58, 255), \n"
+"                                stop:1 rgba(255, 117, 0, 255));\n"
+"    color: white;\n"
+"    border: 2px solid #990000;\n"
+"    border-radius: 10px;\n"
+"    padding: 12px 24px;\n"
+"    font: bold 14pt \"Segoe UI\";\n"
+"    min-width: 140px;\n"
+"    cursor: pointer;\n"
+"    transition: all 0.3s ease; /* Transition fluide */\n"
 "}\n"
+"\n"
+"/* Hover effect */\n"
 "QPushButton:hover {\n"
-"    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, \n"
-"                            stop: 0 rgba(0, 255, 254, 255),     \n"
-"                            stop: 0.26 rgba(38, 170, 196, 255), \n"
-"                            stop: 0.67 rgba(89, 85, 131, 255),\n"
-"                            stop: 1 rgba(0, 238, 255, 255));  \n"
-"}"));
+"    background: qlineargradient(spread:pad, \n"
+"                                x1:0.25, y1:0, x2:0.75, y2:1, \n"
+"                                stop:0 rgba(0, 255, 254, 255),     \n"
+"                                stop:0.26 rgba(38, 170, 196, 255), \n"
+"                                stop:0.67 rgba(89, 85, 131, 255),\n"
+"                                stop:1 rgb"
+                        "a(0, 238, 255, 255));\n"
+"    border: 2px solid #ff0004; /* Border change on hover */\n"
+"    color: #ffffff;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"/* Pressed effect */\n"
+"QPushButton:pressed {\n"
+"    background-color: #cc0000;\n"
+"    border: 2px solid #990000;\n"
+"    color: white;\n"
+"    padding-left: 14px;\n"
+"    padding-top: 14px;\n"
+"    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */\n"
+"}\n"
+""));
         cancel = new QPushButton(area);
         cancel->setObjectName("cancel");
-        cancel->setGeometry(QRect(350, 400, 111, 41));
+        cancel->setGeometry(QRect(350, 400, 211, 51));
         cancel->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"background-color:qlineargradient(spread:pad, \n"
-"                            x1:0, y1:0, x2:1, y2:1, \n"
-"                            stop:0 rgba(255, 0, 0, 255), \n"
-"                            stop:0.41 rgba(195, 22, 58, 255), \n"
-"                            stop:1 rgba(255, 117, 0, 255));;  ;  \n"
-"border-radius:10px;\n"
-"color:white;\n"
+"    background: qlineargradient(spread:pad, \n"
+"                                x1:0, y1:0, x2:1, y2:1, \n"
+"                                stop:0 rgba(255, 0, 0, 255), \n"
+"                                stop:0.41 rgba(195, 22, 58, 255), \n"
+"                                stop:1 rgba(255, 117, 0, 255));\n"
+"    color: white;\n"
+"    border: 2px solid #990000;\n"
+"    border-radius: 10px;\n"
+"    padding: 12px 24px;\n"
+"    font: bold 14pt \"Segoe UI\";\n"
+"    min-width: 140px;\n"
+"    cursor: pointer;\n"
+"    transition: all 0.3s ease; /* Transition fluide */\n"
 "}\n"
+"\n"
+"/* Hover effect */\n"
 "QPushButton:hover {\n"
-"    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, \n"
-"                            stop: 0 rgba(0, 255, 254, 255),     \n"
-"                            stop: 0.26 rgba(38, 170, 196, 255), \n"
-"                            stop: 0.67 rgba(89, 85, 131, 255),\n"
-"                            stop: 1 rgba(0, 238, 255, 255));  \n"
-"}"));
+"    background: qlineargradient(spread:pad, \n"
+"                                x1:0.25, y1:0, x2:0.75, y2:1, \n"
+"                                stop:0 rgba(0, 255, 254, 255),     \n"
+"                                stop:0.26 rgba(38, 170, 196, 255), \n"
+"                                stop:0.67 rgba(89, 85, 131, 255),\n"
+"                                stop:1 rgb"
+                        "a(0, 238, 255, 255));\n"
+"    border: 2px solid #ff0004; /* Border change on hover */\n"
+"    color: #ffffff;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"/* Pressed effect */\n"
+"QPushButton:pressed {\n"
+"    background-color: #cc0000;\n"
+"    border: 2px solid #990000;\n"
+"    color: white;\n"
+"    padding-left: 14px;\n"
+"    padding-top: 14px;\n"
+"    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */\n"
+"}\n"
+""));
         matchIDLabel = new QLabel(area);
         matchIDLabel->setObjectName("matchIDLabel");
         matchIDLabel->setGeometry(QRect(330, 10, 321, 61));
@@ -306,6 +359,39 @@ public:
 "\n"
 "\n"
 ""));
+        mesupteam = new QLabel(area);
+        mesupteam->setObjectName("mesupteam");
+        mesupteam->setGeometry(QRect(30, 150, 231, 41));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Arial Rounded MT Bold")});
+        font2.setPointSize(7);
+        mesupteam->setFont(font2);
+        mesupteam->setStyleSheet(QString::fromUtf8("border:none;\n"
+"background:none;"));
+        mesupteam2 = new QLabel(area);
+        mesupteam2->setObjectName("mesupteam2");
+        mesupteam2->setGeometry(QRect(340, 150, 231, 41));
+        mesupteam2->setFont(font2);
+        mesupteam2->setStyleSheet(QString::fromUtf8("border:none;\n"
+"background:none;"));
+        mesupscore = new QLabel(area);
+        mesupscore->setObjectName("mesupscore");
+        mesupscore->setGeometry(QRect(190, 250, 231, 41));
+        mesupscore->setFont(font2);
+        mesupscore->setStyleSheet(QString::fromUtf8("border:none;\n"
+"background:none;"));
+        mesupstaduim = new QLabel(area);
+        mesupstaduim->setObjectName("mesupstaduim");
+        mesupstaduim->setGeometry(QRect(20, 350, 231, 41));
+        mesupstaduim->setFont(font2);
+        mesupstaduim->setStyleSheet(QString::fromUtf8("border:none;\n"
+"background:none;"));
+        mesupdate = new QLabel(area);
+        mesupdate->setObjectName("mesupdate");
+        mesupdate->setGeometry(QRect(330, 350, 231, 41));
+        mesupdate->setFont(font2);
+        mesupdate->setStyleSheet(QString::fromUtf8("border:none;\n"
+"background:none;"));
 
         retranslateUi(matchesUpdateForm);
 
@@ -321,6 +407,11 @@ public:
         matchIDLabel->setText(QCoreApplication::translate("matchesUpdateForm", "label", nullptr));
         score->setPlaceholderText(QCoreApplication::translate("matchesUpdateForm", "Updated Score", nullptr));
         stadium->setPlaceholderText(QCoreApplication::translate("matchesUpdateForm", "Stadium", nullptr));
+        mesupteam->setText(QString());
+        mesupteam2->setText(QString());
+        mesupscore->setText(QString());
+        mesupstaduim->setText(QString());
+        mesupdate->setText(QString());
     } // retranslateUi
 
 };

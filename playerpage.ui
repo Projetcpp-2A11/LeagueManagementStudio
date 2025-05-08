@@ -55,35 +55,48 @@
     </property>
     <property name="styleSheet">
      <string notr="true">QTabBar::tab {
-    background: qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
+    background: qlineargradient(spread:pad,
+                                x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #b30000,
+                                stop:0.5 #d40000,
+                                stop:1 #ff4d4d);
     color: white;
-    border: 2px solid black;
-    padding: 10px;
-	width: 263%
-	
-   
+    border: 1px solid #990000;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 2px;
+    font: bold 12pt &quot;Segoe UI&quot;;
+    min-width: 150px;
+    transition: all 0.3s ease;
 }
 
-
 QTabBar::tab:selected {
-    background:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(0, 213, 246, 255), 
-                            stop:0.18 rgba(100, 100, 138, 255), 
-                            stop:1 rgba(0, 212, 255, 255));;
-    color: white;
-    font-weight: bold;
+    background: qlineargradient(spread:pad,
+                                x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #ffffff,
+                                stop:1 #ffcccc);
+    color: #990000;
+    font: bold 13pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
 }
 
 QTabBar::tab:hover {
-    background: lightblue;
-    color: black;
+    background: qlineargradient(spread:pad,
+                                x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #ff6666,
+                                stop:1 #ff9999);
+    color: #000000;
+    font: bold 12pt &quot;Segoe UI&quot;;
 }
 
+QTabWidget::pane {
+    border: 2px solid #990000;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    background-color: #fefefe;
+}
 </string>
     </property>
     <property name="currentIndex">
@@ -96,39 +109,42 @@ QTabBar::tab:hover {
      <widget class="QLineEdit" name="searchLineEdit">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>70</y>
-        <width>181</width>
-        <height>31</height>
+        <x>30</x>
+        <y>30</y>
+        <width>241</width>
+        <height>71</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
-        <pointsize>-1</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>14</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QLineEdit {
-    background-color: white;
-    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, 
-                                stop: 0 rgba(255, 255, 255, 255), 
-                                stop: 1 rgba(240, 240, 240, 255));;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
     border-radius: 8px;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
 }
 
 /* Hover effect */
 QLineEdit:hover {
-    border-color: #ff3347;
+    border: 2px solid #ff3333;
+    background-color: #fff0f0;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Focus effect */
 QLineEdit:focus {
-    border-color: #ff0004;
-    box-shadow: none; /* Qt stylesheets do not support box-shadow */
+    border: 2px solid #ff0004;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
 }
 </string>
       </property>
@@ -139,10 +155,10 @@ QLineEdit:focus {
      <widget class="QPushButton" name="searchButton">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>70</y>
-        <width>41</width>
-        <height>31</height>
+        <x>290</x>
+        <y>40</y>
+        <width>66</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="cursor">
@@ -150,20 +166,44 @@ QLineEdit:focus {
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
+
+/* Hover effect */
 QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  ; 
-}</string>
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
       </property>
       <property name="text">
        <string/>
@@ -177,9 +217,9 @@ QPushButton:hover {
       <property name="geometry">
        <rect>
         <x>380</x>
-        <y>70</y>
-        <width>41</width>
-        <height>31</height>
+        <y>40</y>
+        <width>66</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="cursor">
@@ -187,20 +227,44 @@ QPushButton:hover {
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
+
+/* Hover effect */
 QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  ; 
-}</string>
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
       </property>
       <property name="text">
        <string/>
@@ -215,13 +279,16 @@ QPushButton:hover {
        <rect>
         <x>130</x>
         <y>570</y>
-        <width>191</width>
-        <height>41</height>
+        <width>231</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>18</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>14</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="cursor">
@@ -229,21 +296,44 @@ QPushButton:hover {
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-border-radius:10px;
-color:white;
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
+
+/* Hover effect */
 QPushButton:hover {
-    background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  
-}</string>
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
       </property>
       <property name="text">
        <string>Export List</string>
@@ -273,70 +363,73 @@ QPushButton:hover {
       </property>
       <property name="styleSheet">
        <string notr="true">QTableWidget {
-    background-color: #ecf0f1;
-    border: 4px solid #2980b9; 
+    background-color: #f9f9f9;
+    border: 3px solid #b30000;
     border-radius: 10px;
-    gridline-color: #bdc3c7;
+    gridline-color: #dcdcdc;
     font-size: 14px;
+    color: #000;
 }
 
 QTableWidget::item {
     padding: 10px;
-    border-bottom: 1px solid #bdc3c7;
-	color:black;
+    border-bottom: 1px solid #e0e0e0;
+    color: #000000;
 }
 
 QTableWidget::item:selected {
-    background-color: #3498db;
+    background-color: #b30000;  /* Red selection */
     color: white;
     font-weight: bold;
 }
 
 QTableWidget::item:hover {
-    background-color: #f1c40f;
-    color: black;
+    background-color: #ffe6e6;  /* Light red hover */
+    color: #000;
 }
 
 QHeaderView::section {
-    background-color: #2980b9; /* Blue header */
+    background-color: #b30000;
     color: white;
-    padding: 5px 5px; /* Increase horizontal padding */
+    padding: 6px 10px;
     font-size: 15px;
     font-weight: bold;
-    border: 1px solid #1c5986;
-    min-width: 120px; /* Minimum width for each column */
+    border: 1px solid #990000;
+    min-width: 120px;
+    border-radius: 5px;
 }
 
 QTableCornerButton::section {
-    background-color: #2980b9;
-    border: 1px solid #1c5986;
+    background-color: #b30000;
+    border: 1px solid #990000;
 }
 
 QTableWidget QWidget {
-background:transparent;
+    background: transparent;
+}
 
-	}
 QTableWidget QPushButton {
     background-color: qlineargradient(spread:pad, 
                             x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));  
-    border-radius: 10px;
+                            stop:0 #b30000, 
+                            stop:0.5 #e60000, 
+                            stop:1 #ff4d4d);
+    border-radius: 8px;
     color: white;
-    font-size: 12px;
-min-width: 100px;  /* Ensure a minimum width */
-    min-height: 40px;  /* Ensure a minimum height */
+    font-size: 13px;
+    min-width: 90px;
+    min-height: 35px;
+    border: none;
 }
 
 QTableWidget QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  
+    background-color: qlineargradient(spread:pad,
+                            x1:0, y1:0, x2:1, y2:1,
+                            stop:0 #ffffff,
+                            stop:1 #ffcccc);
+    color: #b30000;
+    font-weight: bold;
 }
-
 </string>
       </property>
       <attribute name="horizontalHeaderStretchLastSection">
@@ -376,31 +469,51 @@ QTableWidget QPushButton:hover {
      <widget class="QPushButton" name="nextPageTable">
       <property name="geometry">
        <rect>
-        <x>740</x>
+        <x>700</x>
         <y>570</y>
-        <width>31</width>
-        <height>24</height>
+        <width>66</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton {background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
+       <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
-QPushButton:hover{
-	background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  
 
-
-
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
 }
 
-
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
 </string>
       </property>
       <property name="text">
@@ -416,29 +529,49 @@ QPushButton:hover{
        <rect>
         <x>780</x>
         <y>569</y>
-        <width>31</width>
-        <height>24</height>
+        <width>66</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton {background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
+       <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
-QPushButton:hover{
-	background-color:qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  
 
-
-
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
 }
 
-
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
 </string>
       </property>
       <property name="text">
@@ -453,9 +586,9 @@ QPushButton:hover{
       <property name="geometry">
        <rect>
         <x>770</x>
-        <y>70</y>
-        <width>41</width>
-        <height>31</height>
+        <y>50</y>
+        <width>66</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="cursor">
@@ -463,20 +596,44 @@ QPushButton:hover{
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
+
+/* Hover effect */
 QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  ; 
-}</string>
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
       </property>
       <property name="text">
        <string/>
@@ -496,39 +653,39 @@ QPushButton:hover {
         <x>80</x>
         <y>70</y>
         <width>301</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
-        <pointsize>-1</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>14</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QLineEdit {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
 }
 
 /* Hover effect */
 QLineEdit:hover {
-	border:3px dashed qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff3333;
+    background-color: #fff0f0;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Focus effect */
 QLineEdit:focus {
-    border:2px solid  qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff0004;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
 }
 </string>
       </property>
@@ -545,39 +702,39 @@ QLineEdit:focus {
         <x>80</x>
         <y>122</y>
         <width>301</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
-        <pointsize>-1</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>14</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QLineEdit {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
 }
 
 /* Hover effect */
 QLineEdit:hover {
-	border:3px dashed qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff3333;
+    background-color: #fff0f0;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Focus effect */
 QLineEdit:focus {
-    border:2px solid  qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff0004;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
 }
 </string>
       </property>
@@ -589,41 +746,41 @@ QLineEdit:focus {
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>248</y>
+        <y>220</y>
         <width>301</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
-        <pointsize>-1</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>14</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QLineEdit {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
 }
 
 /* Hover effect */
 QLineEdit:hover {
-	border:3px dashed qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff3333;
+    background-color: #fff0f0;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Focus effect */
 QLineEdit:focus {
-    border:2px solid  qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff0004;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
 }
 </string>
       </property>
@@ -635,9 +792,9 @@ QLineEdit:focus {
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>460</y>
+        <y>420</y>
         <width>301</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="cursor">
@@ -645,49 +802,49 @@ QLineEdit:focus {
       </property>
       <property name="styleSheet">
        <string notr="true">QComboBox {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
-    border: 2px solid transparent; /* Default border */
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
 }
 
-/* Drop-down arrow area */
+/* Drop-down arrow button */
 QComboBox::drop-down {
-    border: none;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
     width: 30px;
-   ; /* Keep background for drop-down */
+    border-left: 2px solid #990000;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                 stop:0 #b30000,
+                                 stop:1 #ff4d4d);
     image: url(:/textures/textures/downArrowIcon.png);
 }
 
-/* Hover effect */
+/* When hovered */
 QComboBox:hover {
-    border: 3px dashed qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
+    border: 2px solid #ff1a1a;
+    background-color: #fff0f0;
 }
 
-/* Focus effect */
+/* When focused */
 QComboBox:focus {
-    border: 2px solid qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
+    border: 2px solid #ff0000;
 }
 
-/* Style for the dropdown list */
+/* Drop-down popup style */
 QComboBox QAbstractItemView {
-    background-color: white;
-    border: 2px solid #C51D34;
-    selection-background-color: #ff0004;
+    background-color: #ffffff;
+    border: 2px solid #b30000;
+    selection-background-color: #d40000;
     selection-color: white;
     border-radius: 8px;
-    color: black;
+    padding: 5px;
+    font: 13pt &quot;Segoe UI&quot;;
+    color: #000000;
 }
 </string>
       </property>
@@ -699,41 +856,41 @@ QComboBox QAbstractItemView {
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>310</y>
+        <y>270</y>
         <width>301</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
-        <pointsize>-1</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>14</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QLineEdit {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
 }
 
 /* Hover effect */
 QLineEdit:hover {
-	border:3px dashed qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff3333;
+    background-color: #fff0f0;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Focus effect */
 QLineEdit:focus {
-    border:2px solid  qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff0004;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
 }
 </string>
       </property>
@@ -752,7 +909,10 @@ QLineEdit:focus {
       </property>
       <property name="font">
        <font>
-        <pointsize>18</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>14</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="cursor">
@@ -760,21 +920,44 @@ QLineEdit:focus {
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-border-radius:10px;
-color:white;
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
+
+/* Hover effect */
 QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  ; 
-}</string>
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
       </property>
       <property name="text">
        <string>Add Player</string>
@@ -794,9 +977,9 @@ QPushButton:hover {
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>190</y>
+        <y>170</y>
         <width>301</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="cursor">
@@ -804,49 +987,49 @@ QPushButton:hover {
       </property>
       <property name="styleSheet">
        <string notr="true">QComboBox {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
-    border: 2px solid transparent; /* Default border */
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
 }
 
-/* Drop-down arrow area */
+/* Drop-down arrow button */
 QComboBox::drop-down {
-    border: none;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
     width: 30px;
-   ; /* Keep background for drop-down */
+    border-left: 2px solid #990000;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                 stop:0 #b30000,
+                                 stop:1 #ff4d4d);
     image: url(:/textures/textures/downArrowIcon.png);
 }
 
-/* Hover effect */
+/* When hovered */
 QComboBox:hover {
-    border: 3px dashed qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
+    border: 2px solid #ff1a1a;
+    background-color: #fff0f0;
 }
 
-/* Focus effect */
+/* When focused */
 QComboBox:focus {
-    border: 2px solid qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));
+    border: 2px solid #ff0000;
 }
 
-/* Style for the dropdown list */
+/* Drop-down popup style */
 QComboBox QAbstractItemView {
-    background-color: white;
-    border: 2px solid #C51D34;
-    selection-background-color: #ff0004;
+    background-color: #ffffff;
+    border: 2px solid #b30000;
+    selection-background-color: #d40000;
     selection-color: white;
     border-radius: 8px;
-    color: black;
+    padding: 5px;
+    font: 13pt &quot;Segoe UI&quot;;
+    color: #000000;
 }
 </string>
       </property>
@@ -908,41 +1091,41 @@ QComboBox QAbstractItemView {
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>410</y>
+        <y>370</y>
         <width>301</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
-        <pointsize>-1</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>14</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QLineEdit {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
 }
 
 /* Hover effect */
 QLineEdit:hover {
-	border:3px dashed qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff3333;
+    background-color: #fff0f0;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Focus effect */
 QLineEdit:focus {
-    border:2px solid  qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff0004;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
 }
 </string>
       </property>
@@ -954,41 +1137,41 @@ QLineEdit:focus {
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>360</y>
+        <y>320</y>
         <width>301</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
-        <pointsize>-1</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>14</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QLineEdit {
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
 }
 
 /* Hover effect */
 QLineEdit:hover {
-	border:3px dashed qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff3333;
+    background-color: #fff0f0;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Focus effect */
 QLineEdit:focus {
-    border:2px solid  qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  ;
+    border: 2px solid #ff0004;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
 }
 </string>
       </property>
@@ -1000,28 +1183,51 @@ QLineEdit:focus {
       <property name="geometry">
        <rect>
         <x>390</x>
-        <y>360</y>
-        <width>83</width>
-        <height>29</height>
+        <y>310</y>
+        <width>192</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-border-radius:10px;
-color:white;
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
+
+/* Hover effect */
 QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  ; 
-}</string>
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
       </property>
       <property name="text">
        <string>Add Photo</string>
@@ -1056,7 +1262,10 @@ QPushButton:hover {
       </property>
       <property name="font">
        <font>
-        <pointsize>18</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>14</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="cursor">
@@ -1064,21 +1273,44 @@ QPushButton:hover {
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background-color:qlineargradient(spread:pad, 
-                            x1:0, y1:0, x2:1, y2:1, 
-                            stop:0 rgba(255, 0, 0, 255), 
-                            stop:0.41 rgba(195, 22, 58, 255), 
-                            stop:1 rgba(255, 117, 0, 255));;  ;  
-border-radius:10px;
-color:white;
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
+
+/* Hover effect */
 QPushButton:hover {
-    background-color: qlineargradient(x1: 0.25, y1: 0, x2: 0.75, y2: 1, 
-                            stop: 0 rgba(0, 255, 254, 255),     
-                            stop: 0.26 rgba(38, 170, 196, 255), 
-                            stop: 0.67 rgba(89, 85, 131, 255),
-                            stop: 1 rgba(0, 238, 255, 255));  ; 
-}</string>
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
       </property>
       <property name="text">
        <string>Statistique</string>
@@ -1102,11 +1334,49 @@ QPushButton:hover {
       <x>-30</x>
       <y>0</y>
       <width>151</width>
-      <height>311</height>
+      <height>681</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:gray;</string>
+     <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
     </property>
     <widget class="QPushButton" name="exitButton">
      <property name="geometry">
@@ -1122,16 +1392,44 @@ QPushButton:hover {
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
-	border:none;
-
-
-
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
 
+/* Hover effect */
 QPushButton:hover {
-    background-color: red;
-	border-radius:15px;
-}</string>
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
      </property>
      <property name="text">
       <string/>
@@ -1161,16 +1459,44 @@ QPushButton:hover {
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
-	border:none;
-
-
-
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
 
+/* Hover effect */
 QPushButton:hover {
-    background-color: white;
-	border-radius:15px;
-}</string>
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
      </property>
      <property name="text">
       <string/>
@@ -1200,16 +1526,44 @@ QPushButton:hover {
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
-	border:none;
-
-
-
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
 
+/* Hover effect */
 QPushButton:hover {
-    background-color: lime;
-	border-radius:15px;
-}</string>
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
      </property>
      <property name="text">
       <string/>
@@ -1239,17 +1593,44 @@ QPushButton:hover {
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
-	border:none;
-
-
-
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
 }
 
+/* Hover effect */
 QPushButton:hover {
-    background-color: yellow;
-    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
-	border-radius:15px;
-}</string>
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
      </property>
      <property name="text">
       <string/>

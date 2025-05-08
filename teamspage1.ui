@@ -1,0 +1,1436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>teamsPage</class>
+ <widget class="QWidget" name="teamsPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1050</width>
+    <height>681</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="contentArea" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:0, y2:1, 
+                                stop:0 rgba(6, 6, 6, 255), 
+                                stop:0.41 rgba(56, 50, 52, 255), 
+                                stop:1 rgba(34, 33, 33, 255));;
+</string>
+     </property>
+     <widget class="QTabWidget" name="tabWidgetTeams">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>0</y>
+        <width>941</width>
+        <height>681</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabBar::tab {
+    background: qlineargradient(spread:pad,
+                                x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #b30000,
+                                stop:0.5 #d40000,
+                                stop:1 #ff4d4d);
+    color: white;
+    border: 1px solid #990000;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 2px;
+    font: bold 12pt &quot;Segoe UI&quot;;
+    min-width: 150px;
+    transition: all 0.3s ease;
+}
+
+QTabBar::tab:selected {
+    background: qlineargradient(spread:pad,
+                                x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #ffffff,
+                                stop:1 #ffcccc);
+    color: #990000;
+    font: bold 13pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+}
+
+QTabBar::tab:hover {
+    background: qlineargradient(spread:pad,
+                                x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #ff6666,
+                                stop:1 #ff9999);
+    color: #000000;
+    font: bold 12pt &quot;Segoe UI&quot;;
+}
+
+QTabWidget::pane {
+    border: 2px solid #990000;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    background-color: #fefefe;
+}
+</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Teams List</string>
+       </attribute>
+       <widget class="QLineEdit" name="searchTeamsInput">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>70</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    padding: 8px 12px;
+    color: #000000;
+    font: 14pt &quot;Segoe UI&quot;;
+    border: 2px solid #990000;
+    border-radius: 8px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+    border: 2px solid #ff3333;
+    background-color: #fff0f0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border: 2px solid #ff0004;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+}
+</string>
+        </property>
+        <property name="placeholderText">
+         <string>Search Teams</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="searchButton">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>70</y>
+          <width>66</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/searchIcon.png</normaloff>:/textures/textures/searchIcon.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="exportListButton">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>560</y>
+          <width>192</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Export List</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>textures/exportIcon.png</normaloff>textures/exportIcon.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>50</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="nextPageTable">
+        <property name="geometry">
+         <rect>
+          <x>740</x>
+          <y>570</y>
+          <width>66</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/prevIcon.png</normaloff>:/textures/textures/prevIcon.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="prevPageTable">
+        <property name="geometry">
+         <rect>
+          <x>820</x>
+          <y>570</y>
+          <width>66</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/textures/textures/nextIcon.png</normaloff>:/textures/textures/nextIcon.png</iconset>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="listTeams">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>140</y>
+          <width>911</width>
+          <height>401</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {
+    background-color: #f9f9f9;
+    border: 3px solid #b30000;
+    border-radius: 10px;
+    gridline-color: #dcdcdc;
+    font-size: 14px;
+    color: #000;
+}
+
+QTableWidget::item {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #000000;
+}
+
+QTableWidget::item:selected {
+    background-color: #b30000;  /* Red selection */
+    color: white;
+    font-weight: bold;
+}
+
+QTableWidget::item:hover {
+    background-color: #ffe6e6;  /* Light red hover */
+    color: #000;
+}
+
+QHeaderView::section {
+    background-color: #b30000;
+    color: white;
+    padding: 6px 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid #990000;
+    min-width: 120px;
+    border-radius: 5px;
+}
+
+QTableCornerButton::section {
+    background-color: #b30000;
+    border: 1px solid #990000;
+}
+
+QTableWidget QWidget {
+    background: transparent;
+}
+
+QTableWidget QPushButton {
+    background-color: qlineargradient(spread:pad, 
+                            x1:0, y1:0, x2:1, y2:1, 
+                            stop:0 #b30000, 
+                            stop:0.5 #e60000, 
+                            stop:1 #ff4d4d);
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    min-width: 90px;
+    min-height: 35px;
+    border: none;
+}
+
+QTableWidget QPushButton:hover {
+    background-color: qlineargradient(spread:pad,
+                            x1:0, y1:0, x2:1, y2:1,
+                            stop:0 #ffffff,
+                            stop:1 #ffcccc);
+    color: #b30000;
+    font-weight: bold;
+}
+</string>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>ID</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Team Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Country</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Logo</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Num Fans</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Kit</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Matches Played</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Actions</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QPushButton" name="refreshButton">
+        <property name="geometry">
+         <rect>
+          <x>830</x>
+          <y>80</y>
+          <width>66</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="filtreTeams">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>67</y>
+          <width>201</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Filter Here</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Trie de A-Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Trie de Z-A</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Trie par match croissente</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Trie par match decroissente</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Trie par Num Fans croissente</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Trie par Num Fans decroissente</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Trie par id croissate</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Add Teams</string>
+       </attribute>
+       <widget class="QPushButton" name="addTeamsButton">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>490</y>
+          <width>221</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Add Team</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>textures/addIcon.png</normaloff>textures/addIcon.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="teamsName">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>90</y>
+          <width>301</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>-1</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: white;
+    border: 2px solid #C51D34;
+    border-radius: 8px;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+    border-color: #ff3347;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border-color: #ff0004;
+    box-shadow: none; /* Qt stylesheets do not support box-shadow */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Team Name</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="teamsNationality">
+        <property name="geometry">
+         <rect>
+          <x>500</x>
+          <y>90</y>
+          <width>321</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>-1</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: white;
+    border: 2px solid #C51D34;
+    border-radius: 8px;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+    border-color: #ff3347;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border-color: #ff0004;
+    box-shadow: none; /* Qt stylesheets do not support box-shadow */
+}
+</string>
+        </property>
+        <property name="placeholderText">
+         <string>Nationality</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="teamsMP">
+        <property name="geometry">
+         <rect>
+          <x>500</x>
+          <y>260</y>
+          <width>321</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QSpinBox {
+    background-color: white;
+    border: 2px solid #C51D34;
+    border-radius: 8px;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+    border-color: #ff3347;
+}
+
+/* Focus effect */
+QSpinBox:focus {
+    border-color: #ff0004;
+    box-shadow: none; /* Qt stylesheets do not support box-shadow */
+}</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="teamsNbf">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>261</y>
+          <width>321</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QSpinBox {
+    background-color: white;
+    border: 2px solid #C51D34;
+    border-radius: 8px;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+    border-color: #ff3347;
+}
+
+/* Focus effect */
+QSpinBox:focus {
+    border-color: #ff0004;
+    box-shadow: none; /* Qt stylesheets do not support box-shadow */
+}</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="teamsKit">
+        <property name="geometry">
+         <rect>
+          <x>500</x>
+          <y>390</y>
+          <width>321</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>-1</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: white;
+    border: 2px solid #C51D34;
+    border-radius: 8px;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+    border-color: #ff3347;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border-color: #ff0004;
+    box-shadow: none; /* Qt stylesheets do not support box-shadow */
+}
+</string>
+        </property>
+        <property name="placeholderText">
+         <string>Path to the kits</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="teamsLogo">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>390</y>
+          <width>321</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>-1</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: white;
+    border: 2px solid #C51D34;
+    border-radius: 8px;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+/* Hover effect */
+QLineEdit:hover {
+    border-color: #ff3347;
+}
+
+/* Focus effect */
+QLineEdit:focus {
+    border-color: #ff0004;
+    box-shadow: none; /* Qt stylesheets do not support box-shadow */
+}
+</string>
+        </property>
+        <property name="placeholderText">
+         <string>Path to the logo</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>180</y>
+          <width>271</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Number Of Subcribers of the team</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>510</x>
+          <y>180</y>
+          <width>281</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Number of matches palyed by the team</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="errerName">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>130</y>
+          <width>281</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color :red;
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="errerCountry">
+        <property name="geometry">
+         <rect>
+          <x>510</x>
+          <y>130</y>
+          <width>301</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:red;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="errerLogo">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>440</y>
+          <width>301</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="errerKit">
+        <property name="geometry">
+         <rect>
+          <x>500</x>
+          <y>440</y>
+          <width>301</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="addLogoButton">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>320</y>
+          <width>221</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Add Logo</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>textures/addIcon.png</normaloff>textures/addIcon.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="addKitButton">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>320</y>
+          <width>221</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>14</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Add Kits</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>textures/addIcon.png</normaloff>textures/addIcon.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="Stats">
+       <attribute name="title">
+        <string>Teams Statistics</string>
+       </attribute>
+       <widget class="QWidget" name="chartContainer" native="true">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>891</width>
+          <height>611</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="sidebar" native="true">
+      <property name="geometry">
+       <rect>
+        <x>-30</x>
+        <y>0</y>
+        <width>151</width>
+        <height>681</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background: qlineargradient(spread:pad, 
+                                x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(255, 0, 0, 255), 
+                                stop:0.41 rgba(195, 22, 58, 255), 
+                                stop:1 rgba(255, 117, 0, 255));
+    color: white;
+    border: 2px solid #990000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font: bold 14pt &quot;Segoe UI&quot;;
+    min-width: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background: qlineargradient(spread:pad, 
+                                x1:0.25, y1:0, x2:0.75, y2:1, 
+                                stop:0 rgba(0, 255, 254, 255),     
+                                stop:0.26 rgba(38, 170, 196, 255), 
+                                stop:0.67 rgba(89, 85, 131, 255),
+                                stop:1 rgba(0, 238, 255, 255));
+    border: 2px solid #ff0004; /* Border change on hover */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on press */
+}
+</string>
+      </property>
+      <widget class="QPushButton" name="exitButton">
+       <property name="geometry">
+        <rect>
+         <x>53</x>
+         <y>240</y>
+         <width>71</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	border:none;
+
+
+
+}
+
+QPushButton:hover {
+    background-color: red;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+	border-radius:15px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/textures/textures/exitIcon.png</normaloff>:/textures/textures/exitIcon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="homeButton">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>10</y>
+         <width>75</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	border:none;
+
+
+
+}
+
+QPushButton:hover {
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+	border-radius:15px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/textures/textures/homeIcon.png</normaloff>:/textures/textures/homeIcon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="aboutButton">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>170</y>
+         <width>71</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	border:none;
+
+
+
+}
+
+QPushButton:hover {
+    background-color: lime;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+	border-radius:15px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/textures/textures/aboutIcon.png</normaloff>:/textures/textures/aboutIcon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="notifButton">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>90</y>
+         <width>75</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	border:none;
+
+
+
+}
+
+QPushButton:hover {
+    background-color: yellow;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+	border-radius:15px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/textures/textures/notifsIcon.png</normaloff>:/textures/textures/notifsIcon.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
